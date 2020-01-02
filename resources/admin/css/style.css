@@ -1,0 +1,26 @@
+/**
+ * Write custom admin styles below
+ */
+
+.sort { cursor: pointer; }
+.sort:hover { color: #3f9ce8; }
+
+.code-length {     
+	border: 1px solid #dadada;
+    float: left;
+    height: 24px;
+    margin-right: -6px;
+    text-align: center;
+    margin-top: 1px;
+    width: 24px;
+}
+
+#sortable { list-style-type: none; margin: 0; padding: 0; }
+#sortable li { margin-bottom: 4px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em }
+#sortable li span { position: absolute; margin-left: -1.3em; }
+
+canvas { max-width: 100%; }
+
+/**
+ * Begin individual project css below
+ */

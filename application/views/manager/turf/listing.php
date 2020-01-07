@@ -24,11 +24,16 @@
 		    	<div class="col-sm-12 col-md-6">
 		    		<div class="card border-light m-b-30">
 		    			<div class="card-header bg-transparent border-light"><?php echo $turf['name']; ?>, <?php echo $turf['address']; ?></div>
-		    			<div class="card-body">
-		    				<h5 class="card-title">Light card title</h5>
-		    				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		    			<div class="card-body p-2">
+		    				<?php foreach ($turf['slots'] as $key => $slot) { ?>
+		    					<span class="badge badge-pill badge-info"><?php echo $slot['time']; ?></span>
+		    				<?php } ?>
 		    			</div>
-		    			<div class="card-footer bg-transparent border-light">Footer</div>
+		    			<div class="card-footer bg-transparent border-light">
+		    				<a class="btn btn-primary mr-2" href="<?php echo site_url('manager/turf/edit/'.$turf['id']); ?>">Manage Turf</a>
+		    				<a class="btn btn-primary mr-2" href="<?php echo site_url('manager/turf/gallery/'.$turf['id']); ?>">Manage Gallery</a>
+		    				<a class="btn btn-primary" href="<?php echo site_url('manager/turf/slots/'.$turf['id']); ?>">Manage Slots</a>
+		    			</div>
 		    		</div>  
 		    	</div>
 		    <?php } ?>

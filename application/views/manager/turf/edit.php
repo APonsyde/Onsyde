@@ -1,12 +1,12 @@
 <div class="breadcrumbbar">
     <div class="row align-items-center">
         <div class="col-md-8 col-lg-8">
-            <h4 class="page-title">Create Turf</h4>
+            <h4 class="page-title">Edit Turf - <?php echo $turf['name']; ?></h4>
             <div class="breadcrumb-list">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?php echo site_url('manager/dashboard'); ?>">Dashboard</a></li>
                     <li class="breadcrumb-item" aria-current="page">Turfs</li>
-                    <li class="breadcrumb-item active" aria-current="page">Create</li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit</li>
                 </ol>
             </div>
         </div>
@@ -18,34 +18,34 @@
             <div class="card m-b-30">
                 <div class="card-body">
                     <form method="post">
-                        <input type="hidden" class="form-control" name="latitude" id="latitude" value="<?php echo $this->input->post('latitude'); ?>">
-                        <input type="hidden" class="form-control" name="longitude" id="longitude" value="<?php echo $this->input->post('longitude'); ?>">
+                        <input type="hidden" class="form-control" name="latitude" id="latitude" value="<?php echo ($this->input->post('latitude')) ? $this->input->post('latitude') : $turf['latitude']; ?>">
+                        <input type="hidden" class="form-control" name="longitude" id="longitude" value="<?php echo ($this->input->post('longitude')) ? $this->input->post('longitude') : $turf['longitude']; ?>">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Turf Name</label>
-                                <input type="text" class="form-control" name="name" placeholder="Turf Name" value="<?php echo $this->input->post('name'); ?>">
+                                <input type="text" class="form-control" name="name" placeholder="Turf Name" value="<?php echo ($this->input->post('name')) ? $this->input->post('name') : $turf['name']; ?>">
                                 <?php echo form_error('name'); ?>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Address</label>
-                            <input type="text" class="form-control" name="address" placeholder="1234 Main St" id="autocomplete" value="<?php echo $this->input->post('address'); ?>">
+                            <input type="text" class="form-control" name="address" placeholder="1234 Main St" id="autocomplete" value="<?php echo ($this->input->post('address')) ? $this->input->post('address') : $turf['address']; ?>">
                             <?php echo form_error('address'); ?>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Mobile</label>
-                                <input type="text" class="form-control" name="mobile" placeholder="Mobile" value="<?php echo $this->input->post('mobile'); ?>">
+                                <input type="text" class="form-control" name="mobile" placeholder="Mobile" value="<?php echo ($this->input->post('mobile')) ? $this->input->post('mobile') : $turf['mobile']; ?>">
                                 <?php echo form_error('mobile'); ?>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Alternate Number</label>
-                                <input type="text" class="form-control" name="alternate_number" placeholder="Alternate Number" value="<?php echo $this->input->post('alternate_number'); ?>">
+                                <input type="text" class="form-control" name="alternate_number" placeholder="Alternate Number" value="<?php echo ($this->input->post('alternate_number')) ? $this->input->post('alternate_number') : $turf['alternate_number']; ?>">
                                 <?php echo form_error('alternate_number'); ?>
                             </div>
                         </div>
                         <hr>
-                        <button type="submit" class="btn btn-outline-primary">Create</button>
+                        <button type="submit" class="btn btn-outline-primary">Save</button>
                         <a href="<?php echo site_url('manager/turf/listing'); ?>" class="btn btn-outline-danger float-right">Cancel</a>
                     </form>
                 </div>

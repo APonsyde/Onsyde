@@ -41,6 +41,14 @@ class Manager_model extends CI_Model {
 		return $this->db->update('managers', $data, array('id' => $id));
 	}
 
+	public function get_manager_by_id($id)
+	{
+		$this->db->select('m.*');
+		$this->db->from('managers m');
+		$this->db->where('m.id', $id);
+		return $this->db->get()->row_array();
+	}
+
 	public function get_manager_by_params($params)
 	{
 		if(isset($params['forgot_password_key']))

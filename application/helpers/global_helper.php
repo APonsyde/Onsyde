@@ -128,3 +128,66 @@ function sms($mobile, $message)
    $output = curl_exec($ch);
    curl_close($ch);
 }
+
+function format_size_units($bytes)
+{
+    if ($bytes >= 1073741824)
+    {
+        $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+    }
+    elseif ($bytes >= 1048576)
+    {
+        $bytes = number_format($bytes / 1048576, 2) . ' MB';
+    }
+    elseif ($bytes >= 1024)
+    {
+        $bytes = number_format($bytes / 1024, 2) . ' KB';
+    }
+    elseif ($bytes > 1)
+    {
+        $bytes = $bytes . ' bytes';
+    }
+    elseif ($bytes == 1)
+    {
+        $bytes = $bytes . ' byte';
+    }
+    else
+    {
+        $bytes = '0 bytes';
+    }
+
+    return $bytes;
+}
+
+function get_days()
+{
+    $days = [
+    	'Sunday',
+    	'Monday',
+    	'Tuesday',
+    	'Wednesday',
+    	'Thursday',
+    	'Friday',
+    	'Saturday',
+    ];
+
+    return $days;
+}
+
+function time_intervals($lower = 0, $upper = 86400, $step = 3600, $format = '')
+{
+    $times = array();
+
+    if(empty($format)) {
+        $format = 'g:i a';
+    }
+
+    foreach(range($lower, $upper, $step) as $increment) {
+        $increment = gmdate('H:i', $increment);
+        list($hour, $minutes) = explode(':', $increment);
+        $date = new DateTime($hour . ':' . $minutes);
+        $times[(string) $increment] = $date->format($format);
+    }
+
+    return $times;
+}

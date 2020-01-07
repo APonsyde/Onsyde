@@ -5,7 +5,16 @@
 --------------------------------------------------------------
  */
 "use strict";
+
 $(document).ready(function() {
+    $('#fileupload').fileupload('option', {
+        url: $('#fileupload').fileupload('option', 'url'),
+        disableImageResize: /Android(?!.*Chrome)|Opera/.test(
+            window.navigator.userAgent
+        ),
+        maxFileSize: 999000,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+    });
     /* -- Menu js -- */
     $.sidebarMenu($('.vertical-menu'));
     $(function() {

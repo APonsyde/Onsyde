@@ -6,14 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 <title><?php echo PROJECT_NAME; ?><?php echo isset($title) ? " / " . $title : ""; ?></title>
 <link rel="shortcut icon" href="<?php echo base_url('resources/theme/images/favicon.ico'); ?>">
+<link href="https://blueimp.github.io/Gallery/css/blueimp-gallery.min.css" rel="stylesheet">
 <link href="<?php echo base_url('resources/theme/plugins/switchery/switchery.min.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url('resources/theme/plugins/apexcharts/apexcharts.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url('resources/theme/plugins/slick/slick.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url('resources/theme/plugins/slick/slick-theme.css'); ?>" rel="stylesheet">
+<link href="<?php echo base_url('resources/theme/plugins/jquery-file-upload/css/jquery.fileupload.css'); ?>" rel="stylesheet">
+<link href="<?php echo base_url('resources/theme/plugins/jquery-file-upload/css/jquery.fileupload-ui.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url('resources/theme/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('resources/theme/css/icons.css'); ?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('resources/theme/css/flag-icon.min.css'); ?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('resources/theme/css/style.css'); ?>" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url('resources/manager/css/style.css'); ?>" rel="stylesheet" type="text/css">
 <script src="<?php echo base_url('resources/theme/js/jquery.min.js'); ?>"></script>
 <script>
 	var SITE_URL = "<?php echo site_url(); ?>";

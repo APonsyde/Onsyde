@@ -52,27 +52,12 @@ class Upload_model extends CI_Model {
 		return $this->db->get_where($table)->row_array();
 	}
 
-	public function delete_file($table, $id, $folder)
+	public function delete_file_by_params($table, $params)
 	{
-		$file = $this->get_file($table, $id);
-
-		if(!empty($file))
-		{
-			@unlink(FCPATH . $folder . "/" . $file['image']);
-
-			$file_data = explode(".", $file['image']);
-			$files = preg_grep('~^'.$file_data[0].'~', scandir(FCPATH . $folder . "/thumb/"));
-
-			if(!empty($files))
-			{
-				foreach ($files as $f)
-				{
-					@unlink(FCPATH . $folder . "/thumb/" . $f);
-				}
-			}
+		foreach ($params as $key => $value) {
+			$this->db->where($key, $value);
 		}
 
-		$this->db->where('id', $id);
 		return $this->db->delete($table);
 	}
 }

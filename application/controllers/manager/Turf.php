@@ -15,6 +15,7 @@ class Turf extends ManagerController
 		$this->authenticate(current_url());
 
 		$filters = $this->input->get();
+		$filters['manager_id'] = $this->manager['id'];
 
 		$offset = ($this->input->get('page')) ? $this->input->get('page') : 0;
 		$data['turfs'] = $this->Turf_model->get_all_turfs(null, null, $filters);
@@ -23,12 +24,18 @@ class Turf extends ManagerController
 		$data['inactive'] = $this->Turf_model->count_all_turfs(['inactive' => 1]);
 		$data['pagination'] = pagination(site_url('manager/turf/listing'), $data['count'], ROWS_PER_LISTING);
 
+		$date = ($this->input->get('date')) ? $this->input->get('date') : date('Y-m-d');
+		$timestamp = strtotime($date);
+		$day = date('l', $timestamp);
+
 		foreach ($data['turfs'] as $key => $turf)
 		{
-        	$data['turfs'][$key]['slots'] = $this->Turf_model->get_all_turf_slots($turf['id'], 'Sunday');
+        	$data['turfs'][$key]['slots'] = $this->Turf_model->get_all_turf_slots($turf['id'], $day);
+        	$data['turfs'][$key]['booked_slots'] = $this->Turf_model->get_all_turf_booked_slots($turf['id'], $day, $date);
 		}
 
 		$data['tab'] = 'turfs';
+		$data['subtab'] = 'list';
 		$data['title'] = 'Turf Listing';
 		$data['_view'] = 'manager/turf/listing';
 		$this->load->view('manager/layout/basetemplate', $data);
@@ -74,6 +81,7 @@ class Turf extends ManagerController
         else
         {
 			$data['tab'] = 'turfs';
+			$data['subtab'] = 'create';
 			$data['title'] = 'Create Turf';
 			$data['_view'] = 'manager/turf/create';
 			$this->load->view('manager/layout/basetemplate', $data);
@@ -119,6 +127,7 @@ class Turf extends ManagerController
 	        else
 	        {
 				$data['tab'] = 'turfs';
+				$data['subtab'] = 'list';
 				$data['title'] = 'Create Turf';
 				$data['_view'] = 'manager/turf/edit';
 				$this->load->view('manager/layout/basetemplate', $data);
@@ -143,6 +152,7 @@ class Turf extends ManagerController
 			$data['images'] = $this->Turf_model->get_turf_images($id);
 
 			$data['tab'] = 'turfs';
+			$data['subtab'] = 'list';
 			$data['title'] = 'Upload Turf Images';
 			$data['_view'] = 'manager/turf/gallery';
 			$this->load->view('manager/layout/basetemplate', $data);
@@ -201,6 +211,7 @@ class Turf extends ManagerController
 				}
 
 				$data['tab'] = 'turfs';
+				$data['subtab'] = 'list';
 				$data['title'] = 'Manage Turf Slots';
 				$data['_view'] = 'manager/turf/slots';
 				$this->load->view('manager/layout/basetemplate', $data);

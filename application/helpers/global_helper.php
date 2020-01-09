@@ -174,6 +174,22 @@ function get_days()
     return $days;
 }
 
+function get_upcoming_days()
+{
+    $days = [];
+
+    $m = date("m");
+    $de = date("d");
+    $y = date("Y");
+
+    for($i = 0; $i <= 6; $i++)
+    {
+        $days[date('Y-m-d', mktime(0,0,0, $m, ($de+$i), $y))] = date('D, jS M', mktime(0,0,0, $m, ($de+$i), $y)); 
+    }
+
+    return $days;
+}
+
 function time_intervals($lower = 0, $upper = 86400, $step = 3600, $format = '')
 {
     $times = array();

@@ -31,23 +31,23 @@
                 </div>
                 <div class="navigationbar">
                     <ul class="vertical-menu">
-                        <li>
+                        <li class="<?php echo (isset($tab) && $tab == 'dashboard') ? 'active' : ''; ?>">
                             <a href="<?php echo site_url('manager/dashboard'); ?>">
                               <img src="<?php echo base_url('resources/theme/images/svg-icon/dashboard.svg'); ?>" class="img-fluid" alt="dashboard"><span>Dashboard</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="<?php echo (isset($tab) && $tab == 'bookings') ? 'active' : ''; ?>">
                             <a href="<?php echo site_url('manager/bookings'); ?>">
                               <img src="<?php echo base_url('resources/theme/images/svg-icon/tables.svg'); ?>" class="img-fluid" alt="dashboard"><span>Bookings</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="<?php echo (isset($tab) && $tab == 'turfs') ? 'active' : ''; ?>">
                             <a href="javaScript:void();">
                                 <img src="<?php echo base_url('resources/theme/images/svg-icon/layouts.svg'); ?>" class="img-fluid" alt="layouts"><span>Turfs</span><i class="feather icon-chevron-right pull-right"></i>
                             </a>
                             <ul class="vertical-submenu">
-                                <li><a href="<?php echo site_url('manager/turf/create'); ?>">Create</a></li> 
-                                <li><a href="<?php echo site_url('manager/turf/listing'); ?>">List</a></li>
+                                <li class="<?php echo (isset($tab) && $tab == 'turfs' && $subtab == 'create') ? 'active' : ''; ?>"><a href="<?php echo site_url('manager/turf/create'); ?>">Create</a></li> 
+                                <li class="<?php echo (isset($tab) && $tab == 'turfs' && $subtab == 'list') ? 'active' : ''; ?>"><a href="<?php echo site_url('manager/turf/listing'); ?>">List</a></li>
                             </ul>
                         </li>                                         
                     </ul>
@@ -133,7 +133,7 @@
                                                 <div class="userbox">
                                                     <ul class="list-unstyled mb-0">
                                                         <li class="media dropdown-item">
-                                                            <a href="#" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/user.svg'); ?>" class="img-fluid" alt="user">Profile</a>
+                                                            <a href="<?php echo site_url('manager/profile'); ?>" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/user.svg'); ?>" class="img-fluid" alt="user">Profile</a>
                                                         </li>                                                    
                                                         <li class="media dropdown-item">
                                                             <a href="<?php echo site_url('manager/logout'); ?>" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/logout.svg'); ?>" class="img-fluid" alt="logout">Logout</a>

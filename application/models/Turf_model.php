@@ -61,6 +61,18 @@ class Turf_model extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
+	public function get_all_turf_booked_slots($id, $day, $date)
+	{
+		$this->db->where('b.booking_date', $date);
+		$this->db->select('ts.*');
+		$this->db->from('turf_slots ts');
+		$this->db->join('booking_slots bs', 'bs.turf_slot_id = ts.id', 'left');
+		$this->db->join('bookings b', 'bs.booking_id = b.id', 'left');
+		$this->db->where('ts.turf_id', $id);
+		$this->db->where('ts.day', $day);
+		return $this->db->get()->result_array();
+	}
+
 	public function get_all_turfs($limit = 0, $offset = 0, $params = null)
 	{
 		if($limit)

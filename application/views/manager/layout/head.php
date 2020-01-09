@@ -13,6 +13,7 @@
 <link href="<?php echo base_url('resources/theme/plugins/slick/slick-theme.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url('resources/theme/plugins/jquery-file-upload/css/jquery.fileupload.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url('resources/theme/plugins/jquery-file-upload/css/jquery.fileupload-ui.css'); ?>" rel="stylesheet">
+<link href="<?php echo base_url('resources/theme/plugins/select2/select2.min.css'); ?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('resources/theme/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('resources/theme/css/icons.css'); ?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('resources/theme/css/flag-icon.min.css'); ?>" rel="stylesheet" type="text/css">

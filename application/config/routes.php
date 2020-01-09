@@ -65,6 +65,7 @@ $route['manager/dashboard'] = 'manager/user/dashboard';
 $route['manager/logout'] = 'manager/user/logout';
 $route['manager/forgot-password'] = 'manager/user/forgot_password';
 $route['manager/reset-password'] = 'manager/user/reset_password';
+$route['manager/profile'] = 'manager/user/profile';
 
 /**
  * Front Routes

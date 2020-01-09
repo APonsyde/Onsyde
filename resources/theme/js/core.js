@@ -62,4 +62,7 @@ $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
     /* -- Bootstrap Tooltip -- */
     $('[data-toggle="tooltip"]').tooltip();
+    /* -- Select2 -- */
+    $('select').select2();
+
 });

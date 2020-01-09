@@ -232,6 +232,7 @@ class User extends ManagerController
     {
         $this->authenticate(current_url());
 
+        $data['tab'] = 'dashboard';
         $data['title'] = 'View your dashboard activity';
         $data['_view'] = 'manager/user/dashboard';
         $this->load->view('manager/layout/basetemplate', $data);
@@ -352,65 +353,60 @@ class User extends ManagerController
         }
     }
 
-    public function my_account()
+    public function profile()
     {
         $this->authenticate(current_url());
 
-        $this->form_validation->set_rules('r_first_name', 'First name', 'required|xss_clean');
-        $this->form_validation->set_rules('r_last_name', 'Last name', 'required|xss_clean');
-        $this->form_validation->set_rules('r_mobile', 'Mobile', 'check_field[players,mobile,deleted|0&id !=|'.$this->player['id'].']|xss_clean');
-        $this->form_validation->set_rules('r_date_of_birth', 'Date of birth', 'xss_clean');
-        $this->form_validation->set_rules('r_gender', 'Gender', 'xss_clean');
+        $this->form_validation->set_rules('company_name', 'Company name', 'required|xss_clean');
+        $this->form_validation->set_rules('contact_person', 'Contact person', 'required|xss_clean');
+        $this->form_validation->set_rules('email', 'Email', 'valid_email|check_field[managers,email,deleted|0&id !=|'.$this->manager['id'].']|xss_clean');
 
-        if(trim($this->input->post('r_password')) !== "" || trim($this->input->post('r_retype_password')) !== "")
+        if(trim($this->input->post('password')) !== "")
         {
-            $this->form_validation->set_rules('r_password', 'Password', 'required|min_length[6]');
-            $this->form_validation->set_rules('r_retype_password', 'Retype password', 'required|min_length[6]|matches[r_password]');
+            $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|xss_clean');
+            $this->form_validation->set_rules('retype_password', 'Retype password', 'required|min_length[6]|matches[password]|xss_clean');
         }
 
         $this->form_validation->set_message('required', '%s is required');
         $this->form_validation->set_message('valid_email', '%s is invalid');
-        $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+        $this->form_validation->set_error_delimiters('<div class="text-danger text-left"><small>', '</small></div>');
 
         if($this->form_validation->run())
         {
+
             $data = [
-                'first_name' => $this->input->post('r_first_name'),
-                'last_name' => $this->input->post('r_last_name'),
-                'full_name' => $this->input->post('r_first_name') . ' ' . $this->input->post('r_last_name'),
-                'mobile' => $this->input->post('r_mobile'),
-                'gender' => $this->input->post('r_gender'),
-                'date_of_birth' => $this->input->post('r_date_of_birth'),
-                'newsletter' => $this->input->post('r_newsletter')
+                'company_name' => $this->input->post('company_name'),
+                'contact_person' => $this->input->post('contact_person'),
+                'email' => $this->input->post('email')
             ];
 
-            if(trim($this->input->post('r_password')) !== "" || trim($this->input->post('r_retype_password')) !== "")
+            if(trim($this->input->post('password')) !== "")
             {
                 $data['password'] = md5($this->input->post('password'));
             }
 
-            $result = $this->Player_model->update($this->player['id'], $data);
+            $result = $this->Manager_model->update($this->manager['id'], $data);
 
             if($result)
             {
                 $this->session->set_flashdata('success_message', 'Account details updated successfully');
-                redirect('my-account');
+                redirect('manager/profile');
                 exit;
             }
             else
             {
                 $this->session->set_flashdata('error_message', 'Some error occured while updating the account details');
-                redirect('my-account');
+                redirect('manager/profile');
                 exit;
             }
         }
         else
         {
-            $data['player'] = $this->Player_model->get_player_by_id($this->player['id']);
+            $data['manager'] = $this->Manager_model->get_manager_by_id($this->manager['id']);
 
-            $data['title'] = 'My Account';
-            $data['_view'] = 'front/player/my-account';
-            $this->load->view('front/layout/basetemplate', $data);
+            $data['title'] = 'Profile';
+            $data['_view'] = 'manager/user/profile';
+            $this->load->view('manager/layout/basetemplate', $data);
         }
     }
 }

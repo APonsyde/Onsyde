@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 27, 2019 at 07:10 AM
+-- Generation Time: Jan 09, 2020 at 08:02 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.1.18
 
@@ -19,10 +19,61 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sports`
+-- Database: `onsyde`
 --
-CREATE DATABASE IF NOT EXISTS `sports` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `sports`;
+CREATE DATABASE IF NOT EXISTS `onsyde` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `onsyde`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookings`
+--
+
+DROP TABLE IF EXISTS `bookings`;
+CREATE TABLE IF NOT EXISTS `bookings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `turf_id` int(11) NOT NULL,
+  `player_id` int(11) NOT NULL,
+  `booking_date` date DEFAULT NULL,
+  `booking_amount` float NOT NULL DEFAULT '0',
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `turf_id`, `player_id`, `booking_date`, `booking_amount`, `created_on`, `updated_on`) VALUES
+(1, 1, 1, '2020-01-12', 3000, '2020-01-08 15:20:11', '2020-01-08 17:58:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking_slots`
+--
+
+DROP TABLE IF EXISTS `booking_slots`;
+CREATE TABLE IF NOT EXISTS `booking_slots` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `booking_id` int(11) NOT NULL,
+  `turf_slot_id` int(11) NOT NULL,
+  `slot_amount` float NOT NULL DEFAULT '0',
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `booking_slots`
+--
+
+INSERT INTO `booking_slots` (`id`, `booking_id`, `turf_slot_id`, `slot_amount`, `created_on`, `updated_on`) VALUES
+(1, 1, 1, 1000, '2020-01-08 15:20:45', NULL),
+(2, 1, 2, 1000, '2020-01-08 15:20:45', NULL),
+(3, 1, 3, 1000, '2020-01-08 15:20:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -48310,6 +48361,35 @@ INSERT INTO `grounds` (`id`, `ground_name`, `pincode`, `latitude`, `longitude`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `managers`
+--
+
+DROP TABLE IF EXISTS `managers`;
+CREATE TABLE IF NOT EXISTS `managers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(255) DEFAULT NULL,
+  `contact_person` varchar(255) DEFAULT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `otp` int(11) DEFAULT NULL,
+  `forgot_password_key` varchar(255) DEFAULT NULL,
+  `deleted` tinyint(4) NOT NULL DEFAULT '0',
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `managers`
+--
+
+INSERT INTO `managers` (`id`, `company_name`, `contact_person`, `mobile`, `email`, `password`, `otp`, `forgot_password_key`, `deleted`, `created_on`, `updated_on`) VALUES
+(2, 'TLB Turfs', 'Yohhan Dalvi', '7718813091', '', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', NULL, NULL, 0, '2020-01-02 14:26:58', '2020-01-08 14:18:50');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `players`
 --
 
@@ -48471,19 +48551,19 @@ INSERT INTO `player_sport_skill` (`id`, `player_sport_id`, `sport_skill_set_id`,
 DROP TABLE IF EXISTS `sports`;
 CREATE TABLE IF NOT EXISTS `sports` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sport_name` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `deleted` tinyint(11) NOT NULL,
   `inactive` tinyint(11) NOT NULL,
   `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sports`
 --
 
-INSERT INTO `sports` (`id`, `sport_name`, `deleted`, `inactive`, `created_on`, `updated_on`) VALUES
+INSERT INTO `sports` (`id`, `name`, `deleted`, `inactive`, `created_on`, `updated_on`) VALUES
 (1, 'test sports', 0, 0, '2019-10-17 15:28:43', '2019-10-17 15:28:43'),
 (2, 'test sports', 0, 0, '2019-10-17 16:17:09', '2019-10-17 16:17:09'),
 (3, 'test sports', 0, 0, '2019-10-17 16:19:02', '2019-10-17 16:19:02'),
@@ -48491,7 +48571,8 @@ INSERT INTO `sports` (`id`, `sport_name`, `deleted`, `inactive`, `created_on`, `
 (5, 'vxcxx', 0, 0, '2019-11-01 15:30:14', '2019-11-01 15:30:14'),
 (6, 'qwsqwssw', 0, 0, '2019-11-04 11:58:29', '2019-11-04 11:58:29'),
 (7, 'ddddddd', 0, 0, '2019-11-14 15:31:00', NULL),
-(8, 'saasa', 0, 0, '2019-12-23 17:55:23', NULL);
+(8, 'saasa', 0, 0, '2019-12-23 17:55:23', NULL),
+(9, 'Cricket', 0, 0, '2019-12-27 13:26:42', NULL);
 
 -- --------------------------------------------------------
 
@@ -50862,7 +50943,7 @@ CREATE TABLE IF NOT EXISTS `tournament_invited_players` (
   `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tournament_invited_players`
@@ -50871,7 +50952,8 @@ CREATE TABLE IF NOT EXISTS `tournament_invited_players` (
 INSERT INTO `tournament_invited_players` (`id`, `tournament_id`, `player_id`, `deleted`, `created_on`, `updated_on`) VALUES
 (1, 4, 1, 0, '2019-11-06 12:10:10', '2019-11-25 16:44:43'),
 (2, 8, 3, 0, '2019-11-06 12:10:10', '2019-11-25 16:44:45'),
-(5, 1, 18, 0, '2019-11-06 12:10:10', '2019-11-25 16:44:47');
+(5, 1, 18, 0, '2019-11-06 12:10:10', '2019-11-25 16:44:47'),
+(7, 1, 1, 0, '2019-12-27 12:31:53', NULL);
 
 -- --------------------------------------------------------
 
@@ -50889,16 +50971,15 @@ CREATE TABLE IF NOT EXISTS `tournament_rules` (
   `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_on` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tournament_rules`
 --
 
 INSERT INTO `tournament_rules` (`id`, `tournament_id`, `sport_rule_id`, `value`, `deleted`, `created_on`, `updated_on`) VALUES
-(1, 1, 6, NULL, 0, '2019-11-25 14:46:51', '0000-00-00 00:00:00'),
-(2, 1, 5, NULL, 0, '2019-11-25 14:46:51', '0000-00-00 00:00:00'),
-(3, 1, 4, NULL, 0, '2019-11-25 14:46:51', '0000-00-00 00:00:00');
+(21, 1, 6, '[\"fgdgd\",\"1\",\"2\",\"3\"]', 0, '2019-12-27 13:14:08', '0000-00-00 00:00:00'),
+(22, 1, 1, NULL, 0, '2019-12-27 13:14:08', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -50918,7 +50999,7 @@ CREATE TABLE IF NOT EXISTS `tournament_teams` (
   `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tournament_teams`
@@ -50931,7 +51012,6 @@ INSERT INTO `tournament_teams` (`id`, `tournament_id`, `name`, `logo`, `status`,
 (18, 13, 'test new ', '', 'created', 0, 0, '2019-11-25 17:03:15', NULL),
 (19, 13, 'test new 1', '', 'created', 0, 0, '2019-11-25 17:03:59', NULL),
 (23, 1, 'test team 1', '', 'created', 0, 0, '2019-11-25 17:09:35', NULL),
-(24, 1, 'test team 1.1', '', 'created', 0, 0, '2019-11-25 17:13:58', NULL),
 (25, 13, 'test team 2', '', 'created', 0, 0, '2019-11-25 17:14:20', NULL),
 (26, 13, 'test team 2.2', '', 'created', 0, 0, '2019-11-25 17:19:21', NULL),
 (27, 13, 'test new 2.2', '', 'created', 0, 0, '2019-11-25 17:23:06', NULL),
@@ -50950,7 +51030,8 @@ INSERT INTO `tournament_teams` (`id`, `tournament_id`, `name`, `logo`, `status`,
 (40, 13, 'dsfdsf', '', 'created', 0, 0, '2019-11-25 17:40:56', NULL),
 (41, 13, 'dsfdsf', '', 'created', 0, 0, '2019-11-25 17:41:19', NULL),
 (42, 13, 'test 4', '', 'created', 0, 0, '2019-11-25 17:44:30', NULL),
-(43, 13, 'test 4.1', '', 'created', 0, 0, '2019-11-25 17:45:35', NULL);
+(43, 13, 'test 4.1', '', 'created', 0, 0, '2019-11-25 17:45:35', NULL),
+(44, 1, 'savy', '1.png', 'created', 0, 0, '2019-12-27 12:30:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -50994,6 +51075,422 @@ INSERT INTO `tournament_team_player` (`id`, `tournament_team_id`, `player_id`, `
 (18, 42, 20, 'invited', '2019-11-25 17:44:30', NULL),
 (19, 43, 19, 'invited', '2019-11-25 17:45:35', NULL),
 (20, 43, 20, 'invited', '2019-11-25 17:45:35', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `turfs`
+--
+
+DROP TABLE IF EXISTS `turfs`;
+CREATE TABLE IF NOT EXISTS `turfs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `manager_id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `latitude` decimal(10,8) DEFAULT NULL,
+  `longitude` decimal(11,8) DEFAULT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
+  `alternate_number` varchar(255) DEFAULT NULL,
+  `inactive` tinyint(4) NOT NULL DEFAULT '0',
+  `deleted` tinyint(4) NOT NULL DEFAULT '0',
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `turfs`
+--
+
+INSERT INTO `turfs` (`id`, `manager_id`, `name`, `address`, `latitude`, `longitude`, `mobile`, `alternate_number`, `inactive`, `deleted`, `created_on`, `updated_on`) VALUES
+(1, 2, 'TLB Turf', 'Ghatkopar, Sindhu Wadi, Ghatkopar East, Mumbai, Maharashtra, India', '1.00000000', '1.00000000', '7718813091', '', 0, 0, '2020-01-03 15:48:00', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `turf_images`
+--
+
+DROP TABLE IF EXISTS `turf_images`;
+CREATE TABLE IF NOT EXISTS `turf_images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `turf_id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `original_name` varchar(255) DEFAULT NULL,
+  `size` bigint(20) DEFAULT '0',
+  `created_on` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `turf_images`
+--
+
+INSERT INTO `turf_images` (`id`, `turf_id`, `name`, `original_name`, `size`, `created_on`, `updated_on`) VALUES
+(1, 1, 'banner (2).jpg', 'banner (2).jpg', 346034, '2020-01-08 11:33:53', NULL),
+(2, 1, 'website banner.jpg', 'website banner.jpg', 754339, '2020-01-08 11:33:53', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `turf_slots`
+--
+
+DROP TABLE IF EXISTS `turf_slots`;
+CREATE TABLE IF NOT EXISTS `turf_slots` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `turf_id` int(11) NOT NULL,
+  `day` varchar(255) DEFAULT NULL,
+  `time` varchar(255) DEFAULT NULL,
+  `price` float NOT NULL DEFAULT '0',
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=337 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `turf_slots`
+--
+
+INSERT INTO `turf_slots` (`id`, `turf_id`, `day`, `time`, `price`, `created_on`, `updated_on`) VALUES
+(1, 1, 'Sunday', '12:00 am', 1000, '2020-01-03 15:48:00', '2020-01-03 16:22:03'),
+(2, 1, 'Sunday', '12:30 am', 1000, '2020-01-03 15:48:00', '2020-01-03 17:26:47'),
+(3, 1, 'Sunday', '01:00 am', 1000, '2020-01-03 15:48:00', '2020-01-03 17:26:47'),
+(4, 1, 'Sunday', '01:30 am', 500, '2020-01-03 15:48:00', '2020-01-03 18:17:12'),
+(5, 1, 'Sunday', '02:00 am', 0, '2020-01-03 15:48:00', NULL),
+(6, 1, 'Sunday', '02:30 am', 0, '2020-01-03 15:48:00', NULL),
+(7, 1, 'Sunday', '03:00 am', 0, '2020-01-03 15:48:00', NULL),
+(8, 1, 'Sunday', '03:30 am', 500, '2020-01-03 15:48:00', '2020-01-03 18:17:12'),
+(9, 1, 'Sunday', '04:00 am', 0, '2020-01-03 15:48:00', NULL),
+(10, 1, 'Sunday', '04:30 am', 0, '2020-01-03 15:48:00', NULL),
+(11, 1, 'Sunday', '05:00 am', 12, '2020-01-03 15:48:00', '2020-01-07 12:05:54'),
+(12, 1, 'Sunday', '05:30 am', 100, '2020-01-03 15:48:00', '2020-01-08 11:28:05'),
+(13, 1, 'Sunday', '06:00 am', 500, '2020-01-03 15:48:00', '2020-01-03 18:17:12'),
+(14, 1, 'Sunday', '06:30 am', 0, '2020-01-03 15:48:00', NULL),
+(15, 1, 'Sunday', '07:00 am', 0, '2020-01-03 15:48:00', NULL),
+(16, 1, 'Sunday', '07:30 am', 12, '2020-01-03 15:48:00', '2020-01-07 12:05:54'),
+(17, 1, 'Sunday', '08:00 am', 0, '2020-01-03 15:48:00', NULL),
+(18, 1, 'Sunday', '08:30 am', 0, '2020-01-03 15:48:00', NULL),
+(19, 1, 'Sunday', '09:00 am', 0, '2020-01-03 15:48:00', NULL),
+(20, 1, 'Sunday', '09:30 am', 0, '2020-01-03 15:48:00', NULL),
+(21, 1, 'Sunday', '10:00 am', 15, '2020-01-03 15:48:00', '2020-01-07 12:06:14'),
+(22, 1, 'Sunday', '10:30 am', 1000, '2020-01-03 15:48:00', '2020-01-07 12:06:36'),
+(23, 1, 'Sunday', '11:00 am', 0, '2020-01-03 15:48:00', NULL),
+(24, 1, 'Sunday', '11:30 am', 100, '2020-01-03 15:48:00', '2020-01-07 11:07:28'),
+(25, 1, 'Sunday', '12:00 pm', 150, '2020-01-03 15:48:00', '2020-01-07 11:08:19'),
+(26, 1, 'Sunday', '12:30 pm', 100, '2020-01-03 15:48:00', '2020-01-07 12:04:10'),
+(27, 1, 'Sunday', '01:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(28, 1, 'Sunday', '01:30 pm', 1000, '2020-01-03 15:48:00', '2020-01-07 12:06:36'),
+(29, 1, 'Sunday', '02:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(30, 1, 'Sunday', '02:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(31, 1, 'Sunday', '03:00 pm', 500, '2020-01-03 15:48:00', '2020-01-07 12:05:02'),
+(32, 1, 'Sunday', '03:30 pm', 50, '2020-01-03 15:48:00', '2020-01-07 12:00:36'),
+(33, 1, 'Sunday', '04:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(34, 1, 'Sunday', '04:30 pm', 100, '2020-01-03 15:48:00', '2020-01-07 11:07:28'),
+(35, 1, 'Sunday', '05:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(36, 1, 'Sunday', '05:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(37, 1, 'Sunday', '06:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(38, 1, 'Sunday', '06:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(39, 1, 'Sunday', '07:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(40, 1, 'Sunday', '07:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(41, 1, 'Sunday', '08:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(42, 1, 'Sunday', '08:30 pm', 100, '2020-01-03 15:48:00', '2020-01-07 12:04:38'),
+(43, 1, 'Sunday', '09:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(44, 1, 'Sunday', '09:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(45, 1, 'Sunday', '10:00 pm', 10, '2020-01-03 15:48:00', '2020-01-08 11:14:38'),
+(46, 1, 'Sunday', '10:30 pm', 100080, '2020-01-03 15:48:00', '2020-01-08 11:14:44'),
+(47, 1, 'Sunday', '11:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(48, 1, 'Sunday', '11:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(49, 1, 'Monday', '12:00 am', 0, '2020-01-03 15:48:00', NULL),
+(50, 1, 'Monday', '12:30 am', 0, '2020-01-03 15:48:00', NULL),
+(51, 1, 'Monday', '01:00 am', 1000, '2020-01-03 15:48:00', '2020-01-07 12:06:48'),
+(52, 1, 'Monday', '01:30 am', 1000, '2020-01-03 15:48:00', '2020-01-07 12:06:52'),
+(53, 1, 'Monday', '02:00 am', 500, '2020-01-03 15:48:00', '2020-01-09 11:27:30'),
+(54, 1, 'Monday', '02:30 am', 0, '2020-01-03 15:48:00', NULL),
+(55, 1, 'Monday', '03:00 am', 0, '2020-01-03 15:48:00', NULL),
+(56, 1, 'Monday', '03:30 am', 0, '2020-01-03 15:48:00', NULL),
+(57, 1, 'Monday', '04:00 am', 0, '2020-01-03 15:48:00', NULL),
+(58, 1, 'Monday', '04:30 am', 0, '2020-01-03 15:48:00', NULL),
+(59, 1, 'Monday', '05:00 am', 0, '2020-01-03 15:48:00', NULL),
+(60, 1, 'Monday', '05:30 am', 0, '2020-01-03 15:48:00', NULL),
+(61, 1, 'Monday', '06:00 am', 1000, '2020-01-03 15:48:00', '2020-01-07 12:06:48'),
+(62, 1, 'Monday', '06:30 am', 1000, '2020-01-03 15:48:00', '2020-01-07 12:06:52'),
+(63, 1, 'Monday', '07:00 am', 500, '2020-01-03 15:48:00', '2020-01-09 11:27:30'),
+(64, 1, 'Monday', '07:30 am', 0, '2020-01-03 15:48:00', NULL),
+(65, 1, 'Monday', '08:00 am', 0, '2020-01-03 15:48:00', NULL),
+(66, 1, 'Monday', '08:30 am', 0, '2020-01-03 15:48:00', NULL),
+(67, 1, 'Monday', '09:00 am', 0, '2020-01-03 15:48:00', NULL),
+(68, 1, 'Monday', '09:30 am', 0, '2020-01-03 15:48:00', NULL),
+(69, 1, 'Monday', '10:00 am', 0, '2020-01-03 15:48:00', NULL),
+(70, 1, 'Monday', '10:30 am', 0, '2020-01-03 15:48:00', NULL),
+(71, 1, 'Monday', '11:00 am', 1000, '2020-01-03 15:48:00', '2020-01-07 12:06:48'),
+(72, 1, 'Monday', '11:30 am', 1000, '2020-01-03 15:48:00', '2020-01-07 12:06:52'),
+(73, 1, 'Monday', '12:00 pm', 500, '2020-01-03 15:48:00', '2020-01-09 11:27:30'),
+(74, 1, 'Monday', '12:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(75, 1, 'Monday', '01:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(76, 1, 'Monday', '01:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(77, 1, 'Monday', '02:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(78, 1, 'Monday', '02:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(79, 1, 'Monday', '03:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(80, 1, 'Monday', '03:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(81, 1, 'Monday', '04:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(82, 1, 'Monday', '04:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(83, 1, 'Monday', '05:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(84, 1, 'Monday', '05:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(85, 1, 'Monday', '06:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(86, 1, 'Monday', '06:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(87, 1, 'Monday', '07:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(88, 1, 'Monday', '07:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(89, 1, 'Monday', '08:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(90, 1, 'Monday', '08:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(91, 1, 'Monday', '09:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(92, 1, 'Monday', '09:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(93, 1, 'Monday', '10:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(94, 1, 'Monday', '10:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(95, 1, 'Monday', '11:00 pm', 100, '2020-01-03 15:48:00', '2020-01-08 11:17:07'),
+(96, 1, 'Monday', '11:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(97, 1, 'Tuesday', '12:00 am', 0, '2020-01-03 15:48:00', NULL),
+(98, 1, 'Tuesday', '12:30 am', 1000, '2020-01-03 15:48:00', '2020-01-09 11:27:56'),
+(99, 1, 'Tuesday', '01:00 am', 0, '2020-01-03 15:48:00', NULL),
+(100, 1, 'Tuesday', '01:30 am', 0, '2020-01-03 15:48:00', NULL),
+(101, 1, 'Tuesday', '02:00 am', 0, '2020-01-03 15:48:00', NULL),
+(102, 1, 'Tuesday', '02:30 am', 0, '2020-01-03 15:48:00', NULL),
+(103, 1, 'Tuesday', '03:00 am', 0, '2020-01-03 15:48:00', NULL),
+(104, 1, 'Tuesday', '03:30 am', 0, '2020-01-03 15:48:00', NULL),
+(105, 1, 'Tuesday', '04:00 am', 0, '2020-01-03 15:48:00', NULL),
+(106, 1, 'Tuesday', '04:30 am', 0, '2020-01-03 15:48:00', NULL),
+(107, 1, 'Tuesday', '05:00 am', 0, '2020-01-03 15:48:00', NULL),
+(108, 1, 'Tuesday', '05:30 am', 1000, '2020-01-03 15:48:00', '2020-01-09 11:27:56'),
+(109, 1, 'Tuesday', '06:00 am', 1000, '2020-01-03 15:48:00', '2020-01-09 11:27:56'),
+(110, 1, 'Tuesday', '06:30 am', 0, '2020-01-03 15:48:00', NULL),
+(111, 1, 'Tuesday', '07:00 am', 0, '2020-01-03 15:48:00', NULL),
+(112, 1, 'Tuesday', '07:30 am', 0, '2020-01-03 15:48:00', NULL),
+(113, 1, 'Tuesday', '08:00 am', 0, '2020-01-03 15:48:00', NULL),
+(114, 1, 'Tuesday', '08:30 am', 0, '2020-01-03 15:48:00', NULL),
+(115, 1, 'Tuesday', '09:00 am', 0, '2020-01-03 15:48:00', NULL),
+(116, 1, 'Tuesday', '09:30 am', 0, '2020-01-03 15:48:00', NULL),
+(117, 1, 'Tuesday', '10:00 am', 0, '2020-01-03 15:48:00', NULL),
+(118, 1, 'Tuesday', '10:30 am', 0, '2020-01-03 15:48:00', NULL),
+(119, 1, 'Tuesday', '11:00 am', 1000, '2020-01-03 15:48:00', '2020-01-09 11:27:56'),
+(120, 1, 'Tuesday', '11:30 am', 0, '2020-01-03 15:48:00', NULL),
+(121, 1, 'Tuesday', '12:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(122, 1, 'Tuesday', '12:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(123, 1, 'Tuesday', '01:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(124, 1, 'Tuesday', '01:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(125, 1, 'Tuesday', '02:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(126, 1, 'Tuesday', '02:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(127, 1, 'Tuesday', '03:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(128, 1, 'Tuesday', '03:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(129, 1, 'Tuesday', '04:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(130, 1, 'Tuesday', '04:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(131, 1, 'Tuesday', '05:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(132, 1, 'Tuesday', '05:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(133, 1, 'Tuesday', '06:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(134, 1, 'Tuesday', '06:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(135, 1, 'Tuesday', '07:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(136, 1, 'Tuesday', '07:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(137, 1, 'Tuesday', '08:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(138, 1, 'Tuesday', '08:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(139, 1, 'Tuesday', '09:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(140, 1, 'Tuesday', '09:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(141, 1, 'Tuesday', '10:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(142, 1, 'Tuesday', '10:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(143, 1, 'Tuesday', '11:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(144, 1, 'Tuesday', '11:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(145, 1, 'Wednesday', '12:00 am', 0, '2020-01-03 15:48:00', NULL),
+(146, 1, 'Wednesday', '12:30 am', 0, '2020-01-03 15:48:00', NULL),
+(147, 1, 'Wednesday', '01:00 am', 0, '2020-01-03 15:48:00', NULL),
+(148, 1, 'Wednesday', '01:30 am', 0, '2020-01-03 15:48:00', NULL),
+(149, 1, 'Wednesday', '02:00 am', 0, '2020-01-03 15:48:00', NULL),
+(150, 1, 'Wednesday', '02:30 am', 0, '2020-01-03 15:48:00', NULL),
+(151, 1, 'Wednesday', '03:00 am', 0, '2020-01-03 15:48:00', NULL),
+(152, 1, 'Wednesday', '03:30 am', 0, '2020-01-03 15:48:00', NULL),
+(153, 1, 'Wednesday', '04:00 am', 0, '2020-01-03 15:48:00', NULL),
+(154, 1, 'Wednesday', '04:30 am', 0, '2020-01-03 15:48:00', NULL),
+(155, 1, 'Wednesday', '05:00 am', 0, '2020-01-03 15:48:00', NULL),
+(156, 1, 'Wednesday', '05:30 am', 0, '2020-01-03 15:48:00', NULL),
+(157, 1, 'Wednesday', '06:00 am', 0, '2020-01-03 15:48:00', NULL),
+(158, 1, 'Wednesday', '06:30 am', 0, '2020-01-03 15:48:00', NULL),
+(159, 1, 'Wednesday', '07:00 am', 0, '2020-01-03 15:48:00', NULL),
+(160, 1, 'Wednesday', '07:30 am', 0, '2020-01-03 15:48:00', NULL),
+(161, 1, 'Wednesday', '08:00 am', 0, '2020-01-03 15:48:00', NULL),
+(162, 1, 'Wednesday', '08:30 am', 0, '2020-01-03 15:48:00', NULL),
+(163, 1, 'Wednesday', '09:00 am', 0, '2020-01-03 15:48:00', NULL),
+(164, 1, 'Wednesday', '09:30 am', 0, '2020-01-03 15:48:00', NULL),
+(165, 1, 'Wednesday', '10:00 am', 0, '2020-01-03 15:48:00', NULL),
+(166, 1, 'Wednesday', '10:30 am', 0, '2020-01-03 15:48:00', NULL),
+(167, 1, 'Wednesday', '11:00 am', 0, '2020-01-03 15:48:00', NULL),
+(168, 1, 'Wednesday', '11:30 am', 0, '2020-01-03 15:48:00', NULL),
+(169, 1, 'Wednesday', '12:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(170, 1, 'Wednesday', '12:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(171, 1, 'Wednesday', '01:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(172, 1, 'Wednesday', '01:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(173, 1, 'Wednesday', '02:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(174, 1, 'Wednesday', '02:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(175, 1, 'Wednesday', '03:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(176, 1, 'Wednesday', '03:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(177, 1, 'Wednesday', '04:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(178, 1, 'Wednesday', '04:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(179, 1, 'Wednesday', '05:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(180, 1, 'Wednesday', '05:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(181, 1, 'Wednesday', '06:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(182, 1, 'Wednesday', '06:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(183, 1, 'Wednesday', '07:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(184, 1, 'Wednesday', '07:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(185, 1, 'Wednesday', '08:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(186, 1, 'Wednesday', '08:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(187, 1, 'Wednesday', '09:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(188, 1, 'Wednesday', '09:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(189, 1, 'Wednesday', '10:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(190, 1, 'Wednesday', '10:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(191, 1, 'Wednesday', '11:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(192, 1, 'Wednesday', '11:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(193, 1, 'Thursday', '12:00 am', 0, '2020-01-03 15:48:00', NULL),
+(194, 1, 'Thursday', '12:30 am', 0, '2020-01-03 15:48:00', NULL),
+(195, 1, 'Thursday', '01:00 am', 0, '2020-01-03 15:48:00', NULL),
+(196, 1, 'Thursday', '01:30 am', 0, '2020-01-03 15:48:00', NULL),
+(197, 1, 'Thursday', '02:00 am', 0, '2020-01-03 15:48:00', NULL),
+(198, 1, 'Thursday', '02:30 am', 0, '2020-01-03 15:48:00', NULL),
+(199, 1, 'Thursday', '03:00 am', 0, '2020-01-03 15:48:00', NULL),
+(200, 1, 'Thursday', '03:30 am', 0, '2020-01-03 15:48:00', NULL),
+(201, 1, 'Thursday', '04:00 am', 0, '2020-01-03 15:48:00', NULL),
+(202, 1, 'Thursday', '04:30 am', 0, '2020-01-03 15:48:00', NULL),
+(203, 1, 'Thursday', '05:00 am', 0, '2020-01-03 15:48:00', NULL),
+(204, 1, 'Thursday', '05:30 am', 0, '2020-01-03 15:48:00', NULL),
+(205, 1, 'Thursday', '06:00 am', 0, '2020-01-03 15:48:00', NULL),
+(206, 1, 'Thursday', '06:30 am', 0, '2020-01-03 15:48:00', NULL),
+(207, 1, 'Thursday', '07:00 am', 0, '2020-01-03 15:48:00', NULL),
+(208, 1, 'Thursday', '07:30 am', 0, '2020-01-03 15:48:00', NULL),
+(209, 1, 'Thursday', '08:00 am', 0, '2020-01-03 15:48:00', NULL),
+(210, 1, 'Thursday', '08:30 am', 0, '2020-01-03 15:48:00', NULL),
+(211, 1, 'Thursday', '09:00 am', 0, '2020-01-03 15:48:00', NULL),
+(212, 1, 'Thursday', '09:30 am', 0, '2020-01-03 15:48:00', NULL),
+(213, 1, 'Thursday', '10:00 am', 0, '2020-01-03 15:48:00', NULL),
+(214, 1, 'Thursday', '10:30 am', 0, '2020-01-03 15:48:00', NULL),
+(215, 1, 'Thursday', '11:00 am', 0, '2020-01-03 15:48:00', NULL),
+(216, 1, 'Thursday', '11:30 am', 0, '2020-01-03 15:48:00', NULL),
+(217, 1, 'Thursday', '12:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(218, 1, 'Thursday', '12:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(219, 1, 'Thursday', '01:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(220, 1, 'Thursday', '01:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(221, 1, 'Thursday', '02:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(222, 1, 'Thursday', '02:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(223, 1, 'Thursday', '03:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(224, 1, 'Thursday', '03:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(225, 1, 'Thursday', '04:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(226, 1, 'Thursday', '04:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(227, 1, 'Thursday', '05:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(228, 1, 'Thursday', '05:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(229, 1, 'Thursday', '06:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(230, 1, 'Thursday', '06:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(231, 1, 'Thursday', '07:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(232, 1, 'Thursday', '07:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(233, 1, 'Thursday', '08:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(234, 1, 'Thursday', '08:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(235, 1, 'Thursday', '09:00 pm', 200, '2020-01-03 15:48:00', '2020-01-08 11:34:31'),
+(236, 1, 'Thursday', '09:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(237, 1, 'Thursday', '10:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(238, 1, 'Thursday', '10:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(239, 1, 'Thursday', '11:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(240, 1, 'Thursday', '11:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(241, 1, 'Friday', '12:00 am', 0, '2020-01-03 15:48:00', NULL),
+(242, 1, 'Friday', '12:30 am', 0, '2020-01-03 15:48:00', NULL),
+(243, 1, 'Friday', '01:00 am', 0, '2020-01-03 15:48:00', NULL),
+(244, 1, 'Friday', '01:30 am', 0, '2020-01-03 15:48:00', NULL),
+(245, 1, 'Friday', '02:00 am', 0, '2020-01-03 15:48:00', NULL),
+(246, 1, 'Friday', '02:30 am', 0, '2020-01-03 15:48:00', NULL),
+(247, 1, 'Friday', '03:00 am', 0, '2020-01-03 15:48:00', NULL),
+(248, 1, 'Friday', '03:30 am', 0, '2020-01-03 15:48:00', NULL),
+(249, 1, 'Friday', '04:00 am', 0, '2020-01-03 15:48:00', NULL),
+(250, 1, 'Friday', '04:30 am', 0, '2020-01-03 15:48:00', NULL),
+(251, 1, 'Friday', '05:00 am', 0, '2020-01-03 15:48:00', NULL),
+(252, 1, 'Friday', '05:30 am', 0, '2020-01-03 15:48:00', NULL),
+(253, 1, 'Friday', '06:00 am', 0, '2020-01-03 15:48:00', NULL),
+(254, 1, 'Friday', '06:30 am', 0, '2020-01-03 15:48:00', NULL),
+(255, 1, 'Friday', '07:00 am', 0, '2020-01-03 15:48:00', NULL),
+(256, 1, 'Friday', '07:30 am', 0, '2020-01-03 15:48:00', NULL),
+(257, 1, 'Friday', '08:00 am', 0, '2020-01-03 15:48:00', NULL),
+(258, 1, 'Friday', '08:30 am', 0, '2020-01-03 15:48:00', NULL),
+(259, 1, 'Friday', '09:00 am', 0, '2020-01-03 15:48:00', NULL),
+(260, 1, 'Friday', '09:30 am', 0, '2020-01-03 15:48:00', NULL),
+(261, 1, 'Friday', '10:00 am', 0, '2020-01-03 15:48:00', NULL),
+(262, 1, 'Friday', '10:30 am', 0, '2020-01-03 15:48:00', NULL),
+(263, 1, 'Friday', '11:00 am', 0, '2020-01-03 15:48:00', NULL),
+(264, 1, 'Friday', '11:30 am', 0, '2020-01-03 15:48:00', NULL),
+(265, 1, 'Friday', '12:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(266, 1, 'Friday', '12:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(267, 1, 'Friday', '01:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(268, 1, 'Friday', '01:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(269, 1, 'Friday', '02:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(270, 1, 'Friday', '02:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(271, 1, 'Friday', '03:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(272, 1, 'Friday', '03:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(273, 1, 'Friday', '04:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(274, 1, 'Friday', '04:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(275, 1, 'Friday', '05:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(276, 1, 'Friday', '05:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(277, 1, 'Friday', '06:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(278, 1, 'Friday', '06:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(279, 1, 'Friday', '07:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(280, 1, 'Friday', '07:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(281, 1, 'Friday', '08:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(282, 1, 'Friday', '08:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(283, 1, 'Friday', '09:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(284, 1, 'Friday', '09:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(285, 1, 'Friday', '10:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(286, 1, 'Friday', '10:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(287, 1, 'Friday', '11:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(288, 1, 'Friday', '11:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(289, 1, 'Saturday', '12:00 am', 0, '2020-01-03 15:48:00', NULL),
+(290, 1, 'Saturday', '12:30 am', 0, '2020-01-03 15:48:00', NULL),
+(291, 1, 'Saturday', '01:00 am', 0, '2020-01-03 15:48:00', NULL),
+(292, 1, 'Saturday', '01:30 am', 0, '2020-01-03 15:48:00', NULL),
+(293, 1, 'Saturday', '02:00 am', 0, '2020-01-03 15:48:00', NULL),
+(294, 1, 'Saturday', '02:30 am', 0, '2020-01-03 15:48:00', NULL),
+(295, 1, 'Saturday', '03:00 am', 0, '2020-01-03 15:48:00', NULL),
+(296, 1, 'Saturday', '03:30 am', 0, '2020-01-03 15:48:00', NULL),
+(297, 1, 'Saturday', '04:00 am', 0, '2020-01-03 15:48:00', NULL),
+(298, 1, 'Saturday', '04:30 am', 0, '2020-01-03 15:48:00', NULL),
+(299, 1, 'Saturday', '05:00 am', 0, '2020-01-03 15:48:00', NULL),
+(300, 1, 'Saturday', '05:30 am', 0, '2020-01-03 15:48:00', NULL),
+(301, 1, 'Saturday', '06:00 am', 0, '2020-01-03 15:48:00', NULL),
+(302, 1, 'Saturday', '06:30 am', 0, '2020-01-03 15:48:00', NULL),
+(303, 1, 'Saturday', '07:00 am', 0, '2020-01-03 15:48:00', NULL),
+(304, 1, 'Saturday', '07:30 am', 0, '2020-01-03 15:48:00', NULL),
+(305, 1, 'Saturday', '08:00 am', 0, '2020-01-03 15:48:00', NULL),
+(306, 1, 'Saturday', '08:30 am', 0, '2020-01-03 15:48:00', NULL),
+(307, 1, 'Saturday', '09:00 am', 0, '2020-01-03 15:48:00', NULL),
+(308, 1, 'Saturday', '09:30 am', 0, '2020-01-03 15:48:00', NULL),
+(309, 1, 'Saturday', '10:00 am', 0, '2020-01-03 15:48:00', NULL),
+(310, 1, 'Saturday', '10:30 am', 0, '2020-01-03 15:48:00', NULL),
+(311, 1, 'Saturday', '11:00 am', 0, '2020-01-03 15:48:00', NULL),
+(312, 1, 'Saturday', '11:30 am', 0, '2020-01-03 15:48:00', NULL),
+(313, 1, 'Saturday', '12:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(314, 1, 'Saturday', '12:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(315, 1, 'Saturday', '01:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(316, 1, 'Saturday', '01:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(317, 1, 'Saturday', '02:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(318, 1, 'Saturday', '02:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(319, 1, 'Saturday', '03:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(320, 1, 'Saturday', '03:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(321, 1, 'Saturday', '04:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(322, 1, 'Saturday', '04:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(323, 1, 'Saturday', '05:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(324, 1, 'Saturday', '05:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(325, 1, 'Saturday', '06:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(326, 1, 'Saturday', '06:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(327, 1, 'Saturday', '07:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(328, 1, 'Saturday', '07:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(329, 1, 'Saturday', '08:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(330, 1, 'Saturday', '08:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(331, 1, 'Saturday', '09:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(332, 1, 'Saturday', '09:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(333, 1, 'Saturday', '10:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(334, 1, 'Saturday', '10:30 pm', 0, '2020-01-03 15:48:00', NULL),
+(335, 1, 'Saturday', '11:00 pm', 0, '2020-01-03 15:48:00', NULL),
+(336, 1, 'Saturday', '11:30 pm', 0, '2020-01-03 15:48:00', NULL);
 
 -- --------------------------------------------------------
 

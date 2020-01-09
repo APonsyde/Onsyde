@@ -34,15 +34,8 @@
                         <div class="togglebar">
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item">
-                                    <div class="searchbar">
-                                        <form>
-                                            <div class="input-group">
-                                              <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
-                                              <div class="input-group-append">
-                                                <button class="btn" type="submit" id="button-addon2"><img src="<?php echo base_url('resources/theme/images/svg-icon/search.svg'); ?>" class="img-fluid" alt="search"></button>
-                                              </div>
-                                            </div>
-                                        </form>
+                                    <div class="logobar p-1 m-0">
+                                        <a href="<?php echo site_url(); ?>" class="logo logo-large"><img src="<?php echo base_url('resources/theme/images/logo.png'); ?>" class="img-fluid" alt="logo"></a>
                                     </div>
                                 </li>
                             </ul>
@@ -76,6 +69,41 @@
                                             Players
                                         </a>
                                     </div>
+                                </li>
+                                <li class="list-inline-item">
+                                    <div class="profilebar">
+                                        <div class="dropdown">
+                                          <a class="dropdown-toggle" href="#" role="button" id="profilelink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url('resources/theme/images/users/profile.svg'); ?>" class="img-fluid" alt="profile"><span class="feather icon-chevron-down live-icon"></span></a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">
+                                                <?php if($this->player['id']) { ?>
+                                                    <div class="dropdown-item">
+                                                        <div class="profilename">
+                                                          <h5><?php echo $this->player['name']; ?></h5>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
+                                                <div class="userbox">
+                                                    <ul class="list-unstyled mb-0">
+                                                        <?php if($this->player['id']) { ?>
+                                                            <li class="media dropdown-item">
+                                                                <a href="#" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/user.svg'); ?>" class="img-fluid" alt="user">My Profile</a>
+                                                            </li>
+                                                            <li class="media dropdown-item">
+                                                                <a href="#" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/email.svg'); ?>" class="img-fluid" alt="email">Email</a>
+                                                            </li>                                                        
+                                                            <li class="media dropdown-item">
+                                                                <a href="#" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/logout.svg'); ?>" class="img-fluid" alt="logout">Logout</a>
+                                                            </li>
+                                                        <?php } else { ?>
+                                                            <li class="media dropdown-item">
+                                                                <a href="<?php echo site_url('player') ?>" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/user.svg'); ?>" class="img-fluid" alt="user">Login</a>
+                                                            </li>
+                                                        <?php } ?>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
                                 </li>
                                 <li class="list-inline-item">
                                     <div class="settingbar">

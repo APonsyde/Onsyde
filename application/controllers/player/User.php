@@ -1,21 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends ManagerController
+class User extends FrontController
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Email_model');
-        $this->load->model('Manager_model');
+        $this->load->model('Player_model');
 
     }
 
     public function index()
     {
-        if($this->manager['id'])
+        if($this->player['id'])
         {
-            redirect('manager/dashboard');
+            redirect();
             exit;
         }
 
@@ -26,9 +26,9 @@ class User extends ManagerController
 
         if($this->form_validation->run())
         {
-            $manager = $this->Manager_model->get_manager_by_params(['mobile' => $this->input->post('mobile')]);
+            $player = $this->Player_model->get_player_by_params(['mobile' => $this->input->post('mobile')]);
 
-            if(empty($manager) || empty($manager['company_name']))
+            if(empty($player) || empty($player['full_name']))
             {
                 $otp = random_string('numeric', 6);
 
@@ -38,39 +38,39 @@ class User extends ManagerController
                 ];
 
                 $message = "Your OTP is ".$otp;
-                sms("+91".$manager['mobile'], $message);
+                sms("+91".$player['mobile'], $message);
 
-                if(empty($manager))
+                if(empty($player))
                 {
-                    $result = $this->Manager_model->add($data);
+                    $result = $this->Player_model->add($data);
                 }
                 else
                 {
-                    $result = $this->Manager_model->update($manager['id'], $data);
+                    $result = $this->Player_model->update($player['id'], $data);
                 }
 
                 $this->session->set_flashdata('success_message', 'OTP has been sent to your mobile number');
-                redirect('manager/otp?mobile='.$data['mobile']);
+                redirect('player/otp?mobile='.$data['mobile']);
                 exit;
             }
             else
             {
-                redirect('manager/password?mobile='.$manager['mobile']);
+                redirect('player/password?mobile='.$player['mobile']);
                 exit;
             }
         }
         else
         {
             $data['title'] = 'Login to your account';
-            $this->load->view('manager/user/index', $data);
+            $this->load->view('player/user/index', $data);
         }
     }
 
     public function otp()
     {
-        if($this->manager['id'])
+        if($this->player['id'])
         {
-            redirect('manager/dashboard');
+            redirect();
             exit;
         }
 
@@ -82,25 +82,25 @@ class User extends ManagerController
 
         if($this->form_validation->run())
         {
-            $manager = $this->Manager_model->get_manager_by_params(['mobile' => $this->input->post('mobile')]);
+            $player = $this->Player_model->get_player_by_params(['mobile' => $this->input->post('mobile')]);
 
-            if(empty($manager))
+            if(empty($player))
             {
                 $this->session->set_flashdata('error_message', 'Account does not exist');
-                redirect('manager');
+                redirect('player');
                 exit;
             }
             else
             {
-                if($manager['otp'] == $this->input->post('otp'))
+                if($player['otp'] == $this->input->post('otp'))
                 {
-                    redirect('manager/register?mobile='.$manager['mobile'].'&otp='.$manager['otp']);
+                    redirect('player/register?mobile='.$player['mobile'].'&otp='.$player['otp']);
                     exit;
                 }
                 else
                 {
                     $this->session->set_flashdata('error_message', 'Invalid OTP');
-                    redirect('manager/otp?mobile='.$manager['mobile']);
+                    redirect('player/otp?mobile='.$player['mobile']);
                     exit;
                 }
             }
@@ -108,15 +108,15 @@ class User extends ManagerController
         else
         {
             $data['title'] = 'Verify your mobile number';
-            $this->load->view('manager/user/otp', $data);
+            $this->load->view('player/user/otp', $data);
         }
     }
 
     public function password()
     {
-        if($this->manager['id'])
+        if($this->player['id'])
         {
-            redirect('manager/dashboard');
+            redirect();
             exit;
         }
 
@@ -128,28 +128,28 @@ class User extends ManagerController
 
         if($this->form_validation->run())
         {
-            $manager = $this->Manager_model->get_manager_by_params(['mobile' => $this->input->post('mobile')]);
+            $player = $this->Player_model->get_player_by_params(['mobile' => $this->input->post('mobile')]);
 
-            if(empty($manager))
+            if(empty($player))
             {
                 $this->session->set_flashdata('error_message', 'Account does not exist');
-                redirect('manager');
+                redirect('player');
                 exit;
             }
             else
             {
-                $result = $this->Manager_model->login($this->input->post('mobile'), $this->input->post('password'));
+                $result = $this->Player_model->login($this->input->post('mobile'), $this->input->post('password'));
 
                 if($result)
                 {
                     $this->session->set_flashdata('success_message', 'Logged in successfully');
-                    redirect('manager/dashboard');
+                    redirect();
                     exit;
                 }
                 else
                 {
                     $this->session->set_flashdata('error_message', 'Invalid password');
-                    redirect('manager/password?mobile='.$manager['mobile']);
+                    redirect('player/password?mobile='.$player['mobile']);
                     exit;
                 }
             }
@@ -157,15 +157,15 @@ class User extends ManagerController
         else
         {
             $data['title'] = 'Verify your password';
-            $this->load->view('manager/user/password', $data);
+            $this->load->view('player/user/password', $data);
         }
     }
 
     public function register()
     {
-        if($this->manager['id'])
+        if($this->player['id'])
         {
-            redirect('manager/dashboard');
+            redirect();
             exit;
         }
 
@@ -181,9 +181,9 @@ class User extends ManagerController
 
         if($this->form_validation->run())
         {
-            $manager = $this->Manager_model->get_manager_by_params(['mobile' => $this->input->post('mobile'), 'otp' => $this->input->post('otp')]);
+            $player = $this->Player_model->get_player_by_params(['mobile' => $this->input->post('mobile'), 'otp' => $this->input->post('otp')]);
 
-            if(!empty($manager) && empty($manager['company_name']))
+            if(!empty($player) && empty($player['full_name']))
             {
                 $data = [
                     'company_name' => $this->input->post('company_name'),
@@ -193,25 +193,25 @@ class User extends ManagerController
                     'otp' => null
                 ];
 
-                $result = $this->Manager_model->update($manager['id'], $data);
+                $result = $this->Player_model->update($player['id'], $data);
 
                 if($result)
                 {
-                    $this->Email_model->send_registration_email($data['company_name'], $data['email']);
-                    $this->Manager_model->set_manager_session(['manager_id' => $manager['id'], 'manager_name' => $data['company_name']]);
-                    redirect('manager/dashboard');
+                    $this->Email_model->send_registration_email($data['full_name'], $data['email']);
+                    $this->Player_model->set_player_session(['player_id' => $player['id'], 'player_name' => $data['full_name']]);
+                    redirect();
                     exit;
                 }
                 else
                 {
                     $this->session->set_flashdata('error_message', 'Some error occured while registering the account');
-                    redirect('manager/register');
+                    redirect('player/register');
                     exit;
                 }
             }
             else
             {
-                if(empty($manager['company_name']))
+                if(empty($player['full_name']))
                 {
                     $this->session->set_flashdata('error_message', 'Mobile number could not be verified');
                 }
@@ -220,25 +220,15 @@ class User extends ManagerController
                     $this->session->set_flashdata('error_message', 'Please login to continue');
                 }
 
-                redirect('manager');
+                redirect('player');
                 exit;
             }
         }
         else
         {
             $data['title'] = 'Create your account';
-            $this->load->view('manager/user/register', $data);
+            $this->load->view('player/user/register', $data);
         }
-    }
-
-    public function dashboard()
-    {
-        $this->authenticate(current_url());
-
-        $data['tab'] = 'dashboard';
-        $data['title'] = 'View your dashboard activity';
-        $data['_view'] = 'manager/user/dashboard';
-        $this->load->view('manager/layout/basetemplate', $data);
     }
 
     public function logout()
@@ -250,9 +240,9 @@ class User extends ManagerController
 
     public function forgot_password()
     {
-        if($this->manager['id'])
+        if($this->player['id'])
         {
-            redirect('manager/dashboard');
+            redirect();
             exit;
         }
 
@@ -262,56 +252,56 @@ class User extends ManagerController
 
         if($this->form_validation->run())
         {
-            $manager = $this->Manager_model->get_manager_by_params(['mobile' => $this->input->post('mobile')]);
+            $player = $this->Player_model->get_player_by_params(['mobile' => $this->input->post('mobile')]);
 
-            if(!empty($manager))
+            if(!empty($player))
             {
                 $otp = random_string('numeric', 6);
                 $message = "Your OTP is ".$otp;
-                sms("+91".$manager['mobile'], $message);
+                sms("+91".$player['mobile'], $message);
 
                 $data = [
                     'forgot_password_key' => $otp
                 ];
 
-                $result = $this->Manager_model->update($manager['id'], $data);
+                $result = $this->Player_model->update($player['id'], $data);
 
                 if($result)
                 {
                     $this->session->set_flashdata('success_message', 'Reset password code has been sent to your number');
-                    redirect('manager/reset-password?mobile='.$manager['mobile']);
+                    redirect('player/reset-password?mobile='.$player['mobile']);
                     exit;
                 }
                 else
                 {
                     $this->session->set_flashdata('error_message', 'Some error occured while sending the reset password code');
-                    redirect('manager/forgot-password');
+                    redirect('player/forgot-password');
                     exit;
                 }
             }
             else
             {
                 $this->session->set_flashdata('error_message', 'This mobile is not registered with us');
-                redirect('manager/forgot-password');
+                redirect('player/forgot-password');
                 exit;
             }
         }
         else
         {
             $data['title'] = 'Forgot Password';
-            $this->load->view('manager/user/forgot-password', $data);
+            $this->load->view('player/user/forgot-password', $data);
         }
     }
 
     public function reset_password()
     {
-        if($this->manager['id'])
+        if($this->player['id'])
         {
-            redirect('manager/dashboard');
+            redirect();
             exit;
         }
 
-        $account = $this->Manager_model->get_manager_by_params(['mobile' => $this->input->get('mobile')]);
+        $account = $this->Player_model->get_player_by_params(['mobile' => $this->input->get('mobile')]);
 
         if(!empty($account))
         {
@@ -323,46 +313,46 @@ class User extends ManagerController
 
             if($this->form_validation->run())
             {
-                $manager = $this->Manager_model->get_manager_by_params(['mobile' => $this->input->get('mobile'), 'forgot_password_key' => $this->input->post('otp')]);
+                $player = $this->Player_model->get_player_by_params(['mobile' => $this->input->get('mobile'), 'forgot_password_key' => $this->input->post('otp')]);
 
-                if(!empty($manager))
+                if(!empty($player))
                 {
                     $data = [
                         'forgot_password_key' => null,
                         'password' => md5($this->input->post('password'))
                     ];
 
-                    $result = $this->Manager_model->update($manager['id'], $data);
+                    $result = $this->Player_model->update($player['id'], $data);
 
                     if($result)
                     {
                         $this->session->set_flashdata('success_message', 'Password has been updated successfully');
-                        redirect('manager');
+                        redirect('player');
                         exit;
                     }
                     else
                     {
                         $this->session->set_flashdata('error_message', 'Some error occured while resetting the password');
-                        redirect('manager/forgot-password');
+                        redirect('player/forgot-password');
                         exit;
                     }
                 }
                 else
                 {
                     $this->session->set_flashdata('error_message', 'Invalid OTP entered');
-                    redirect('manager/reset-password?mobile='.$account['mobile']);
+                    redirect('player/reset-password?mobile='.$account['mobile']);
                     exit;
                 }
             }
             else
             {
                 $data['title'] = 'Reset Password';
-                $this->load->view('manager/user/reset-password', $data);
+                $this->load->view('player/user/reset-password', $data);
             }
         }
         else
         {
-            redirect('manager');
+            redirect('player');
             exit;
         }
     }
@@ -399,7 +389,7 @@ class User extends ManagerController
                 $data['password'] = md5($this->input->post('password'));
             }
 
-            $result = $this->Manager_model->update($this->manager['id'], $data);
+            $result = $this->Player_model->update($this->manager['id'], $data);
 
             if($result)
             {
@@ -416,7 +406,7 @@ class User extends ManagerController
         }
         else
         {
-            $data['manager'] = $this->Manager_model->get_manager_by_id($this->manager['id']);
+            $data['manager'] = $this->Player_model->get_manager_by_id($this->manager['id']);
 
             $data['title'] = 'Profile';
             $data['_view'] = 'manager/user/profile';

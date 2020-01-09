@@ -17,76 +17,76 @@
         <div class="col-md-12 col-lg-12 col-xl-12">
             <div class="card m-b-30">
                 <div class="card-body">
-					<form id="fileupload" action="https://jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
-						<div class="row fileupload-buttonbar">
-							<div class="col-lg-7">
-								<span class="btn btn-success fileinput-button">
-									<i class="glyphicon glyphicon-plus"></i>
-									<span>Add files...</span>
-									<input type="file" name="files[]" multiple />
-								</span>
-								<button type="submit" class="btn btn-primary start">
-									<i class="glyphicon glyphicon-upload"></i>
-									<span>Start upload</span>
-								</button>
-								<button type="reset" class="btn btn-warning cancel">
-									<i class="glyphicon glyphicon-ban-circle"></i>
-									<span>Cancel upload</span>
-								</button>
-								<button type="button" class="btn btn-danger delete">
-									<i class="glyphicon glyphicon-trash"></i>
-									<span>Delete selected</span>
-								</button>
-								<input type="checkbox" class="toggle" />
-								<span class="fileupload-process"></span>
-							</div>
-							<div class="col-lg-5 fileupload-progress fade">
-								<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-									<div class="progress-bar progress-bar-success" style="width:0%;"></div>
-								</div>
-								<div class="progress-extended">&nbsp;</div>
-							</div>
-						</div>
-						<table role="presentation" class="table mb-0">
-							<tbody class="files">
-								<?php foreach ($images as $key => $image) { ?>
-									<tr class="template-download fade show">
-										<td>
-											<span class="preview">
-												<a href="<?php echo base_url('uploads/turfs/'.$turf['id'].'/gallery/'.$image['name']); ?>" title="<?php echo $image['name']; ?>" download="<?php echo $image['name']; ?>" data-gallery=""><img src="<?php echo base_url('uploads/turfs/'.$turf['id'].'/gallery/thumbnail/'.$image['name']); ?>"></a>
-											</span>
-										</td>
-										<td>
-											<p class="name">
-												<a href="<?php echo base_url('uploads/turfs/'.$turf['id'].'/gallery/'.$image['name']); ?>" title="<?php echo $image['name']; ?>" download="<?php echo $image['name']; ?>" data-gallery=""><?php echo $image['name']; ?></a>
-											</p>
-										</td>
-										<td>
-											<span class="size"><?php echo format_size_units($image['size']); ?></span>
-										</td>
-										<td>
-											<button class="btn btn-danger delete" data-type="DELETE" data-url="<?php echo site_url('manager/upload/delete?type=turf_gallery&table=turf_images&id='.$turf['id'].'&file='.$image['name']) ?>">
-												<i class="glyphicon glyphicon-trash"></i>
-												<span>Delete</span>
-											</button>
-											<input type="checkbox" name="delete" value="1" class="toggle">
-										</td>
-									</tr>
-								<?php } ?>
-							</tbody>
-						</table>
-					</form>
-					<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even" >
-						<div class="slides"></div>
-						<h3 class="title"></h3>
-						<a class="prev">‹</a>
-						<a class="next">›</a>
-						<a class="close">×</a>
-						<a class="play-pause"></a>
-						<ol class="indicator"></ol>
-					</div>
+                    <form id="fileupload" action="https://jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
+                        <div class="row fileupload-buttonbar">
+                            <div class="col-lg-7">
+                                <span class="btn btn-success fileinput-button">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    <span>Add files...</span>
+                                    <input type="file" name="files[]" multiple />
+                                </span>
+                                <button type="submit" class="btn btn-primary start">
+                                    <i class="glyphicon glyphicon-upload"></i>
+                                    <span>Start upload</span>
+                                </button>
+                                <button type="reset" class="btn btn-warning cancel">
+                                    <i class="glyphicon glyphicon-ban-circle"></i>
+                                    <span>Cancel upload</span>
+                                </button>
+                                <button type="button" class="btn btn-danger delete">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                    <span>Delete selected</span>
+                                </button>
+                                <input type="checkbox" class="toggle" />
+                                <span class="fileupload-process"></span>
+                            </div>
+                            <div class="col-lg-5 fileupload-progress fade">
+                                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                                </div>
+                                <div class="progress-extended">&nbsp;</div>
+                            </div>
+                        </div>
+                        <table role="presentation" class="table mb-0">
+                            <tbody class="files">
+                                <?php foreach ($images as $key => $image) { ?>
+                                    <tr class="template-download fade show">
+                                        <td>
+                                            <span class="preview">
+                                                <a href="<?php echo base_url('uploads/turfs/'.$turf['id'].'/gallery/'.$image['name']); ?>" title="<?php echo $image['name']; ?>" download="<?php echo $image['name']; ?>" data-gallery=""><img src="<?php echo base_url('uploads/turfs/'.$turf['id'].'/gallery/thumbnail/'.$image['name']); ?>"></a>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <p class="name">
+                                                <a href="<?php echo base_url('uploads/turfs/'.$turf['id'].'/gallery/'.$image['name']); ?>" title="<?php echo $image['name']; ?>" download="<?php echo $image['name']; ?>" data-gallery=""><?php echo $image['name']; ?></a>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <span class="size"><?php echo format_size_units($image['size']); ?></span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger delete" data-type="DELETE" data-url="<?php echo site_url('manager/upload/delete?type=turf_gallery&table=turf_images&id='.$turf['id'].'&file='.$image['name']) ?>">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                                <span>Delete</span>
+                                            </button>
+                                            <input type="checkbox" name="delete" value="1" class="toggle">
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </form>
+                    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even" >
+                        <div class="slides"></div>
+                        <h3 class="title"></h3>
+                        <a class="prev">‹</a>
+                        <a class="next">›</a>
+                        <a class="close">×</a>
+                        <a class="play-pause"></a>
+                        <ol class="indicator"></ol>
+                    </div>
                 </div>
-            </div>                        
+            </div>
         </div>
     </div> 
 </div>
@@ -95,7 +95,7 @@
 	$(function() {
 		'use strict';
 		$('#fileupload').fileupload({
-			url: SITE_URL+'manager/upload/turf/1'
+			url: SITE_URL+'manager/upload/turf/<?php echo $turf['id']; ?>'
 		});
 	});
 </script>

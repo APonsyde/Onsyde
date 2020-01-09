@@ -16,16 +16,14 @@
                                         <div class="form-head">
                                             <a href="<?php echo site_url(); ?>" class="logo"><img src="<?php echo base_url('resources/theme/images/logo.png'); ?>" class="img-fluid" alt="logo"></a>
                                         </div>                                        
-                                        <h4 class="text-primary my-4">Forgot Password?</h4>
+                                        <h4 class="text-primary my-4">Log in!</h4>
                                         <?php $this->load->view('manager/layout/alert'); ?>
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="mobile" placeholder="Enter your mobile number">
                                             <?php echo form_error('mobile'); ?>
                                         </div>
-                                        <button type="submit" class="btn btn-success btn-lg btn-block font-18">Reset Password</button>
-                                        <p class="mb-0 mt-3">Remember password? <a href="<?php echo site_url('manager'); ?>">Login</a></p>
-                                        <hr>
-                                        <p class="mb-0">Go back to home? <a href="<?php echo site_url(); ?>">Home</a></p>
+                                        <button type="submit" class="btn btn-success btn-lg btn-block font-18">Log in</button>
+                                    <p class="mb-0 mt-3">Go back to home? <a href="<?php echo site_url(); ?>">Home</a></p>
                                     </form>
                                 </div>
                             </div>

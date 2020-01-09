@@ -67,6 +67,20 @@ $route['manager/forgot-password'] = 'manager/user/forgot_password';
 $route['manager/reset-password'] = 'manager/user/reset_password';
 $route['manager/profile'] = 'manager/user/profile';
 
+
+/**
+ * Player Routes
+ */
+
+$route['player'] = 'player/user';
+$route['player/register'] = 'player/user/register';
+$route['player/otp'] = 'player/user/otp';
+$route['player/password'] = 'player/user/password';
+$route['player/logout'] = 'player/user/logout';
+$route['player/forgot-password'] = 'player/user/forgot_password';
+$route['player/reset-password'] = 'player/user/reset_password';
+$route['player/profile'] = 'player/user/profile';
+
 /**
  * Front Routes
  */

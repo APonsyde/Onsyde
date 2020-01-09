@@ -21,6 +21,7 @@ class Page extends FrontController
         {
             $data['turfs'][$key]['slots'] = $this->Turf_model->get_all_turf_slots($turf['id'], $day);
             $data['turfs'][$key]['booked_slots'] = $this->Turf_model->get_all_turf_booked_slots($turf['id'], $day, $date);
+            $data['turfs'][$key]['images'] = $this->Turf_model->get_turf_images($turf['id']);
         }
 
         $data['tab'] = 'home';

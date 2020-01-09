@@ -26,8 +26,8 @@
         <div class="leftbar">
             <div class="sidebar">
                 <div class="logobar">
-                    <a href="index.html" class="logo logo-large"><img src="<?php echo base_url('resources/theme/images/logo.png'); ?>" class="img-fluid" alt="logo"></a>
-                    <a href="index.html" class="logo logo-small"><img src="<?php echo base_url('resources/theme/images/small_logo.svg'); ?>" class="img-fluid" alt="logo"></a>
+                    <a href="<?php echo site_url('manager/dashboard'); ?>" class="logo logo-large"><img src="<?php echo base_url('resources/theme/images/logo.png'); ?>" class="img-fluid" alt="logo"></a>
+                    <a href="<?php echo site_url('manager/dashboard'); ?>" class="logo logo-small"><img src="<?php echo base_url('resources/theme/images/small_logo.svg'); ?>" class="img-fluid" alt="logo"></a>
                 </div>
                 <div class="navigationbar">
                     <ul class="vertical-menu">

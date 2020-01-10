@@ -169,9 +169,8 @@ class User extends FrontController
             exit;
         }
 
-        $this->form_validation->set_rules('company_name', 'Company name', 'required|xss_clean');
-        $this->form_validation->set_rules('contact_person', 'Contact person', 'required|xss_clean');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|check_field[managers,email,deleted|0]|xss_clean');
+        $this->form_validation->set_rules('full_name', 'Name', 'required|xss_clean');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|check_field[players,email,deleted|0]|xss_clean');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|xss_clean');
         $this->form_validation->set_rules('retype_password', 'Retype password', 'required|min_length[6]|matches[password]|xss_clean');
 
@@ -186,8 +185,7 @@ class User extends FrontController
             if(!empty($player) && empty($player['full_name']))
             {
                 $data = [
-                    'company_name' => $this->input->post('company_name'),
-                    'contact_person' => $this->input->post('contact_person'),
+                    'full_name' => $this->input->post('full_name'),
                     'email' => $this->input->post('email'),
                     'password' => md5($this->input->post('password')),
                     'otp' => null
@@ -354,63 +352,6 @@ class User extends FrontController
         {
             redirect('player');
             exit;
-        }
-    }
-
-    public function profile()
-    {
-        $this->authenticate(current_url());
-
-        $this->form_validation->set_rules('company_name', 'Company name', 'required|xss_clean');
-        $this->form_validation->set_rules('contact_person', 'Contact person', 'required|xss_clean');
-        $this->form_validation->set_rules('email', 'Email', 'valid_email|check_field[managers,email,deleted|0&id !=|'.$this->manager['id'].']|xss_clean');
-
-        if(trim($this->input->post('password')) !== "")
-        {
-            $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|xss_clean');
-            $this->form_validation->set_rules('retype_password', 'Retype password', 'required|min_length[6]|matches[password]|xss_clean');
-        }
-
-        $this->form_validation->set_message('required', '%s is required');
-        $this->form_validation->set_message('valid_email', '%s is invalid');
-        $this->form_validation->set_error_delimiters('<div class="text-danger text-left"><small>', '</small></div>');
-
-        if($this->form_validation->run())
-        {
-
-            $data = [
-                'company_name' => $this->input->post('company_name'),
-                'contact_person' => $this->input->post('contact_person'),
-                'email' => $this->input->post('email')
-            ];
-
-            if(trim($this->input->post('password')) !== "")
-            {
-                $data['password'] = md5($this->input->post('password'));
-            }
-
-            $result = $this->Player_model->update($this->manager['id'], $data);
-
-            if($result)
-            {
-                $this->session->set_flashdata('success_message', 'Account details updated successfully');
-                redirect('manager/profile');
-                exit;
-            }
-            else
-            {
-                $this->session->set_flashdata('error_message', 'Some error occured while updating the account details');
-                redirect('manager/profile');
-                exit;
-            }
-        }
-        else
-        {
-            $data['manager'] = $this->Player_model->get_manager_by_id($this->manager['id']);
-
-            $data['title'] = 'Profile';
-            $data['_view'] = 'manager/user/profile';
-            $this->load->view('manager/layout/basetemplate', $data);
         }
     }
 }

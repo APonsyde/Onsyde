@@ -29,7 +29,7 @@
             <p>&nbsp;</p>
             <table width="100%" cellpadding="0" cellspacing="0" bgcolor="FFFFFF" style="background: #ffffff; max-width: 600px !important; margin: 0 auto; background: #ffffff;">
                 <tr>
-                    <td style="padding: 20px; text-align: center; background: #7971ea;">
+                    <td style="padding: 20px; text-align: center; background: #53b64b;">
                         <h1 style="color: #ffffff; margin: 0;"><?php echo $title; ?></h1>
                     </td>
                 </tr>

@@ -16,7 +16,7 @@
                                         <div class="form-head">
                                             <a href="<?php echo site_url(); ?>" class="logo"><img src="<?php echo base_url('resources/theme/images/logo.png'); ?>" class="img-fluid" alt="logo"></a>
                                         </div>                                        
-                                        <h4 class="text-primary my-4">Sign Up !</h4>
+                                        <h4 class="text-primary my-4">Turf Manager - Sign Up !</h4>
                                         <?php $this->load->view('manager/layout/alert'); ?>
                                         <input type="hidden" class="form-control" name="mobile" value="<?php echo $this->input->get('mobile'); ?>">
                                         <input type="hidden" class="form-control" name="otp" value="<?php echo $this->input->get('otp'); ?>">
@@ -40,7 +40,7 @@
                                             <input type="password" class="form-control" name="retype_password" placeholder="Retype password" value="<?php echo $this->input->post('retype_password'); ?>">
                                             <?php echo form_error('retype_password'); ?>
                                         </div>
-                                        <button type="submit" class="btn btn-success btn-lg btn-block font-18">Log in</button>
+                                        <button type="submit" class="btn btn-success btn-lg btn-block font-18">Register</button>
                                     <p class="mb-0 mt-3">Go back to home? <a href="<?php echo site_url(); ?>">Home</a></p>
                                     </form>
                                 </div>

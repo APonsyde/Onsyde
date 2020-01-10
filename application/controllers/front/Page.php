@@ -11,6 +11,14 @@ class Page extends FrontController
 
     public function home()
     {
+        $data['tab'] = 'home';
+        $data['title'] = 'Home';
+        $data['_view'] = 'front/page/home';
+        $this->load->view('front/layout/basetemplate', $data);
+    }
+
+    public function find_a_turf()
+    {
         $data['turfs'] = $this->Turf_model->get_all_turfs();
 
         $date = ($this->input->get('date')) ? $this->input->get('date') : date('Y-m-d');
@@ -26,7 +34,7 @@ class Page extends FrontController
 
         $data['tab'] = 'home';
         $data['title'] = 'Home';
-        $data['_view'] = 'front/page/home';
+        $data['_view'] = 'front/page/find-a-turf';
         $this->load->view('front/layout/basetemplate', $data);
     }
 

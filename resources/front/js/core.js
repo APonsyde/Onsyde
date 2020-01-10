@@ -7,16 +7,6 @@
 "use strict";
 
 $(document).ready(function() {
-    if($('#fileupload').length) {
-        $('#fileupload').fileupload('option', {
-            url: $('#fileupload').fileupload('option', 'url'),
-            disableImageResize: /Android(?!.*Chrome)|Opera/.test(
-                window.navigator.userAgent
-            ),
-            maxFileSize: 999000,
-            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
-        });
-    }
     /* -- Menu js -- */
     $.sidebarMenu($('.vertical-menu'));
     $(function() {
@@ -64,7 +54,4 @@ $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
     /* -- Bootstrap Tooltip -- */
     $('[data-toggle="tooltip"]').tooltip();
-    /* -- Select2 -- */
-    $('select').select2();
-
 });

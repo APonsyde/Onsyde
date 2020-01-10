@@ -57,6 +57,7 @@ $route['translate_uri_dashes'] = TRUE;
  * Turf Manager Routes
  */
 
+// User Routes
 $route['manager'] = 'manager/user';
 $route['manager/register'] = 'manager/user/register';
 $route['manager/otp'] = 'manager/user/otp';
@@ -67,11 +68,14 @@ $route['manager/forgot-password'] = 'manager/user/forgot_password';
 $route['manager/reset-password'] = 'manager/user/reset_password';
 $route['manager/profile'] = 'manager/user/profile';
 
+// Booking Routes
+$route['manager/bookings'] = 'manager/booking/index';
 
 /**
  * Player Routes
  */
 
+// User Routes
 $route['player'] = 'player/user';
 $route['player/register'] = 'player/user/register';
 $route['player/otp'] = 'player/user/otp';
@@ -81,12 +85,16 @@ $route['player/forgot-password'] = 'player/user/forgot_password';
 $route['player/reset-password'] = 'player/user/reset_password';
 $route['player/profile'] = 'player/user/profile';
 
+// Booking Routes
+$route['player/bookings'] = 'player/booking/index';
+
 /**
  * Front Routes
  */
 
 // Page Routes
 $route['how-it-works'] = 'front/page/how_it_works';
+$route['find-a-turf'] = 'front/page/find_a_turf';
 
 
 

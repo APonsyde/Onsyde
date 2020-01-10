@@ -11,7 +11,7 @@ class Player_model extends CI_Model {
 
 		if(!empty($player))
 		{
-			$this->set_manager_session(['player_id' => $player['id'], 'player_name' => $player['full_name']]);
+			$this->set_player_session(['player_id' => $player['id'], 'player_name' => $player['full_name']]);
 			return true;
 		}
 		else

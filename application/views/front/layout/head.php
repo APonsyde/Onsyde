@@ -14,6 +14,7 @@
 <link href="<?php echo base_url('resources/theme/css/icons.css'); ?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('resources/theme/css/flag-icon.min.css'); ?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('resources/theme/css/style.css'); ?>" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url('resources/front/css/style.css'); ?>" rel="stylesheet" type="text/css">
 <script src="<?php echo base_url('resources/theme/js/jquery.min.js'); ?>"></script>
 <script>
 	var SITE_URL = "<?php echo site_url(); ?>";

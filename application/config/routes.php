@@ -87,6 +87,7 @@ $route['player/profile'] = 'player/user/profile';
 
 // Booking Routes
 $route['player/bookings'] = 'player/booking/index';
+$route['booking/success'] = 'player/booking/success';
 
 /**
  * Front Routes

@@ -20,4 +20,14 @@ class Booking extends FrontController
         $data['_view'] = 'player/booking/index';
         $this->load->view('front/layout/basetemplate', $data);
     }
+
+    public function success()
+    {
+        $this->authenticate();
+
+        $data['tab'] = 'player';
+        $data['title'] = 'Thank you';
+        $data['_view'] = 'player/booking/success';
+        $this->load->view('front/layout/basetemplate', $data);
+    }
 }

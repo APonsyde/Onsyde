@@ -2,6 +2,31 @@
 
 class Booking_model extends CI_Model 
 {
+
+	public function book($booking_data, $slots)
+	{
+		$this->db->insert('bookings', $booking_data);
+		$booking_id = $this->db->insert_id();
+
+		if(!empty($slots))
+		{
+			$booking_slots = [];
+
+			foreach ($slots as $key => $slot)
+			{
+				$booking_slots[] = [
+					'booking_id' => $booking_id,
+					'turf_slot_id' => $slot['id'],
+					'slot_amount' => $slot['price']
+				];
+			}
+
+			$this->db->insert_batch('booking_slots', $booking_slots);
+		}
+
+		return $booking_id;
+	}
+
 	public function get_all_bookings($limit = 0, $offset = 0, $params = null)
 	{
 		if($limit)

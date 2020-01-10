@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 09, 2020 at 08:02 AM
+-- Generation Time: Jan 10, 2020 at 12:08 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.1.18
 
@@ -36,7 +36,8 @@ CREATE TABLE IF NOT EXISTS `bookings` (
   `turf_id` int(11) NOT NULL,
   `player_id` int(11) NOT NULL,
   `booking_date` date DEFAULT NULL,
-  `booking_amount` float NOT NULL DEFAULT '0',
+  `time_slot` varchar(255) DEFAULT NULL,
+  `amount` float NOT NULL DEFAULT '0',
   `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -46,8 +47,8 @@ CREATE TABLE IF NOT EXISTS `bookings` (
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `turf_id`, `player_id`, `booking_date`, `booking_amount`, `created_on`, `updated_on`) VALUES
-(1, 1, 1, '2020-01-12', 3000, '2020-01-08 15:20:11', '2020-01-08 17:58:26');
+INSERT INTO `bookings` (`id`, `turf_id`, `player_id`, `booking_date`, `time_slot`, `amount`, `created_on`, `updated_on`) VALUES
+(1, 1, 5, '2020-01-12', '1:30 pm - 3:00 pm', 3000, '2020-01-08 15:20:11', '2020-01-10 16:35:58');
 
 -- --------------------------------------------------------
 
@@ -48378,14 +48379,16 @@ CREATE TABLE IF NOT EXISTS `managers` (
   `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `managers`
 --
 
 INSERT INTO `managers` (`id`, `company_name`, `contact_person`, `mobile`, `email`, `password`, `otp`, `forgot_password_key`, `deleted`, `created_on`, `updated_on`) VALUES
-(2, 'TLB Turfs', 'Yohhan Dalvi', '7718813091', '', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', NULL, NULL, 0, '2020-01-02 14:26:58', '2020-01-08 14:18:50');
+(2, 'TLB Turfs', 'Yohhan Dalvi', '7718813091', '', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', NULL, NULL, 0, '2020-01-02 14:26:58', '2020-01-09 14:07:08'),
+(3, NULL, NULL, '8087428085', NULL, NULL, 23914, NULL, 0, '2020-01-09 13:24:28', NULL),
+(4, NULL, NULL, '7718813091', NULL, NULL, 610253, NULL, 0, '2020-01-09 13:52:09', '2020-01-09 13:53:15');
 
 -- --------------------------------------------------------
 
@@ -48396,50 +48399,24 @@ INSERT INTO `managers` (`id`, `company_name`, `contact_person`, `mobile`, `email
 DROP TABLE IF EXISTS `players`;
 CREATE TABLE IF NOT EXISTS `players` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `full_name` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `mobile` varchar(255) NOT NULL,
-  `otp` int(11) NOT NULL,
-  `account` tinyint(4) NOT NULL DEFAULT '0',
-  `verified` tinyint(4) NOT NULL DEFAULT '0',
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `gender` enum('male','female','other') DEFAULT NULL,
-  `sports_id` int(11) NOT NULL,
-  `date_of_birth` date DEFAULT NULL,
+  `full_name` varchar(255) DEFAULT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `otp` int(11) DEFAULT NULL,
   `forgot_password_key` varchar(255) DEFAULT NULL,
-  `newsletter` varchar(255) NOT NULL,
   `deleted` tinyint(4) NOT NULL DEFAULT '0',
-  `inactive` int(11) NOT NULL DEFAULT '0',
-  `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `players`
 --
 
-INSERT INTO `players` (`id`, `first_name`, `last_name`, `full_name`, `username`, `mobile`, `otp`, `account`, `verified`, `email`, `password`, `gender`, `sports_id`, `date_of_birth`, `forgot_password_key`, `newsletter`, `deleted`, `inactive`, `updated_on`, `created_on`) VALUES
-(1, 'aalia', 'kapadia', 'Aalia Kapadia', '', '9999999998', 628103, 1, 1, 'aalia@techcetra.com', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', 'female', 0, '2019-10-08', NULL, '', 0, 0, '2019-10-31 14:25:10', '2019-10-31 14:25:10'),
-(3, 'aalia1', 'kapadia1', 'aalia1 kapadia1', '', '9999999988', 962835, 0, 1, 'kapadia@techcetra.com', '', NULL, 0, NULL, NULL, '', 0, 0, '2019-10-31 14:33:58', '2019-10-31 14:33:58'),
-(4, 'sss', 'sss', 'sss sss', '', '9999999987', 5904, 0, 1, '', '', 'female', 0, NULL, NULL, '', 0, 0, '2019-10-31 14:40:33', '2019-10-31 14:40:33'),
-(5, 'aaa', 'aaa', 'aaa aaa', '', '9999999983', 736512, 0, 1, '', '', 'female', 0, NULL, NULL, '', 0, 0, '2019-10-31 14:37:21', '2019-10-31 14:37:21'),
-(9, NULL, '', '', '', '9999999999', 1706, 0, 0, 'aaaa@techcetra.com', '', NULL, 0, NULL, NULL, '', 0, 0, '2019-10-31 15:19:29', '2019-10-31 15:19:29'),
-(10, NULL, '', '', '', '9999229999', 92568, 0, 1, '', '', NULL, 0, NULL, NULL, '', 0, 0, '2019-10-31 15:19:29', '2019-10-31 15:19:29'),
-(16, NULL, '', '', '', '7777777777', 458376, 0, 0, '', '', NULL, 0, NULL, NULL, '', 0, 0, '2019-10-31 16:23:20', '2019-10-31 16:23:20'),
-(17, 'Aalia', '04thnov', 'Aalia 04thnov', 'aaa', '9769333707', 1692, 1, 1, '', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', NULL, 0, NULL, NULL, '', 0, 0, '2019-10-31 17:49:30', '2019-10-31 17:49:30'),
-(18, 'aalia 31st Oct', 'aalia 31st Oct', 'aalia 31st Oct aalia 31st Oct', '', '3345432111', 0, 0, 0, 'aalia31stOct@techcetra.com', '797681dfd4bd3065f482a8f072b2a8c3', 'female', 0, '3333-03-31', NULL, '', 0, 0, '2019-10-31 18:23:19', '2019-10-31 18:23:19'),
-(19, 'aalia 31st October', 'aalia 31st October', 'aalia 31st October aalia 31st October', '', '111324234111', 0, 0, 0, 'aalia31stOctober@techcetra.com', '855a2d7c94475f67f2129cec3ee0af1f', 'female', 0, '0444-04-04', NULL, '', 0, 0, '2019-10-31 18:26:23', '2019-10-31 18:26:23'),
-(20, 'xyz', 'abc', 'xyz abc', '', '7718813091', 3046, 0, 1, '', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', NULL, 0, NULL, '2368', '', 0, 0, '2019-11-01 14:45:44', '2019-11-01 14:45:44'),
-(21, 'abc 1st November', 'abc 1st November', 'abc 1st November abc 1st November', '', '111111122323', 0, 0, 0, 'abc1stNovember@techcetra.com', '38c2331fcd5ac581a69ab1606e251553', 'female', 0, '2222-02-22', NULL, '', 0, 0, '2019-11-01 14:51:46', '2019-11-01 14:51:46'),
-(23, NULL, '', '', '', '', 0, 0, 0, 'yohhandalvi@gmail.com', '', NULL, 0, NULL, NULL, '', 0, 0, '2019-11-01 14:56:44', '2019-11-01 14:56:44'),
-(24, 'xyz', 'abc', 'xyz abc', '', '111111111', 3492, 0, 0, '', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', NULL, 0, NULL, NULL, '', 0, 0, '2019-11-01 16:36:50', '2019-11-01 16:36:50'),
-(25, NULL, '', '', '', '233232123', 2618, 0, 1, '', '', NULL, 0, NULL, NULL, '', 0, 0, '2019-11-01 17:00:32', '2019-11-01 17:00:32'),
-(26, NULL, '', '', '', 'mobile', 5948, 0, 0, '', '', NULL, 0, NULL, NULL, '', 0, 0, '2019-11-04 15:30:34', '2019-11-04 15:30:34'),
-(27, 'aalia', 'kapadia', 'Aalia Kapadia', '', '9769333707\n', 1111, 1, 1, '', '', NULL, 0, NULL, NULL, '', 0, 0, '2019-11-04 15:30:50', '2019-11-04 15:30:50');
+INSERT INTO `players` (`id`, `full_name`, `mobile`, `email`, `password`, `otp`, `forgot_password_key`, `deleted`, `created_on`, `updated_on`) VALUES
+(5, 'Yohhan Dalvi', '7718813091', 'yohhan@techcetra.com', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', NULL, NULL, 0, '2020-01-10 11:17:37', '2020-01-10 11:18:57');
 
 -- --------------------------------------------------------
 

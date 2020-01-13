@@ -53,7 +53,7 @@
 			    						}
 			    					}
 		    					?>
-		    					<span class="badge badge-pill badge-<?php echo ($booked) ? 'dark' : 'info'; ?>"><?php echo $slot['time']; ?></span>
+		    					<span class="badge badge-pill badge-<?php echo ($slot['price']) ? 'success' : 'dark' ?>"><?php echo $slot['time']; ?></span>
 		    				<?php } ?>
 		    			</div>
 		    			<div class="card-footer bg-transparent border-light">

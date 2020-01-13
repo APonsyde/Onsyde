@@ -125,7 +125,7 @@ class Turf_model extends CI_Model
 	{
 		$this->db->select('ti.*');
 		$this->db->from('turf_images ti');
-		$this->db->group_by('ti.id');
+		$this->db->where('ti.turf_id', $id);
 		return $this->db->get()->result_array();
 	}
 

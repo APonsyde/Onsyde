@@ -81,6 +81,50 @@ class Booking_model extends CI_Model
 		return $this->db->get()->row_array();
 	}
 
+	public function get_all_booking_players($limit = 0, $offset = 0, $params = null)
+	{
+		if($limit)
+			$this->db->limit($limit, $offset);
+
+		if(isset($params['sort'])) {
+			$ord_data = explode(',', $params['sort']);
+			if(count($ord_data) == 1) {
+				$ord = explode('=', $ord_data[0]);
+				if (isset($ord[0]) && isset($ord[1])) {
+					$ord0 = (strpos($ord[0], ".") !== false) ? $ord[0] : 'p.'.$ord[0];
+					$this->db->order_by($ord0, $ord[1]);
+				}
+			} else {
+				foreach ($ord_data as $key => $value) {
+					$ord = explode('=', $value);
+					if (isset($ord[0]) && isset($ord[1])) {
+						$ord0 = (strpos($ord[0], ".") !== false) ? $ord[0] : 'p.'.$ord[0];
+						$this->db->order_by($ord0, $ord[1]);
+					}
+				}
+			}
+		} else {
+			$this->db->order_by('p.id', 'DESC');
+		}
+
+		if(!empty($params['select']))
+			$this->db->select($params['select']);
+		else
+			$this->db->select('p.*');
+
+		if(!empty($params['turf_id']))
+			$this->db->where('b.turf_id', $params['turf_id']);
+
+		if(!empty($params['status']))
+			$this->db->where('b.status', $params['status']);
+
+		$this->db->from('bookings b');
+		$this->db->join('turfs t', 't.id = b.turf_id', 'inner');
+		$this->db->join('players p', 'p.id = b.player_id', 'inner');
+		$this->db->group_by('p.id');
+		return $this->db->get()->result_array();
+	}
+
 	private function _set_filters($params = null)
 	{
 		if(isset($params['include_ids'])) {
@@ -93,11 +137,17 @@ class Booking_model extends CI_Model
 		if(!empty($params['exclude_ids']))
 			$this->db->where_not_in('t.id', $params['exclude_ids']);
 
+		if(!empty($params['manager_id']))
+			$this->db->where('t.manager_id', $params['manager_id']);
+
 		if(!empty($params['player_id']))
 			$this->db->where('b.player_id', $params['player_id']);
 
 		if(!empty($params['turf_id']))
 			$this->db->where('b.turf_id', $params['turf_id']);
+
+		if(!empty($params['status']))
+			$this->db->where('b.status', $params['status']);
 
 		if(!empty($params['search'])) {
 			$this->db->group_start();

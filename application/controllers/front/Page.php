@@ -48,8 +48,6 @@ class Page extends FrontController
                     {
                         $slots_info = $this->Turf_model->get_turf_slots_info($slots);
 
-                        pr($slots_info);
-
                         $amount = 0;
                         $time_slot = null;
 

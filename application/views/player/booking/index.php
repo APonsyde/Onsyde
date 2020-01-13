@@ -46,7 +46,7 @@
                                     <?php } ?>
                                 <?php } else { ?>
                                     <tr>
-                                        <th scope="row" colspan="5">No bookings done yet!</th>
+                                        <th scope="row" colspan="6">No bookings done yet!</th>
                                     </tr>
                                 <?php } ?>
                             </tbody>

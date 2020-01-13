@@ -7,7 +7,6 @@ class User extends AdminController {
     {
         parent::__construct();
         $this->load->model('User_model');
-// $this->load->model('Email_model');
     }
 
     public function index()

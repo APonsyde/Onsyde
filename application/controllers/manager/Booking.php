@@ -6,6 +6,7 @@ class Booking extends ManagerController
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Turf_model');
         $this->load->model('Booking_model');
     }
 
@@ -13,7 +14,11 @@ class Booking extends ManagerController
     {
         $this->authenticate();
 
-        $data['bookings'] = $this->Booking_model->get_all_bookings();
+        $filters = $this->input->get();
+        $filters['manager_id'] = $this->manager['id'];
+        $data['bookings'] = $this->Booking_model->get_all_bookings(null, null, $filters);
+
+        $data['turfs'] = $this->Turf_model->get_all_turfs(null, null, ['manager_id' => $this->manager['id']]);
 
         $data['tab'] = 'bookings';
         $data['title'] = 'List turf bookings';

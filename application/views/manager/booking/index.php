@@ -9,6 +9,33 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card m-b-30">
+                <form enctype="multipart/form-data" method="get" id="list-form">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>Turf :</label>
+                                    <select name="turf_id" class="form-control" onchange="$('#list-form').submit();">
+                                        <option value="">-- All --</option>
+                                        <?php foreach ($turfs as $turf) { ?>
+                                            <option value="<?php echo $turf['id']; ?>" <?php echo ($this->input->get('turf_id') == $turf['id']) ? 'selected' : ''; ?>><?php echo $turf['name']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Status :</label>
+                                    <select name="status" class="form-control" onchange="$('#list-form').submit();">
+                                        <option value="">-- All --</option>
+                                        <option value="<?php echo TURF_STATUS_BOOKED; ?>" <?php echo ($this->input->get('status') == TURF_STATUS_BOOKED) ? 'selected' : ''; ?>>Confirmed</option>
+                                        <option value="<?php echo TURF_STATUS_CANCELLED; ?>" <?php echo ($this->input->get('status') == TURF_STATUS_CANCELLED) ? 'selected' : ''; ?>>Cancelled</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card m-b-30">
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
@@ -42,7 +69,7 @@
                                     <?php } ?>
                                 <?php } else { ?>
                                     <tr>
-                                        <th scope="row" colspan="5">No bookings done yet!</th>
+                                        <th scope="row" colspan="6">No bookings done yet!</th>
                                     </tr>
                                 <?php } ?>
                             </tbody>

@@ -8,6 +8,8 @@ class Turf extends ManagerController
 	{
 		parent::__construct();
 		$this->load->model('Turf_model');
+		$this->load->model('Email_model');
+		$this->load->model('Booking_model');
 	}
 
 	public function listing()
@@ -252,6 +254,120 @@ class Turf extends ManagerController
 
 			$html = $this->load->view('manager/turf/_slot', ['data' => $data, 'day' => $post['day']], true);
 			echo $html;
+		}
+		else
+		{
+			$this->session->set_flashdata('error_message', 'Turf not found');
+            redirect('manager/turf/listing');
+            exit;
+		}
+	}
+
+	public function messaging($id = 0)
+	{
+		$this->authenticate(current_url());
+
+		$data['turf'] = $this->Turf_model->get_turf_by_id($id);
+
+		if(!empty($data['turf']) && $data['turf']['manager_id'] = $this->manager['id'])
+		{
+			$this->form_validation->set_rules('message', 'Message', 'required|xss_clean');
+
+	        $this->form_validation->set_message('required', '%s is required');
+	        $this->form_validation->set_error_delimiters('<div class="text-danger text-left"><small>', '</small></div>');
+
+	        if($this->form_validation->run())
+	        {
+	        	$data = $this->input->post();
+	        	$players = $this->Booking_model->get_all_booking_players(null, null, ['turf_id' => $id]);
+
+	        	if(!empty($players))
+	        	{
+	        		$users = [];
+
+	        		foreach ($players as $player)
+	        		{
+	        			$users[] = [
+	        				'name' => $player['full_name'],
+	        				'email' => $player['email']
+	        			];
+	        		}
+
+	                $subject = PROJECT_NAME.' - Turf Booking!';
+	                $message = str_replace("\r\n", "<br>", $data['message']);
+
+	                $this->Email_model->notify($users, $subject, $message);
+	            }
+
+                $this->session->set_flashdata('success_message', 'Players have been notified');
+                redirect('manager/turf/messaging/'.$id);
+                exit;
+	        }
+	        else
+	        {
+				$date = ($this->input->get('date')) ? $this->input->get('date') : date('Y-m-d');
+		        $timestamp = strtotime($date);
+		        $day = date('l', $timestamp);
+
+	            $data['turf']['slots'] = $this->Turf_model->get_all_turf_slots($id, $day);
+	            $data['turf']['booked_slots'] = $this->Turf_model->get_all_turf_booked_slots($id, $day, $date);
+	            $data['turf']['available_slots'] = $this->Turf_model->get_all_turf_slots($id, $day);
+
+
+	            foreach ($data['turf']['available_slots'] as $key => $slot)
+	            {
+	            	foreach ($data['turf']['booked_slots'] as $bkey => $booked_slot)
+	            	{
+	            		if($slot['id'] == $booked_slot['id'])
+	            		{
+	            			unset($data['turf']['available_slots'][$key]);
+	            		}
+	            	}
+	            }
+
+	            $time_slot = null;
+                $prev_slot = null;
+
+                if(!empty($data['turf']['available_slots']))
+                {
+                	$data['turf']['available_slots'] = array_values($data['turf']['available_slots']);
+
+	                foreach ($data['turf']['available_slots'] as $key => $slot)
+	                {
+	                    if($key == 0)
+	                    {
+	                        $time_slot .= $slot['time'];
+	                    }
+	                    else
+	                    {
+	                        $prev_slot_end_time = date("h:i a", strtotime('+30 minutes', strtotime($prev_slot['time'])));
+
+	                        if($prev_slot_end_time !== $slot['time'])
+	                        {
+	                            $time_slot .= " to ".$prev_slot_end_time."\r\n".$slot['time'];
+	                        }
+	                    }
+
+	                    $prev_slot = $slot;
+	                }
+
+	                $last = end($data['turf']['available_slots']);
+                	$time_slot .=  " - " . date("h:i a", strtotime('+30 minutes', strtotime($last['time'])));
+	            }
+
+	            $message = "";
+	            $message .= "Turf : ".$data['turf']['name']."\r\nAddress : ".$data['turf']['address']."\r\n\r\n";
+	            $for = ($date == date('Y-m-d')) ? 'today' : $day.', '.date("jS M", $timestamp);
+	            $message .= "Slots available for ".strtolower($for)." -\r\n".$time_slot;
+
+	            $data['message'] = $message;
+
+				$data['tab'] = 'turfs';
+				$data['subtab'] = 'list';
+				$data['title'] = 'Manage Turf Slots Messaging';
+				$data['_view'] = 'manager/turf/messaging';
+				$this->load->view('manager/layout/basetemplate', $data);
+			}
 		}
 		else
 		{

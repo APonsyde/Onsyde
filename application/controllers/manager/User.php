@@ -6,9 +6,10 @@ class User extends ManagerController
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Turf_model');
         $this->load->model('Email_model');
+        $this->load->model('Booking_model');
         $this->load->model('Manager_model');
-
     }
 
     public function index()
@@ -234,6 +235,24 @@ class User extends ManagerController
     public function dashboard()
     {
         $this->authenticate(current_url());
+
+        $filters = $this->input->get();
+        $filters['manager_id'] = $this->manager['id'];
+
+        $offset = ($this->input->get('page')) ? $this->input->get('page') : 0;
+        $data['turfs'] = $this->Turf_model->get_all_turfs(null, null, $filters);
+
+        $date = ($this->input->get('date')) ? $this->input->get('date') : date('Y-m-d');
+        $timestamp = strtotime($date);
+        $day = date('l', $timestamp);
+
+        foreach ($data['turfs'] as $key => $turf)
+        {
+            $data['turfs'][$key]['slots'] = $this->Turf_model->get_all_turf_slots($turf['id'], $day);
+            $data['turfs'][$key]['booked_slots'] = $this->Turf_model->get_all_turf_booked_slots($turf['id'], $day, $date);
+            $data['turfs'][$key]['recent_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id']]);
+            $data['turfs'][$key]['cancelled_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id'], 'status' => TURF_STATUS_CANCELLED]);
+        }
 
         $data['tab'] = 'dashboard';
         $data['title'] = 'View your dashboard activity';

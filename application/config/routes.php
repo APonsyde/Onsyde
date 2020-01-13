@@ -70,6 +70,7 @@ $route['manager/profile'] = 'manager/user/profile';
 
 // Booking Routes
 $route['manager/bookings'] = 'manager/booking/index';
+$route['manager/booking/cancel/(:num)'] = 'manager/booking/cancel/$1';
 
 /**
  * Player Routes
@@ -87,6 +88,7 @@ $route['player/profile'] = 'player/user/profile';
 
 // Booking Routes
 $route['player/bookings'] = 'player/booking/index';
+$route['player/booking/cancel/(:num)'] = 'player/booking/cancel/$1';
 $route['booking/success'] = 'player/booking/success';
 
 /**
@@ -95,7 +97,7 @@ $route['booking/success'] = 'player/booking/success';
 
 // Page Routes
 $route['how-it-works'] = 'front/page/how_it_works';
-$route['find-a-turf'] = 'front/page/find_a_turf';
+$route['find-a-turf/(:any)'] = 'front/page/find_a_turf/$1';
 
 
 

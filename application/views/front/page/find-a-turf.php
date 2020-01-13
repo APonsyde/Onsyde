@@ -30,9 +30,18 @@
 	    		<form method="post">
 	    			<input type="hidden" name="date" value="<?php echo $this->input->get('date'); ?>">
 	    			<input type="hidden" name="turf_id" value="<?php echo $turf['id']; ?>">
-			    	<div class="col-sm-12">
+			    	<div class="col-sm-12 gallery-filter">
 			    		<div class="card border-light m-b-30">
-			    			<div class="card-header bg-transparent border-light"><?php echo $turf['name']; ?>, <?php echo $turf['address']; ?></div>
+			    			<div class="card-header bg-transparent border-light">
+			    				<?php echo $turf['name']; ?>, <?php echo $turf['address']; ?>
+			    				<?php
+			    					$filters = ($this->input->get()) ? "?".http_build_query($this->input->get()) : "";
+			    				?>
+		    					<ul class="list-inline mb-0">
+	                                <li class="list-inline-item"><a class="filter-item <?php echo ($slot_selection_type == TURF_SLOT_INDIVIDUAL) ? 'current' : ''; ?>" href="<?php echo site_url('find-a-turf/individual'.$filters); ?>">Individual</a></li>
+	                                <li class="list-inline-item"><a class="filter-item <?php echo ($slot_selection_type == TURF_SLOT_INDIVIDUAL) ? '' : 'current'; ?>" href="<?php echo site_url('find-a-turf/grouped'.$filters); ?>">Grouped</a></li>
+	                            </ul>
+		    				</div>
 			    			<div class="card-body p-2">
 			    				<div class="row">
 				    				<div class="col-md-6">
@@ -99,6 +108,23 @@
     </div>
 </div>
 
+<?php if($slot_selection_type == TURF_SLOT_INDIVIDUAL) { ?>
+<script>
+	$(document).ready(function() {
+		$(document).on("click", ".slot-available", function() {
+			var _this = $(this);
+			_this.toggleClass('select');
+			$(".slot-available").each(function() {
+				$(this).find('input').prop('checked', false);
+				if($(this).hasClass('select')) {
+					$(this).find('input').prop('checked', true);
+				}
+			});
+			calculate();
+		})
+	});
+</script>
+<?php } else { ?>
 <script>
 	$(document).ready(function() {
 		$(document).on("click", ".slot-available", function() {
@@ -153,8 +179,10 @@
 			});
 			calculate();
 		})
-	})
-
+	});
+</script>
+<?php } ?>
+<script>
 	function calculate()
 	{
 		var time = ($(".slot-available.select").length) / 2;

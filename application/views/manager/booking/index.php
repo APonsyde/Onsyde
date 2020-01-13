@@ -17,8 +17,9 @@
                                     <th scope="col" width="20%">Turf</th>
                                     <th scope="col">Customer</th>
                                     <th scope="col">Booking Date</th>
-                                    <th scope="col">Time Slot</th>
+                                    <th scope="col" width="20%">Time Slot</th>
                                     <th scope="col">Total Amount</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -30,6 +31,13 @@
                                             <td><?php echo convert_db_time($booking['booking_date'], "jS M, Y"); ?></td>
                                             <td><?php echo $booking['time_slot']; ?></td>
                                             <td>Rs. <?php echo $booking['amount']; ?>/-</td>
+                                            <td>
+                                                <?php if($booking['status'] == TURF_STATUS_CANCELLED) { ?>
+                                                    <span class="text text-danger">Cancelled</span>
+                                                <?php } else { ?>
+                                                    <span class="text text-success">Confirmed</span>
+                                                <?php } ?>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                 <?php } else { ?>

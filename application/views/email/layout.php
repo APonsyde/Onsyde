@@ -39,7 +39,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding: 20px; background: #2B2E34;">
+                    <td style="padding: 20px; background: #000000;">
                         <table border="0" cellpadding="0" cellspacing="0" a>
                             <tr>
                                 <td width="100%" style="width: 50%; padding: 10px; color: #ffffff; text-align: left;" valign="top">

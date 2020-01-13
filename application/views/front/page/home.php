@@ -12,7 +12,7 @@
             <h5 class="card-title">I'm looking to play on</h5>
         </div>
         <div class="card-body">
-            <form action="<?php echo site_url('find-a-turf'); ?>">
+            <form action="<?php echo site_url('find-a-turf/individual'); ?>">
                 <div class="form-group">
                     <?php $days = get_upcoming_days();?>
                     <select class="form-control" name="date">

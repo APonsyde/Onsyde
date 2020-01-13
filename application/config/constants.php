@@ -103,3 +103,11 @@ define('MSG91_AUTH_KEY', '231657Ad0Je8Yf5b728914');
 define('MSG91_SENDER_ID', 'MSGONS');
 
 define('GOOGLE_MAPS_API_KEY', 'AIzaSyA0NyYnMn4iQb4mh-kTos-yd77rPy3_jHk');
+// define('GOOGLE_MAPS_API_KEY', 'AIzaSyASCpuN0gKP_n1rVfBLzLpnMacBsyjt86o');
+
+define('TURF_SLOT_INDIVIDUAL', 'individual');
+define('TURF_SLOT_GROUPED', 'grouped');
+
+define('TURF_STATUS_BOOKED', 'booked');
+define('TURF_STATUS_CONFIRMED', 'confirmed');
+define('TURF_STATUS_CANCELLED', 'cancelled');

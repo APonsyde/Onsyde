@@ -7,6 +7,7 @@ class Page extends FrontController
     {
         parent::__construct();
         $this->load->model('Turf_model');
+        $this->load->model('Email_model');
         $this->load->model('Booking_model');
     }
 
@@ -18,8 +19,14 @@ class Page extends FrontController
         $this->load->view('front/layout/basetemplate', $data);
     }
 
-    public function find_a_turf()
+    public function find_a_turf($slot_selection_type = TURF_SLOT_INDIVIDUAL)
     {
+        if(!in_array($slot_selection_type, [TURF_SLOT_INDIVIDUAL, TURF_SLOT_GROUPED]))
+        {
+            redirect('find-a-turf/'.TURF_SLOT_INDIVIDUAL);
+            exit;
+        }
+
         if($_POST)
         {
             $date = ($this->input->post('date')) ? $this->input->post('date') : date('Y-m-d');
@@ -28,38 +35,85 @@ class Page extends FrontController
             if(empty($slots))
             {
                 $this->session->set_flashdata('error_message', 'Please select atleast one slot to book');
-                redirect('find-a-turf?date='.$date);
+                redirect('find-a-turf/'.$slot_selection_type.'?date='.$date);
                 exit;
             }
             else
             {
                 if($this->player['id'])
                 {
-                    $slots_info = $this->Turf_model->get_turf_slots_info($slots);
+                    $turf = $this->Turf_model->get_turf_by_id($this->input->post('turf_id'));
 
-                    $first = $slots_info[0];
-                    $last = end($slots_info);
-
-                    $amount = 0;
-
-                    $time_slot = $first['time'] . " - " . date("h:i a", strtotime('+30 minutes', strtotime($last['time'])));
-
-                    foreach ($slots_info as $key => $slot)
+                    if(!empty($turf))
                     {
-                        $amount += $slot['price'];
+                        $slots_info = $this->Turf_model->get_turf_slots_info($slots);
+
+                        pr($slots_info);
+
+                        $amount = 0;
+                        $time_slot = null;
+
+                        if($slot_selection_type == TURF_SLOT_INDIVIDUAL)
+                        {
+                            $prev_slot = null;
+
+                            foreach ($slots_info as $key => $slot)
+                            {
+                                if($key == 0)
+                                {
+                                    $time_slot .= $slot['time'];
+                                }
+                                else
+                                {
+                                    $prev_slot_end_time = date("h:i a", strtotime('+30 minutes', strtotime($prev_slot['time'])));
+
+                                    if($prev_slot_end_time !== $slot['time'])
+                                    {
+                                        $time_slot .= " - ".$prev_slot_end_time.", ".$slot['time'];
+                                    }
+                                }
+
+                                $prev_slot = $slot;
+                            }
+                        }
+                        else
+                        {
+                            $first = $slots_info[0];
+                            $time_slot = $first['time'];
+                        }
+
+                        $last = end($slots_info);
+                        $time_slot .=  " - " . date("h:i a", strtotime('+30 minutes', strtotime($last['time'])));
+
+                        foreach ($slots_info as $key => $slot)
+                        {
+                            $amount += $slot['price'];
+                        }
+
+                        $data = [
+                            'booking_date' => $date,
+                            'player_id' => $this->player['id'],
+                            'turf_id' => $this->input->post('turf_id'),
+                            'amount' => $amount,
+                            'time_slot' => $time_slot
+                        ];
+
+                        $this->Booking_model->book($data, $slots_info);
+
+                        $users = [$this->player];
+                        $subject = PROJECT_NAME.' - Booking Confirmed!';
+                        $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+
+                        $this->Email_model->notify($users, $subject, $message);
+                        redirect('booking/success');
+                        exit;
                     }
-
-                    $data = [
-                        'booking_date' => $date,
-                        'player_id' => $this->player['id'],
-                        'turf_id' => $this->input->post('turf_id'),
-                        'amount' => $amount,
-                        'time_slot' => $time_slot
-                    ];
-
-                    $this->Booking_model->book($data, $slots_info);
-                    redirect('booking/success');
-                    exit;
+                    else
+                    {
+                        $this->session->set_flashdata('error_message', 'Turf not found');
+                        redirect('find-a-turf/'.$slot_selection_type.'?date='.$date);
+                        exit;
+                    }
                 }
                 else
                 {
@@ -71,6 +125,8 @@ class Page extends FrontController
         }
         else
         {
+            $data['slot_selection_type'] = $slot_selection_type;
+
             $data['turfs'] = $this->Turf_model->get_all_turfs();
 
             $date = ($this->input->get('date')) ? $this->input->get('date') : date('Y-m-d');

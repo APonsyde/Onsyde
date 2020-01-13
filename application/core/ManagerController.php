@@ -19,10 +19,16 @@ class ManagerController extends BaseController {
 		parent::__construct();
 
 		if($this->session->userdata('manager_id'))
-			$this->manager['id'] = $this->session->userdata('manager_id');
+		{
+			$this->load->model('Manager_model');
+			$manager = $this->Manager_model->get_manager_by_id($this->session->userdata('manager_id'));
 
-		if($this->session->userdata('manager_name'))
-			$this->manager['name'] = $this->session->userdata('manager_name');
+			$this->manager = [
+				'id' => $manager['id'],
+				'name' => $manager['company_name'],
+				'email' => $manager['email']
+			];
+		}
 
 		$this->set_vars();
 	}

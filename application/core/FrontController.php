@@ -19,10 +19,16 @@ class FrontController extends BaseController {
 		parent::__construct();
 
 		if($this->session->userdata('player_id'))
-			$this->player['id'] = $this->session->userdata('player_id');
+		{
+			$this->load->model('Player_model');
+			$player = $this->Player_model->get_player_by_id($this->session->userdata('player_id'));
 
-		if($this->session->userdata('player_name'))
-			$this->player['name'] = $this->session->userdata('player_name');
+			$this->player = [
+				'id' => $player['id'],
+				'name' => $player['full_name'],
+				'email' => $player['email']
+			];
+		}
 
 		$this->set_vars();
 	}

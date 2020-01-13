@@ -2,6 +2,10 @@
 
 class Booking_model extends CI_Model 
 {
+	public function update($id, $data)
+	{
+		return $this->db->update('bookings', $data, array('id' => $id));
+	}
 
 	public function book($booking_data, $slots)
 	{
@@ -58,13 +62,23 @@ class Booking_model extends CI_Model
 		if(!empty($params['select']))
 			$this->db->select($params['select']);
 		else
-			$this->db->select('t.*, b.id, b.booking_date, b.time_slot, b.amount, p.full_name as player, p.mobile as player_mobile');
+			$this->db->select('t.*, b.id, b.booking_date, b.time_slot, b.amount, b.status, IF(b.booking_date > DATE(CURRENT_DATE()), 1, 0) as player_cancellation, p.full_name as player, p.mobile as player_mobile');
 
 		$this->db->from('bookings b');
 		$this->db->join('turfs t', 't.id = b.turf_id', 'inner');
 		$this->db->join('players p', 'p.id = b.player_id', 'inner');
 		$this->db->group_by('b.id');
 		return $this->db->get()->result_array();
+	}
+
+	public function get_booking_by_id($id)
+	{
+		$this->db->select('t.*, b.id, b.player_id, b.booking_date, b.time_slot, b.amount, b.status, IF(b.booking_date > DATE(CURRENT_DATE()), 1, 0) as player_cancellation, p.full_name as player, p.mobile as player_mobile');
+		$this->db->from('bookings b');
+		$this->db->join('turfs t', 't.id = b.turf_id', 'inner');
+		$this->db->join('players p', 'p.id = b.player_id', 'inner');
+		$this->db->where('b.id', $id);
+		return $this->db->get()->row_array();
 	}
 
 	private function _set_filters($params = null)

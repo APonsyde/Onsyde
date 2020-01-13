@@ -11,7 +11,7 @@ class Email_model extends CI_Model {
 		$data['_view'] = 'reset-password-code';
         $data['title'] = PROJECT_NAME.' - Reset Password Code';
         $html = $this->load->view('email/layout', $data, true);
-        return $this->sendmail->sendTo([$email => $name], "Reset Password Code", $html);
+        return $this->sendmail->sendTo([$email => $name], PROJECT_NAME." - Reset Password Code", $html);
 	}
 
 	public function send_registration_email($name, $email, $password = null)
@@ -24,7 +24,25 @@ class Email_model extends CI_Model {
 		$data['_view'] = 'registration';
         $data['title'] = PROJECT_NAME.' Registration';
         $html = $this->load->view('email/layout', $data, true);
-        return $this->send_mail->send_to([$email => $name], PROJECT_NAME." Registration", $html);
+        return $this->send_mail->send_to([$email => $name], PROJECT_NAME." - Registration", $html);
 	}
 
+	public function notify($users, $subject, $message)
+	{
+		$data = [];
+		$data['_view'] = 'notify';
+        $data['title'] = $subject;
+		$data['message'] = $message;
+
+        if(!empty($users))
+        {
+        	foreach ($users as $user)
+        	{
+        		$data['data']['name'] = $user['name'];
+        		$data['data']['message'] = $message;
+        		$html = $this->load->view('email/layout', $data, true);
+        		$this->send_mail->send_to([$user['email'] => $user['name']], $subject, $html);
+        	}
+        }
+	}
 }

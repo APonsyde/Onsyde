@@ -11,7 +11,7 @@ class Manager_model extends CI_Model {
 
 		if(!empty($manager))
 		{
-			$this->set_manager_session(['manager_id' => $manager['id'], 'manager_name' => $manager['company_name']]);
+			$this->set_manager_session(['manager_id' => $manager['id']]);
 			return true;
 		}
 		else

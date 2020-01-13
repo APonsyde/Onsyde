@@ -30,7 +30,7 @@
 		    	<div class="col-sm-12">
 		    		<div class="card border-light m-b-30">
 		    			<div class="card-header bg-transparent border-light">
-		    				<?php echo $turf['name']; ?>, <?php echo $turf['address']; ?>
+		    				<?php echo $turf['name']; ?>, <?php echo $turf['address']; ?>&nbsp;&nbsp;&nbsp;- <a href="<?php echo site_url('manager/turf/messaging/'.$turf['id']) ?>">Manage Slot Messaging</a>
 		    				<?php 
 			    				$total_booked = (count($turf['slots'])) ? ceil((count($turf['booked_slots'])/count($turf['slots']))*100) : 0;
 		    				?>

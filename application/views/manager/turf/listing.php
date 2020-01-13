@@ -59,7 +59,8 @@
 		    			<div class="card-footer bg-transparent border-light">
 		    				<a class="btn btn-primary mr-2" href="<?php echo site_url('manager/turf/edit/'.$turf['id']); ?>">Manage Turf</a>
 		    				<a class="btn btn-primary mr-2" href="<?php echo site_url('manager/turf/gallery/'.$turf['id']); ?>">Manage Gallery</a>
-		    				<a class="btn btn-primary" href="<?php echo site_url('manager/turf/slots/'.$turf['id']); ?>">Manage Slots</a>
+		    				<a class="btn btn-primary mr-2" href="<?php echo site_url('manager/turf/slots/'.$turf['id']); ?>">Manage Slots</a>
+		    				<a class="btn btn-success" href="<?php echo site_url('manager/turf/messaging/'.$turf['id']); ?>">Slot Messaging</a>
 		    			</div>
 		    		</div>  
 		    	</div>

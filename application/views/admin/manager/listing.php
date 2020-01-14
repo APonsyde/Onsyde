@@ -1,11 +1,11 @@
 <div class="breadcrumbbar">
     <div class="row align-items-center">
         <div class="col-md-8 col-lg-8">
-            <h4 class="page-title">Turfs</h4>
+            <h4 class="page-title">Managers</h4>
             <div class="breadcrumb-list">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?php echo site_url('admin/dashboard'); ?>">Dashboard</a></li>
-                    <li class="breadcrumb-item" aria-current="page">Turfs</li>
+                    <li class="breadcrumb-item" aria-current="page">Managers</li>
                     <li class="breadcrumb-item active" aria-current="page">List</li>
                 </ol>
             </div>
@@ -40,35 +40,35 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col" width="10%">Turf</th>
-                                    <th scope="col" width="20%">Address</th>
-                                    <th scope="col">Contact</th>
-                                    <th scope="col">Total Bookings</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col" width="20%">Company Name</th>
+                                    <th scope="col" width="20%">Contact Person</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Mobile</th>
+                                    <th scope="col">Access</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if(!empty($turfs)) { ?>
-                                    <?php foreach($turfs as $turf) { ?>
+                                <?php if(!empty($managers)) { ?>
+                                    <?php foreach($managers as $manager) { ?>
                                         <tr>
-                                            <td><?php echo $turf['name']; ?></td>
-                                            <td><?php echo $turf['address']; ?></td>
-                                            <td><a href="tel:<?php echo $turf['mobile']; ?>"><?php echo $turf['mobile']; ?></a><br><a href="tel:<?php echo $turf['alternate_number']; ?>"><?php echo $turf['alternate_number']; ?></a></td>
-                                            <td>0</td>
+                                            <td><?php echo $manager['company_name']; ?></td>
+                                            <td><?php echo $manager['contact_person']; ?></td>
+                                            <td><?php echo ($manager['email']) ? $manager['email'] : '-'; ?></td>
+                                            <td><a href="tel:+91<?php echo $manager['mobile']; ?>">+91<?php echo $manager['mobile']; ?></a></td>
                                             <td>
-                                                <?php if($turf['inactive']) { ?>
+                                                <?php if($manager['inactive']) { ?>
                                                     <span class="badge badge-danger">Disabled</span>
                                                 <?php } else { ?>
                                                     <span class="badge badge-success">Enabled</span>
                                                 <?php } ?>
                                             </td>
-                                            <td><a class="btn btn-dark" href="<?php echo site_url('admin/turf/status/'.$turf['id']); ?>">Switch Status</a></td>
+                                            <td><a class="btn btn-dark" href="<?php echo site_url('admin/manager/status/'.$manager['id']); ?>">Switch Status</a></td>
                                         </tr>
                                     <?php } ?>
                                 <?php } else { ?>
                                     <tr>
-                                        <th scope="row" colspan="6">No turfs added yet!</th>
+                                        <th scope="row" colspan="6">No managers registered yet!</th>
                                     </tr>
                                 <?php } ?>
                             </tbody>

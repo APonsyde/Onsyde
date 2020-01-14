@@ -1,69 +1,48 @@
-<!doctype html>
-<html lang="en" class="no-focus">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <?php $this->load->view('admin/layout/head'); ?>
+    <?php $this->load->view('manager/layout/head'); ?>
 </head>
-<body>
-    <div id="page-container" class="main-content-boxed">
-        <main id="main-container">
-            <div class="bg-image" style="background-image: url('<?php echo base_url('resources/admin/media/photos/photo34@2x.jpg'); ?>');">
-                <div class="row mx-0 bg-black-op">
-                    <div class="hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-end">
-                        <div class="p-30 invisible" data-toggle="appear">
-                            <p class="font-size-h3 font-w600 text-white">
-                                Get Inspired and Create.
-                            </p>
-                            <p class="font-italic text-white-op">
-                                Copyright &copy; <span class="js-year-copy">2017</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="hero-static col-md-6 col-xl-4 d-flex align-items-center bg-white invisible" data-toggle="appear" data-class="animated fadeInRight">
-                        <div class="content content-full">
-                            <div class="px-30 py-10">
-                                <a class="link-effect font-w700" href="<?php echo site_url('admin'); ?>">
-                                    <i class="si si-fire"></i>
-                                    <span class="font-size-xl text-primary-dark"><?php echo PROJECT_NAME; ?></span>
-                                </a>
-                                <h1 class="h3 font-w700 mt-50 mb-10">Admin - Reset Password</h1>
-                            </div>
-                            <form class="js-validation-signin px-30" method="post">
-                                <?php $this->load->view('admin/layout/alert'); ?>
-                                <div class="form-group row">
-                                    <div class="col-12">
-                                        <div class="form-material floating">
-                                            <input type="password" class="form-control" name="password">
-                                            <label>Password</label>
+<body class="vertical-layout">
+    <div id="containerbar" class="containerbar authenticate-bg">
+        <div class="container">
+            <div class="auth-box login-box">
+                <div class="row no-gutters align-items-center justify-content-center">
+                    <div class="col-md-6 col-lg-5">
+                        <div class="auth-box-right">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form method="post">
+                                        <div class="form-head">
+                                            <a href="<?php echo site_url(); ?>" class="logo"><img src="<?php echo base_url('resources/theme/images/logo.png'); ?>" class="img-fluid" alt="logo"></a>
+                                        </div>                                        
+                                        <h4 class="text-primary my-4">Reset Password!</h4>
+                                        <?php $this->load->view('manager/layout/alert'); ?>
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" name="otp" placeholder="Enter the OTP sent to you" value="<?php echo $this->input->post('otp'); ?>">
+                                            <?php echo form_error('otp'); ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="password" placeholder="Enter new password" value="<?php echo $this->input->post('password'); ?>">
                                             <?php echo form_error('password'); ?>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-12">
-                                        <div class="form-material floating">
-                                            <input type="password" class="form-control" name="retype_password">
-                                            <label>Retype Password</label>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="retype_password" placeholder="Retype new password" value="<?php echo $this->input->post('retype_password'); ?>">
                                             <?php echo form_error('retype_password'); ?>
                                         </div>
-                                    </div>
+                                        <button type="submit" class="btn btn-success btn-lg btn-block font-18">Update Password</button>
+                                        <p class="mb-0 mt-3">Remember password? <a href="<?php echo site_url('manager'); ?>">Login</a></p>
+                                        <hr>
+                                        <p class="mb-0">Go back to home? <a href="<?php echo site_url(); ?>">Home</a></p>
+                                    </form>
                                 </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-sm btn-hero btn-alt-primary">
-                                        <i class="si si-login mr-10"></i> Update Password
-                                    </button>
-                                    <div class="mt-30">
-                                        <a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="<?php echo site_url('admin'); ?>">
-                                            <i class="fa fa-arrow-left mr-5"></i> Login
-                                        </a>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
-    <?php $this->load->view('admin/layout/foot'); ?>
+    <?php $this->load->view('manager/layout/foot'); ?>
 </body>
 </html>

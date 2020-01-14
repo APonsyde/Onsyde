@@ -149,7 +149,7 @@ class User extends ManagerController
                 }
                 else
                 {
-                    $this->session->set_flashdata('error_message', 'Invalid password');
+                    $this->session->set_flashdata('error_message', 'Invalid credentials / account has been locked by the admin');
                     redirect('manager/password?mobile='.$manager['mobile']);
                     exit;
                 }

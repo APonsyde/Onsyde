@@ -3,30 +3,36 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * @package         Sports
+ * @package         Onsyde
  * @subpackage      Admin
  * @category        AdminController
  * @author          Yohhan Dalvi
  */
 class AdminController extends BaseController {
 
-	public $user;
+	public $admin;
 
 	public function __construct()
 	{
 		// main constructor
 		parent::__construct();
 
-		if($this->session->userdata('user_id'))
-			$this->user['id'] = $this->session->userdata('user_id');
+		if($this->session->userdata('admin_id'))
+		{
+			$this->load->model('Admin_model');
+			$admin = $this->Admin_model->get_admin_by_id($this->session->userdata('admin_id'));
 
-		if($this->session->userdata('user_username'))
-			$this->user['username'] = $this->session->userdata('user_username');
+			$this->admin = [
+				'id' => $admin['id'],
+				'username' => $admin['username'],
+				'email' => $admin['email']
+			];
+		}
 	}
 
 	public function authenticate($redirect_to = null, $check_permission = true)
 	{
-		if($this->user['id']) {
+		if($this->admin['id']) {
 			return TRUE;
 		} else {
 			if(is_null($redirect_to)) {

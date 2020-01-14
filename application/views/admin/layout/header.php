@@ -1,112 +1,152 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr">
+<html lang="en">
 <head>
     <?php $this->load->view('admin/layout/head'); ?>
 </head>
-<body>
-    <div id="page-container" class="sidebar-o enable-page-overlay side-scroll page-header-fixed side-trans-enabled">
-        <nav id="sidebar">
-            <div class="sidebar-content">
-                <div class="content-header content-header-fullrow px-15">
-                    <div class="content-header-section sidebar-mini-visible-b">
-                        <span class="content-header-item font-w700 font-size-xl float-left animated fadeIn">
-                            <span class="text-dual-primary-dark">c</span><span class="text-primary">b</span>
-                        </span>
-                    </div>
-                    <div class="content-header-section text-center align-parent sidebar-mini-hidden">
-                        <button type="button" class="btn btn-circle btn-dual-secondary d-lg-none align-v-r" data-toggle="layout" data-action="sidebar_close">
-                            <i class="fa fa-times text-danger"></i>
-                        </button>
-                        <div class="content-header-item">
-                            <a class="link-effect font-w700" href="<?php echo site_url('admin/dashboard'); ?>">
-                                <i class="si si-fire text-primary"></i>
-                                <span class="font-size-xl text-dual-primary-dark"><?php echo PROJECT_NAME; ?></span>
-                            </a>
-                        </div>
-                    </div>
+<body class="vertical-layout">    
+    <div id="infobar-settings-sidebar" class="infobar-settings-sidebar">
+        <div class="infobar-settings-sidebar-head d-flex w-100 justify-content-between">
+            <h4>Settings</h4><a href="javascript:void(0)" id="infobar-settings-close" class="infobar-settings-close"><img src="<?php echo base_url('resources/theme/images/svg-icon/close.svg'); ?>" class="img-fluid menu-hamburger-close" alt="close"></a>
+        </div>
+        <div class="infobar-settings-sidebar-body">
+            <div class="custom-mode-setting">
+                <div class="row align-items-center pb-3">
+                    <div class="col-8"><h6 class="mb-0">New Bookings</h6></div>
+                    <div class="col-4 text-right"><input type="checkbox" class="js-switch-setting-first" checked /></div>
                 </div>
-                <br>
-                <br>
-                <div class="content-side content-side-full">
-                    <ul class="nav-main">
-                        <li>
-                            <a class="<?php echo ($tab == 'dashboard') ? 'active' : ''; ?>" href="<?php echo site_url('admin/dashboard'); ?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Dashboard</span></a>
+                <div class="row align-items-center pb-3">
+                    <div class="col-8"><h6 class="mb-0">Enable SMS</h6></div>
+                    <div class="col-4 text-right"><input type="checkbox" class="js-switch-setting-fourth" checked /></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="infobar-settings-sidebar-overlay"></div>
+    <div id="containerbar">
+        <div class="leftbar">
+            <div class="sidebar">
+                <div class="logobar">
+                    <a href="<?php echo site_url('admin/dashboard'); ?>" class="logo logo-large"><img src="<?php echo base_url('resources/theme/images/logo.png'); ?>" class="img-fluid" alt="logo"></a>
+                    <a href="<?php echo site_url('admin/dashboard'); ?>" class="logo logo-small"><img src="<?php echo base_url('resources/theme/images/small_logo.svg'); ?>" class="img-fluid" alt="logo"></a>
+                </div>
+                <div class="navigationbar">
+                    <ul class="vertical-menu">
+                        <li class="<?php echo (isset($tab) && $tab == 'dashboard') ? 'active' : ''; ?>">
+                            <a href="<?php echo site_url('manager/dashboard'); ?>">
+                              <img src="<?php echo base_url('resources/theme/images/svg-icon/dashboard.svg'); ?>" class="img-fluid" alt="dashboard"><span>Dashboard</span>
+                            </a>
                         </li>
-                        <li class="<?php echo ($tab == 'sport' || $tab == 'ground') ? 'open' : ''; ?>">
-                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-user"></i><span class="sidebar-mini-hide">Master</span></a>
-                            <ul>
-                                <li>
-                                    <a class="<?php echo ($tab == 'sport') ? 'active' : ''; ?>" href="<?php echo site_url('sport/listing'); ?>">Sports </a>
-                                </li>
-                                <li>
-                                    <a class="<?php echo ($tab == 'ground') ? 'active' : ''; ?>" href="<?php echo site_url('ground/listing'); ?>">Grounds </a>
-                                </li>
-                                <li>
-                                   <!--  <a class="<?php //echo ($tab == 'turf') ? 'active' : ''; ?>" href="<?php //echo site_url('turf/listing'); ?>"> Turf </a> -->
-                                </li>
-                            </ul>
+                        <li class="<?php echo (isset($tab) && $tab == 'turfs') ? 'active' : ''; ?>">
+                            <a href="<?php echo site_url('admin/turf/listing'); ?>">
+                              <img src="<?php echo base_url('resources/theme/images/svg-icon/layouts.svg'); ?>" class="img-fluid" alt="dashboard"><span>Turfs</span>
+                            </a>
                         </li>
-                        <li>
-                            <a href="<?php echo site_url('tournament/listing'); ?>"><i class="si si-layers"></i><span class="sidebar-mini-hide">Tournament</span></a>
+                        <li class="<?php echo (isset($tab) && $tab == 'managers') ? 'active' : ''; ?>">
+                            <a href="<?php echo site_url('admin/manager/listing'); ?>">
+                              <img src="<?php echo base_url('resources/theme/images/svg-icon/user.svg'); ?>" class="img-fluid" alt="dashboard"><span>Managers</span>
+                            </a>
                         </li>
-                        <li>
-                            <a href="<?php echo site_url('player/listing'); ?>"><i class="si si-user"></i><span class="sidebar-mini-hide">Players</span></a>
+                        <li class="<?php echo (isset($tab) && $tab == 'players') ? 'active' : ''; ?>">
+                            <a href="<?php echo site_url('admin/player/listing'); ?>">
+                              <img src="<?php echo base_url('resources/theme/images/svg-icon/user.svg'); ?>" class="img-fluid" alt="dashboard"><span>Players</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
-        </nav>
-        <header id="page-header">
-            <div class="content-header">
-                <div class="content-header-section">
-                    <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="sidebar_toggle">
-                        <i class="fa fa-navicon"></i>
-                    </button>
-                    <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="header_search_on">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-                <div class="content-header-section">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user d-sm-none"></i>
-                            <span class="d-none d-sm-inline-block">Admin</span>
-                            <i class="fa fa-angle-down ml-5"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
-                            <a class="dropdown-item mb-0" href="<?php echo site_url('admin/logout') ?>">
-                                <i class="si si-logout mr-5"></i> Sign Out
-                            </a>
+        </div>
+        <div class="rightbar">
+            <div class="topbar-mobile">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="mobile-logobar">
+                            <a href="<?php echo site_url('admin/dashboard'); ?>" class="mobile-logo"><img src="<?php echo base_url('resources/theme/images/logo.png'); ?>" class="img-fluid" alt="logo"></a>
+                        </div>
+                        <div class="mobile-togglebar">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <div class="topbar-toggle-icon">
+                                        <a class="topbar-toggle-hamburger" href="javascript:void();">
+                                            <img src="<?php echo base_url('resources/theme/images/svg-icon/horizontal.svg'); ?>" class="img-fluid menu-hamburger-horizontal" alt="horizontal">
+                                            <img src="<?php echo base_url('resources/theme/images/svg-icon/verticle.svg'); ?>" class="img-fluid menu-hamburger-vertical" alt="verticle">
+                                         </a>
+                                     </div>
+                                </li>
+                                <li class="list-inline-item">
+                                    <div class="menubar">
+                                        <a class="menu-hamburger" href="javascript:void();">
+                                            <img src="<?php echo base_url('resources/theme/images/svg-icon/collapse.svg'); ?>" class="img-fluid menu-hamburger-collapse" alt="collapse">
+                                            <img src="<?php echo base_url('resources/theme/images/svg-icon/close.svg'); ?>" class="img-fluid menu-hamburger-close" alt="close">
+                                         </a>
+                                     </div>
+                                </li>                                
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="page-header-search" class="overlay-header">
-                <div class="content-header content-header-fullrow">
-                    <form action="<?php echo site_url('product/listing'); ?>">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <button type="button" class="btn btn-secondary" data-toggle="layout" data-action="header_search_off">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </div>
-                            <input type="text" name="search" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-secondary">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
+            <div class="topbar">
+                <div class="row align-items-center">
+                    <div class="col-md-12 align-self-center">
+                        <div class="togglebar">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <div class="menubar">
+                                        <a class="menu-hamburger" href="javascript:void();">
+                                           <img src="<?php echo base_url('resources/theme/images/svg-icon/collapse.svg'); ?>" class="img-fluid menu-hamburger-collapse" alt="collapse">
+                                           <img src="<?php echo base_url('resources/theme/images/svg-icon/close.svg'); ?>" class="img-fluid menu-hamburger-close" alt="close">
+                                         </a>
+                                     </div>
+                                </li>
+                                <li class="list-inline-item">
+                                    <div class="searchbar">
+                                        <form>
+                                            <div class="input-group">
+                                              <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                                              <div class="input-group-append">
+                                                <button class="btn" type="submit" id="button-addon2"><img src="<?php echo base_url('resources/theme/images/svg-icon/search.svg'); ?>" class="img-fluid" alt="search"></button>
+                                              </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                    </form>
-                </div>
-            </div>
-            <div id="page-header-loader" class="overlay-header bg-primary">
-                <div class="content-header content-header-fullrow text-center">
-                    <div class="content-header-item">
-                        <i class="fa fa-sun-o fa-spin text-white"></i>
+                        <div class="infobar">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <div class="settingbar">
+                                        <a href="javascript:void(0)" id="infobar-settings-open" class="infobar-icon">
+                                            <img src="<?php echo base_url('resources/theme/images/svg-icon/settings.svg'); ?>" class="img-fluid" alt="settings">
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="list-inline-item">
+                                    <div class="profilebar">
+                                        <div class="dropdown">
+                                          <a class="dropdown-toggle" href="#" role="button" id="profilelink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url('resources/theme/images/users/profile.svg'); ?>" class="img-fluid" alt="profile"><span class="feather icon-chevron-down live-icon"></span></a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">
+                                                <div class="dropdown-item">
+                                                    <div class="profilename">
+                                                      <h5><?php echo $this->admin['username']; ?></h5>
+                                                    </div>
+                                                </div>
+                                                <div class="userbox">
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li class="media dropdown-item">
+                                                            <a href="<?php echo site_url('admin/profile'); ?>" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/user.svg'); ?>" class="img-fluid" alt="user">Profile</a>
+                                                        </li>                                                    
+                                                        <li class="media dropdown-item">
+                                                            <a href="<?php echo site_url('admin/logout'); ?>" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/logout.svg'); ?>" class="img-fluid" alt="logout">Logout</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                </div> 
             </div>
-        </header>
-        <main id="main-container">
-            <div class="content">

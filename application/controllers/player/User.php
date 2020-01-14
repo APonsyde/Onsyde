@@ -149,7 +149,7 @@ class User extends FrontController
                 }
                 else
                 {
-                    $this->session->set_flashdata('error_message', 'Invalid password');
+                    $this->session->set_flashdata('error_message', 'Invalid credentials');
                     redirect('player/password?mobile='.$player['mobile']);
                     exit;
                 }

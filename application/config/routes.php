@@ -54,6 +54,18 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
 
 /**
+ * Admin Routes
+ */
+
+// User Routes
+$route['admin'] = 'admin/user';
+$route['admin/dashboard'] = 'admin/user/dashboard';
+$route['admin/logout'] = 'admin/user/logout';
+$route['admin/forgot-password'] = 'admin/user/forgot_password';
+$route['admin/reset-password'] = 'admin/user/reset_password';
+$route['admin/profile'] = 'admin/user/profile';
+
+/**
  * Turf Manager Routes
  */
 

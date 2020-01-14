@@ -174,6 +174,80 @@ function get_days()
     return $days;
 }
 
+function get_play_in()
+{
+    $values = [
+      'one_area' => 'One area',
+      'two_three_areas' => 'Two to three areas',
+      'anywhere' => 'I\'m okay traveling anywhere for a game'
+    ];
+
+    return $values;
+}
+
+function get_play_in_by_value($value)
+{
+    $values = get_play_in();
+    return isset($values[$value]) ? $values[$value] : '-';
+}
+
+function get_prefer_to_play()
+{
+    $values = [
+      'cricket' => 'Cricket',
+      'football' => 'Football',
+      'all' => 'Available for both'
+    ];
+
+    return $values;
+}
+
+function get_prefer_to_play_by_value($value)
+{
+    $values = get_prefer_to_play();
+    return isset($values[$value]) ? $values[$value] : '-';
+}
+
+function get_prefer_to_play_good_as()
+{
+    $values = [
+      'batsman' => 'Batsman',
+      'bowler' => 'Bowler',
+      'all_rounder' => 'All-rounder',
+      'goalkeeper' => 'Goalkeeper',
+      'defender' => 'Defender',
+      'midfielder' => 'Midfielder',
+      'striker' => 'Striker',
+      'any' => 'Any preference, I just love to play!'
+    ];
+
+    return $values;
+}
+
+function get_prefer_to_play_good_as_by_value($value)
+{
+    $values = get_prefer_to_play_good_as();
+    return isset($values[$value]) ? $values[$value] : '-';
+}
+
+function get_notified_for_games()
+{
+    $values = [
+      'mornings' => 'Mornings',
+      'evenings' => 'Evenings',
+      'late_nights' => 'Late nights',
+      'anytime' => 'Anytime, I am always ready for a game'
+    ];
+
+    return $values;
+}
+
+function get_notified_for_games_by_value($value)
+{
+    $values = get_notified_for_games();
+    return isset($values[$value]) ? $values[$value] : '-';
+}
+
 function get_upcoming_days()
 {
     $days = [];

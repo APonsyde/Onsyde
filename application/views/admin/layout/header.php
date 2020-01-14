@@ -134,9 +134,6 @@
                                                 <div class="userbox">
                                                     <ul class="list-unstyled mb-0">
                                                         <li class="media dropdown-item">
-                                                            <a href="<?php echo site_url('admin/profile'); ?>" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/user.svg'); ?>" class="img-fluid" alt="user">Profile</a>
-                                                        </li>                                                    
-                                                        <li class="media dropdown-item">
                                                             <a href="<?php echo site_url('admin/logout'); ?>" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/logout.svg'); ?>" class="img-fluid" alt="logout">Logout</a>
                                                         </li>
                                                     </ul>

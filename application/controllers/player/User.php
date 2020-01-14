@@ -28,11 +28,12 @@ class User extends FrontController
         {
             $player = $this->Player_model->get_player_by_params(['mobile' => $this->input->post('mobile')]);
 
-            if(empty($player) || empty($player['full_name']))
+            if(empty($player) || $player['inactive'])
             {
                 $otp = random_string('numeric', 6);
 
                 $data = [
+                    'inactive' => 1,
                     'mobile' => $this->input->post('mobile'),
                     'otp' => $otp
                 ];
@@ -188,6 +189,7 @@ class User extends FrontController
                     'full_name' => $this->input->post('full_name'),
                     'email' => $this->input->post('email'),
                     'password' => md5($this->input->post('password')),
+                    'inactive' => 0,
                     'otp' => null
                 ];
 
@@ -209,7 +211,7 @@ class User extends FrontController
             }
             else
             {
-                if(empty($player['full_name']))
+                if($player['inactive'])
                 {
                     $this->session->set_flashdata('error_message', 'Mobile number could not be verified');
                 }

@@ -26,7 +26,8 @@ class FrontController extends BaseController {
 			$this->player = [
 				'id' => $player['id'],
 				'name' => $player['full_name'],
-				'email' => $player['email']
+				'email' => $player['email'],
+				'mobile' => $player['mobile']
 			];
 		}
 

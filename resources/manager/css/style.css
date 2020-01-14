@@ -4,3 +4,13 @@
 .badge-select {
 	background-color: #00b8d4 !important;
 }
+
+.slot-available {
+	cursor: pointer;
+}
+.slot-unavailable {
+	cursor: not-allowed;
+}
+.slot-available.select {
+	background-color: #18d26b;
+}

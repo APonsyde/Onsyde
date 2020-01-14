@@ -98,11 +98,21 @@ class Page extends FrontController
 
                         $this->Booking_model->book($data, $slots_info);
 
-                        $users = [$this->player];
-                        $subject = PROJECT_NAME.' - Booking Confirmed!';
-                        $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+                        if(!empty($this->player['email']))
+                        {
+                            $users = [$this->player];
+                            $subject = PROJECT_NAME.' - Booking Confirmed!';
+                            $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
 
-                        $this->Email_model->notify($users, $subject, $message);
+                            $this->Email_model->notify($users, $subject, $message);
+                        }
+
+                        if(!empty($this->player['mobile']))
+                        {
+                            $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-. Please activate your account by logging onto '.site_url().'.';
+                            sms("+91".$this->player['mobile'], $message);
+                        }
+
                         redirect('booking/success');
                         exit;
                     }
@@ -125,7 +135,7 @@ class Page extends FrontController
         {
             $data['slot_selection_type'] = $slot_selection_type;
 
-            $data['turfs'] = $this->Turf_model->get_all_turfs();
+            $data['turfs'] = $this->Turf_model->get_all_turfs(null, null, ['inactive' => 0]);
 
             $date = ($this->input->get('date')) ? $this->input->get('date') : date('Y-m-d');
             $timestamp = strtotime($date);

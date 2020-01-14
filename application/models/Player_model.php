@@ -33,7 +33,8 @@ class Player_model extends CI_Model {
 
 	public function add($data)
 	{
-		return $this->db->insert('players', $data);
+		$this->db->insert('players', $data);
+		return $this->db->insert_id();
 	}
 
 	public function update($id, $data)

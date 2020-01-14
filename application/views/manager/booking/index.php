@@ -2,10 +2,22 @@
     <div class="row align-items-center">
         <div class="col-md-8 col-lg-8">
             <h4 class="page-title">Turf Bookings</h4>
+            <div class="breadcrumb-list">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="<?php echo site_url('manager/dashboard'); ?>">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Bookings</li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-4 col-lg-4">
+            <div class="widgetbar">
+                <a href="<?php echo site_url('manager/booking/new'); ?>" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New Booking</a>
+            </div>                        
         </div>
     </div>          
 </div>
-<div class="contentbar">                
+<div class="contentbar">
+    <?php $this->load->view('front/layout/alert'); ?>
     <div class="row">
         <div class="col-lg-12">
             <div class="card m-b-30">

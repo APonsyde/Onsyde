@@ -39,9 +39,12 @@
     <div class="row">
     	<?php if(!empty($turfs)) { ?>
 	    	<?php foreach ($turfs as $key => $turf) { ?>
-		    	<div class="col-sm-12 col-md-6">
+		    	<div class="col-sm-12">
 		    		<div class="card border-light m-b-30">
-		    			<div class="card-header bg-transparent border-light"><?php echo $turf['name']; ?>, <?php echo $turf['address']; ?></div>
+		    			<div class="card-header bg-transparent border-light">
+		    				<?php echo $turf['name']; ?>, <?php echo $turf['address']; ?>
+		    				<span class="float-right badge badge-<?php echo ($turf['inactive']) ? 'danger' : 'success'; ?>"><?php echo ($turf['inactive']) ? 'Disabled' : 'Enabled'; ?></span>
+	    				</div>
 		    			<div class="card-body p-2">
 		    				<?php foreach ($turf['slots'] as $key => $slot) { ?>
 		    					<?php

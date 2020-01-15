@@ -109,7 +109,7 @@ class Page extends FrontController
 
                         if(!empty($this->player['mobile']))
                         {
-                            $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-. Please activate your account by logging onto '.site_url().'.';
+                            $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
                             sms("+91".$this->player['mobile'], $message);
                         }
 

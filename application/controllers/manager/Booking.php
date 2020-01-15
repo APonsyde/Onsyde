@@ -178,7 +178,13 @@ class Booking extends ManagerController
 
                         if(!empty($player['mobile']))
                         {
-                            $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-. Please activate your account by logging onto '.site_url().'.';
+                            $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+
+                            if($player['inactive'])
+                            {
+                                $message .= ' Please activate your account by logging onto '.site_url().'.';
+                            }
+
                             sms("+91".$player['mobile'], $message);
                         }
 

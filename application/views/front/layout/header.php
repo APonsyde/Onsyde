@@ -64,7 +64,7 @@
                                     </div>
                                 </li>
                                 <li class="list-inline-item">
-                                    <div class="profilebar">
+                                    <div class="profilebar" style="position: relative; top: 7px;">
                                         <div class="dropdown">
                                           <a class="dropdown-toggle" href="#" role="button" id="profilelink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url('resources/theme/images/users/profile.svg'); ?>" class="img-fluid" alt="profile"><span class="feather icon-chevron-down live-icon"></span></a>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">

@@ -63,13 +63,6 @@
                                         </a>
                                     </div>
                                 </li>
-                                <li class="list-inline-item mr-3">
-                                    <div class="settingbar">
-                                        <a href="#">
-                                            Players
-                                        </a>
-                                    </div>
-                                </li>
                                 <li class="list-inline-item">
                                     <div class="profilebar">
                                         <div class="dropdown">

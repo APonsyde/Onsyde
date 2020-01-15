@@ -82,7 +82,7 @@
                                     <th scope="col" width="50%">I prefer to play</th>
                                     <td>
                                         <?php echo !empty($player['prefer_to_play']) ? get_prefer_to_play_by_value($player['prefer_to_play']) : '-'; ?>
-                                        <?php echo ($player['prefer_to_play'] && $player['prefer_to_play'] !== 'all') ? "<br>".get_prefer_to_play_good_as_by_value($player['prefer_to_play_good_as']) : ''; ?>
+                                        <?php echo ($player['prefer_to_play'] && $player['prefer_to_play'] !== 'all') ? " - ".get_prefer_to_play_good_as_by_value($player['prefer_to_play_good_as']) : ''; ?>
                                     </td>
                                 </tr>
                                 <tr>

@@ -45,7 +45,14 @@
                                         <?php
                                             if(in_array($player['play_in'], ['one_area', 'two_three_areas'])) {
                                                 $text_arr = @json_decode($player['play_in_locations'], true);
-                                                echo implode(", ", $text_arr);
+                                                if(!empty($text_arr)) {
+                                                    foreach ($text_arr as $key => $ta) {
+                                                        if(!strlen($ta)) {
+                                                            unset($text_arr[$key]);
+                                                        }
+                                                    }
+                                                }
+                                                echo !empty($text_arr) ? implode(", ", $text_arr) : "-";
                                             } else {
                                                 echo 'Anywhere';
                                             }

@@ -86,7 +86,10 @@
                                                     <ul class="list-unstyled mb-0">
                                                         <?php if($this->player['id']) { ?>
                                                             <li class="media dropdown-item">
-                                                                <a href="<?php echo site_url('player/bookings'); ?>" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/user.svg'); ?>" class="img-fluid" alt="user">My Bookings</a>
+                                                                <a href="<?php echo site_url('player/bookings'); ?>" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/layouts.svg'); ?>" class="img-fluid" alt="user">My Bookings</a>
+                                                            </li>
+                                                            <li class="media dropdown-item">
+                                                                <a href="<?php echo site_url('player/profile'); ?>" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/user.svg'); ?>" class="img-fluid" alt="user">Profile</a>
                                                             </li>
                                                             <li class="media dropdown-item">
                                                                 <a href="<?php echo site_url('player/logout'); ?>" class="profile-icon"><img src="<?php echo base_url('resources/theme/images/svg-icon/logout.svg'); ?>" class="img-fluid" alt="logout">Logout</a>

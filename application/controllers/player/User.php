@@ -199,7 +199,7 @@ class User extends FrontController
                 {
                     $this->Email_model->send_registration_email($data['full_name'], $data['email']);
                     $this->Player_model->set_player_session(['player_id' => $player['id'], 'player_name' => $data['full_name']]);
-                    redirect();
+                    redirect('player/profile#preferences');
                     exit;
                 }
                 else
@@ -354,6 +354,69 @@ class User extends FrontController
         {
             redirect('player');
             exit;
+        }
+    }
+
+    public function profile()
+    {
+        $this->authenticate(current_url());
+
+        $this->form_validation->set_rules('full_name', 'Company name', 'required|xss_clean');
+        $this->form_validation->set_rules('email', 'Email', 'valid_email|check_field[players,email,deleted|0&id !=|'.$this->player['id'].']|xss_clean');
+
+        if(trim($this->input->post('password')) !== "")
+        {
+            $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|xss_clean');
+            $this->form_validation->set_rules('retype_password', 'Retype password', 'required|min_length[6]|matches[password]|xss_clean');
+        }
+
+        $this->form_validation->set_message('required', '%s is required');
+        $this->form_validation->set_message('valid_email', '%s is invalid');
+        $this->form_validation->set_error_delimiters('<div class="text-danger text-left"><small>', '</small></div>');
+
+        if($this->form_validation->run())
+        {
+            $data = $this->input->post();
+            unset($data['password']);
+            unset($data['retype_password']);
+
+            $data['play_in_locations'] = json_encode([
+                $data['location_1'],
+                $data['location_2'],
+                $data['location_3'],
+            ]);
+
+            unset($data['location_1']);
+            unset($data['location_2']);
+            unset($data['location_3']);
+
+            if(trim($this->input->post('password')) !== "")
+            {
+                $data['password'] = md5($this->input->post('password'));
+            }
+
+            $result = $this->Player_model->update($this->player['id'], $data);
+
+            if($result)
+            {
+                $this->session->set_flashdata('success_message', 'Profile updated successfully');
+                redirect('player/profile');
+                exit;
+            }
+            else
+            {
+                $this->session->set_flashdata('error_message', 'Some error occured while updating the profile details');
+                redirect('player/profile');
+                exit;
+            }
+        }
+        else
+        {
+            $data['player'] = $this->Player_model->get_player_by_id($this->player['id']);
+
+            $data['title'] = 'Profile';
+            $data['_view'] = 'player/user/profile';
+            $this->load->view('front/layout/basetemplate', $data);
         }
     }
 }

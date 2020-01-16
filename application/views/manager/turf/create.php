@@ -18,8 +18,8 @@
             <div class="card m-b-30">
                 <div class="card-body">
                     <form method="post">
-                        <input type="hidden" class="form-control" name="latitude" id="latitude" value="<?php echo $this->input->post('latitude'); ?>">
-                        <input type="hidden" class="form-control" name="longitude" id="longitude" value="<?php echo $this->input->post('longitude'); ?>">
+                        <input type="hidden" class="form-control" name="latitude" id="latitude" value="1.000">
+                        <input type="hidden" class="form-control" name="longitude" id="longitude" value="1.000">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Turf Name</label>

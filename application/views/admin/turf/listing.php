@@ -55,7 +55,7 @@
                                             <td><?php echo $turf['name']; ?></td>
                                             <td><?php echo $turf['address']; ?></td>
                                             <td><a href="tel:<?php echo $turf['mobile']; ?>"><?php echo $turf['mobile']; ?></a><br><a href="tel:<?php echo $turf['alternate_number']; ?>"><?php echo $turf['alternate_number']; ?></a></td>
-                                            <td>0</td>
+                                            <td><?php echo ($turf['total_bookings']) ? $turf['total_bookings'] : 0; ?></td>
                                             <td>
                                                 <?php if($turf['inactive']) { ?>
                                                     <span class="badge badge-danger">Disabled</span>

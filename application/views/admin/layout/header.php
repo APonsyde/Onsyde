@@ -32,7 +32,7 @@
                 <div class="navigationbar">
                     <ul class="vertical-menu">
                         <li class="<?php echo (isset($tab) && $tab == 'dashboard') ? 'active' : ''; ?>">
-                            <a href="<?php echo site_url('manager/dashboard'); ?>">
+                            <a href="<?php echo site_url('admin/dashboard'); ?>">
                               <img src="<?php echo base_url('resources/theme/images/svg-icon/dashboard.svg'); ?>" class="img-fluid" alt="dashboard"><span>Dashboard</span>
                             </a>
                         </li>

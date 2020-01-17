@@ -102,8 +102,8 @@ defined('SENDGRID_API_KEY') OR define('SENDGRID_API_KEY', 'SG.6-mCyAkgTgawoyucIB
 define('MSG91_AUTH_KEY', '231657Ad0Je8Yf5b728914');
 define('MSG91_SENDER_ID', 'MSGONS');
 
-define('GOOGLE_MAPS_API_KEY', 'AIzaSyA0NyYnMn4iQb4mh-kTos-yd77rPy3_jHk');
-// define('GOOGLE_MAPS_API_KEY', 'AIzaSyASCpuN0gKP_n1rVfBLzLpnMacBsyjt86o');
+// define('GOOGLE_MAPS_API_KEY', 'AIzaSyA0NyYnMn4iQb4mh-kTos-yd77rPy3_jHk');
+define('GOOGLE_MAPS_API_KEY', 'AIzaSyBb0YACLnoU2DL1tlBf82wUJUTj2nqxp3Q');
 
 define('TURF_SLOT_INDIVIDUAL', 'individual');
 define('TURF_SLOT_GROUPED', 'grouped');

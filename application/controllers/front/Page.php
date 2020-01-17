@@ -162,4 +162,12 @@ class Page extends FrontController
         $data['_view'] = 'front/page/how-it-works';
         $this->load->view('front/layout/basetemplate', $data);
     }
+
+    public function podcast()
+    {
+        $data['tab'] = 'podcast';
+        $data['title'] = 'Podcast';
+        $data['_view'] = 'front/page/podcast';
+        $this->load->view('front/layout/basetemplate', $data);
+    }
 }

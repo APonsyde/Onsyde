@@ -84,7 +84,7 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
-defined('PROJECT_NAME') OR define('PROJECT_NAME', 'Onsyde');
+defined('PROJECT_NAME') OR define('PROJECT_NAME', 'Turf Booking');
 defined('ROWS_PER_LISTING') OR define('ROWS_PER_LISTING', 20);
 
 defined('CURRENCY_SYMBOL') OR define('CURRENCY_SYMBOL', '₹');
@@ -94,7 +94,7 @@ defined('CURRENCY_CODE') OR define('CURRENCY_CODE', 'INR');
 defined('SITE_NUMBER') OR define('SITE_NUMBER', '9876543210');
 defined('SITE_EMAIL') OR define('SITE_EMAIL', 'yohhan@techcetra.com');
 
-defined('EMAIL_FROM') OR define('EMAIL_FROM', 'Onsyde Team');
+defined('EMAIL_FROM') OR define('EMAIL_FROM', 'Turf Booking Team');
 defined('EMAIL_ADMIN') OR define('EMAIL_ADMIN', array('yohhan@techcetra.com' => 'Site Admin'));
 
 defined('SENDGRID_API_KEY') OR define('SENDGRID_API_KEY', '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');

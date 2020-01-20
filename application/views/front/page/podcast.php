@@ -10,7 +10,7 @@
         <div class="card-body onsydePod">
             <div class="site-container">
                 <div class="card-header">
-                    <img src="<?php echo base_url('resources/front/images/onLogo.png'); ?>" class="onLogo">
+                    <!-- <img src="<?php echo base_url('resources/front/images/onLogo.png'); ?>" class="onLogo"> -->
                 </div>
                 <section class="site-intro text-centered">
                     Listen to conversations from <strong>founders</strong>, <strong>personalities</strong> and <strong>fans</strong> who live and breathe the game

@@ -34809,3 +34809,7 @@ table.focus-on tfoot tr.focused td {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+.logobar .logo img {
+    width: 40px;
+}

@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php';
 
 /**
- * @package         Sports
+ * @package         Onsyde
  * @subpackage      API
  * @category        ApiController
  * @author          Yohhan Dalvi
@@ -14,13 +14,13 @@ require APPPATH . '/libraries/REST_Controller.php';
 class ApiController extends \Restserver\Libraries\REST_Controller {
 
 	protected $token;
-	protected $player;
+	protected $manager;
 
 	function __construct()
     {
         // Construct the parent class
         parent::__construct();
-        $this->load->model('Player_model');
+        $this->load->model('Manager_model');
 
         $this->set_api_token();
     }
@@ -31,19 +31,18 @@ class ApiController extends \Restserver\Libraries\REST_Controller {
 
     	if(isset($request_headers['token']))
     	{
-    		$player = $this->Player_model->get_player_by_params(array('token' => $request_headers['token']));
+    		$manager = $this->Manager_model->get_manager_by_params(array('api_token' => $request_headers['token']));
 
-    		if(!empty($player))
+    		if(!empty($manager))
     		{
 	    		$this->token = $request_headers['token'];
-	    		$this->player = $player;
+	    		$this->manager = $manager;
 	    	}
 	    }
     }
 
     protected function authenticate_token()
     {
-        // return TRUE;
     	if(is_null($this->token))
     	{
 	    	$response = [

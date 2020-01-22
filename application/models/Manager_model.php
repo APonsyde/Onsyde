@@ -61,8 +61,15 @@ class Manager_model extends CI_Model {
 		if(isset($params['mobile']))
 			$this->db->where('m.mobile', $params['mobile']);
 
+		if(isset($params['password']))
+			$this->db->where('m.password', $params['password']);
+
+		if(isset($params['api_token']))
+			$this->db->where('md.api_token', $params['api_token']);
+
 		$this->db->select('m.*');
 		$this->db->from('managers m');
+		$this->db->join('manager_devices md', 'md.manager_id = m.id', 'left');
 		return $this->db->get()->row_array();
 	}
 
@@ -112,6 +119,13 @@ class Manager_model extends CI_Model {
 
 		$this->db->where('m.deleted', 0);
 		return $this->db->count_all_results('managers m');
+	}
+
+	public function generate_manager_token($manager_id, $device_identifier = null, $registration_token = null)
+	{
+		$api_token = random_string('alnum', 20);
+		$this->db->insert('manager_devices', array('manager_id' => $manager_id, 'api_token' => $api_token, 'device_identifier' => $device_identifier, 'registration_token' => $registration_token));
+		return $api_token;
 	}
 
 	private function _set_filters($params = null)

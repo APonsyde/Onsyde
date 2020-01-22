@@ -11,7 +11,7 @@ class Email_model extends CI_Model {
 		$data['_view'] = 'reset-password-code';
         $data['title'] = PROJECT_NAME.' - Reset Password Code';
         $html = $this->load->view('email/layout', $data, true);
-        return $this->sendmail->sendTo([$email => $name], PROJECT_NAME." - Reset Password Code", $html);
+        return $this->send_mail->send_to([$email => $name], PROJECT_NAME." - Reset Password Code", $html);
 	}
 
 	public function send_registration_email($name, $email, $password = null)

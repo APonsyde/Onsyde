@@ -12,3 +12,4 @@ class BaseController extends CI_Controller {}
 require('AdminController.php');
 require('ManagerController.php');
 require('FrontController.php');
+require('ApiController.php');

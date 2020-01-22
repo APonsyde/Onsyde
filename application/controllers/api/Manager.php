@@ -395,8 +395,9 @@ class Manager extends ApiController {
 
             if(!empty($manager))
             {
-	            $reset_password_code = random_string('numeric', 6);
-	            $this->Email_model->send_forgot_password_code($manager['company_name'], $manager['email'], $reset_password_code);
+	            $otp = random_string('numeric', 6);
+	            $message = "Your reset password OTP is ".$otp;
+                sms("+91".$manager['mobile'], $message);
 
 	            $result = $this->Manager_model->update($manager['id'], ['forgot_password_key' => $reset_password_code]);
 
@@ -404,7 +405,7 @@ class Manager extends ApiController {
 	            {
 	                $response = [
 	                    'success' => true,
-	                    'message' => 'Reset password code has been sent successfully'
+	                    'message' => 'Reset password otp has been sent successfully'
 	                ];
 
 	                $this->set_response($response, \Restserver\Libraries\REST_Controller::HTTP_OK);

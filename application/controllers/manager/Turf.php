@@ -49,8 +49,8 @@ class Turf extends ManagerController
 
 		$this->form_validation->set_rules('name', 'Name', 'required|xss_clean');
 		$this->form_validation->set_rules('address', 'Address', 'required|xss_clean');
-		$this->form_validation->set_rules('latitude', 'Latitude', 'required|xss_clean');
-		$this->form_validation->set_rules('longitude', 'Longitude', 'required|xss_clean');
+		$this->form_validation->set_rules('latitude', 'Latitude', 'xss_clean');
+		$this->form_validation->set_rules('longitude', 'Longitude', 'xss_clean');
 		$this->form_validation->set_rules('mobile', 'Mobile', 'required|xss_clean');
 		$this->form_validation->set_rules('alternate_number', 'Alternate number', 'xss_clean');
 
@@ -100,8 +100,8 @@ class Turf extends ManagerController
 		{
 			$this->form_validation->set_rules('name', 'Name', 'required|xss_clean');
 			$this->form_validation->set_rules('address', 'Address', 'required|xss_clean');
-			$this->form_validation->set_rules('latitude', 'Latitude', 'required|xss_clean');
-			$this->form_validation->set_rules('longitude', 'Longitude', 'required|xss_clean');
+			$this->form_validation->set_rules('latitude', 'Latitude', 'xss_clean');
+			$this->form_validation->set_rules('longitude', 'Longitude', 'xss_clean');
 			$this->form_validation->set_rules('mobile', 'Mobile', 'required|xss_clean');
 			$this->form_validation->set_rules('alternate_number', 'Alternate number', 'xss_clean');
 

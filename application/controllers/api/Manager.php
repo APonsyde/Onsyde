@@ -546,4 +546,57 @@ class Manager extends ApiController {
             $this->return_form_errors($this->form_validation->error_array());
         }
     }
+
+    public function dashboard_post()
+    {
+        if($this->authenticate_token())
+        {
+            $filters = [];
+            $filters['manager_id'] = $this->manager['id'];
+
+            $data['turfs'] = $this->Turf_model->get_all_turfs(null, null, $filters);
+
+            $date = ($this->input->post('date')) ? $this->input->post('date') : date('Y-m-d');
+            $timestamp = strtotime($date);
+            $day = date('l', $timestamp);
+
+            foreach ($data['turfs'] as $key => $turf)
+            {
+                $total_booked = (count($turf['slots'])) ? ceil((count($turf['booked_slots'])/count($turf['slots']))*100) : 0;
+                $data['turfs'][$key]['total_booked'] = $total_booked;
+
+                $slots = $this->Turf_model->get_all_turf_slots($turf['id'], $day);
+                $booked_slots = $this->Turf_model->get_all_turf_booked_slots($turf['id'], $day, $date);
+
+                foreach ($slots as $skey => $slot)
+                {
+                    $slots[$skey]['time'] = $slot['time'] . " - " . date("h:i a", strtotime('+30 minutes', strtotime($slot['time'])));
+
+                    $booked = 0;
+                    foreach ($booked_slots as $booked_slot)
+                    { 
+                        if($booked_slot['id'] == $slot['id'])
+                        {
+                            $booked = 1;
+                            break;
+                        }
+                    }
+
+                    $slots[$skey]['booked'] = $booked;
+                }
+
+                $data['turfs'][$key]['slots'] = $slots;
+                $data['turfs'][$key]['recent_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id']]);
+                $data['turfs'][$key]['cancelled_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id'], 'status' => TURF_STATUS_CANCELLED]);
+            }
+
+            $response = [
+                'success' => true,
+                'message' => '',
+                'data' => $data
+            ];
+
+            $this->set_response($response, \Restserver\Libraries\REST_Controller::HTTP_OK);
+        }
+    }
 }

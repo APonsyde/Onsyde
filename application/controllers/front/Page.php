@@ -113,6 +113,9 @@ class Page extends FrontController
                             sms("+91".$this->player['mobile'], $message);
                         }
 
+                        $message = 'You have a new booking for '.$turf['name'].' for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+                        sms("+91".$turf['contact_mobile'], $message);
+
                         redirect('booking/success');
                         exit;
                     }

@@ -46,8 +46,9 @@ class Turf_model extends CI_Model
 
 	public function get_turf_by_id($id)
 	{
-		$this->db->select('t.*');
+		$this->db->select('t.*, m.mobile as contact_mobile');
 		$this->db->from('turfs t');
+		$this->db->join('managers m', 'm.id = t.manager_id', 'left');
 		$this->db->where('t.id', $id);
 		return $this->db->get()->row_array();
 	}

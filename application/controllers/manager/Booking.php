@@ -188,6 +188,9 @@ class Booking extends ManagerController
                             sms("+91".$player['mobile'], $message);
                         }
 
+                        $message = 'You have a new booking for '.$turf['name'].' for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+                        sms("+91".$turf['contact_mobile'], $message);
+
                         $this->session->set_flashdata('success_message', 'Booking has been confirmed');
                         redirect('manager/bookings');
                         exit;

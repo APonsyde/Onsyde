@@ -92,6 +92,51 @@ class Booking extends ApiController
         }
     }
 
+    public function turfs_post()
+    {
+        if($this->authenticate_token())
+        {
+            $data['turfs'] = $this->Turf_model->get_all_turfs(null, null, ['manager_id' => $this->manager['id'], 'inactive' => 0]);
+
+            $date = ($this->input->post('date')) ? $this->input->post('date') : date('Y-m-d');
+            $timestamp = strtotime($date);
+            $day = date('l', $timestamp);
+
+            foreach ($data['turfs'] as $key => $turf)
+            {
+                $slots = $this->Turf_model->get_all_turf_slots($turf['id'], $day);
+                $booked_slots = $this->Turf_model->get_all_turf_booked_slots($turf['id'], $day, $date);
+
+                foreach ($slots as $skey => $slot)
+                {
+                    $slots[$skey]['time'] = $slot['time'] . " - " . date("h:i a", strtotime('+30 minutes', strtotime($slot['time'])));
+
+                    $booked = 0;
+                    foreach ($booked_slots as $booked_slot)
+                    { 
+                        if($booked_slot['id'] == $slot['id'])
+                        {
+                            $booked = 1;
+                            break;
+                        }
+                    }
+
+                    $slots[$skey]['booked'] = $booked;
+                }
+
+                $data['turfs'][$key]['slots'] = $slots;
+            }
+
+            $response = [
+                'success' => true,
+                'message' => 'Turf data fetched',
+                'data' => $data
+            ];
+
+            $this->set_response($response, \Restserver\Libraries\REST_Controller::HTTP_OK);
+        }
+    }
+
     public function create_post()
     {
         if($this->authenticate_token())

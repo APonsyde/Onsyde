@@ -59,6 +59,8 @@ class Manager extends ApiController {
                     	'otp' => 1
                     ]
                 ];
+
+                $this->set_response($response, \Restserver\Libraries\REST_Controller::HTTP_OK);
             }
             else
             {

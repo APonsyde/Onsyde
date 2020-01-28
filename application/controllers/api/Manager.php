@@ -53,7 +53,7 @@ class Manager extends ApiController {
                 }
 
                 $response = [
-                    'success' => false,
+                    'success' => true,
                     'message' => 'OTP has been sent to your mobile number',
                     'data' => [
                     	'otp' => 1
@@ -380,7 +380,7 @@ class Manager extends ApiController {
             {
                 $this->return_form_errors($this->form_validation->error_array());
             }
-        }    
+        }
     }
 
     public function forgot_password_post()
@@ -574,7 +574,7 @@ class Manager extends ApiController {
 
                     $booked = 0;
                     foreach ($booked_slots as $booked_slot)
-                    { 
+                    {
                         if($booked_slot['id'] == $slot['id'])
                         {
                             $booked = 1;

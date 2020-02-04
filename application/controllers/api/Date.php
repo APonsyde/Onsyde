@@ -27,7 +27,10 @@ class Date extends ApiController {
             {
                 $upcoming_days[] = [
                     'index' => $key,
-                    'date' => $value
+                    'date' => $value,
+                    'year' => date("Y", strtotime($key)),
+                    'month' => date("M", strtotime($key)),
+                    'day' => date("d", strtotime($key))
                 ];
             }
 

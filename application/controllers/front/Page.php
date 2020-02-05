@@ -170,6 +170,8 @@ class Page extends FrontController
 
     public function podcast()
     {
+        $data['podcasts'] = $this->Podcast_model->get_all_podcasts(null, null, ['inactive' => 0]);
+
         $data['tab'] = 'podcast';
         $data['title'] = 'Podcast';
         $data['_view'] = 'front/page/podcast';

@@ -6,6 +6,8 @@ class Page extends FrontController
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Blog_model');
+        $this->load->model('Podcast_model');
         $this->load->model('Turf_model');
         $this->load->model('Email_model');
         $this->load->model('Booking_model');
@@ -176,9 +178,28 @@ class Page extends FrontController
 
     public function blogs()
     {
+        $data['blogs'] = $this->Blog_model->get_all_blogs(null, null, ['inactive' => 0]);
+
         $data['tab'] = 'blogs';
         $data['title'] = 'Blogs';
         $data['_view'] = 'front/page/blogs';
+        $this->load->view('front/layout/basetemplate', $data);
+    }
+
+    public function blog($id = 0)
+    {
+        $data['blog'] = $this->Blog_model->get_blog_by_id($id);
+
+        if(empty($data['blog']))
+        {
+            $this->session->set_flashdata('error_message', 'Blog not found');
+            redirect('blogs');
+            exit;
+        }
+
+        $data['tab'] = 'blogs';
+        $data['title'] = $data['blog']['title'];
+        $data['_view'] = 'front/page/blog';
         $this->load->view('front/layout/basetemplate', $data);
     }
 }

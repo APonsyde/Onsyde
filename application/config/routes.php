@@ -111,6 +111,7 @@ $route['booking/success'] = 'player/booking/success';
 $route['how-it-works'] = 'front/page/how_it_works';
 $route['podcast'] = 'front/page/podcast';
 $route['blogs'] = 'front/page/blogs';
+$route['blog/(:any)'] = 'front/page/blog/$1';
 $route['find-a-turf/(:any)'] = 'front/page/find_a_turf/$1';
 
 

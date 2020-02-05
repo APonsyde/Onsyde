@@ -65,6 +65,13 @@
                                 </li>
                                 <li class="list-inline-item mr-3">
                                     <div class="settingbar">
+                                        <a href="<?php echo site_url('blogs'); ?>">
+                                            Blogs
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="list-inline-item mr-3">
+                                    <div class="settingbar">
                                         <a href="<?php echo site_url('find-a-turf/individual'); ?>">
                                             Find a Turf
                                         </a>

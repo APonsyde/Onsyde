@@ -281,3 +281,8 @@ function time_intervals($lower = 0, $upper = 86400, $step = 3600, $format = '')
 
     return $times;
 }
+
+function trim_text($text, $length = 250)
+{
+  return mb_strimwidth($text, 0, $length, "...");
+}

@@ -25,6 +25,9 @@ class Booking extends ApiController
             if($this->input->post('turf_id'))
                 $filters['turf_id'] = $this->input->post('turf_id');
 
+            if($this->input->post('date'))
+                $filters['booking_date'] = $this->input->post('date');
+
             $data['bookings'] = $this->Booking_model->get_all_bookings(null, null, $filters);
 
             $response = [

@@ -30,7 +30,7 @@ class Date extends ApiController {
                     'date' => $value,
                     'year' => date("Y", strtotime($key)),
                     'month' => date("M", strtotime($key)),
-                    'day' => date("d", strtotime($key))
+                    'day' => trim(date("d", strtotime($key)), 0)
                 ];
             }
 

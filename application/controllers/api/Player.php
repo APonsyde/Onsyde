@@ -12,7 +12,7 @@ class Player extends ApiController {
 
     function __construct()
     {
-// Construct the parent class
+        // Construct the parent class
         parent::__construct();
         $this->load->model('Player_model');
         $this->load->model('Email_model');

@@ -357,12 +357,14 @@ class Manager extends ApiController {
                     $response = [
                         'success' => true,
                         'message' => 'Profile updated successfully',
-                        'profile' => [
-                        	'id' => $manager['id'],
-                        	'company_name' => $manager['company_name'],
-                        	'contact_person' => $manager['contact_person'],
-                        	'mobile' => $manager['mobile'],
-                        	'email' => $manager['email']
+                        'data' => [
+                            'profile' => [
+                            	'id' => $manager['id'],
+                            	'company_name' => $manager['company_name'],
+                            	'contact_person' => $manager['contact_person'],
+                            	'mobile' => $manager['mobile'],
+                            	'email' => $manager['email']
+                            ]
                         ]
                     ];
 

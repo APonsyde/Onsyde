@@ -113,9 +113,10 @@ class Turf_model extends CI_Model
 		if(!empty($params['select']))
 			$this->db->select($params['select']);
 		else
-			$this->db->select('t.*, COUNT(DISTINCT b.id) as total_bookings');
+			$this->db->select('t.*, tf.name as image, COUNT(DISTINCT b.id) as total_bookings');
 
 		$this->db->from('turfs t');
+		$this->db->join('turf_images tf', 't.id = tf.turf_id', 'left');
 		$this->db->join('bookings b', 't.id = b.turf_id', 'left');
 		$this->db->group_by('t.id');
 		$this->db->where('t.deleted', 0);

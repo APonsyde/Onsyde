@@ -53,12 +53,12 @@
                         </li>
                         <li class="<?php echo (isset($tab) && $tab == 'blogs') ? 'active' : ''; ?>">
                             <a href="<?php echo site_url('admin/content/blogs'); ?>">
-                              <img src="<?php echo base_url('resources/theme/images/svg-icon/user.svg'); ?>" class="img-fluid" alt="dashboard"><span>Blogs</span>
+                              <img src="<?php echo base_url('resources/theme/images/svg-icon/apps.svg'); ?>" class="img-fluid" alt="dashboard"><span>Blogs</span>
                             </a>
                         </li>
                         <li class="<?php echo (isset($tab) && $tab == 'podcasts') ? 'active' : ''; ?>">
                             <a href="<?php echo site_url('admin/content/podcasts'); ?>">
-                              <img src="<?php echo base_url('resources/theme/images/svg-icon/user.svg'); ?>" class="img-fluid" alt="dashboard"><span>Podcasts</span>
+                              <img src="<?php echo base_url('resources/theme/images/svg-icon/apps.svg'); ?>" class="img-fluid" alt="dashboard"><span>Podcasts</span>
                             </a>
                         </li>
                     </ul>

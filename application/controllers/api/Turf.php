@@ -174,6 +174,8 @@ class Turf extends ApiController
 	{
 		if($this->authenticate_token())
         {
+			$date = ($this->input->post('date')) ? $this->input->post('date') : date('Y-m-d');
+
 			$this->form_validation->set_rules('turf_id', 'Turf', 'required|xss_clean');
 
 	        $this->form_validation->set_message('required', '%s is required');
@@ -213,6 +215,26 @@ class Turf extends ApiController
 							];
 						}
 					}
+
+					$slots = $this->Turf_model->get_all_turf_slots($data['turf']['id'], $day);
+		        	$booked_slots = $this->Turf_model->get_all_turf_booked_slots($data['turf']['id'], $day, $date);
+
+					foreach ($slots as $skey => $slot)
+					{ 
+			        	$booked = 0;
+						foreach ($booked_slots as $booked_slot)
+						{ 
+							if($booked_slot['id'] == $slot['id'])
+							{
+								$booked = 1;
+								break;
+							}
+						}
+
+						$slots[$skey]['booked'] = $booked;
+					}
+
+					$data['turf']['slots'] = $slots;
 
 					$response = [
 		                'success' => true,

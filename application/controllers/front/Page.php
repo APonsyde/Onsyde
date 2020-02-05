@@ -173,4 +173,12 @@ class Page extends FrontController
         $data['_view'] = 'front/page/podcast';
         $this->load->view('front/layout/basetemplate', $data);
     }
+
+    public function blogs()
+    {
+        $data['tab'] = 'blogs';
+        $data['title'] = 'Blogs';
+        $data['_view'] = 'front/page/blogs';
+        $this->load->view('front/layout/basetemplate', $data);
+    }
 }

@@ -110,6 +110,7 @@ $route['booking/success'] = 'player/booking/success';
 // Page Routes
 $route['how-it-works'] = 'front/page/how_it_works';
 $route['podcast'] = 'front/page/podcast';
+$route['blogs'] = 'front/page/blogs';
 $route['find-a-turf/(:any)'] = 'front/page/find_a_turf/$1';
 
 

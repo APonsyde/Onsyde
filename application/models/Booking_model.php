@@ -149,6 +149,9 @@ class Booking_model extends CI_Model
 		if(!empty($params['status']))
 			$this->db->where('b.status', $params['status']);
 
+		if(!empty($params['booking_date']))
+			$this->db->where('b.booking_date', $params['booking_date']);
+
 		if(!empty($params['search'])) {
 			$this->db->group_start();
 			$this->db->like('t.id', $params['search'], 'both');

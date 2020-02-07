@@ -174,7 +174,6 @@ class Turf extends ApiController
 	{
 		if($this->authenticate_token())
         {
-			$date = ($this->input->post('date')) ? $this->input->post('date') : date('Y-m-d');
 
 			$this->form_validation->set_rules('turf_id', 'Turf', 'required|xss_clean');
 
@@ -215,6 +214,10 @@ class Turf extends ApiController
 							];
 						}
 					}
+
+					$date = ($this->input->post('date')) ? $this->input->post('date') : date('Y-m-d');
+					$timestamp = strtotime($date);
+					$day = date('l', $timestamp);
 
 					$slots = $this->Turf_model->get_all_turf_slots($data['turf']['id'], $day);
 		        	$booked_slots = $this->Turf_model->get_all_turf_booked_slots($data['turf']['id'], $day, $date);

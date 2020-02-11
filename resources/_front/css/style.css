@@ -1,0 +1,115 @@
+.slot-available {
+	cursor: pointer;
+}
+.slot-unavailable {
+	cursor: not-allowed;
+}
+.slot-available.select {
+	background-color: #18d26b;
+}
+
+.site-container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.site-intro {
+    font-size: 40px;
+    line-height: 1.33333em;
+    margin-bottom: 50px;
+    color: #263a5b;
+}
+
+.site-subscribe {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.text-centered {
+    text-align: center
+}
+
+.onLogo {
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+}
+
+.site-subscribe a {
+    flex: none;
+    line-height: 14px;
+    border: 1px solid #222;
+    border-radius: 4px;
+    padding: 15px 129px 48px 23px;
+    padding-left: 50px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #888;
+    /* font-weight: 500; */
+    /* font-size: 10px; */
+    letter-spacing: 1px;
+    margin: 0 6px 15px 6px;
+    background-repeat: no-repeat;
+    background-size: auto 28px;
+    background-position: 12px 9px;
+    transition: transform 0.1s;
+}
+
+.site-subscribe a span {
+    display: block;
+    text-transform: capitalize;
+    font-size: 16px;
+    color: #111;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.onsydePod {
+    margin: 100px 0;
+}
+
+.site-subscribe a.apple_podcasts {
+    background-image: url(../images/apple.png);
+    background-size: auto 50px;
+    background-position: 10px 7px;
+}
+
+.site-subscribe a.google_podcasts {
+    background-image: url(../images/googl.png);
+    background-size: auto 50px;
+    background-position: 10px 7px;
+}
+
+.site-subscribe a.overcast {
+    background-image: url(../images/overcast.png);
+    background-size: auto 50px;
+    background-position: 10px 7px;
+}
+
+.site-subscribe a.spotify {
+    background-image: url(../images/spotify.png);
+    background-size: auto 50px;
+    background-position: 10px 7px;
+}
+
+.site-subscribe a.castbox {
+    background-image: url(../images/castbox.png);
+    background-size: auto 50px;
+    background-position: 10px 7px;
+}
+
+.site-subscribe a.stitcher {
+    background-image: url(../images/stitcher.png);
+    background-size: auto 50px;
+    background-position: 10px 7px;
+}
+
+@media (max-width: 767px) {
+    .site-intro {
+        font-size: 30px;
+    }
+}

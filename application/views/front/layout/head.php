@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="<?php echo base_url('resources/front/css/font-awesome.min.css'); ?>">
 <link href="<?php echo base_url('resources/front/css/set1.css'); ?>" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url('resources/front/css/style.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('resources/front/css/custom.css'); ?>">
 <script src="<?php echo base_url('resources/front/js/jquery-3.2.1.min.js'); ?>"></script>
 <script>
 	var SITE_URL = "<?php echo site_url(); ?>";

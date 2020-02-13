@@ -153,6 +153,8 @@ class Page extends FrontController
                 $data['turfs'][$key]['images'] = $this->Turf_model->get_turf_images($turf['id']);
             }
 
+            $data['blogs'] = $this->Blog_model->get_all_blogs(4, null, ['inactive' => 0]);
+
             $data['tab'] = 'home';
             $data['title'] = 'Home';
             $data['_view'] = 'front/page/find-a-turf';
@@ -160,11 +162,19 @@ class Page extends FrontController
         }
     }
 
-    public function how_it_works()
+    public function about_us()
     {
-        $data['tab'] = 'how_it_works';
-        $data['title'] = 'How it works';
-        $data['_view'] = 'front/page/how-it-works';
+        $data['tab'] = 'about_us';
+        $data['title'] = 'About us';
+        $data['_view'] = 'front/page/about-us';
+        $this->load->view('front/layout/basetemplate', $data);
+    }
+
+    public function contact_us()
+    {
+        $data['tab'] = 'contact_us';
+        $data['title'] = 'Contact us';
+        $data['_view'] = 'front/page/contact-us';
         $this->load->view('front/layout/basetemplate', $data);
     }
 

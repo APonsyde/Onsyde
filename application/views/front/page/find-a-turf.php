@@ -1,112 +1,83 @@
-<div class="breadcrumbbar">
-    <div class="row align-items-center">
-        <div class="col-md-8 col-lg-8">
-            <h4 class="page-title">Find your next game.</h4>
-        </div>
-    </div>          
-</div>
-<div class="contentbar">
-	<?php $this->load->view('front/layout/alert'); ?>
-	<div class="card m-b-30">
-        <div class="card-header">
-            <h5 class="card-title">Showing available turfs for</h5>
-        </div>
-        <div class="card-body">
-            <form id="dayForm">
-                <div class="form-group">
-                    <?php $days = get_upcoming_days();?>
-                    <select class="form-control" name="date" onchange="document.getElementById('dayForm').submit();">
-						<?php foreach ($days as $key => $day) { ?>
-							<option value="<?php echo $key; ?>" <?php echo ($this->input->get('date') == $key) ? 'selected' : ''; ?>><?php echo $day; ?></option>
-						<?php } ?>
-					</select>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="row">
-    	<?php if(!empty($turfs)) { ?>
+<section class="main-block howit-work-wrap">
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-md-12">
+				<h3>Turfs Available on <span class="fontgreen"><?php echo convert_db_time($this->input->get('date'), 'd M, Y'); ?></span></h3>
+			</div>
+		</div>
+		<?php if(!empty($turfs)) { ?>
 	    	<?php foreach ($turfs as $key => $turf) { ?>
 	    		<form method="post">
 	    			<input type="hidden" name="date" value="<?php echo $this->input->get('date'); ?>">
 	    			<input type="hidden" name="turf_id" value="<?php echo $turf['id']; ?>">
-			    	<div class="col-sm-12 gallery-filter">
-			    		<div class="card border-light m-b-30">
-			    			<div class="card-header bg-transparent border-light">
-			    				<?php echo $turf['name']; ?>, <?php echo $turf['address']; ?>
-			    				<?php
-			    					$filters = ($this->input->get()) ? "?".http_build_query($this->input->get()) : "";
-			    				?>
-		    					<ul class="list-inline mb-0">
-	                                <li class="list-inline-item"><a class="filter-item <?php echo ($slot_selection_type == TURF_SLOT_INDIVIDUAL) ? 'current' : ''; ?>" href="<?php echo site_url('find-a-turf/individual'.$filters); ?>">Individual</a></li>
-	                                <li class="list-inline-item"><a class="filter-item <?php echo ($slot_selection_type == TURF_SLOT_INDIVIDUAL) ? '' : 'current'; ?>" href="<?php echo site_url('find-a-turf/grouped'.$filters); ?>">Grouped</a></li>
-	                            </ul>
-		    				</div>
-			    			<div class="card-body p-2">
-			    				<div class="row">
-				    				<div class="col-md-6">
-					    				<?php foreach ($turf['slots'] as $key => $slot) { ?>
-					    					<?php
-					    						$booked = false;
-						    					foreach ($turf['booked_slots'] as $key => $booked_slot) { 
-						    						if($booked_slot['id'] == $slot['id']) {
-						    							$booked = true;
-						    							break;
-						    						}
-						    					}
-					    					?>
-					    					<span class="badge badge-pill badge-<?php echo ($booked) ? 'danger' : 'dark'; ?> <?php echo ($booked) ? 'slot-unavailable' : 'slot-available'; ?>" data-price="<?php echo $slot['price']; ?>"  data-id="<?php echo $slot['id']; ?>">
-					    						<?php echo $slot['time']; ?> -
-					    						<?php echo date("h:i a", strtotime('+30 minutes', strtotime($slot['time']))); ?>
-					    						<input type="checkbox" class="d-none" name="slot[]" value="<?php echo $slot['id']; ?>">
-					    					</span>
-			    						<?php } ?>
-				    				</div>
-				    				<div class="col-md-6">
-				    					<?php if(!empty($turf['images'])) { ?>
-					    					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-			                                    <ol class="carousel-indicators">
-			                                    	<?php foreach ($turf['images'] as $key => $image) { ?>
-				                                        <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $key; ?>" class="<?php echo ($key == 0) ? 'active' : ''; ?>"></li>
-				                                    <?php } ?>
-			                                    </ol>
-			                                    <div class="carousel-inner">
-			                                    	<?php foreach ($turf['images'] as $key => $image) { ?>
-				                                        <div class="carousel-item <?php echo ($key == 0) ? 'active' : ''; ?>">
-				                                            <img src="<?php echo base_url('uploads/turfs/'.$turf['id'].'/gallery/'.$image['name']); ?>" class="d-block w-100" alt="First slide">
-				                                        </div>
-				                                    <?php } ?>
-			                                    </div>
-			                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-			                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			                                        <span class="sr-only">Previous</span>
-			                                    </a>
-			                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			                                        <span class="sr-only">Next</span>
-			                                    </a>
-			                                </div>
-			                            <?php } ?>
-				    				</div>
-			    				</div>
-			    			</div>
-			    			<div class="card-footer bg-transparent border-light">
-			    				<span>Rs. <span class="price">0</span> / <span class="time">0</span> hr</span>
-			    				<button class="btn btn-primary ml-3">Book Slots</button>
-			    			</div>
-			    		</div>  
-			    	</div>
-				</form>
-		    <?php } ?>
-	    <?php } else { ?>
+	    			<div class="row justify-content-center">
+						<div class="col-md-12">
+							<div class="booking">
+								<h4><?php echo $turf['name']; ?></h4>
+								<h6><i class="fas fa-map-marker-alt"></i><?php echo $turf['address']; ?></h6>
+								<div id="carouselExampleControls" class="carousel bookingcarousel slide" data-ride="carousel">
+									<div class="carousel-inner">
+										<?php foreach ($turf['images'] as $key => $image) { ?>
+											<div class="carousel-item <?php echo ($key == 0) ? 'active' : ''; ?>">
+												<img class="d-block w-100" src="<?php echo base_url('uploads/turfs/'.$turf['id'].'/gallery/'.$image['name']); ?>" alt="slide">
+											</div>
+										<?php } ?>
+									</div>
+									<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="sr-only">Previous</span>
+									</a>
+									<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="sr-only">Next</span>
+									</a>
+								</div>
+								<div class="slots">
+									<div class="timeslots">
+										<ul class="flexpanel wrp">
+											<?php foreach ($turf['slots'] as $key => $slot) { ?>
+						    					<?php
+						    						$booked = false;
+							    					foreach ($turf['booked_slots'] as $key => $booked_slot) { 
+							    						if($booked_slot['id'] == $slot['id']) {
+							    							$booked = true;
+							    							break;
+							    						}
+							    					}
+						    					?>
+												<li class="<?php echo ($booked) ? 'slot-unavailable tabgrey' : 'slot-available'; ?>" data-price="<?php echo $slot['price']; ?>"  data-id="<?php echo $slot['id']; ?>">
+													<?php echo $slot['time']; ?> -
+					    							<?php echo date("h:i a", strtotime('+30 minutes', strtotime($slot['time']))); ?>
+					    							<input type="checkbox" class="d-none" name="slot[]" value="<?php echo $slot['id']; ?>">
+												</li>
+											<?php } ?>
+										</ul>
+									</div>
+									<div class="bookslot">
+										<div class="flexpanel end">
+											<div class="pay rs">
+												Rs. <span class="price">0</span> / <span class="time">0</span> hr
+											</div>
+											<div class="pay-btn pay fontgreen">
+												Book Slots →
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+	    		</form>
+    		<?php } ?>
+		<?php } else { ?>
 	    	<div class="col-sm-12">
 		    	<div class="alert alert-danger" role="alert">
 					No turfs available!
 	            </div>
 	        </div>
 	    <?php } ?>
-    </div>
-</div>
+	</div>
+</section>
 
 <?php if($slot_selection_type == TURF_SLOT_INDIVIDUAL) { ?>
 <script>
@@ -183,6 +154,12 @@
 </script>
 <?php } ?>
 <script>
+	$(document).ready(function() {
+		$(document).on("click", ".pay-btn", function() {
+			var _this = $(this);
+			_this.parents('form').submit();
+		});
+	});
 	function calculate()
 	{
 		var time = ($(".slot-available.select").length) / 2;

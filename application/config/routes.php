@@ -108,7 +108,8 @@ $route['booking/success'] = 'player/booking/success';
  */
 
 // Page Routes
-$route['how-it-works'] = 'front/page/how_it_works';
+$route['about-us'] = 'front/page/about_us';
+$route['contact-us'] = 'front/page/contact_us';
 $route['podcast'] = 'front/page/podcast';
 $route['blogs'] = 'front/page/blogs';
 $route['blog/(:any)'] = 'front/page/blog/$1';

@@ -56,7 +56,7 @@ class Booking extends ManagerController
 
             if($player_id)
             {
-                redirect('manager/booking/create/'.TURF_SLOT_INDIVIDUAL.'/'.$player_id);
+                redirect('manager/booking/create/'.TURF_SLOT_GROUPED.'/'.$player_id);
                 exit;
             }
             else
@@ -75,11 +75,11 @@ class Booking extends ManagerController
         }
     }
 
-    public function create($slot_selection_type = TURF_SLOT_INDIVIDUAL, $id = 0)
+    public function create($slot_selection_type = TURF_SLOT_GROUPED, $id = 0)
     {
         if(!in_array($slot_selection_type, [TURF_SLOT_INDIVIDUAL, TURF_SLOT_GROUPED]))
         {
-            redirect('manager/booking/create/'.TURF_SLOT_INDIVIDUAL.'/'.$id);
+            redirect('manager/booking/create/'.TURF_SLOT_GROUPED.'/'.$id);
             exit;
         }
 
@@ -95,7 +95,7 @@ class Booking extends ManagerController
                 if(empty($slots))
                 {
                     $this->session->set_flashdata('error_message', 'Please select atleast one slot to book');
-                    redirect('manager/booking/create/'.TURF_SLOT_INDIVIDUAL.'/'.$id.'?date='.$date);
+                    redirect('manager/booking/create/'.TURF_SLOT_GROUPED.'/'.$id.'?date='.$date);
                     exit;
                 }
                 else
@@ -198,7 +198,7 @@ class Booking extends ManagerController
                     else
                     {
                         $this->session->set_flashdata('error_message', 'Turf not found');
-                        redirect('manager/booking/create/'.TURF_SLOT_INDIVIDUAL.'/'.$id.'?date='.$date);
+                        redirect('manager/booking/create/'.TURF_SLOT_GROUPED.'/'.$id.'?date='.$date);
                         exit;
                     }
                 }

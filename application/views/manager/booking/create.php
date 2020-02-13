@@ -60,16 +60,6 @@
 	    			<input type="hidden" name="turf_id" value="<?php echo $turf['id']; ?>">
 			    	<div class="col-sm-12 gallery-filter">
 			    		<div class="card border-light m-b-30">
-			    			<div class="card-header bg-transparent border-light">
-			    				<?php echo $turf['name']; ?>, <?php echo $turf['address']; ?>
-			    				<?php
-			    					$filters = ($this->input->get()) ? "?".http_build_query($this->input->get()) : "";
-			    				?>
-		    					<ul class="list-inline mb-0">
-	                                <li class="list-inline-item"><a class="filter-item <?php echo ($slot_selection_type == TURF_SLOT_INDIVIDUAL) ? 'current' : ''; ?>" href="<?php echo site_url('manager/booking/create/individual/'.$player['id'].$filters); ?>">Individual</a></li>
-	                                <li class="list-inline-item"><a class="filter-item <?php echo ($slot_selection_type == TURF_SLOT_INDIVIDUAL) ? '' : 'current'; ?>" href="<?php echo site_url('manager/booking/create/grouped/'.$player['id'].$filters); ?>">Grouped</a></li>
-	                            </ul>
-		    				</div>
 			    			<div class="card-body p-2">
 			    				<div class="row">
 				    				<div class="col-md-6">

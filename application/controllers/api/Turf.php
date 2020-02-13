@@ -26,11 +26,14 @@ class Turf extends ApiController
 
 			foreach ($data['turfs'] as $key => $turf)
 			{
+
 				if($turf['image'])
 					$data['turfs'][$key]['image'] = base_url('uploads/turfs/'.$turf['id'].'/gallery/'.$turf['image']);
 
 	        	$slots = $this->Turf_model->get_all_turf_slots($turf['id'], $day);
 	        	$booked_slots = $this->Turf_model->get_all_turf_booked_slots($turf['id'], $day, $date);
+
+				$data['turfs'][$key]['booked_slots'] = (count($slots)) ? ceil((count($booked_slots)/count($slots))*100) : 0;
 
 				foreach ($slots as $skey => $slot)
 				{ 

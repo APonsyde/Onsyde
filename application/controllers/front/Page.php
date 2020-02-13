@@ -15,6 +15,8 @@ class Page extends FrontController
 
     public function home()
     {
+        $data['blogs'] = $this->Blog_model->get_all_blogs(4, null, ['inactive' => 0]);
+        
         $data['tab'] = 'home';
         $data['title'] = 'Home';
         $data['_view'] = 'front/page/home';
@@ -152,8 +154,6 @@ class Page extends FrontController
                 $data['turfs'][$key]['booked_slots'] = $this->Turf_model->get_all_turf_booked_slots($turf['id'], $day, $date);
                 $data['turfs'][$key]['images'] = $this->Turf_model->get_turf_images($turf['id']);
             }
-
-            $data['blogs'] = $this->Blog_model->get_all_blogs(4, null, ['inactive' => 0]);
 
             $data['tab'] = 'home';
             $data['title'] = 'Home';

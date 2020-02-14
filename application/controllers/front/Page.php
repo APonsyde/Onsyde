@@ -16,7 +16,7 @@ class Page extends FrontController
     public function home()
     {
         $data['blogs'] = $this->Blog_model->get_all_blogs(4, null, ['inactive' => 0]);
-        
+
         $data['tab'] = 'home';
         $data['title'] = 'Home';
         $data['_view'] = 'front/page/home';
@@ -100,28 +100,38 @@ class Page extends FrontController
                             'time_slot' => $time_slot
                         ];
 
-                        $this->Booking_model->book($data, $slots_info);
+                        $result = $this->Booking_model->book($data, $slots_info);
 
-                        if(!empty($this->player['email']))
+                        if($result)
                         {
-                            $users = [$this->player];
-                            $subject = PROJECT_NAME.' - Booking Confirmed!';
-                            $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+                            if(!empty($this->player['email']))
+                            {
+                                $users = [$this->player];
+                                $subject = PROJECT_NAME.' - Booking Confirmed!';
+                                $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
 
-                            $this->Email_model->notify($users, $subject, $message);
+                                $this->Email_model->notify($users, $subject, $message);
+                            }
+
+                            if(!empty($this->player['mobile']))
+                            {
+                                $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+                                sms("+91".$this->player['mobile'], $message);
+                            }
+
+                            $message = 'You have a new booking for '.$turf['name'].' for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+                            sms("+91".$turf['contact_mobile'], $message);
+
+                            $booking = $this->Booking_model->get_booking_by_id($result);
+                            redirect('booking/success/'.$booking['booking_key']);
+                            exit;
                         }
-
-                        if(!empty($this->player['mobile']))
+                        else
                         {
-                            $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
-                            sms("+91".$this->player['mobile'], $message);
+                            $this->session->set_flashdata('error_message', 'Some error occured while confirming the booking');
+                            redirect('find-a-turf/'.$slot_selection_type.'?date='.$date);
+                            exit;
                         }
-
-                        $message = 'You have a new booking for '.$turf['name'].' for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
-                        sms("+91".$turf['contact_mobile'], $message);
-
-                        redirect('booking/success');
-                        exit;
                     }
                     else
                     {

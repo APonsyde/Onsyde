@@ -106,7 +106,7 @@ $route['booking/invite/(:any)'] = 'player/booking/invite/$1';
 $route['booking/invite-resend/(:num)'] = 'player/booking/invite_resend/$1';
 $route['booking/invite-remove/(:num)'] = 'player/booking/invite_remove/$1';
 $route['booking/invite-add/(:num)/(:num)'] = 'player/booking/invite_add/$1/$2';
-$route['booking/success'] = 'player/booking/success';
+$route['booking/success/(:any)'] = 'player/booking/success/$1';
 
 /**
  * Front Routes

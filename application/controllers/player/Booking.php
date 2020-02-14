@@ -273,14 +273,25 @@ class Booking extends FrontController
         }
     }
 
-    public function success()
+    public function success($booking_key = null)
     {
-        $this->authenticate();
+        $this->authenticate(current_url());
 
-        $data['tab'] = 'player';
-        $data['title'] = 'Thank you';
-        $data['_view'] = 'player/booking/success';
-        $this->load->view('front/layout/basetemplate', $data);
+        $data['booking'] = $this->Booking_model->get_booking_by_params(['booking_key' => $booking_key]);
+
+        if(!empty($data['booking']) && $data['booking']['player_id'] = $this->player['id'])
+        {
+            $data['tab'] = 'player';
+            $data['title'] = 'Thank you';
+            $data['_view'] = 'player/booking/success';
+            $this->load->view('front/layout/basetemplate', $data);
+        }
+        else
+        {
+            $this->session->set_flashdata('error_message', 'Booking not found');
+            redirect('bookings');
+            exit;
+        }
     }
 
     private function _send_invite($id)

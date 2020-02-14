@@ -497,6 +497,10 @@ class Turf extends ApiController
 		        			];
 		        		}
 
+		        		echo '<pre>';
+		        		print_r($users);
+		        		exit;
+
 		                $subject = PROJECT_NAME.' - Turf Booking!';
 		                $message = str_replace("\r\n", "<br>", $post['message']);
 

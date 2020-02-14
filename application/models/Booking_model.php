@@ -63,7 +63,7 @@ class Booking_model extends CI_Model
 		if(!empty($params['select']))
 			$this->db->select($params['select']);
 		else
-			$this->db->select('t.*, b.id, b.booking_date, b.time_slot, b.amount, b.status, IF(b.booking_date > DATE(CURRENT_DATE()), 1, 0) as player_cancellation, p.full_name as player, p.mobile as player_mobile');
+			$this->db->select('t.*, b.id, b.booking_key, b.booking_date, b.time_slot, b.amount, b.status, IF(b.booking_date > DATE(CURRENT_DATE()), 1, 0) as player_cancellation, p.full_name as player, p.mobile as player_mobile');
 
 		$this->db->from('bookings b');
 		$this->db->join('turfs t', 't.id = b.turf_id', 'inner');
@@ -74,11 +74,48 @@ class Booking_model extends CI_Model
 
 	public function get_booking_by_id($id)
 	{
-		$this->db->select('t.*, b.id, b.player_id, b.booking_date, b.time_slot, b.amount, b.status, IF(b.booking_date > DATE(CURRENT_DATE()), 1, 0) as player_cancellation, p.full_name as player, p.mobile as player_mobile');
+		$this->db->select('t.*, b.id, b.booking_key, b.player_id, b.booking_date, b.time_slot, b.amount, b.status, IF(b.booking_date > DATE(CURRENT_DATE()), 1, 0) as player_cancellation, p.full_name as player, p.mobile as player_mobile');
 		$this->db->from('bookings b');
 		$this->db->join('turfs t', 't.id = b.turf_id', 'inner');
 		$this->db->join('players p', 'p.id = b.player_id', 'inner');
 		$this->db->where('b.id', $id);
+		return $this->db->get()->row_array();
+	}
+
+	public function add_invite($invite_data)
+	{
+		$invite_data['invite_key'] = strtoupper(random_string('alnum', 12));
+		$this->db->insert('booking_invites', $invite_data);
+		return $this->db->insert_id();
+	}
+
+	public function update_invite($id, $invite_data)
+	{
+		return $this->db->update('booking_invites', $invite_data, array('id' => $id));
+	}
+
+	public function get_booking_by_params($params)
+	{
+		if(isset($params['booking_key']))
+			$this->db->where('b.booking_key', $params['booking_key']);
+
+		$this->db->select('t.*, b.id, b.booking_key, b.player_id, b.booking_date, b.time_slot, b.amount, b.status, IF(b.booking_date > DATE(CURRENT_DATE()), 1, 0) as player_cancellation, p.full_name as player, p.mobile as player_mobile');
+		$this->db->from('bookings b');
+		$this->db->join('turfs t', 't.id = b.turf_id', 'inner');
+		$this->db->join('players p', 'p.id = b.player_id', 'inner');
+		return $this->db->get()->row_array();
+	}
+
+	public function get_booking_invite_by_params($params)
+	{
+		if(!empty($params['invite_key']))
+			$this->db->where('bi.invite_key', $params['invite_key']);
+
+		$this->db->select('t.*, b.id, b.booking_key, b.player_id, b.booking_date, b.time_slot, b.amount, b.status, bi.id as invited_id, bi.invite_key, bi.name as invited_name, bi.mobile as invited_mobile, bi.status as invited_status, bi.invited_by, , p.full_name as invited_by_player');
+		$this->db->from('bookings b');
+		$this->db->join('turfs t', 't.id = b.turf_id', 'inner');
+		$this->db->join('booking_invites bi', 'b.id = bi.booking_id', 'inner');
+		$this->db->join('players p', 'p.id = bi.invited_by', 'inner');
 		return $this->db->get()->row_array();
 	}
 
@@ -123,6 +160,97 @@ class Booking_model extends CI_Model
 		$this->db->join('turfs t', 't.id = b.turf_id', 'inner');
 		$this->db->join('players p', 'p.id = b.player_id', 'inner');
 		$this->db->group_by('p.id');
+		return $this->db->get()->result_array();
+	}
+
+	public function get_all_booking_invited_players($limit = 0, $offset = 0, $params = null)
+	{
+		if($limit)
+			$this->db->limit($limit, $offset);
+
+		if(isset($params['sort'])) {
+			$ord_data = explode(',', $params['sort']);
+			if(count($ord_data) == 1) {
+				$ord = explode('=', $ord_data[0]);
+				if (isset($ord[0]) && isset($ord[1])) {
+					$ord0 = (strpos($ord[0], ".") !== false) ? $ord[0] : 'bi.'.$ord[0];
+					$this->db->order_by($ord0, $ord[1]);
+				}
+			} else {
+				foreach ($ord_data as $key => $value) {
+					$ord = explode('=', $value);
+					if (isset($ord[0]) && isset($ord[1])) {
+						$ord0 = (strpos($ord[0], ".") !== false) ? $ord[0] : 'bi.'.$ord[0];
+						$this->db->order_by($ord0, $ord[1]);
+					}
+				}
+			}
+		} else {
+			$this->db->order_by('bi.id', 'DESC');
+		}
+
+		if(!empty($params['select']))
+			$this->db->select($params['select']);
+		else
+			$this->db->select('bi.*');
+
+		if(!empty($params['booking_id']))
+			$this->db->where('bi.booking_id', $params['booking_id']);
+
+		if(!empty($params['invited_by']))
+			$this->db->where('bi.invited_by', $params['invited_by']);
+
+		$this->db->from('bookings b');
+		$this->db->join('turfs t', 't.id = b.turf_id', 'inner');
+		$this->db->join('booking_invites bi', 'b.id = bi.booking_id', 'inner');
+		$this->db->group_by('bi.mobile');
+		return $this->db->get()->result_array();
+	}
+
+	public function get_all_booking_recent_players($limit = 0, $offset = 0, $params = null)
+	{
+		if($limit)
+			$this->db->limit($limit, $offset);
+
+		if(isset($params['sort'])) {
+			$ord_data = explode(',', $params['sort']);
+			if(count($ord_data) == 1) {
+				$ord = explode('=', $ord_data[0]);
+				if (isset($ord[0]) && isset($ord[1])) {
+					$ord0 = (strpos($ord[0], ".") !== false) ? $ord[0] : 'bi.'.$ord[0];
+					$this->db->order_by($ord0, $ord[1]);
+				}
+			} else {
+				foreach ($ord_data as $key => $value) {
+					$ord = explode('=', $value);
+					if (isset($ord[0]) && isset($ord[1])) {
+						$ord0 = (strpos($ord[0], ".") !== false) ? $ord[0] : 'bi.'.$ord[0];
+						$this->db->order_by($ord0, $ord[1]);
+					}
+				}
+			}
+		} else {
+			$this->db->order_by('bi.id', 'DESC');
+		}
+
+		if(!empty($params['select']))
+			$this->db->select($params['select']);
+		else
+			$this->db->select('bi.*');
+
+		if(!empty($params['booking_id']))
+			$this->db->where('bi.booking_id', $params['booking_id']);
+
+		if(!empty($params['invited_by']))
+			$this->db->where('bi.invited_by', $params['invited_by']);
+
+		if(!empty($params['exclude_mobiles']))
+			$this->db->where_not_in('bi.mobile', $params['exclude_mobiles']);
+
+		$this->db->from('bookings b');
+		$this->db->join('turfs t', 't.id = b.turf_id', 'inner');
+		$this->db->join('booking_invites bi', 'b.id = bi.booking_id', 'inner');
+		$this->db->group_by('bi.mobile');
 		return $this->db->get()->result_array();
 	}
 

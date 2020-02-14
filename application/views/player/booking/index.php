@@ -32,8 +32,9 @@
                                             <td><?php echo $booking['time_slot']; ?></td>
                                             <td>Rs. <?php echo $booking['amount']; ?>/-</td>
                                             <td>
+                                                <a class="mr-2" href="<?php echo site_url('booking/view/'.$booking['booking_key']); ?>">View</a>
                                                 <?php if(in_array($booking['status'], [TURF_STATUS_BOOKED]) && $booking['player_cancellation']) { ?>
-                                                    <a href="<?php echo site_url('player/booking/cancel/'.$booking['id']); ?>">Cancel</a>
+                                                    <a href="<?php echo site_url('booking/cancel/'.$booking['id']); ?>">Cancel</a>
                                                 <?php } else { ?>
                                                     <?php if($booking['status'] == TURF_STATUS_CANCELLED) { ?>
                                                         <span class="text text-danger">Cancelled</span>

@@ -99,8 +99,10 @@ $route['player/reset-password'] = 'player/user/reset_password';
 $route['player/profile'] = 'player/user/profile';
 
 // Booking Routes
-$route['player/bookings'] = 'player/booking/index';
-$route['player/booking/cancel/(:num)'] = 'player/booking/cancel/$1';
+$route['bookings'] = 'player/booking/index';
+$route['booking/cancel/(:num)'] = 'player/booking/cancel/$1';
+$route['booking/view/(:any)'] = 'player/booking/view/$1';
+$route['booking/invite/(:any)'] = 'player/booking/invite/$1';
 $route['booking/success'] = 'player/booking/success';
 
 /**

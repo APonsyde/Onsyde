@@ -491,20 +491,22 @@ class Turf extends ApiController
 
 		        		foreach ($players as $player)
 		        		{
-		        			$users[] = [
-		        				'name' => $player['full_name'],
-		        				'email' => $player['email']
-		        			];
+		        			if($player['email'])
+		        			{
+			        			$users[] = [
+			        				'name' => $player['full_name'],
+			        				'email' => $player['email']
+			        			];
+			        		}
 		        		}
 
-		        		echo '<pre>';
-		        		print_r($users);
-		        		exit;
+		        		if(!empty($users))
+		        		{
+			                $subject = PROJECT_NAME.' - Turf Booking!';
+			                $message = str_replace("\r\n", "<br>", $post['message']);
 
-		                $subject = PROJECT_NAME.' - Turf Booking!';
-		                $message = str_replace("\r\n", "<br>", $post['message']);
-
-		                $this->Email_model->notify($users, $subject, $message);
+			                $this->Email_model->notify($users, $subject, $message);
+			            }
 		            }
 
 		            $response = [

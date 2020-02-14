@@ -444,6 +444,8 @@ class Turf extends ApiController
 		                }
 		            }
 
+	            	$time_slot = ($time_slot) ? $time_slot : " -- No slots available --";
+
 		            $message = "";
 		            $message .= "Turf : ".$data['turf']['name']."\r\nAddress : ".$data['turf']['address']."\r\n\r\n";
 		            $for = ($date == date('Y-m-d')) ? 'today' : $day.', '.date("jS M", $timestamp);

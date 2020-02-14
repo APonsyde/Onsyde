@@ -36,8 +36,12 @@ class Turf extends ApiController
 				$data['turfs'][$key]['booked_slots'] = (count($slots)) ? ceil((count($booked_slots)/count($slots))*100) : 0;
 
 				foreach ($slots as $skey => $slot)
-				{ 
+				{
 		        	$booked = 0;
+		        	if($slot['price'] <= 0)
+		        	{
+						$booked = 1;
+					}
 					foreach ($booked_slots as $booked_slot)
 					{ 
 						if($booked_slot['id'] == $slot['id'])

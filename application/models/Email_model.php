@@ -2,6 +2,20 @@
 
 class Email_model extends CI_Model {
 
+	public function send_contact_mail($name, $email, $subject, $message)
+	{
+        $data['data'] = array(
+			'name' => $name,
+			'email' => $email,
+			'subject' => $subject,
+			'message' => $message
+		);
+		$data['_view'] = 'contact';
+        $data['title'] = PROJECT_NAME.' Contact Mail';
+        $html = $this->load->view('email/layout', $data, true);
+        return $this->send_mail->send_to(EMAIL_ADMIN, PROJECT_NAME." Contact Mail", $html);
+	}
+
 	public function send_forgot_password_code($name, $email, $code)
 	{
         $data['data'] = array(

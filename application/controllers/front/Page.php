@@ -182,10 +182,39 @@ class Page extends FrontController
 
     public function contact_us()
     {
-        $data['tab'] = 'contact_us';
-        $data['title'] = 'Contact us';
-        $data['_view'] = 'front/page/contact-us';
-        $this->load->view('front/layout/basetemplate', $data);
+        $this->form_validation->set_rules('name', 'Name', 'required|xss_clean');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|xss_clean');
+        $this->form_validation->set_rules('subject', 'Subject', 'required|xss_clean');
+        $this->form_validation->set_rules('message', 'Message', 'required|xss_clean');
+
+        $this->form_validation->set_message('required', '%s is required');
+        $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+        if($this->form_validation->run())
+        {
+            $data = $this->input->post();
+            $result = $this->Email_model->send_contact_mail($data['name'], $data['email'], $data['subject'], $data['message']);
+
+            if($result)
+            {
+                $this->session->set_flashdata('success_message', 'Thank you for contacting us / we will revert back in 24-48 hours.');
+                redirect('contact-us');
+                exit;
+            }
+            else
+            {
+                $this->session->set_flashdata('error_message', 'Some error occured while contacting the team');
+                redirect('contact-us');
+                exit;
+            }
+        }
+        else
+        {
+            $data['tab'] = 'contact_us';
+            $data['title'] = 'Contact us';
+            $data['_view'] = 'front/page/contact-us';
+            $this->load->view('front/layout/basetemplate', $data);
+        }
     }
 
     public function podcast()

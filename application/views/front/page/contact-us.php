@@ -16,6 +16,7 @@
     </div>
 </section>
 <h3 class="text-center pt-5 mb-5">Send us a Message</h3>
+<?php $this->load->view('front/layout/alert'); ?>
 <section class="main-block gray pad0">
     <div class="row no-gutters justify-content-center">
         <div class="col-md-12">

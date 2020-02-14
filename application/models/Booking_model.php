@@ -9,6 +9,7 @@ class Booking_model extends CI_Model
 
 	public function book($booking_data, $slots)
 	{
+		$booking_data['booking_key'] = strtoupper(random_string('alnum', 12));
 		$this->db->insert('bookings', $booking_data);
 		$booking_id = $this->db->insert_id();
 

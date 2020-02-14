@@ -2,83 +2,83 @@
 
 function pr($array)
 {
-	echo '<pre>';
-	print_r($array);
-	echo '</pre>';
+    echo '<pre>';
+    print_r($array);
+    echo '</pre>';
 }
 
 function lq()
 {
-	$ci =& get_instance();
-	echo $ci->db->last_query();
-	exit;
+    $ci =& get_instance();
+    echo $ci->db->last_query();
+    exit;
 }
 
 function convert_db_time($datetime, $format = "d/m/Y")
 {
-	return date($format, strtotime($datetime));
+    return date($format, strtotime($datetime));
 }
 
 function check_field($value, $data)
 {
-	$ci =& get_instance();
-	$params = explode(",", $data);
+    $ci =& get_instance();
+    $params = explode(",", $data);
 
-	if(!empty($params[2]))
-	{
-		$filters = explode("&", $params[2]);
+    if(!empty($params[2]))
+    {
+        $filters = explode("&", $params[2]);
 
-		if(!empty($filters))
-		{
-			foreach ($filters as $key => $filter)
-			{
-				$f = explode("|", $filter);
-				$ci->db->where($f[0], $f[1]);
-			}
-		}
-	}
+        if(!empty($filters))
+        {
+            foreach ($filters as $key => $filter)
+            {
+                $f = explode("|", $filter);
+                $ci->db->where($f[0], $f[1]);
+            }
+        }
+    }
 
-	$ci->db->where($params[1], $value);
-	$row = $ci->db->get($params[0])->row_array();
+    $ci->db->where($params[1], $value);
+    $row = $ci->db->get($params[0])->row_array();
 
-	if(empty($row))
-	{
-		return TRUE;
-	}
-	else
-	{
-		$ci->form_validation->set_message('check_field', '%s is already used');
-		return FALSE;
-	}
+    if(empty($row))
+    {
+        return TRUE;
+    }
+    else
+    {
+        $ci->form_validation->set_message('check_field', '%s is already used');
+        return FALSE;
+    }
 }
 
 function show_image($image, $params = null)
 {
-	if(isset($params['thumbnail']))
-	{
-		$image_data = explode(".", $image);
-		$extension = end($image_data);
-		$folders = explode("/", $image);
-		$url = str_replace(end($folders), "", $image)."thumb/".str_replace(".".$extension, "", end($folders))."_".$params['thumbnail'].".".$extension;
-	}
-	else
-	{
-		$url = $image;
-	}
+    if(isset($params['thumbnail']))
+    {
+        $image_data = explode(".", $image);
+        $extension = end($image_data);
+        $folders = explode("/", $image);
+        $url = str_replace(end($folders), "", $image)."thumb/".str_replace(".".$extension, "", end($folders))."_".$params['thumbnail'].".".$extension;
+    }
+    else
+    {
+        $url = $image;
+    }
 
-	return $url;
+    return $url;
 }
 
 function get_original_image_url($image)
 {
-	$image_data = explode(".", $image);
-	$extension = end($image_data);
-	$image = preg_replace( '/_[^_]*$/', '', $image);
-	$image = preg_replace( '/_[^_]*$/', '', $image);
-	$image = $image.".".$extension;
-	$image_data = explode("/", $image);
-	$allowed_data = array_diff($image_data, ['thumb']);
-	return implode("/", $allowed_data);
+    $image_data = explode(".", $image);
+    $extension = end($image_data);
+    $image = preg_replace( '/_[^_]*$/', '', $image);
+    $image = preg_replace( '/_[^_]*$/', '', $image);
+    $image = $image.".".$extension;
+    $image_data = explode("/", $image);
+    $allowed_data = array_diff($image_data, ['thumb']);
+    return implode("/", $allowed_data);
 }
 
 function base64_to_image($base64_string, $output_file)
@@ -92,41 +92,41 @@ function base64_to_image($base64_string, $output_file)
 
 function get_allowed_formats($type)
 {
-	$allowed_types = [
-		'image' => ['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png']
-	];
+    $allowed_types = [
+        'image' => ['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png']
+    ];
 
-	return isset($allowed_types[$type]) ? $allowed_types[$type] : [];
+    return isset($allowed_types[$type]) ? $allowed_types[$type] : [];
 }
 
 function show_price($amount)
 {
-	return number_format($amount, 2);
+    return number_format($amount, 2);
 }
 
 function sms($mobile, $message)
 {
-   $postData = array(
-       'authkey' => MSG91_AUTH_KEY,
-       'mobiles' => $mobile,
-       'message' => urlencode($message),
-       'sender' => MSG91_SENDER_ID,
-       'route' => "4"
-   );
+    $postData = array(
+        'authkey' => MSG91_AUTH_KEY,
+        'mobiles' => $mobile,
+        'message' => urlencode($message),
+        'sender' => MSG91_SENDER_ID,
+        'route' => "4"
+    );
 
-   $ch = curl_init();
-   curl_setopt_array($ch, array(
-       CURLOPT_URL => "http://api.msg91.com/api/sendhttp.php",
-       CURLOPT_RETURNTRANSFER => true,
-       CURLOPT_POST => true,
-       CURLOPT_POSTFIELDS => $postData,
-       CURLOPT_FOLLOWLOCATION => true
-   ));
+    $ch = curl_init();
+    curl_setopt_array($ch, array(
+        CURLOPT_URL => "http://api.msg91.com/api/sendhttp.php",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => $postData,
+        CURLOPT_FOLLOWLOCATION => true
+    ));
 
-   curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-   $output = curl_exec($ch);
-   curl_close($ch);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    $output = curl_exec($ch);
+    curl_close($ch);
 }
 
 function format_size_units($bytes)
@@ -162,13 +162,13 @@ function format_size_units($bytes)
 function get_days()
 {
     $days = [
-    	'Sunday',
-    	'Monday',
-    	'Tuesday',
-    	'Wednesday',
-    	'Thursday',
-    	'Friday',
-    	'Saturday',
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
     ];
 
     return $days;
@@ -177,9 +177,9 @@ function get_days()
 function get_play_in()
 {
     $values = [
-      'one_area' => 'One area',
-      'two_three_areas' => 'Two to three areas',
-      'anywhere' => 'I\'m okay traveling anywhere for a game'
+        'one_area' => 'One area',
+        'two_three_areas' => 'Two to three areas',
+        'anywhere' => 'I\'m okay traveling anywhere for a game'
     ];
 
     return $values;
@@ -194,9 +194,9 @@ function get_play_in_by_value($value)
 function get_prefer_to_play()
 {
     $values = [
-      'cricket' => 'Cricket',
-      'football' => 'Football',
-      'all' => 'Available for both'
+        'cricket' => 'Cricket',
+        'football' => 'Football',
+        'all' => 'Available for both'
     ];
 
     return $values;
@@ -211,14 +211,14 @@ function get_prefer_to_play_by_value($value)
 function get_prefer_to_play_good_as()
 {
     $values = [
-      'batsman' => 'Batsman',
-      'bowler' => 'Bowler',
-      'all_rounder' => 'All-rounder',
-      'goalkeeper' => 'Goalkeeper',
-      'defender' => 'Defender',
-      'midfielder' => 'Midfielder',
-      'striker' => 'Striker',
-      'any' => 'Any preference, I just love to play!'
+        'batsman' => 'Batsman',
+        'bowler' => 'Bowler',
+        'all_rounder' => 'All-rounder',
+        'goalkeeper' => 'Goalkeeper',
+        'defender' => 'Defender',
+        'midfielder' => 'Midfielder',
+        'striker' => 'Striker',
+        'any' => 'Any preference, I just love to play!'
     ];
 
     return $values;
@@ -233,10 +233,10 @@ function get_prefer_to_play_good_as_by_value($value)
 function get_notified_for_games()
 {
     $values = [
-      'mornings' => 'Mornings',
-      'evenings' => 'Evenings',
-      'late_nights' => 'Late nights',
-      'anytime' => 'Anytime, I am always ready for a game'
+        'mornings' => 'Mornings',
+        'evenings' => 'Evenings',
+        'late_nights' => 'Late nights',
+        'anytime' => 'Anytime, I am always ready for a game'
     ];
 
     return $values;
@@ -284,5 +284,5 @@ function time_intervals($lower = 0, $upper = 86400, $step = 3600, $format = '')
 
 function trim_text($text, $length = 250)
 {
-  return mb_strimwidth($text, 0, $length, "...");
+    return mb_strimwidth($text, 0, $length, "...");
 }

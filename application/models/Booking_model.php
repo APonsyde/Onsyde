@@ -94,6 +94,11 @@ class Booking_model extends CI_Model
 		return $this->db->update('booking_invites', $invite_data, array('id' => $id));
 	}
 
+	public function delete_invite($id)
+	{
+		return $this->db->delete('booking_invites', array('id' => $id));
+	}
+
 	public function get_booking_by_params($params)
 	{
 		if(isset($params['booking_key']))
@@ -110,6 +115,15 @@ class Booking_model extends CI_Model
 	{
 		if(!empty($params['invite_key']))
 			$this->db->where('bi.invite_key', $params['invite_key']);
+
+		if(!empty($params['id']))
+			$this->db->where('bi.id', $params['id']);
+
+		if(!empty($params['booking_id']))
+			$this->db->where('bi.booking_id', $params['booking_id']);
+
+		if(!empty($params['mobile']))
+			$this->db->where('bi.mobile', $params['mobile']);
 
 		$this->db->select('t.*, b.id, b.booking_key, b.player_id, b.booking_date, b.time_slot, b.amount, b.status, bi.id as invited_id, bi.invite_key, bi.name as invited_name, bi.mobile as invited_mobile, bi.status as invited_status, bi.invited_by, , p.full_name as invited_by_player');
 		$this->db->from('bookings b');

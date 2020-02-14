@@ -5,8 +5,9 @@
         </div>
     </div>          
 </div>
-<div class="contentbar">                
+<div class="contentbar">
     <div class="row">
+        <?php $this->load->view('front/layout/alert'); ?>
         <div class="col-lg-12">
         	<?php if(!empty($invited_players)) { ?>
 	        	<div class="card m-b-30">
@@ -42,9 +43,9 @@
 		                            		<td><?php echo $invited_player['mobile']; ?></td>
 		                            		<td>
 		                            			<?php if($invited_player['status'] == 'invited') { ?>
-			                            			<button class="btn btn-primary">Reinvite</button>
+			                            			<a class="btn btn-primary" href="<?php echo site_url('booking/invite-resend/'.$invited_player['id']); ?>">Reinvite</a>
 			                            		<?php } ?>
-		                            			<button class="btn btn-primary">Remove</button>
+		                            			<a class="btn btn-primary" href="<?php echo site_url('booking/invite-remove/'.$invited_player['id']); ?>">Remove</a>
 		                            		</td>
 		                            	</tr>
 		                            <?php } ?>
@@ -101,7 +102,7 @@
 		                            	<tr>
 		                            		<td><?php echo $recent_player['name']; ?></td>
 		                            		<td><?php echo $recent_player['mobile']; ?></td>
-		                            		<td><button class="btn btn-primary">Invite</button></td>
+		                            		<td><a class="btn btn-primary" href="<?php echo site_url('booking/invite-add/'.$recent_player['id'].'/'.$booking['id']); ?>">Invite</a></td>
 		                            	</tr>
 		                            <?php } ?>
 	                            </tbody>

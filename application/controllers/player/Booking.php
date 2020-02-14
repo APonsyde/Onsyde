@@ -38,19 +38,32 @@ class Booking extends FrontController
             if($this->form_validation->run())
             {
                 $invite_data = $this->input->post();
-                $invite_data['booking_id'] = $data['booking']['id'];
-                $invite_data['invited_by'] = $this->player['id'];
-                $result = $this->Booking_model->add_invite($invite_data);
 
-                if($result)
+                $invite = $this->Booking_model->get_booking_invite_by_params(['mobile' => $invite_data['mobile'], 'booking_id' => $data['booking']['id']]);
+
+                if(empty($invite))
                 {
-                    $this->session->set_flashdata('success_message', 'Invitation sent successfully');
-                    redirect('booking/view/'.$booking_key);
-                    exit;
+                    $invite_data['booking_id'] = $data['booking']['id'];
+                    $invite_data['invited_by'] = $this->player['id'];
+                    $result = $this->Booking_model->add_invite($invite_data);
+
+                    if($result)
+                    {
+                        $this->_send_invite($result);
+                        $this->session->set_flashdata('success_message', 'Invitation sent successfully');
+                        redirect('booking/view/'.$booking_key);
+                        exit;
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('error_message', 'Error occured while sending the invitation');
+                        redirect('booking/view/'.$booking_key);
+                        exit;
+                    }
                 }
                 else
                 {
-                    $this->session->set_flashdata('error_message', 'Error occured while sending the invitation');
+                    $this->session->set_flashdata('error_message', 'This number is already invited');
                     redirect('booking/view/'.$booking_key);
                     exit;
                 }
@@ -132,6 +145,103 @@ class Booking extends FrontController
         }
     }
 
+    public function invite_resend($id = 0)
+    {
+        $this->authenticate(current_url());
+
+        $invite = $this->Booking_model->get_booking_invite_by_params(['id' => $id]);
+
+        if(!empty($invite))
+        {
+            $this->_send_invite($id);
+            $this->session->set_flashdata('success_message', 'Invitation sent successfully');
+            redirect('booking/view/'.$invite['booking_key']);
+            exit;
+        }
+        else
+        {
+            $this->session->set_flashdata('error_message', 'Invite not found');
+            redirect('booking/view/'.$invite['booking_key']);
+            exit;
+        }
+    }
+
+    public function invite_remove($id = 0)
+    {
+        $this->authenticate(current_url());
+
+        $invite = $this->Booking_model->get_booking_invite_by_params(['id' => $id]);
+
+        if(!empty($invite))
+        {
+            $this->Booking_model->delete_invite($id);
+            $this->session->set_flashdata('success_message', 'Invitation has been removed');
+            redirect('booking/view/'.$invite['booking_key']);
+            exit;
+        }
+        else
+        {
+            $this->session->set_flashdata('error_message', 'Invite not found');
+            redirect('booking/view/'.$invite['booking_key']);
+            exit;
+        }
+    }
+
+    public function invite_add($id = 0, $booking_id = 0)
+    {
+        $this->authenticate(current_url());
+
+        $booking = $this->Booking_model->get_booking_by_id($booking_id);
+
+        if(!empty($booking) && $booking['player_id'] = $this->player['id'])
+        {
+            $invite = $this->Booking_model->get_booking_invite_by_params(['id' => $id]);
+
+            if(!empty($invite))
+            {
+                $invite_data = [
+                    'name' => $invite['invited_name'],
+                    'mobile' => $invite['invited_mobile'],
+                    'booking_id' => $booking_id,
+                    'invited_by' => $this->player['id']
+                ];
+
+                $result = $this->Booking_model->add_invite($invite_data);
+
+                if($result)
+                {
+                    $this->_send_invite($result);
+                    $this->session->set_flashdata('success_message', 'Invitation sent successfully');
+                    redirect('booking/view/'.$booking['booking_key']);
+                    exit;
+                }
+                else
+                {
+                    $this->session->set_flashdata('error_message', 'Error occured while sending the invitation');
+                    redirect('booking/view/'.$booking['booking_key']);
+                    exit;
+                }
+
+                $this->Booking_model->delete_invite($id);
+                $this->session->set_flashdata('success_message', 'Invitation has been removed');
+                redirect('booking/view/'.$invite['booking_key']);
+                exit;
+            }
+            else
+            {
+                $this->session->set_flashdata('error_message', 'Invite not found');
+                redirect('booking/view/'.$invite['booking_key']);
+                exit;
+            }
+        }
+        else
+        {
+            $this->session->set_flashdata('error_message', 'Booking not found');
+            redirect('bookings');
+            exit;
+        }
+    }
+
     public function cancel($id = 0)
     {
         $this->authenticate(current_url());
@@ -171,5 +281,16 @@ class Booking extends FrontController
         $data['title'] = 'Thank you';
         $data['_view'] = 'player/booking/success';
         $this->load->view('front/layout/basetemplate', $data);
+    }
+
+    private function _send_invite($id)
+    {
+        $invite = $this->Booking_model->get_booking_invite_by_params(['id' => $id]);
+
+        if(!empty($invite['invited_mobile']))
+        {
+            $message = 'You have been invited by '.$invite['invited_by_player'].' for a turf booking. Please click on the following link to update your invitation status - '.site_url('booking/invite/'.$invite['invite_key']);
+            sms("+91".$invite['invited_mobile'], $message);
+        }
     }
 }

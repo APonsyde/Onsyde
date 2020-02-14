@@ -37,15 +37,18 @@
 										<ul class="flexpanel wrp">
 											<?php foreach ($turf['slots'] as $key => $slot) { ?>
 						    					<?php
-						    						$booked = false;
-							    					foreach ($turf['booked_slots'] as $key => $booked_slot) { 
+						    						$unavailable = false;
+						    						if($slot['price'] <= 0) {
+						    							$unavailable = true;
+						    						}
+							    					foreach ($turf['booked_slots'] as $key => $booked_slot) {
 							    						if($booked_slot['id'] == $slot['id']) {
-							    							$booked = true;
+							    							$unavailable = true;
 							    							break;
 							    						}
 							    					}
 						    					?>
-												<li class="<?php echo ($booked) ? 'slot-unavailable tabgrey' : 'slot-available'; ?>" data-price="<?php echo $slot['price']; ?>"  data-id="<?php echo $slot['id']; ?>">
+												<li class="<?php echo ($unavailable) ? 'slot-unavailable tabgrey' : 'slot-available'; ?>" data-price="<?php echo $slot['price']; ?>"  data-id="<?php echo $slot['id']; ?>">
 													<?php echo $slot['time']; ?> -
 					    							<?php echo date("h:i a", strtotime('+30 minutes', strtotime($slot['time']))); ?>
 					    							<input type="checkbox" class="d-none" name="slot[]" value="<?php echo $slot['id']; ?>">

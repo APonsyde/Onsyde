@@ -334,25 +334,35 @@ class Turf extends ManagerController
 
 	                foreach ($data['turf']['available_slots'] as $key => $slot)
 	                {
-	                    if($key == 0)
+	                    if($key == 0 && $slot['price'])
 	                    {
 	                        $time_slot .= $slot['time'];
 	                    }
 	                    else
 	                    {
+	                    	$prev_slot_end_price = $prev_slot['price'];
 	                        $prev_slot_end_time = date("h:i a", strtotime('+30 minutes', strtotime($prev_slot['time'])));
 
-	                        if($prev_slot_end_time !== $slot['time'])
+	                        if(($prev_slot_end_time !== $slot['time'] || $prev_slot_end_price !== $slot['price']) && $prev_slot_end_price)
 	                        {
-	                            $time_slot .= " to ".$prev_slot_end_time."\r\n".$slot['time'];
+	                            $time_slot .= " to ". $prev_slot_end_time . " - Rs " . $prev_slot_end_price . " /-\r\n";
 	                        }
+
+	                        if(($prev_slot_end_time !== $slot['time'] || $prev_slot_end_price !== $slot['price']) && $slot['price'])
+                            {
+                            	$time_slot .= $slot['time'];
+                            }
 	                    }
 
 	                    $prev_slot = $slot;
 	                }
 
 	                $last = end($data['turf']['available_slots']);
-                	$time_slot .=  " - " . date("h:i a", strtotime('+30 minutes', strtotime($last['time'])));
+
+	                if($last['price'])
+                    {
+	                	$time_slot .=  " to " . date("h:i a", strtotime('+30 minutes', strtotime($last['time']))) . " - Rs " . $last['price'] . " /-";
+	                }
 	            }
 
 	            $message = "";

@@ -48,10 +48,13 @@
 		    			<div class="card-body p-2">
 		    				<?php foreach ($turf['slots'] as $key => $slot) { ?>
 		    					<?php
-		    						$booked = false;
+		    						$unavailable = false;
+		    						if($slot['price'] <= 0) {
+		    							$unavailable = true;
+		    						}
 			    					foreach ($turf['booked_slots'] as $key => $booked_slot) { 
 			    						if($booked_slot['id'] == $slot['id']) {
-			    							$booked = true;
+			    							$unavailable = true;
 			    							break;
 			    						}
 			    					}

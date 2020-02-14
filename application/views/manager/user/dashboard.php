@@ -39,15 +39,18 @@
 		    			<div class="card-body p-2">
 		    				<?php foreach ($turf['slots'] as $key => $slot) { ?>
 		    					<?php
-		    						$booked = false;
+		    						$unavailable = false;
+		    						if($slot['price'] <= 0) {
+		    							// $unavailable = true;
+		    						}
 			    					foreach ($turf['booked_slots'] as $key => $booked_slot) { 
 			    						if($booked_slot['id'] == $slot['id']) {
-			    							$booked = true;
+			    							$unavailable = true;
 			    							break;
 			    						}
 			    					}
 		    					?>
-		    					<span class="badge badge-pill badge-<?php echo ($booked) ? 'success' : 'dark'; ?>"><?php echo $slot['time']; ?> - <?php echo date("h:i a", strtotime('+30 minutes', strtotime($slot['time']))); ?></span>
+		    					<span class="badge badge-pill badge-<?php echo ($unavailable) ? 'success' : 'dark'; ?>"><?php echo $slot['time']; ?> - <?php echo date("h:i a", strtotime('+30 minutes', strtotime($slot['time']))); ?></span>
 		    				<?php } ?>
 		    			</div>
 		    			<div class="card-footer bg-transparent border-light">

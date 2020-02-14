@@ -491,7 +491,7 @@ class Turf extends ApiController
 
 		        		foreach ($players as $player)
 		        		{
-		        			if($player['email'])
+		        			if(!empty($player['email']))
 		        			{
 			        			$users[] = [
 			        				'name' => $player['full_name'],

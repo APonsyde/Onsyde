@@ -75,6 +75,9 @@ class User extends ManagerController
             exit;
         }
 
+        if($this->input->post())
+            $_POST['otp'] = implode("", $this->input->post('code'));
+
         $this->form_validation->set_rules('mobile', 'Mobile', 'required|xss_clean');
         $this->form_validation->set_rules('otp', 'OTP', 'required|xss_clean');
 

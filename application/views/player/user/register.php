@@ -15,6 +15,9 @@
                         <h2 class="">Player Registration</h2>
                         <p>Enter your details below to register.</p>
                         <form method="post" class="register">
+                            <?php $this->load->view('front/layout/alert'); ?>
+                            <input type="hidden" class="form-control" name="mobile" value="<?php echo $this->input->get('mobile'); ?>">
+                            <input type="hidden" class="form-control" name="otp" value="<?php echo $this->input->get('otp'); ?>">
                             <div class="mb-20">
                                 <input type="text" class="inpt" name="full_name" placeholder="Name" value="<?php echo $this->input->post('full_name'); ?>">
                                 <?php echo form_error('full_name'); ?>

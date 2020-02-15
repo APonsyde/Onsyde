@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php $this->load->view('manager/layout/head'); ?>
+    <?php $this->load->view('front/layout/head'); ?>
 </head>
 <body class="vertical-layout">
     <div id="containerbar" class="containerbar authenticate-bg">
@@ -17,7 +17,7 @@
                                             <a href="<?php echo site_url(); ?>" class="logo"><img src="<?php echo base_url('resources/theme/images/logo.png'); ?>" class="img-fluid" alt="logo"></a>
                                         </div>                                        
                                         <h4 class="text-primary my-4">Turf Manager - Sign Up !</h4>
-                                        <?php $this->load->view('manager/layout/alert'); ?>
+                                        <?php $this->load->view('front/layout/alert'); ?>
                                         <input type="hidden" class="form-control" name="mobile" value="<?php echo $this->input->get('mobile'); ?>">
                                         <input type="hidden" class="form-control" name="otp" value="<?php echo $this->input->get('otp'); ?>">
                                         <div class="form-group">
@@ -51,6 +51,6 @@
             </div>
         </div>
     </div>
-    <?php $this->load->view('manager/layout/foot'); ?>
+    <?php $this->load->view('front/layout/foot'); ?>
 </body>
 </html>

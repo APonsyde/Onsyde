@@ -36,6 +36,7 @@
                                     <input type="text" class="inpt" placeholder="0" name="code[6]" data-maxlength="1">
                                 </div>
                             </div>
+                            <?php echo form_error('otp'); ?>
                             <div class="btn-search">
                                 <button class="btn btn-simple">Enter OTP →</button>
                             </div>

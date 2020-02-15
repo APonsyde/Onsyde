@@ -296,7 +296,7 @@ class Turf extends ApiController
 					$data['subtab'] = 'list';
 					$data['title'] = 'Upload Turf Images';
 					$data['_view'] = 'manager/turf/gallery';
-					$this->load->view('manager/layout/basetemplate', $data);
+					$this->load->view('front/layout/basetemplate', $data);
 				}
 				else
 				{

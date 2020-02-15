@@ -260,7 +260,7 @@ class User extends ManagerController
         $data['tab'] = 'dashboard';
         $data['title'] = 'View your dashboard activity';
         $data['_view'] = 'manager/user/dashboard';
-        $this->load->view('manager/layout/basetemplate', $data);
+        $this->load->view('front/layout/basetemplate', $data);
     }
 
     public function logout()
@@ -442,7 +442,7 @@ class User extends ManagerController
 
             $data['title'] = 'Profile';
             $data['_view'] = 'manager/user/profile';
-            $this->load->view('manager/layout/basetemplate', $data);
+            $this->load->view('front/layout/basetemplate', $data);
         }
     }
 }

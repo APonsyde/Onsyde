@@ -40,7 +40,7 @@ class Turf extends ManagerController
 		$data['subtab'] = 'list';
 		$data['title'] = 'Turf Listing';
 		$data['_view'] = 'manager/turf/listing';
-		$this->load->view('manager/layout/basetemplate', $data);
+		$this->load->view('front/layout/basetemplate', $data);
 	}
 
 	public function create()
@@ -86,7 +86,7 @@ class Turf extends ManagerController
 			$data['subtab'] = 'create';
 			$data['title'] = 'Create Turf';
 			$data['_view'] = 'manager/turf/create';
-			$this->load->view('manager/layout/basetemplate', $data);
+			$this->load->view('front/layout/basetemplate', $data);
 		}
 	}
 
@@ -132,7 +132,7 @@ class Turf extends ManagerController
 				$data['subtab'] = 'list';
 				$data['title'] = 'Create Turf';
 				$data['_view'] = 'manager/turf/edit';
-				$this->load->view('manager/layout/basetemplate', $data);
+				$this->load->view('front/layout/basetemplate', $data);
 			}
 		}
 		else
@@ -157,7 +157,7 @@ class Turf extends ManagerController
 			$data['subtab'] = 'list';
 			$data['title'] = 'Upload Turf Images';
 			$data['_view'] = 'manager/turf/gallery';
-			$this->load->view('manager/layout/basetemplate', $data);
+			$this->load->view('front/layout/basetemplate', $data);
 		}
 		else
 		{
@@ -216,7 +216,7 @@ class Turf extends ManagerController
 				$data['subtab'] = 'list';
 				$data['title'] = 'Manage Turf Slots';
 				$data['_view'] = 'manager/turf/slots';
-				$this->load->view('manager/layout/basetemplate', $data);
+				$this->load->view('front/layout/basetemplate', $data);
 			}
 		}
 		else
@@ -378,7 +378,7 @@ class Turf extends ManagerController
 				$data['subtab'] = 'list';
 				$data['title'] = 'Manage Turf Slots Messaging';
 				$data['_view'] = 'manager/turf/messaging';
-				$this->load->view('manager/layout/basetemplate', $data);
+				$this->load->view('front/layout/basetemplate', $data);
 			}
 		}
 		else

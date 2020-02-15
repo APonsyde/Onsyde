@@ -14,4 +14,4 @@
 <script src="<?php echo base_url('resources/theme/plugins/jquery-file-upload/js/jquery.fileupload-video.js'); ?>"></script>
 <script src="<?php echo base_url('resources/theme/plugins/jquery-file-upload/js/jquery.fileupload-validate.js'); ?>"></script>
 <script src="<?php echo base_url('resources/theme/plugins/jquery-file-upload/js/jquery.fileupload-ui.js'); ?>"></script>
-<script src="<?php echo base_url('resources/theme/js/core.js'); ?>"></script>
+<!-- <script src="<?php echo base_url('resources/theme/js/core.js'); ?>"></script> -->

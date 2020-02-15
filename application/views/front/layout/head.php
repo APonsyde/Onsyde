@@ -10,6 +10,8 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url('resources/theme/css/themify-icons.css'); ?>">
 <link rel="stylesheet" href="<?php echo base_url('resources/theme/css/font-awesome.min.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('resources/theme/plugins/jquery-file-upload/css/jquery.fileupload.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('resources/theme/plugins/jquery-file-upload/css/jquery.fileupload-ui.css'); ?>">
 <link href="<?php echo base_url('resources/theme/css/set1.css'); ?>" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url('resources/theme/css/style.css'); ?>">
 <link rel="stylesheet" href="<?php echo base_url('resources/theme/css/custom.css'); ?>">

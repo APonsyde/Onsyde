@@ -65,7 +65,7 @@
                             <h3>Know More</h3>
                             <p>To know more about what Onsyde is all about and what is in store for us check our blog </p>
                             <div class="checkBtn">
-                                <a href="">Checkout Blog →</a>
+                                <a href="<?php echo site_url('blogs') ?>">Checkout Blog →</a>
                             </div>
                         </div>
                     </div>

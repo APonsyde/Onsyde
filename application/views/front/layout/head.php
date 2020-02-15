@@ -6,14 +6,14 @@
 <meta name="keywords" content="onsyde, turf, turf booking, sports">
 <link rel="shortcut icon" href="#">
 <title><?php echo PROJECT_NAME; ?><?php echo isset($title) ? " / " . $title : ""; ?></title>
-<link rel="stylesheet" href="<?php echo base_url('resources/front/css/bootstrap.min.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('resources/theme/css/bootstrap.min.css'); ?>">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-<link rel="stylesheet" href="<?php echo base_url('resources/front/css/themify-icons.css'); ?>">
-<link rel="stylesheet" href="<?php echo base_url('resources/front/css/font-awesome.min.css'); ?>">
-<link href="<?php echo base_url('resources/front/css/set1.css'); ?>" rel="stylesheet">
-<link rel="stylesheet" href="<?php echo base_url('resources/front/css/style.css'); ?>">
-<link rel="stylesheet" href="<?php echo base_url('resources/front/css/custom.css'); ?>">
-<script src="<?php echo base_url('resources/front/js/jquery-3.2.1.min.js'); ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url('resources/theme/css/themify-icons.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('resources/theme/css/font-awesome.min.css'); ?>">
+<link href="<?php echo base_url('resources/theme/css/set1.css'); ?>" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo base_url('resources/theme/css/style.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('resources/theme/css/custom.css'); ?>">
+<script src="<?php echo base_url('resources/theme/js/jquery-3.2.1.min.js'); ?>"></script>
 <script>
 	var SITE_URL = "<?php echo site_url(); ?>";
 </script>

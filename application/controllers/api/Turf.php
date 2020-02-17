@@ -38,10 +38,6 @@ class Turf extends ApiController
 				foreach ($slots as $skey => $slot)
 				{
 		        	$booked = 0;
-		        	if($slot['price'] <= 0)
-		        	{
-						$booked = 1;
-					}
 					foreach ($booked_slots as $booked_slot)
 					{ 
 						if($booked_slot['id'] == $slot['id'])

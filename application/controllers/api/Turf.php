@@ -67,30 +67,21 @@ class Turf extends ApiController
 	{
 		if($this->authenticate_token())
         {
-        	$this->form_validation->set_rules('turf_id', 'Turf', 'required|xss_clean');
+        	$offset = ($this->input->post('offset')) ? $this->input->post('offset') : 0;
 
-	        $this->form_validation->set_message('required', '%s is required');
-	        $this->form_validation->set_error_delimiters('<div class="text-danger text-left"><small>', '</small></div>');
+			$data['players'] = $this->Player_model->get_all_players(50, $offset, ['select' => 'p.id, p.full_name as name, p.mobile']);
 
-	        if($this->form_validation->run())
-	        {
-				$filters = [];
-				$filters['turf_id'] = $this->manager['id'];
+			$more = $this->Player_model->get_all_players(1, (count($data['players']) + $offset), ['select' => 'p.id, p.full_name as name, p.mobile']);
 
-				$data['players'] = $this->Booking_model->get_all_booking_players(null, null, ['turf_id' => $this->input->post('turf_id'), 'select' => 'p.id, p.full_name as name, p.mobile']);
+			$data['more'] = !empty($more) ? 0 : 1;
 
-				$response = [
-	                'success' => true,
-	                'message' => '',
-	                'data' => $data
-	            ];
+			$response = [
+                'success' => true,
+                'message' => '',
+                'data' => $data
+            ];
 
-	            $this->set_response($response, \Restserver\Libraries\REST_Controller::HTTP_OK);
-            }
-	        else
-	        {
-				$this->return_form_errors($this->form_validation->error_array());
-			}
+            $this->set_response($response, \Restserver\Libraries\REST_Controller::HTTP_OK);
 		}
 	}
 

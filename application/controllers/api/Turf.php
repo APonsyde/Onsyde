@@ -8,6 +8,7 @@ class Turf extends ApiController
 		parent::__construct();
 		$this->load->model('Turf_model');
 		$this->load->model('Email_model');
+		$this->load->model('Player_model');
 		$this->load->model('Booking_model');
 	}
 

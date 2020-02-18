@@ -63,6 +63,37 @@ class Turf extends ApiController
 		}
 	}
 
+	public function players_post()
+	{
+		if($this->authenticate_token())
+        {
+        	$this->form_validation->set_rules('turf_id', 'Turf', 'required|xss_clean');
+
+	        $this->form_validation->set_message('required', '%s is required');
+	        $this->form_validation->set_error_delimiters('<div class="text-danger text-left"><small>', '</small></div>');
+
+	        if($this->form_validation->run())
+	        {
+				$filters = [];
+				$filters['turf_id'] = $this->manager['id'];
+
+				$data['players'] = $this->Booking_model->get_all_booking_players(null, null, ['turf_id' => $this->input->post('turf_id'), 'select' => 'p.id, p.full_name as name, p.mobile']);
+
+				$response = [
+	                'success' => true,
+	                'message' => '',
+	                'data' => $data
+	            ];
+
+	            $this->set_response($response, \Restserver\Libraries\REST_Controller::HTTP_OK);
+            }
+	        else
+	        {
+				$this->return_form_errors($this->form_validation->error_array());
+			}
+		}
+	}
+
 	public function create_post()
 	{
 		if($this->authenticate_token())

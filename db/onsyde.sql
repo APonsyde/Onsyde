@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 10, 2020 at 12:08 PM
+-- Generation Time: Feb 18, 2020 at 07:45 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.1.18
 
@@ -27,6 +27,25 @@ USE `onsyde`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `blogs`
+--
+
+DROP TABLE IF EXISTS `blogs`;
+CREATE TABLE IF NOT EXISTS `blogs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `description` longtext,
+  `inactive` tinyint(4) NOT NULL DEFAULT '0',
+  `deleted` tinyint(4) NOT NULL DEFAULT '0',
+  `created_on` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `bookings`
 --
 
@@ -34,21 +53,63 @@ DROP TABLE IF EXISTS `bookings`;
 CREATE TABLE IF NOT EXISTS `bookings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `turf_id` int(11) NOT NULL,
+  `booking_key` varchar(255) DEFAULT NULL,
   `player_id` int(11) NOT NULL,
   `booking_date` date DEFAULT NULL,
   `time_slot` varchar(255) DEFAULT NULL,
   `amount` float NOT NULL DEFAULT '0',
+  `status` enum('booked','confirmed','cancelled') DEFAULT 'booked',
   `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `turf_id`, `player_id`, `booking_date`, `time_slot`, `amount`, `created_on`, `updated_on`) VALUES
-(1, 1, 5, '2020-01-12', '1:30 pm - 3:00 pm', 3000, '2020-01-08 15:20:11', '2020-01-10 16:35:58');
+INSERT INTO `bookings` (`id`, `turf_id`, `booking_key`, `player_id`, `booking_date`, `time_slot`, `amount`, `status`, `created_on`, `updated_on`) VALUES
+(1, 1, NULL, 5, '2020-01-12', '1:30 pm - 3:00 pm', 3000, 'booked', '2020-01-08 15:20:11', '2020-01-10 16:35:58'),
+(2, 1, NULL, 5, '2020-01-12', '09:00 am - 10:00 am', 0, 'booked', '2020-01-10 17:41:04', NULL),
+(3, 1, NULL, 5, '2020-01-12', '11:30 am - 08:30 pm', 2000, 'booked', '2020-01-10 17:41:35', NULL),
+(4, 1, NULL, 5, '2020-01-12', '01:30 am - 04:30 am', 1000, 'booked', '2020-01-10 17:41:59', NULL),
+(5, 1, NULL, 5, '2020-01-11', '03:00 am - 04:00 am', 0, 'booked', '2020-01-10 17:43:55', NULL),
+(6, 1, NULL, 5, '2020-01-17', '12:00 am - 01:00 am', 0, 'booked', '2020-01-14 14:14:01', NULL),
+(7, 1, NULL, 5, '2020-01-14', '06:30 am - 09:00 am', 0, 'booked', '2020-01-14 14:16:58', NULL),
+(8, 1, NULL, 5, '2020-01-17', '04:00 am - 04:30 am, 06:30 am - 07:30 am, 07:30 pm - 08:00 pm', 0, 'booked', '2020-01-17 18:10:12', NULL),
+(9, 1, NULL, 5, '2020-02-14', '02:30 am - 11:30 am', 0, 'booked', '2020-02-13 15:35:06', NULL),
+(10, 1, 'ODPLGBV60YFV', 5, '2020-02-15', '12:00 am - 02:00 am', 0, 'booked', '2020-02-14 11:21:32', NULL),
+(11, 1, 'CTRVM0H9CXEM', 5, '2020-02-17', '12:00 am - 02:00 am', 2000, 'booked', '2020-02-14 15:12:58', NULL),
+(12, 1, 'Y0RPEDLN8ZB6', 5, '2020-02-17', '03:00 am - 11:30 am', 3500, 'booked', '2020-02-14 15:13:14', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking_invites`
+--
+
+DROP TABLE IF EXISTS `booking_invites`;
+CREATE TABLE IF NOT EXISTS `booking_invites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `booking_id` int(11) NOT NULL,
+  `invite_key` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
+  `status` enum('invited','accepted','rejected') NOT NULL DEFAULT 'invited',
+  `invited_by` int(11) NOT NULL DEFAULT '0',
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `booking_invites`
+--
+
+INSERT INTO `booking_invites` (`id`, `booking_id`, `invite_key`, `name`, `mobile`, `status`, `invited_by`, `created_on`, `updated_on`) VALUES
+(2, 9, 'JAM6RGPJXD53', 'Yohhan', '7718813092', 'invited', 5, '2020-02-14 12:35:03', '2020-02-14 13:02:41'),
+(4, 10, '08WHXONFUZTU', 'Yohhan', '7718813091', 'invited', 5, '2020-02-14 14:41:40', NULL),
+(9, 10, 'WQADRSTLGOP2', 'Yohhan', '7718813092', 'invited', 5, '2020-02-14 15:09:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -65,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `booking_slots` (
   `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `booking_slots`
@@ -74,7 +135,89 @@ CREATE TABLE IF NOT EXISTS `booking_slots` (
 INSERT INTO `booking_slots` (`id`, `booking_id`, `turf_slot_id`, `slot_amount`, `created_on`, `updated_on`) VALUES
 (1, 1, 1, 1000, '2020-01-08 15:20:45', NULL),
 (2, 1, 2, 1000, '2020-01-08 15:20:45', NULL),
-(3, 1, 3, 1000, '2020-01-08 15:20:49', NULL);
+(3, 1, 3, 1000, '2020-01-08 15:20:49', NULL),
+(4, 2, 19, 0, '2020-01-10 17:41:04', NULL),
+(5, 2, 20, 0, '2020-01-10 17:41:04', NULL),
+(6, 3, 24, 100, '2020-01-10 17:41:35', NULL),
+(7, 3, 25, 150, '2020-01-10 17:41:35', NULL),
+(8, 3, 26, 100, '2020-01-10 17:41:35', NULL),
+(9, 3, 27, 0, '2020-01-10 17:41:35', NULL),
+(10, 3, 28, 1000, '2020-01-10 17:41:35', NULL),
+(11, 3, 29, 0, '2020-01-10 17:41:35', NULL),
+(12, 3, 30, 0, '2020-01-10 17:41:35', NULL),
+(13, 3, 31, 500, '2020-01-10 17:41:35', NULL),
+(14, 3, 32, 50, '2020-01-10 17:41:35', NULL),
+(15, 3, 33, 0, '2020-01-10 17:41:35', NULL),
+(16, 3, 34, 100, '2020-01-10 17:41:35', NULL),
+(17, 3, 35, 0, '2020-01-10 17:41:35', NULL),
+(18, 3, 36, 0, '2020-01-10 17:41:35', NULL),
+(19, 3, 37, 0, '2020-01-10 17:41:35', NULL),
+(20, 3, 38, 0, '2020-01-10 17:41:35', NULL),
+(21, 3, 39, 0, '2020-01-10 17:41:35', NULL),
+(22, 3, 40, 0, '2020-01-10 17:41:35', NULL),
+(23, 3, 41, 0, '2020-01-10 17:41:35', NULL),
+(24, 4, 4, 500, '2020-01-10 17:41:59', NULL),
+(25, 4, 5, 0, '2020-01-10 17:41:59', NULL),
+(26, 4, 6, 0, '2020-01-10 17:41:59', NULL),
+(27, 4, 7, 0, '2020-01-10 17:41:59', NULL),
+(28, 4, 8, 500, '2020-01-10 17:41:59', NULL),
+(29, 4, 9, 0, '2020-01-10 17:41:59', NULL),
+(30, 5, 295, 0, '2020-01-10 17:43:55', NULL),
+(31, 5, 296, 0, '2020-01-10 17:43:55', NULL),
+(32, 6, 241, 0, '2020-01-14 14:14:01', NULL),
+(33, 6, 242, 0, '2020-01-14 14:14:01', NULL),
+(34, 7, 110, 0, '2020-01-14 14:16:58', NULL),
+(35, 7, 111, 0, '2020-01-14 14:16:58', NULL),
+(36, 7, 112, 0, '2020-01-14 14:16:58', NULL),
+(37, 7, 113, 0, '2020-01-14 14:16:58', NULL),
+(38, 7, 114, 0, '2020-01-14 14:16:58', NULL),
+(39, 8, 249, 0, '2020-01-17 18:10:12', NULL),
+(40, 8, 254, 0, '2020-01-17 18:10:12', NULL),
+(41, 8, 255, 0, '2020-01-17 18:10:12', NULL),
+(42, 8, 280, 0, '2020-01-17 18:10:12', NULL),
+(43, 9, 246, 0, '2020-02-13 15:35:06', NULL),
+(44, 9, 247, 0, '2020-02-13 15:35:06', NULL),
+(45, 9, 248, 0, '2020-02-13 15:35:06', NULL),
+(46, 9, 249, 0, '2020-02-13 15:35:06', NULL),
+(47, 9, 250, 0, '2020-02-13 15:35:06', NULL),
+(48, 9, 251, 0, '2020-02-13 15:35:06', NULL),
+(49, 9, 252, 0, '2020-02-13 15:35:06', NULL),
+(50, 9, 253, 0, '2020-02-13 15:35:06', NULL),
+(51, 9, 254, 0, '2020-02-13 15:35:06', NULL),
+(52, 9, 255, 0, '2020-02-13 15:35:06', NULL),
+(53, 9, 256, 0, '2020-02-13 15:35:06', NULL),
+(54, 9, 257, 0, '2020-02-13 15:35:06', NULL),
+(55, 9, 258, 0, '2020-02-13 15:35:06', NULL),
+(56, 9, 259, 0, '2020-02-13 15:35:06', NULL),
+(57, 9, 260, 0, '2020-02-13 15:35:06', NULL),
+(58, 9, 261, 0, '2020-02-13 15:35:06', NULL),
+(59, 9, 262, 0, '2020-02-13 15:35:06', NULL),
+(60, 9, 263, 0, '2020-02-13 15:35:06', NULL),
+(61, 10, 289, 0, '2020-02-14 11:21:32', NULL),
+(62, 10, 290, 0, '2020-02-14 11:21:32', NULL),
+(63, 10, 291, 0, '2020-02-14 11:21:32', NULL),
+(64, 10, 292, 0, '2020-02-14 11:21:32', NULL),
+(65, 11, 49, 0, '2020-02-14 15:12:58', NULL),
+(66, 11, 50, 0, '2020-02-14 15:12:58', NULL),
+(67, 11, 51, 1000, '2020-02-14 15:12:58', NULL),
+(68, 11, 52, 1000, '2020-02-14 15:12:58', NULL),
+(69, 12, 55, 0, '2020-02-14 15:13:14', NULL),
+(70, 12, 56, 0, '2020-02-14 15:13:14', NULL),
+(71, 12, 57, 0, '2020-02-14 15:13:14', NULL),
+(72, 12, 58, 0, '2020-02-14 15:13:14', NULL),
+(73, 12, 59, 0, '2020-02-14 15:13:14', NULL),
+(74, 12, 60, 0, '2020-02-14 15:13:14', NULL),
+(75, 12, 61, 1000, '2020-02-14 15:13:14', NULL),
+(76, 12, 62, 1000, '2020-02-14 15:13:14', NULL),
+(77, 12, 63, 500, '2020-02-14 15:13:14', NULL),
+(78, 12, 64, 0, '2020-02-14 15:13:14', NULL),
+(79, 12, 65, 0, '2020-02-14 15:13:14', NULL),
+(80, 12, 66, 0, '2020-02-14 15:13:14', NULL),
+(81, 12, 67, 0, '2020-02-14 15:13:14', NULL),
+(82, 12, 68, 0, '2020-02-14 15:13:14', NULL),
+(83, 12, 69, 0, '2020-02-14 15:13:14', NULL),
+(84, 12, 70, 0, '2020-02-14 15:13:14', NULL),
+(85, 12, 71, 1000, '2020-02-14 15:13:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -48375,20 +48518,58 @@ CREATE TABLE IF NOT EXISTS `managers` (
   `password` varchar(255) DEFAULT NULL,
   `otp` int(11) DEFAULT NULL,
   `forgot_password_key` varchar(255) DEFAULT NULL,
+  `inactive` tinyint(4) NOT NULL DEFAULT '0',
   `deleted` tinyint(4) NOT NULL DEFAULT '0',
   `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `managers`
 --
 
-INSERT INTO `managers` (`id`, `company_name`, `contact_person`, `mobile`, `email`, `password`, `otp`, `forgot_password_key`, `deleted`, `created_on`, `updated_on`) VALUES
-(2, 'TLB Turfs', 'Yohhan Dalvi', '7718813091', '', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', NULL, NULL, 0, '2020-01-02 14:26:58', '2020-01-09 14:07:08'),
-(3, NULL, NULL, '8087428085', NULL, NULL, 23914, NULL, 0, '2020-01-09 13:24:28', NULL),
-(4, NULL, NULL, '7718813091', NULL, NULL, 610253, NULL, 0, '2020-01-09 13:52:09', '2020-01-09 13:53:15');
+INSERT INTO `managers` (`id`, `company_name`, `contact_person`, `mobile`, `email`, `password`, `otp`, `forgot_password_key`, `inactive`, `deleted`, `created_on`, `updated_on`) VALUES
+(2, 'TLB Turfs', 'Yohhan Dalvi', '7718813091', '', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', NULL, NULL, 0, 0, '2020-01-02 14:26:58', '2020-01-14 17:25:03'),
+(3, NULL, NULL, '8087428085', NULL, NULL, 23914, NULL, 1, 0, '2020-01-09 13:24:28', '2020-01-14 16:50:14'),
+(4, NULL, NULL, '7718813091', NULL, NULL, 610253, NULL, 1, 0, '2020-01-09 13:52:09', '2020-01-14 16:50:15'),
+(5, NULL, NULL, '7778883331', NULL, NULL, 629387, NULL, 0, 0, '2020-02-18 11:56:08', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `manager_devices`
+--
+
+DROP TABLE IF EXISTS `manager_devices`;
+CREATE TABLE IF NOT EXISTS `manager_devices` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `manager_id` int(11) NOT NULL,
+  `api_token` varchar(255) NOT NULL,
+  `registration_token` varchar(255) NOT NULL,
+  `device_identifier` varchar(255) NOT NULL,
+  `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+DROP TABLE IF EXISTS `notifications`;
+CREATE TABLE IF NOT EXISTS `notifications` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `player_id` int(11) NOT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `message` longtext,
+  `status` enum('sent','read') DEFAULT 'sent',
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -48403,20 +48584,33 @@ CREATE TABLE IF NOT EXISTS `players` (
   `mobile` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
+  `play_in` enum('one_area','two_three_areas','anywhere') DEFAULT NULL,
+  `play_in_locations` text,
+  `favourite_turf_name` varchar(255) DEFAULT NULL,
+  `favourite_turf_location` text,
+  `favourite_club` varchar(255) DEFAULT NULL,
+  `prefer_to_play` enum('cricket','football','all') DEFAULT NULL,
+  `prefer_to_play_good_as` enum('batsman','bowler','all_rounder','goalkeeper','defender','midfielder','striker','any') DEFAULT NULL,
+  `notified_for_games` enum('mornings','evenings','late_nights','anytime') DEFAULT NULL,
   `otp` int(11) DEFAULT NULL,
   `forgot_password_key` varchar(255) DEFAULT NULL,
+  `inactive` tinyint(4) NOT NULL DEFAULT '0',
   `deleted` tinyint(4) NOT NULL DEFAULT '0',
   `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `players`
 --
 
-INSERT INTO `players` (`id`, `full_name`, `mobile`, `email`, `password`, `otp`, `forgot_password_key`, `deleted`, `created_on`, `updated_on`) VALUES
-(5, 'Yohhan Dalvi', '7718813091', 'yohhan@techcetra.com', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', NULL, NULL, 0, '2020-01-10 11:17:37', '2020-01-10 11:18:57');
+INSERT INTO `players` (`id`, `full_name`, `mobile`, `email`, `password`, `play_in`, `play_in_locations`, `favourite_turf_name`, `favourite_turf_location`, `favourite_club`, `prefer_to_play`, `prefer_to_play_good_as`, `notified_for_games`, `otp`, `forgot_password_key`, `inactive`, `deleted`, `created_on`, `updated_on`) VALUES
+(5, 'Yohhan Dalvi', '7718813091', 'yohhan@techcetra.com', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', 'one_area', '[\"Mumbai\",\"\",\"\"]', 'Tlb new', 'Ghatkopar 2', 'Manchester United 1', 'football', 'defender', 'late_nights', 613594, NULL, 0, 0, '2020-01-10 11:17:37', '2020-01-15 14:32:05'),
+(6, NULL, '9699203099', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 802615, NULL, 1, 0, '2020-01-14 12:06:57', '2020-01-14 17:06:31'),
+(7, NULL, '8087428085', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 482903, NULL, 1, 0, '2020-01-14 12:39:13', '2020-01-14 17:06:30'),
+(10, 'Bob Smith', '7718813092', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2020-01-14 13:29:28', NULL),
+(11, 'YD', '77188130999999', 'yohhan+34@techcetra.com', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2020-02-14 18:25:05', '2020-02-15 12:42:27');
 
 -- --------------------------------------------------------
 
@@ -48518,6 +48712,37 @@ INSERT INTO `player_sport_skill` (`id`, `player_sport_id`, `sport_skill_set_id`,
 (6, 3, 5, '2019-11-13 14:44:20', NULL),
 (7, 4, 8, '2019-11-14 15:31:26', NULL),
 (8, 5, 8, '2019-11-19 15:47:28', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `podcasts`
+--
+
+DROP TABLE IF EXISTS `podcasts`;
+CREATE TABLE IF NOT EXISTS `podcasts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `url` text,
+  `inactive` tinyint(4) NOT NULL DEFAULT '0',
+  `deleted` tinyint(4) NOT NULL DEFAULT '0',
+  `created_on` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `podcasts`
+--
+
+INSERT INTO `podcasts` (`id`, `title`, `image`, `url`, `inactive`, `deleted`, `created_on`, `updated_on`) VALUES
+(1, 'Apple Podcasts', NULL, 'https://podcasts.apple.com/in/podcast/the-onsyde-podcast/id1493930756', 0, 0, NULL, '2020-02-05 17:46:28'),
+(2, 'Google Podcasts', NULL, 'https://www.google.com/podcasts?feed=aHR0cHM6Ly9hbmNob3IuZm0vcy8xMjQyODIzOC9wb2RjYXN0L3Jzcw%3D%3D', 0, 0, NULL, '2020-02-05 17:46:28'),
+(3, 'Overcast', NULL, 'https://overcast.fm/itunes1493930756/the-onsyde-podcast', 0, 0, NULL, '2020-02-05 17:46:59'),
+(4, 'Spotify', NULL, 'https://open.spotify.com/show/2dSMkae80aaXr8UKuGvPZz', 0, 0, NULL, '2020-02-05 17:46:59'),
+(5, 'Castbox', NULL, 'https://castbox.fm/channel/id2541512?country=gb', 0, 0, NULL, '2020-02-05 17:47:40'),
+(6, 'Stitcher', NULL, 'https://www.stitcher.com/podcast/the-onsyde-podcast', 0, 0, NULL, '2020-02-05 17:47:40');
 
 -- --------------------------------------------------------
 
@@ -51081,7 +51306,7 @@ CREATE TABLE IF NOT EXISTS `turfs` (
 --
 
 INSERT INTO `turfs` (`id`, `manager_id`, `name`, `address`, `latitude`, `longitude`, `mobile`, `alternate_number`, `inactive`, `deleted`, `created_on`, `updated_on`) VALUES
-(1, 2, 'TLB Turf', 'Ghatkopar, Sindhu Wadi, Ghatkopar East, Mumbai, Maharashtra, India', '1.00000000', '1.00000000', '7718813091', '', 0, 0, '2020-01-03 15:48:00', NULL);
+(1, 2, 'TLB Turf', 'Ghatkopar, Sindhu Wadi, Ghatkopar East, Mumbai, Maharashtra, India', '1.00000000', '1.00000000', '7718813091', '', 0, 0, '2020-01-03 15:48:00', '2020-01-14 17:16:05');
 
 -- --------------------------------------------------------
 

@@ -68,11 +68,12 @@ class Turf extends ApiController
 	{
 		if($this->authenticate_token())
         {
+        	$search = ($this->input->post('search')) ? $this->input->post('search') : null;
         	$offset = ($this->input->post('offset')) ? $this->input->post('offset') : 0;
 
-			$data['players'] = $this->Player_model->get_all_players(50, $offset, ['select' => 'p.id, p.full_name as name, p.mobile']);
+			$data['players'] = $this->Player_model->get_all_players(50, $offset, ['search' => $search, 'select' => 'p.id, p.full_name as name, p.mobile']);
 
-			$more = $this->Player_model->get_all_players(1, (count($data['players']) + $offset), ['select' => 'p.id, p.full_name as name, p.mobile']);
+			$more = $this->Player_model->get_all_players(1, (count($data['players']) + $offset), ['search' => $search, 'select' => 'p.id, p.full_name as name, p.mobile']);
 
 			$data['more'] = !empty($more) ? 0 : 1;
 

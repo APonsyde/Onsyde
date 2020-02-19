@@ -1,3 +1,121 @@
+<section class="main-block howit-work-wrap">
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-md-12">
+				<div class="booking manager-dashboard pad-bot-0">
+					<form action="php/contact.php" id="message" method="post" novalidate="novalidate" class="pad-50">
+						<div class="form-group">
+							<div class="flexpanel create align-center">
+								<label>Mobile:</label>
+								<p>7045729998</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="flexpanel create align-center">
+								<label>Name:</label>
+								<p>Yohhan Dalvi</p>
+							</div>
+						</div>
+					</form>
+					<div class="flexpanel justify-between align-center">
+						<select class="date">
+							<option value="volvo">Tue, 18th Feb</option>
+							<option value="saab">Friday, 18th Jan</option>
+							<option value="mercedes">Wed, 30th</option>
+						</select>
+					</div>
+					<div class="slots">
+						<div class="flexpanel justify-between">
+							<h6><i class="fas fa-map-marker-alt"></i>Ghatkopar, Sindhu Wadi, Ghatkopar East, Mumbai, Maharashtra, India </h6>
+						</div>
+						<div id="carouselExampleControls" class="carousel bookingcarousel slide" data-ride="carousel">
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<img class="d-block w-100" src="..." alt="First slide">
+								</div>
+								<div class="carousel-item">
+									<img class="d-block w-100" src="..." alt="Second slide">
+								</div>
+								<div class="carousel-item">
+									<img class="d-block w-100" src="..." alt="Third slide">
+								</div>
+							</div>
+							<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+						<div class="timeslots">
+							<ul class="flexpanel wrp">
+								<li>12:00</li>
+								<li>12:00</li>
+								<li>01:00</li>
+								<li>12:00</li>
+								<li>01:30</li>
+								<li>12:00</li>
+								<li>12:00</li>
+								<li>12:00</li>
+								<li class="tabgreen">12:00</li>
+								<li class="tabgreen">04:00</li>
+								<li class="tabgreen">12:00</li>
+								<li class="tabgreen">05:00</li>
+								<li>06:00</li>
+								<li>12:00</li>
+								<li>12:00</li>
+								<li>12:00</li>
+								<li>01:00</li>
+								<li>12:00</li>
+								<li>01:30</li>
+								<li class="tabgrey">12:00</li>
+								<li class="tabgrey">12:00</li>
+								<li class="tabgrey">12:00</li>
+								<li>12:00</li>
+								<li>04:00</li>
+								<li>12:00</li>
+								<li>05:00</li>
+								<li>06:00</li>
+								<li>12:00</li>
+								<li>12:00</li>
+								<li>12:00</li>
+								<li>01:00</li>
+								<li>12:00</li>
+								<li>01:30</li>
+								<li>12:00</li>
+								<li>12:00</li>
+								<li>12:00</li>
+								<li>12:00</li>
+								<li>04:00</li>
+								<li>12:00</li>
+								<li>05:00</li>
+								<li>06:00</li>
+								<li>12:00</li>
+							</ul>
+						</div>
+						<div class="bookslot">
+							<div class="flexpanel end">
+								<div class="pay rs">
+									Rs. 0 / 2 hr
+								</div>
+								<div class="pay rs fontgreen">
+									Confirm Booking →
+								</div>
+								<div class="pay fontred">
+									<i>Cancel Booking →</i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
 <div class="breadcrumbbar">
     <div class="row align-items-center">
         <div class="col-md-8 col-lg-8">

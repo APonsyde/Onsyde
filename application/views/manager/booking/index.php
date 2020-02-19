@@ -1,65 +1,36 @@
-<div class="breadcrumbbar">
-    <div class="row align-items-center">
-        <div class="col-md-8 col-lg-8">
-            <h4 class="page-title">Turf Bookings</h4>
-            <div class="breadcrumb-list">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?php echo site_url('manager/dashboard'); ?>">Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Bookings</li>
-                </ol>
-            </div>
-        </div>
-        <div class="col-md-4 col-lg-4">
-            <div class="widgetbar">
-                <a href="<?php echo site_url('manager/booking/new'); ?>" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>New Booking</a>
-            </div>                        
-        </div>
-    </div>          
-</div>
-<div class="contentbar">
-    <?php $this->load->view('front/layout/alert'); ?>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card m-b-30">
-                <form enctype="multipart/form-data" method="get" id="list-form">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label>Turf :</label>
-                                    <select name="turf_id" class="form-control" onchange="$('#list-form').submit();">
-                                        <option value="">-- All --</option>
-                                        <?php foreach ($turfs as $turf) { ?>
-                                            <option value="<?php echo $turf['id']; ?>" <?php echo ($this->input->get('turf_id') == $turf['id']) ? 'selected' : ''; ?>><?php echo $turf['name']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>Status :</label>
-                                    <select name="status" class="form-control" onchange="$('#list-form').submit();">
-                                        <option value="">-- All --</option>
-                                        <option value="<?php echo TURF_STATUS_BOOKED; ?>" <?php echo ($this->input->get('status') == TURF_STATUS_BOOKED) ? 'selected' : ''; ?>>Confirmed</option>
-                                        <option value="<?php echo TURF_STATUS_CANCELLED; ?>" <?php echo ($this->input->get('status') == TURF_STATUS_CANCELLED) ? 'selected' : ''; ?>>Cancelled</option>
-                                    </select>
-                                </div>
+<section class="main-block howit-work-wrap">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="booking manager-dashboard">
+                    <form enctype="multipart/form-data" method="get" id="list-form">
+                        <div class="flexpanel justify-between align-center mar-40">
+                            <div class="wid-50">Turf:
+                                <select name="turf_id" class="date wid100" onchange="$('#list-form').submit();">
+                                    <option value="">-- All --</option>
+                                    <?php foreach ($turfs as $turf) { ?>
+                                        <option value="<?php echo $turf['id']; ?>" <?php echo ($this->input->get('turf_id') == $turf['id']) ? 'selected' : ''; ?>><?php echo $turf['name']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="wid-50">Status:
+                                <select name="status" class="date wid100" onchange="$('#list-form').submit();">
+                                    <option value="">-- All --</option>
+                                    <option value="<?php echo TURF_STATUS_BOOKED; ?>" <?php echo ($this->input->get('status') == TURF_STATUS_BOOKED) ? 'selected' : ''; ?>>Confirmed</option>
+                                    <option value="<?php echo TURF_STATUS_CANCELLED; ?>" <?php echo ($this->input->get('status') == TURF_STATUS_CANCELLED) ? 'selected' : ''; ?>>Cancelled</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="card m-b-30">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
+                    </form>
+                    <div style="overflow-x:auto;" class="wid100 mt-3">
+                        <table>
                             <thead>
-                                <tr>
-                                    <th scope="col" width="20%">Turf</th>
-                                    <th scope="col">Customer</th>
-                                    <th scope="col">Booking Date</th>
-                                    <th scope="col" width="20%">Time Slot</th>
-                                    <th scope="col">Total Amount</th>
-                                    <th scope="col"></th>
-                                </tr>
+                                <th scope="col" width="20%">Turf</th>
+                                <th scope="col">Customer</th>
+                                <th scope="col">Booking Date</th>
+                                <th scope="col" width="20%">Time Slot</th>
+                                <th scope="col">Total Amount</th>
+                                <th scope="col"></th>
                             </thead>
                             <tbody>
                                 <?php if(!empty($bookings)) { ?>
@@ -81,7 +52,7 @@
                                     <?php } ?>
                                 <?php } else { ?>
                                     <tr>
-                                        <th scope="row" colspan="6">No bookings done yet!</th>
+                                        <th scope="row" colspan="7">No bookings done yet!</th>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -91,4 +62,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>

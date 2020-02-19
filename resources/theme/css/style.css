@@ -438,6 +438,8 @@ h5 {
     opacity: 1;
     visibility: visible;
     width:30%;
+    overflow: auto;
+    padding-bottom: 100px;
   }
   .links li{
     list-style: none;

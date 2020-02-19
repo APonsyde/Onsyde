@@ -20,25 +20,29 @@
 								</div>
 								<div class="timeslots">
 									<ul class="flexpanel wrp">
+										<?php $total_slots = 0; ?>
 										<?php foreach ($turf['slots'] as $key => $slot) { ?>
 					    					<?php
+					    						$booked = false;
 					    						$unavailable = false;
 					    						if($slot['price'] <= 0) {
-					    							// $unavailable = true;
+					    							$unavailable = true;
+					    						} else {
+					    							$total_slots++;
 					    						}
 						    					foreach ($turf['booked_slots'] as $key => $booked_slot) { 
 						    						if($booked_slot['id'] == $slot['id']) {
-						    							$unavailable = true;
+						    							$booked = true;
 						    							break;
 						    						}
 						    					}
 					    					?>
-					    					<li class="<?php echo ($unavailable) ? 'tabgreen' : ''; ?>"><?php echo $slot['time']; ?></li>
+					    					<li class="<?php echo ($booked) ? 'tabgreen' : (($unavailable) ? 'tabgrey' : ''); ?>"><?php echo $slot['time']; ?></li>
 					    				<?php } ?>
 									</ul>
 								</div>
 								<?php 
-				    				$total_booked = (count($turf['slots'])) ? ceil((count($turf['booked_slots'])/count($turf['slots']))*100) : 0;
+				    				$total_booked = $total_slots ? ceil((count($turf['booked_slots'])/$total_slots)*100) : 0;
 			    				?>
 								<h6 class="pt-3">Total bookings : <?php echo $total_booked; ?>% booked</h6>
 								<div class="flexpanel mar-40">

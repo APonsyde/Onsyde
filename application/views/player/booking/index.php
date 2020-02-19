@@ -1,17 +1,10 @@
-<div class="breadcrumbbar">
-    <div class="row align-items-center">
-        <div class="col-md-8 col-lg-8">
-            <h4 class="page-title">My Bookings</h4>
-        </div>
-    </div>          
-</div>
-<div class="contentbar">                
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card m-b-30">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
+<section class="main-block howit-work-wrap">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="booking manager-dashboard">
+                    <div style="overflow-x:auto;" class="wid100 mt-3">
+                        <table>
                             <thead>
                                 <tr>
                                     <th scope="col" width="20%">Turf</th>
@@ -19,7 +12,7 @@
                                     <th scope="col">Booking Date</th>
                                     <th scope="col" width="20%">Time Slot</th>
                                     <th scope="col">Total Amount</th>
-                                    <th scope="col"></th>
+                                    <th scope="col" colspan="2"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,7 +25,6 @@
                                             <td><?php echo $booking['time_slot']; ?></td>
                                             <td>Rs. <?php echo $booking['amount']; ?>/-</td>
                                             <td>
-                                                <a class="mr-2" href="<?php echo site_url('booking/view/'.$booking['booking_key']); ?>">View</a>
                                                 <?php if(in_array($booking['status'], [TURF_STATUS_BOOKED]) && $booking['player_cancellation']) { ?>
                                                     <a href="<?php echo site_url('booking/cancel/'.$booking['id']); ?>">Cancel</a>
                                                 <?php } else { ?>
@@ -43,11 +35,14 @@
                                                     <?php } ?>
                                                 <?php } ?>
                                             </td>
+                                            <td>
+                                                <a class="mr-2" href="<?php echo site_url('booking/view/'.$booking['booking_key']); ?>">View</a>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                 <?php } else { ?>
                                     <tr>
-                                        <th scope="row" colspan="6">No bookings done yet!</th>
+                                        <th scope="row" colspan="7">No bookings done yet!</th>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -57,4 +52,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>

@@ -75,6 +75,9 @@ class Turf extends ApiController
 
 			$more = $this->Player_model->get_all_players(1, (count($data['players']) + $offset), ['search' => $search, 'select' => 'p.id, p.full_name as name, p.mobile']);
 
+			pr($more);
+			exit;
+
 			$data['more'] = !empty($more) ? 0 : 1;
 
 			$response = [

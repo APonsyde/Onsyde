@@ -1,10 +1,6 @@
-<div class="breadcrumbbar">
-    <div class="row align-items-center">
-        <div class="col-md-8 col-lg-8">
-            <h4 class="page-title">Dashboard</h4>
-        </div>
-    </div>          
-</div>
+
+<section class="dashboard">
+        <div class="container-fluid">
 <div class="contentbar">
     <div class="row align-items-center">
 		<div class="col-lg-4 col-xl-4">
@@ -139,3 +135,5 @@
 	    <?php } ?>
     </div>
 </div>
+</div>
+</section>

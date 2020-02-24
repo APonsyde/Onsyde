@@ -797,6 +797,9 @@ border-bottom-right-radius: 0;
   display: block;
   margin: 0 auto;
 }
+.register .btn-search:hover{
+
+}
   .searchDate{
     list-style: none
   }
@@ -935,6 +938,15 @@ border-bottom-right-radius: 0;
     width: 38%;
     left: 0;
     top: 50%;
+}
+.register .btn-search .btn-simple{
+  width: 100%;
+}
+.register .btn-search:hover{
+  background: #484848
+}
+.btn-search{
+  cursor: pointer;
 }
 .card {
   margin-bottom: 30px;
@@ -2349,7 +2361,7 @@ hr {
   text-align: center;
 }
 .inpt{    width: 100%;
-  padding: 14px 12px;}
+  padding:20px 12px;border:0}
   .inpt:hover{
     outline:none
   }

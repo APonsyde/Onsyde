@@ -49,8 +49,7 @@
 							    					}
 						    					?>
 												<li class="<?php echo ($unavailable) ? 'slot-unavailable tabgrey' : 'slot-available'; ?>" data-price="<?php echo $slot['price']; ?>"  data-id="<?php echo $slot['id']; ?>">
-													<?php echo $slot['time']; ?> -
-					    							<?php echo date("h:i a", strtotime('+30 minutes', strtotime($slot['time']))); ?>
+													<?php echo $slot['time']; ?>
 					    							<input type="checkbox" class="d-none" name="slot[]" value="<?php echo $slot['id']; ?>">
 												</li>
 											<?php } ?>

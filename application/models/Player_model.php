@@ -129,10 +129,10 @@ class Player_model extends CI_Model {
 
 		if(!empty($params['search'])) {
 			$this->db->group_start();
-			$this->db->like('p.id', $params['search'], 'both');
-			$this->db->or_like('p.full_name', $params['search'], 'both');
+			// $this->db->like('p.id', $params['search'], 'both');
+			$this->db->like('p.full_name', $params['search'], 'both');
 			$this->db->or_like('p.mobile', $params['search'], 'both');
-			$this->db->or_like('p.email', $params['search'], 'both');
+			// $this->db->or_like('p.email', $params['search'], 'both');
 			$this->db->group_end();
 		} 
 

@@ -1,32 +1,22 @@
-<div class="breadcrumbbar">
-    <div class="row align-items-center">
-        <div class="col-md-8 col-lg-8">
-            <h4 class="page-title">Manage Turf Slots - <?php echo $turf['name']; ?></h4>
-            <div class="breadcrumb-list">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?php echo site_url('manager/dashboard'); ?>">Dashboard</a></li>
-                    <li class="breadcrumb-item" aria-current="page">Turfs</li>
-                    <li class="breadcrumb-item active" aria-current="page">Slots</li>
-                </ol>
+<section class="main-block howit-work-wrap">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <?php if(!empty($days)) { ?>
+                    <?php foreach ($days as $day => $data) { ?>
+                        <?php $this->load->view('manager/turf/_slot', ['data' => $data, 'day' => $day]); ?>
+                    <?php } ?>
+                <?php } else { ?>
+                    <div class="col-sm-12">
+                        <div class="alert alert-danger" role="alert">
+                            No turfs added yet!
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
-    </div>          
-</div>
-<div class="contentbar">                
-    <div class="row">
-        <?php if(!empty($days)) { ?>
-            <?php foreach ($days as $day => $data) { ?>
-                <?php $this->load->view('manager/turf/_slot', ['data' => $data, 'day' => $day]); ?>
-            <?php } ?>
-        <?php } else { ?>
-            <div class="col-sm-12">
-                <div class="alert alert-danger" role="alert">
-                    No turfs added yet!
-                </div>
-            </div>
-        <?php } ?>
     </div>
-</div>
+</section>
 
 <div class="modal fade" id="priceModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -63,7 +53,7 @@
 
         $(document).on("click", ".badge-set", function() {
             var _this = $(this);
-            $(this).toggleClass('badge-select');
+            $(this).toggleClass('badge-select tabgrey');
         });
 
         $(document).on("click", ".btn-add", function() {
@@ -111,7 +101,7 @@
 
         $(document).on("click", ".btn-reset", function() {
             var _this = $(this);
-            _this.parents('.box').find('.badge-set').removeClass('badge-select');
+            _this.parents('.box').find('.badge-set').removeClass('badge-select tabgrey');
         });
     });
 </script>

@@ -8,6 +8,7 @@ class Turf extends ApiController
 		parent::__construct();
 		$this->load->model('Turf_model');
 		$this->load->model('Email_model');
+		$this->load->model('Player_model');
 		$this->load->model('Booking_model');
 	}
 
@@ -52,6 +53,29 @@ class Turf extends ApiController
 
 				$data['turfs'][$key]['slots'] = $slots;
 			}
+
+			$response = [
+                'success' => true,
+                'message' => '',
+                'data' => $data
+            ];
+
+            $this->set_response($response, \Restserver\Libraries\REST_Controller::HTTP_OK);
+		}
+	}
+
+	public function players_post()
+	{
+		if($this->authenticate_token())
+        {
+        	$search = ($this->input->post('search')) ? $this->input->post('search') : null;
+        	$offset = ($this->input->post('offset')) ? $this->input->post('offset') : 0;
+
+			$data['players'] = $this->Player_model->get_all_players(50, $offset, ['search' => $search, 'select' => 'p.id, p.full_name as name, p.mobile']);
+
+			$more = $this->Player_model->get_all_players(1, (count($data['players']) + $offset), ['search' => $search, 'select' => 'p.id, p.full_name as name, p.mobile']);
+
+			$data['more'] = empty($more) ? 0 : 1;
 
 			$response = [
                 'success' => true,

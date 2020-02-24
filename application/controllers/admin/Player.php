@@ -27,7 +27,7 @@ class Player extends AdminController
 		$data['subtab'] = 'list';
 		$data['title'] = 'Player Listing';
 		$data['_view'] = 'admin/player/listing';
-		$this->load->view('admin/layout/basetemplate', $data);
+		$this->load->view('front/layout/basetemplate', $data);
 	}
 
 	public function view($id = 0)
@@ -42,7 +42,7 @@ class Player extends AdminController
 			$data['subtab'] = 'list';
 			$data['title'] = 'Player Listing';
 			$data['_view'] = 'admin/player/view';
-			$this->load->view('admin/layout/basetemplate', $data);
+			$this->load->view('front/layout/basetemplate', $data);
 		}
 		else
 		{

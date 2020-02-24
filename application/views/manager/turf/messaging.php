@@ -1,39 +1,27 @@
-<div class="breadcrumbbar">
-    <div class="row align-items-center">
-        <div class="col-md-8 col-lg-8">
-            <h4 class="page-title">Turf Slots Messaging - <?php echo $turf['name']; ?></h4>
-            <div class="breadcrumb-list">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?php echo site_url('manager/dashboard'); ?>">Dashboard</a></li>
-                    <li class="breadcrumb-item" aria-current="page">Turfs</li>
-                    <li class="breadcrumb-item" aria-current="page">Slots</li>
-                    <li class="breadcrumb-item active" aria-current="page">Messaging</li>
-                </ol>
-            </div>
-        </div>
-    </div>          
-</div>
-<div class="contentbar">
-    <?php $this->load->view('manager/layout/alert'); ?>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card m-b-30">
-                <div class="card-body">
-                    <form method="post">
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
+<section class="main-block howit-work-wrap">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="booking manager-dashboard">
+                    <?php echo $turf['name']; ?>
+                    <hr>
+                    <div class="">
+                        <form action="php/contact.php" id="message" method="post" novalidate="novalidate">
+                            <div class="form-group">
                                 <label>Message</label>
                                 <textarea class="form-control" name="message" placeholder="Slot messaging template" rows="12"><?php echo $message; ?></textarea>
-                                <small class="form-text text-muted">This message will be sent to all the players that have booked this turf previously.</small>
+                                <p>This message will be sent to all the players that have booked this turf previously.</p>
                                 <?php echo form_error('message'); ?>
                             </div>
-                        </div>
-                        <hr>
-                        <button type="submit" class="btn btn-outline-primary">Send</button>
-                        <a href="<?php echo site_url('manager/turf/listing'); ?>" class="btn btn-outline-danger float-right">Cancel</a>
-                    </form>
+                            <div class="flexpanel justify-between">
+                                <button class="greyBtn green">Send</button>
+                                <a href="<?php echo site_url('manager/turf/listing'); ?>" class="redbg">Cancel</a>
+                            </div>
+                            <div id="js-contact-result" data-success-msg="Success, We will get back to you soon" data-error-msg="Oops! Something went wrong"></div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>

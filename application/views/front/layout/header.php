@@ -24,7 +24,7 @@
                                         <a class="nav-link" href="<?php echo site_url('manager'); ?>">Are you a Turf Manager?</a>
                                     </li>
                                     <li class="nav-item dropdown greenborder">
-                                        <a class="nav-link" href="<?php echo site_url('player'); ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Player Login </a>
+                                        <a class="nav-link" href="<?php echo site_url('player'); ?>">Player</a>
                                     </li>
                                 </ul>
                                 <a class="burger" type="button">
@@ -39,6 +39,30 @@
                 <ul>
                     <li><a href="<?php echo site_url('about-us'); ?>">About Us</a></li>
                     <li><a href="<?php echo site_url('contact-us'); ?>">Contact</a></li>
+                    <?php if($this->session->userdata('admin_id')) { ?>
+                        <hr>
+                        <li><a href="<?php echo site_url('admin/dashboard'); ?>">Dashboard</a></li>
+                        <li><a href="<?php echo site_url('admin/turf/listing'); ?>">Turfs</a></li>
+                        <li><a href="<?php echo site_url('admin/manager/listing'); ?>">Managers</a></li>
+                        <li><a href="<?php echo site_url('admin/player/listing'); ?>">Players</a></li>
+                        <li><a href="<?php echo site_url('admin/content/blogs'); ?>">Blogs</a></li>
+                        <li><a href="<?php echo site_url('admin/content/podcasts'); ?>">Podcasts</a></li>
+                        <li><a href="<?php echo site_url('admin/logout'); ?>">Logout</a></li>
+                    <?php } ?>
+                    <?php if($this->session->userdata('manager_id')) { ?>
+                        <hr>
+                        <li><a href="<?php echo site_url('manager/dashboard'); ?>">Dashboard</a></li>
+                        <li><a href="<?php echo site_url('manager/booking/create'); ?>">+ New Booking</a></li>
+                        <li><a href="<?php echo site_url('manager/bookings'); ?>">Bookings</a></li>
+                        <li><a href="<?php echo site_url('manager/turf/create'); ?>">Add new Turf</a></li>
+                        <li><a href="<?php echo site_url('manager/turf/listing'); ?>">List all Turfs</a></li>
+                        <li><a href="<?php echo site_url('manager/logout'); ?>">Logout</a></li>
+                    <?php } ?>
+                    <?php if($this->session->userdata('player_id')) { ?>
+                        <hr>
+                        <li><a href="<?php echo site_url('bookings'); ?>">Bookings</a></li>
+                        <li><a href="<?php echo site_url('player/logout'); ?>">Logout</a></li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>

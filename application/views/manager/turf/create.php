@@ -20,6 +20,23 @@
                                 <?php echo form_error('address'); ?>
                             </div>
                             <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label>Area</label>
+                                    <input type="text" class="form-control" name="area" placeholder="Area" value="<?php echo $this->input->post('area'); ?>">
+                                    <?php echo form_error('area'); ?>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>City</label>
+                                    <input type="text" class="form-control" name="city" placeholder="City" value="<?php echo $this->input->post('city'); ?>">
+                                    <?php echo form_error('city'); ?>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Pin Code</label>
+                                    <input type="text" class="form-control" name="pincode" placeholder="Pin Code" value="<?php echo $this->input->post('pincode'); ?>">
+                                    <?php echo form_error('pincode'); ?>
+                                </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>Mobile</label>
                                     <input type="text" class="form-control" name="mobile" placeholder="Mobile" value="<?php echo $this->input->post('mobile'); ?>">

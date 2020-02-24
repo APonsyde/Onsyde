@@ -16,6 +16,7 @@ class Page extends FrontController
     public function home()
     {
         $data['blogs'] = $this->Blog_model->get_all_blogs(4, null, ['inactive' => 0]);
+        $data['podcasts'] = $this->Podcast_model->get_all_podcasts(null, null, ['inactive' => 0]);
 
         $data['tab'] = 'home';
         $data['title'] = 'Home';

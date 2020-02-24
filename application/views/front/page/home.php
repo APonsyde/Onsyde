@@ -200,12 +200,13 @@
                 </div>
                 <div class="flexpanel">
                     <ul class="podcast flexpanel flex-wrap">
-                        <li><a href="https://open.spotify.com/show/2dSMkae80aaXr8UKuGvPZz"><img src="images/spotify.png"></a></li>
-                        <li><a href="https://podcasts.apple.com/in/podcast/the-onsyde-podcast/id1493930756"><img src="images/apple.png"></a></li>
-                        <li><a href="https://castbox.fm/channel/id2541512?country=gb"><img src="images/castbox.png"></a></li>
-                        <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9hbmNob3IuZm0vcy8xMjQyODIzOC9wb2RjYXN0L3Jzcw%3D%3D"><img src="images/googlepodcast.png"></a></li>
-                        <li><a href="https://overcast.fm/itunes1493930756/the-onsyde-podcast"><img src="images/overcast.png"></a></li>
-                        <li><a href=" https://www.stitcher.com/podcast/the-onsyde-podcast"><img src="images/stitcher.png"></a></li>
+                        <?php foreach ($podcasts as $key => $podcast) { ?>
+                            <li>
+                                <a href="<?php echo $podcast['url']; ?>" href="_blank"><img src="<?php echo show_image(base_url('uploads/podcasts/images/'.$podcast['image'])); ?>">
+                                    <span>Listen On <?php echo $podcast['title']; ?></span>
+                                </a>
+                            </li>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>

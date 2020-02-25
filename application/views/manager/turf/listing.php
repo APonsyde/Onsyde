@@ -1,7 +1,5 @@
-<section class="main-block howit-work-wrap">
-	<div class="container-fluid">
-		<div class="row justify-content-center">
-			<div class="col-md-12">
+<section class="wid80 howit-work-wrap">
+	
 				<div class="booking manager-dashboard pad-bot-0">
 	            	<form id="dayForm">
 						<div class="flexpanel justify-between align-center">
@@ -67,7 +65,5 @@
 				        </div>
 				    <?php } ?>
 				</div>
-			</div>
-		</div>
-	</div>
+			
 </section>

@@ -16,8 +16,9 @@
                                 <div class="input-group-append app">
                                     <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fa fa-search text-grey"
                                         aria-hidden="true"></i></span>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                 <ul class="navbar-nav hide">
                                     <li class="nav-item active">

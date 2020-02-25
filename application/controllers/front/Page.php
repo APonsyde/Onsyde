@@ -153,7 +153,10 @@ class Page extends FrontController
         {
             $data['slot_selection_type'] = $slot_selection_type;
 
-            $data['turfs'] = $this->Turf_model->get_all_turfs(null, null, ['inactive' => 0]);
+            $filters = $this->input->get();
+            $filter['inactive'] = 0;
+
+            $data['turfs'] = $this->Turf_model->get_all_turfs(null, null, $filters);
 
             $date = ($this->input->get('date')) ? $this->input->get('date') : date('Y-m-d');
             $timestamp = strtotime($date);

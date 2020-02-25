@@ -154,7 +154,9 @@ class Turf_model extends CI_Model
 		if(!empty($params['search'])) {
 			$this->db->group_start();
 			$this->db->like('t.id', $params['search'], 'both');
-			$this->db->or_like('t.turf_name', $params['search'], 'both');
+			$this->db->or_like('t.name', $params['search'], 'both');
+			$this->db->or_like('t.area', $params['search'], 'both');
+			$this->db->or_like('t.city', $params['search'], 'both');
 			$this->db->or_like('t.pincode', $params['search'], 'both');
 			$this->db->group_end();
 		} 

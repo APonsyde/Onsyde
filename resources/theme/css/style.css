@@ -24,6 +24,18 @@ Author:
   background-color: #eee;
   border-radius: 50%;
 }
+.align-center{
+  align-items: center
+}
+.profilepic{
+  width: 40px;
+  height: 40px;
+  background-color: #eee;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
 .m-20{
   margin-bottom: 20px;
 }
@@ -126,10 +138,11 @@ Author:
 .dashboard{
   padding: 45px 0 0;
 }
-.profile .detail > .act > a, .profile .detail > .act > a:hover, .profile .detail > .act > a:focus {
-  background-color: transparent;color: #484848;position: relative;
+ .detail > .act > a, .detail > .act > a:hover, .detail > .act > a:focus {
+  background-color: transparent;color: #53b64b;;position: relative;
 }
-.profile .detail > .act > a:before {
+.tble a{color: #484848}
+ .detail > .act > a:before {
   position: absolute;
   content: "";
   background: #39b54a;
@@ -153,6 +166,28 @@ Author:
    .white{
     color:#fff !important;
    }
+   .fixed-top{
+    top: 70px !important;   
+     height: 100%;
+    background: #F2F5F8;
+    width: 20%;
+   }
+   .wid20{width:20%}
+   .wid80{width:78%}
+   .list-group-item.active,.list-group-item:hover {
+    border-radius: 0 !important;
+    background-color: #39B44A !important;
+    border-color: #39B44A !important;
+    color: #fff !important
+    
+}
+
+.list-group-item{
+  border:0 !important;
+  padding: .75rem 1rem .75rem 2rem !Important;
+  background: #F2F5F8;
+  color: #666666;
+}
 .tabs li{
       margin-right: 25px;
     list-style: none;
@@ -160,6 +195,7 @@ Author:
     color: #484848;
     position: relative;
 }
+.hide{display:none;}
 .tabs li.act{
   color:#39b44a;
   font-weight: bold
@@ -167,8 +203,14 @@ Author:
 .timeslots li.tabgreen{
   background:#39b44a;color:#fff;
 }
-.timeslots li.tabgrey{
-  background:#4f4f4f;color:#fff;
+.timeslots li.booked{
+  background:#384248;color:#fff;
+}
+.timeslots li.unavailable{
+  background:#F2F5F8;color:#fff;
+}
+.timeslots li.selection{
+  background:#39B44A;color:#fff;
 }
 .end{
   justify-content: flex-end;
@@ -206,21 +248,22 @@ Author:
 
 .fontred{    color: #e85015;}
 .booking.manager-dashboard{
-  padding: 45px;margin:0
+  padding: 45px 0;
+  margin: 0 0 0 45px;
 }
 .timeslots li{
          border: 1px solid #a4a4a4;
     border-radius: 5px;
-    padding: 5px 0 3px 0;
+    padding: 5px 10px 3px 10px;
     list-style: none;
-    width: calc(70px - 10px);
-    margin: 0 5px 10px 5px;
+   
+    margin: 0 5px 10px 0;
     text-align: center;
     color: #727272;
     font-weight: 400;
 }
 .timeslots{
-  margin: 50px 0 0;
+  margin: 30px 0 0;
 }
 .tabs li.act:after{
   position: absolute;;
@@ -250,8 +293,24 @@ border-bottom-left-radius: 0.25rem;
     margin: 30px 0 0;
 }
 .slots{
-  margin: 50px 0 0;
+  margin: 0 0 0;
 }
+.detail{
+  margin: 20px 0 0;
+  border-bottom: 1px solid #cdcdcd;
+  padding: 0 0;
+  position: relative;
+}
+.slotbtn{
+  color: #39b54a;
+  padding: 10px 20px;
+  font-size: 16px;
+  display: inline-block;
+  /* margin: 20px 0 0; */
+  /* text-decoration: underline; */
+  border: 1px solid #39b54a;
+}
+.slotbtn:hover{color: #39b54a;text-decoration: none}
 h6{
       color: #666666;
     font-size: 16px;
@@ -270,7 +329,7 @@ h6{
   border: 1px solid #60c06c;
 }
 .booking{
-      background: #f6f6f6;
+      background:transparent;
     padding: 45px 45px 0;
     margin: 55px 0 0;
 }
@@ -302,8 +361,8 @@ p a:hover{
 }
 .redbg{    background: red;
   border-radius: 5px;border: 0;
-  color: rgba(255, 255, 255, 0.8);
-  padding: 15px 20px;}
+  color:#fff;
+  padding: 5px 20px;}
 button:focus{
   outline:none;
 }
@@ -316,8 +375,8 @@ button:focus{
   background: #b2b2b2;
     padding: 20px;
     border-radius: 5px;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 15px 20px;
+    color:#fff !Important;
+    padding: 5px 20px;
     border: 0;
 }
 .rht{
@@ -326,10 +385,13 @@ button:focus{
   width: 100%;
 }
 .app{
-  
   border-left: 0;
-  padding: 3px 10px;
-  background: #f4f4f5
+  padding: 0 15px;
+  background: #F2F5F8;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  display: flex;
+  align-items: center;
 }
 .input-group.md-form.form-sm.form-2 input.red-border {
 border: 1px solid #ef9a9a;
@@ -340,14 +402,26 @@ border: 1px solid #cddc39;
 .input-group.md-form.form-sm.form-2 input.amber-border {
   border: 1px solid transparent;
     border-right: 0;
-    background: #f4f4f5;
-    border-radius: 0;
+    background: #F2F5F8;
+   
+}
+.calendar{
+  width:20px;    margin-right: 10px;
 }
 body {
   font-family: 'Roboto', sans-serif;color: #484848 !important;background: #fff !important}
-  .booking .date{width: 50%;
+  .booking .date{    width: auto;
     border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;}
+    border-bottom-right-radius: 5px;
+    border: 0;
+    padding: 10px 10px 10px 0;
+    /* padding-right: 40px; */
+    background: transparent;}
+    .totalbooking{
+    margin:20px 0 0;
+    }
+    .totalbooking span{    padding: 0 0 0 20px;
+      font-style: italic;}
     .grn:hover{
       text-decoration: none;color: #39b44a;
     }
@@ -490,7 +564,7 @@ footer.main-block {
   padding: 100px 0 60px; }
 
 .gray {
-  background: #f6f6f6; }
+  background:#F2F5F8; }
 
 .gray-dark {
   background: #f5f5f5; }
@@ -533,12 +607,14 @@ footer.main-block {
   border-bottom: 1px solid #f3f0f0;-webkit-box-shadow: 0px 3px 5px -2px rgba(160,160,161,1);
   -moz-box-shadow: 0px 3px 5px -2px rgba(160,160,161,1);
   box-shadow: 0px 3px 5px -2px rgba(160,160,161,1); }
+  
+  .navbar-brand{padding: 0 !important}
 
 .nav-item a {
   color: #4e4e4e;
   font-weight: 400; }
   .nav-item a:hover {
-    color: #ff6b6b;
+    color: #39B44A;
     background: none; }
 
 .nav-item span {
@@ -579,7 +655,7 @@ footer.main-block {
   cursor: pointer; }
 
 .navbar {
-  padding: 1rem 0; }
+  padding:0 0 !important; }
 
 .dropdown-item {
   border-bottom: 1px solid #f5f0f0;
@@ -677,9 +753,9 @@ position: relative;
 #message p{
   margin: 1em 0
 }
-.tble{     overflow-x: auto;
+/* .tble{     overflow-x: auto;
   width: calc(50% - 40px);
-  margin: 0 20px;}
+  margin: 0 20px;} */
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -695,12 +771,25 @@ table {
 .viewdiv h3{    font-size: 20px;
   border-bottom: 1px solid #cdcdcd;
   padding: 0 50px 10px 50px;}
-.view{color:#39b54a;cursor: pointer;text-align: center;font-weight: 400;}
+.view{background: #39b54a;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 400;
+  position: absolute;
+  right: 5px;
+  border-radius: 5px;
+  /* padding: 5px 0; */
+  bottom: 4px;}
+  .detail > li.view a{
+    color: #fff;
+    padding: 5px 20px;
+    font-size: 14px;
+  }
 .cancel{color:#dc5a5a;cursor: pointer;}
 td{    font-weight: 300;}
 th, td {
   text-align: left;
-  padding: 20px 10px;
+  padding: 11px 10px;
   border-bottom: 1px solid #cdcdcd;
 }
 
@@ -891,6 +980,8 @@ border-bottom-right-radius: 0;
     }
   .btn-search .btn-simple {
     color: #fff;
+    width: 100%;
+    border-radius: 0;
     background: #39b54a;
     padding: 17px 46px;
     font-size: 18px; }
@@ -2101,7 +2192,7 @@ hr {
     }
 
 .form-group textarea {
-  height: 100px;resize:none }
+  height: 180px;resize:none }
   .submit{
     background-color: transparent;
     color: #fff
@@ -2470,7 +2561,7 @@ hr {
   text-align: center;
 }
 .form-control {
-  padding: 14px 12px;
+  padding: 8px 12px;
   background: #fbfbfb;    margin: 0; }
   .form-control:focus {
     border-color: #ff6b6b; }

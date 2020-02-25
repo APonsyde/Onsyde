@@ -1,7 +1,18 @@
-<section class="main-block howit-work-wrap">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
+<div class="flexpanel">
+<aside class="px-0 wid20" id="left">
+
+<div class="list-group fixed-top">
+    <a href="#" class="list-group-item active">Link</a>
+    <a href="#" class="list-group-item">Link</a>
+    <a href="#" class="list-group-item">Link</a>
+    <a href="#" class="list-group-item">Link</a>
+   
+</div>
+
+</aside>
+<div class="wid80">
+<section class="howit-work-wrap">
+   
                 <div class="booking manager-dashboard">
                     <?php echo $turf['name']; ?>
                     <hr>
@@ -14,14 +25,14 @@
                                 <?php echo form_error('message'); ?>
                             </div>
                             <div class="flexpanel justify-between">
-                                <button class="greyBtn green">Send</button>
+                                <a class="greyBtn green">Send</a>
                                 <a href="<?php echo site_url('manager/turf/listing'); ?>" class="redbg">Cancel</a>
                             </div>
                             <div id="js-contact-result" data-success-msg="Success, We will get back to you soon" data-error-msg="Oops! Something went wrong"></div>
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+           
 </section>
+</div>
+</div>

@@ -190,7 +190,7 @@
         </div>
     </section>
 <?php } ?>
-<section class="main-block gray">
+<section class="main-block">
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-10">

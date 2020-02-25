@@ -1,9 +1,6 @@
 <section class="howit-work-wrap">
-
-		<div class="flexpanel">
-			
+		<div class="flexpanel">	
 		<aside class="px-0 wid20" id="left">
-
 				<div class="list-group fixed-top">
 					<a href="#" class="list-group-item active">Link</a>
 					<a href="#" class="list-group-item">Link</a>
@@ -16,7 +13,6 @@
 					<a href="#" class="list-group-item">Link</a>
 					<a href="#" class="list-group-item">Link</a>
 				</div>
-
 				</aside>
 
 			<div class="wid80">

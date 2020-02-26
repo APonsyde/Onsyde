@@ -27,7 +27,7 @@ class Manager extends AdminController
 		$data['subtab'] = 'list';
 		$data['title'] = 'Manager Listing';
 		$data['_view'] = 'admin/manager/listing';
-		$this->load->view('front/layout/basetemplate', $data);
+		$this->load->view('admin/layout/basetemplate', $data);
 	}
 
 	public function status($id = 0)

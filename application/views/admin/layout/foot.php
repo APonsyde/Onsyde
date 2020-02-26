@@ -1,14 +1,5 @@
 <script src="<?php echo base_url('resources/theme/js/popper.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/theme/js/bootstrap.min.js'); ?>"></script>
-<script src="<?php echo base_url('resources/theme/js/modernizr.min.js'); ?>"></script>
-<script src="<?php echo base_url('resources/theme/js/detect.js'); ?>"></script>
-<script src="<?php echo base_url('resources/theme/js/jquery.slimscroll.js'); ?>"></script>
-<script src="<?php echo base_url('resources/theme/js/vertical-menu.js'); ?>"></script>
-<script src="<?php echo base_url('resources/theme/plugins/switchery/switchery.min.js'); ?>"></script>
-<script src="<?php echo base_url('resources/theme/plugins/apexcharts/apexcharts.min.js'); ?>"></script>
-<script src="<?php echo base_url('resources/theme/plugins/select2/select2.min.js'); ?>"></script>    
-<script src="<?php echo base_url('resources/theme/plugins/apexcharts/irregular-data-series.js'); ?>"></script>    
-<script src="<?php echo base_url('resources/theme/plugins/slick/slick.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/theme/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js'); ?>"></script>
 <script src="https://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
 <script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
@@ -23,4 +14,4 @@
 <script src="<?php echo base_url('resources/theme/plugins/jquery-file-upload/js/jquery.fileupload-video.js'); ?>"></script>
 <script src="<?php echo base_url('resources/theme/plugins/jquery-file-upload/js/jquery.fileupload-validate.js'); ?>"></script>
 <script src="<?php echo base_url('resources/theme/plugins/jquery-file-upload/js/jquery.fileupload-ui.js'); ?>"></script>
-<script src="<?php echo base_url('resources/admin/js/core.js'); ?>"></script>
+<script src="<?php echo base_url('resources/theme/js/core.js'); ?>"></script>

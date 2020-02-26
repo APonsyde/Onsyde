@@ -37,7 +37,7 @@ class Turf extends AdminController
 		$data['subtab'] = 'list';
 		$data['title'] = 'Turf Listing';
 		$data['_view'] = 'admin/turf/listing';
-		$this->load->view('front/layout/basetemplate', $data);
+		$this->load->view('admin/layout/basetemplate', $data);
 	}
 
 	public function status($id = 0)

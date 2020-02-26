@@ -24,7 +24,7 @@ class Content extends AdminController
         $data['tab'] = 'blogs';
         $data['title'] = 'List all blogs';
         $data['_view'] = 'admin/content/blogs';
-        $this->load->view('front/layout/basetemplate', $data);
+        $this->load->view('admin/layout/basetemplate', $data);
     }
 
     public function podcasts()
@@ -41,7 +41,7 @@ class Content extends AdminController
         $data['tab'] = 'podcasts';
         $data['title'] = 'List all podcasts';
         $data['_view'] = 'admin/content/podcasts';
-        $this->load->view('front/layout/basetemplate', $data);
+        $this->load->view('admin/layout/basetemplate', $data);
     }
 
     public function add($type = null)
@@ -104,7 +104,7 @@ class Content extends AdminController
             $data['tab'] = $type.'s';
 	        $data['title'] = 'Add new '.$type;
 	        $data['_view'] = 'admin/content/add';
-	        $this->load->view('front/layout/basetemplate', $data);
+	        $this->load->view('admin/layout/basetemplate', $data);
         }
     }
 
@@ -186,7 +186,7 @@ class Content extends AdminController
             $data['tab'] = $type.'s';
 	        $data['title'] = 'Edit '.$type;
 	        $data['_view'] = 'admin/content/edit';
-	        $this->load->view('front/layout/basetemplate', $data);
+	        $this->load->view('admin/layout/basetemplate', $data);
         }
     }
 

@@ -58,7 +58,7 @@ class User extends AdminController
         $data['tab'] = 'dashboard';
         $data['title'] = 'View your dashboard activity';
         $data['_view'] = 'admin/user/dashboard';
-        $this->load->view('front/layout/basetemplate', $data);
+        $this->load->view('admin/layout/basetemplate', $data);
     }
 
     public function logout()

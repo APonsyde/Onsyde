@@ -9,7 +9,7 @@
                 </select>
             </div>
             <div class="wid-50">
-                <a href="<?php echo site_url('admin/content/add/podcast'); ?>" class="btn btn-primary btn-sm float-right">Add New</a>
+                <a href="<?php echo site_url('admin/content/add/podcast'); ?>" class="slotbtn float-right">Add New</a>
             </div>
         </div>
     </form>
@@ -36,7 +36,7 @@
                                     <span class="badge badge-success">Enabled</span>
                                 <?php } ?>
                             </td>
-                            <td><a class="btn btn-dark" href="<?php echo site_url('admin/content/edit/podcast/'.$podcast['id']); ?>">Edit</a></td>
+                            <td><a class="greyBtn green" href="<?php echo site_url('admin/content/edit/podcast/'.$podcast['id']); ?>">Edit</a></td>
                         </tr>
                     <?php } ?>
                 <?php } else { ?>

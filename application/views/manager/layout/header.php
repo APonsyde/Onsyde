@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php $this->load->view('front/layout/head'); ?>
+    <?php $this->load->view('manager/layout/head'); ?>
 </head>
 <body>
     <div class="nav-menu sticky-top">

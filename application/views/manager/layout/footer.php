@@ -1,3 +1,3 @@
-    <?php $this->load->view('front/layout/foot'); ?>
+    <?php $this->load->view('manager/layout/foot'); ?>
 </body>
 </html>

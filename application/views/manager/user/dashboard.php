@@ -1,14 +1,24 @@
 <div class="booking manager-dashboard">
-	<div class="flexpanel align-center">
-    	<form id="dayForm">
-			<?php $days = get_upcoming_days();?>
-			<img src="<?php echo base_url('resources/front/images/calendar.svg'); ?>" alt="logo" class="calendar">
-			<select class="date" name="date" onchange="document.getElementById('dayForm').submit();">
-				<?php foreach ($days as $key => $day) { ?>
-					<option value="<?php echo $key; ?>" <?php echo ($this->input->get('date') == $key) ? 'selected' : ''; ?>><?php echo $day; ?></option>
-				<?php } ?>
-			</select>
-			<span class="ti-angle-down"></span>
+	<div class="flexpanel justify-between align-center mb-3">
+		<form id="dayForm">
+			<div class="wid50">
+				<?php $days = get_upcoming_days();?>
+				<img src="<?php echo base_url('resources/front/images/calendar.svg'); ?>" alt="logo" class="calendar">
+				<select class="date" name="date" onchange="document.getElementById('dayForm').submit();">
+					<?php foreach ($days as $key => $day) { ?>
+						<option value="<?php echo $key; ?>" <?php echo ($this->input->get('date') == $key) ? 'selected' : ''; ?>><?php echo $day; ?></option>
+					<?php } ?>
+				</select>
+				<span class="ti-angle-down"></span>
+			</div>
+			<div class="wid50">
+				<input type="hidden" name="from_date" id="from_date" value="<?php echo $date['from_date'] ?>">
+				<input type="hidden" name="to_date" id="to_date" value="<?php echo $date['to_date'] ?>">
+				<div class="daterange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+				    <i class="fa fa-calendar"></i>&nbsp;
+				    <span></span> <i class="fa fa-caret-down"></i>
+				</div>
+			</div>
 		</form>
 	</div>
 	<?php if(!empty($turfs)) { ?>
@@ -112,6 +122,48 @@
 						</table>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="card">
+							<div class="card-header">
+								Today's Bookings
+							</div>
+							<div class="card-body">
+								<?php echo $turf['report']['todays_bookings']; ?>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card">
+							<div class="card-header">
+								Today's Earnings
+							</div>
+							<div class="card-body">
+								Rs. <?php echo $turf['report']['todays_earnings']; ?>/-
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card">
+							<div class="card-header">
+								Total Bookings
+							</div>
+							<div class="card-body">
+								<?php echo $turf['report']['custom_bookings']; ?>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card">
+							<div class="card-header">
+								Total Earnings
+							</div>
+							<div class="card-body">
+								Rs. <?php echo $turf['report']['custom_earnings']; ?>/-
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		<?php } ?>
 	<?php } ?>
@@ -130,4 +182,31 @@
     		$("."+bclass).addClass("act");
     	});
     });
+</script>
+<script type="text/javascript">
+	$(function() {
+	    var start = moment('<?php echo $date['from_date']; ?>');
+	    var end = moment('<?php echo $date['to_date']; ?>');
+	    function cb(start, end) {
+	        $('.daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+	        $('#from_date').val(start.format('Y-MM-DD'));
+	        $('#to_date').val(end.format('Y-MM-DD'));
+	    }
+	    $('.daterange').daterangepicker({
+	        startDate: start,
+	        endDate: end,
+	        ranges: {
+	           'Today': [moment(), moment()],
+	           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+	           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+	           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+	           'This Month': [moment().startOf('month'), moment().endOf('month')],
+	           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+	        }
+	    }, cb);
+	    cb(start, end);
+	    $('.daterange').on('apply.daterangepicker', function(ev, picker) {
+		    $("#dayForm").submit();
+		});
+	});
 </script>

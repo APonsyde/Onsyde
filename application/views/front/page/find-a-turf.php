@@ -14,7 +14,7 @@
 						<div class="col-md-12">
 							<div class="booking manager-dashboard">
 								<h4><?php echo $turf['name']; ?></h4>
-								<h6><i class="fas fa-map-marker-alt"></i><?php echo $turf['address']; ?></h6>
+								<h6><img src="<?php echo base_url('resources/front/images/pin.svg'); ?>" alt="logo" class="calendar"><?php echo $turf['address']; ?></h6>
 								<?php if(!empty($turf['images'])) { ?>
 									<div id="carouselExampleControls" class="carousel bookingcarousel slide" data-ride="carousel">
 										<div class="carousel-inner">

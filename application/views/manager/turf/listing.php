@@ -20,7 +20,7 @@
 									<div class="col-md-12">
 										<div class="slots">
 											<h4><?php echo $turf['name']; ?></h4>
-											<h6><i class="fas fa-map-marker-alt"></i><?php echo $turf['address']; ?></h6>
+											<h6><img src="<?php echo base_url('resources/front/images/pin.svg'); ?>" alt="logo" class="calendar"><?php echo $turf['address']; ?></h6>
 											<div class="slots">
 												<div class="timeslots">
 													<ul class="flexpanel wrp">

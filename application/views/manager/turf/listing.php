@@ -55,10 +55,10 @@
 										</ul>
 									</div>
 									<div class="bookslot">
-										<a class="btn btn-primary mt-4 mr-2" href="<?php echo site_url('manager/turf/edit/'.$turf['id']); ?>">Manage Turf</a>
-					    				<a class="btn btn-primary mt-4 mr-2" href="<?php echo site_url('manager/turf/gallery/'.$turf['id']); ?>">Manage Gallery</a>
-					    				<a class="btn btn-primary mt-4 mr-2" href="<?php echo site_url('manager/turf/slots/'.$turf['id']); ?>">Manage Slots</a>
-					    				<a class="btn btn-primary mt-4" href="<?php echo site_url('manager/turf/messaging/'.$turf['id']); ?>">Slot Messaging</a>
+										<a class="slotbtn add mt-3" href="<?php echo site_url('manager/turf/edit/'.$turf['id']); ?>">Manage Turf</a>
+					    				<a class="slotbtn add mt-3" href="<?php echo site_url('manager/turf/gallery/'.$turf['id']); ?>">Manage Gallery</a>
+					    				<a class="slotbtn add mt-3" href="<?php echo site_url('manager/turf/slots/'.$turf['id']); ?>">Manage Slots</a>
+					    				<a class="slotbtn add mt-3" href="<?php echo site_url('manager/turf/messaging/'.$turf['id']); ?>">Slot Messaging</a>
 									</div>
 								</div>
 							</div>

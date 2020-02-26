@@ -36,7 +36,7 @@
                                 <?php } ?>
                             </td>
                             <td>
-                                <a class="btn btn-primary" href="<?php echo site_url('admin/player/view/'.$player['id']); ?>">View</a>
+                                <a class="greyBtn green" href="<?php echo site_url('admin/player/view/'.$player['id']); ?>">View</a>
                             </td>
                         </tr>
                     <?php } ?>

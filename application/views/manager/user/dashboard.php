@@ -195,6 +195,8 @@
 	    $('.daterange').daterangepicker({
 	        startDate: start,
 	        endDate: end,
+	        linkedCalendars: false,
+	        opens: 'right',
 	        ranges: {
 	           'Today': [moment(), moment()],
 	           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -210,3 +212,9 @@
 		});
 	});
 </script>
+
+<style>
+	.drp-calendar.right {
+	  display: none !important;
+	}
+</style>

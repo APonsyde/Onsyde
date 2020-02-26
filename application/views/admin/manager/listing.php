@@ -37,7 +37,7 @@
                                     <span class="badge badge-success">Enabled</span>
                                 <?php } ?>
                             </td>
-                            <td><a class="btn btn-dark" href="<?php echo site_url('admin/manager/status/'.$manager['id']); ?>">Switch Status</a></td>
+                            <td><a class="greyBtn green" href="<?php echo site_url('admin/manager/status/'.$manager['id']); ?>">Switch Status</a></td>
                         </tr>
                     <?php } ?>
                 <?php } else { ?>

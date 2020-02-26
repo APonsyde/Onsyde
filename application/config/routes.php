@@ -115,6 +115,8 @@ $route['booking/success/(:any)'] = 'player/booking/success/$1';
 // Page Routes
 $route['about-us'] = 'front/page/about_us';
 $route['contact-us'] = 'front/page/contact_us';
+$route['privacy'] = 'front/page/privacy';
+$route['terms'] = 'front/page/terms';
 $route['podcast'] = 'front/page/podcast';
 $route['blogs'] = 'front/page/blogs';
 $route['blog/(:any)'] = 'front/page/blog/$1';

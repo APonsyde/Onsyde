@@ -184,6 +184,22 @@ class Page extends FrontController
         $this->load->view('front/layout/basetemplate', $data);
     }
 
+    public function privacy()
+    {
+        $data['tab'] = 'privacy';
+        $data['title'] = 'Privacy';
+        $data['_view'] = 'front/page/privacy';
+        $this->load->view('front/layout/basetemplate', $data);
+    }
+
+    public function terms()
+    {
+        $data['tab'] = 'terms';
+        $data['title'] = 'Terms & Conditions';
+        $data['_view'] = 'front/page/terms';
+        $this->load->view('front/layout/basetemplate', $data);
+    }
+
     public function contact_us()
     {
         $this->form_validation->set_rules('name', 'Name', 'required|xss_clean');

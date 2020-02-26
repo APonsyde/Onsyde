@@ -13,6 +13,7 @@
                         <p>Copyright © 2017 Listed Inc. All rights reserved</p>
                         <a href="<?php echo site_url('about-us'); ?>">About Us</a>
                         <a href="<?php echo site_url('contact-us'); ?>">Contact Us</a>
+                        <a href="<?php echo site_url('blogs'); ?>">Blogs</a>
                         <a href="<?php echo site_url('privacy'); ?>">Privacy</a>
                         <a href="<?php echo site_url('terms'); ?>">Terms</a>
                     </div>

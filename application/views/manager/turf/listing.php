@@ -38,7 +38,7 @@
 										    						}
 										    					}
 									    					?>
-															<li class="<?php echo ($booked) ? 'tabgreen' : (($unavailable) ? 'tabgrey' : ''); ?>" data-price="<?php echo $slot['price']; ?>"  data-id="<?php echo $slot['id']; ?>">
+															<li class="<?php echo ($booked) ? 'booked' : (($unavailable) ? 'unavailable' : ''); ?>" data-price="<?php echo $slot['price']; ?>"  data-id="<?php echo $slot['id']; ?>">
 																<?php echo $slot['time']; ?>
 								    							<input type="checkbox" class="d-none" name="slot[]" value="<?php echo $slot['id']; ?>">
 															</li>

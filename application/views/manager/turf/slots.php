@@ -49,7 +49,7 @@
 
         $(document).on("click", ".badge-set", function() {
             var _this = $(this);
-            $(this).toggleClass('badge-select tabgrey');
+            $(this).toggleClass('badge-select selection');
         });
 
         $(document).on("click", ".btn-add", function() {
@@ -97,7 +97,7 @@
 
         $(document).on("click", ".btn-reset", function() {
             var _this = $(this);
-            _this.parents('.box').find('.badge-set').removeClass('badge-select tabgrey');
+            _this.parents('.box').find('.badge-set').removeClass('badge-select selection');
         });
     });
 </script>

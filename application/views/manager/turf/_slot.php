@@ -13,7 +13,7 @@
                                         $unavailable = true;
                                     }
                                 ?>
-                                <li class="badge-set <?php echo ($unavailable) ? '' : 'tabgreen'; ?>" data-id="<?php echo $slot['id']; ?>" data-time="<?php echo $slot['time']; ?>" style="cursor: pointer;">
+                                <li class="badge-set <?php echo ($unavailable) ? '' : 'booked'; ?>" data-id="<?php echo $slot['id']; ?>" data-time="<?php echo $slot['time']; ?>" style="cursor: pointer;">
                                     <?php echo $slot['time']; ?> / Rs. <?php echo $slot['price']; ?>
                                 </li>
                             <?php } ?>

@@ -237,6 +237,40 @@ class Page extends FrontController
         }
     }
 
+    public function contact_us_ajax()
+    {
+        $response = [
+            'success' => false,
+            'message' => '<div class="text-center bg-white text-danger p-2">Some error occured while contacting the team</div>'
+        ];
+
+        $this->form_validation->set_rules('name', 'Name', 'required|xss_clean');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|xss_clean');
+        $this->form_validation->set_rules('message', 'Message', 'required|xss_clean');
+
+        $this->form_validation->set_message('required', '%s is required');
+        $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+        if($this->form_validation->run())
+        {
+            $data = $this->input->post();
+            $result = $this->Email_model->send_contact_mail($data['name'], $data['email'], 'Quick Message', $data['message']);
+
+            if($result)
+            {
+                $response['success'] = true;
+                $response['message'] = '<div class="text-center bg-white p-2">Thank you for contacting us / we will revert back in 24-48 hours.</div>';
+            }
+        }
+        else
+        {
+            $response['message'] = '<div class="text-center bg-white text-danger p-2">All the fields are required with valid data</div>';
+        }
+
+        echo json_encode($response);
+        exit;
+    }
+
     public function podcast()
     {
         $data['podcasts'] = $this->Podcast_model->get_all_podcasts(null, null, ['inactive' => 0]);

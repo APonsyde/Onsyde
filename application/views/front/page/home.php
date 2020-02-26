@@ -227,7 +227,7 @@
                     <div class="contact-form">
                         <h3>Write Us</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, </p>
-                        <form action="php/contact.php" id="phpcontactform" method="post" novalidate="novalidate">
+                        <form action="<?php echo site_url('contact-us-ajax'); ?>" id="contactform" method="post" novalidate="novalidate">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -236,17 +236,17 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control" placeholder="Your Email">
+                                        <input type="text" name="email" class="form-control" placeholder="Your Email">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <textarea name="message" class="form-control" rows="3" placeholder="Message"></textarea>
+                                <textarea name="message" class="form-control" name="message" rows="3" placeholder="Message"></textarea>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn-simple btn submit" id="js-contact-btn">Submit →</button>
                             </div>
-                            <div id="js-contact-result" data-success-msg="Success, We will get back to you soon" data-error-msg="Oops! Something went wrong"></div>
+                            <div class="error"></div>
                         </form>
                     </div>
                 </div>
@@ -254,3 +254,24 @@
         </div>
     </div>
 </section>
+
+<script>
+    $(document).ready(function() {
+        $("#contactform").on("submit", function(e) {
+            e.preventDefault();
+            var form = $(this);
+            $.ajax({
+                dataType: "json",
+                data: form.serializeArray(),
+                type: "post",
+                url: form.attr('action'),
+                success: function(response) {
+                    if(response.success)
+                        form[0].reset();
+                    
+                    $(".error").html(response.message);
+                }
+            })
+        })
+    });
+</script>

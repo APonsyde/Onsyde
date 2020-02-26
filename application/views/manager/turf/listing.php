@@ -1,16 +1,26 @@
 <section class="wid80 howit-work-wrap">
-	<div class="booking manager-dashboard pad-bot-0">
-    	<form id="dayForm">
-			<div class="flexpanel justify-between align-center">
-				<?php $days = get_upcoming_days();?>
-                <select class="date" name="date" onchange="document.getElementById('dayForm').submit();">
-					<?php foreach ($days as $key => $day) { ?>
-						<option value="<?php echo $key; ?>" <?php echo ($this->input->get('date') == $key) ? 'selected' : ''; ?>><?php echo $day; ?></option>
-					<?php } ?>
-				</select>
-			</div>
-		</form>
-		<?php if(!empty($turfs)) { ?>
+	<?php if(empty($turfs)) { ?>
+		<div class="booking manager-dashboard noturf">
+	        <h3 class="text-center">No Turf Available!</h3>
+	        <div class="slots">
+	                <p class="text-center">LOreum ipsum LOreum ipsum LOreum ipsumLOreum ipsumLOreum ipsumLOreum ipsum </p>
+	            <div class="flexpanel totalbooking align-center justify-center">
+	                <a class="slotbtn add" href="http://localhost/onsyde/manager/turf/messaging/1">Add New Turf</a>
+	            </div>
+	        </div>
+	    </div>
+	<?php } else { ?>
+		<div class="booking manager-dashboard pad-bot-0">
+	    	<form id="dayForm">
+				<div class="flexpanel justify-between align-center">
+					<?php $days = get_upcoming_days();?>
+	                <select class="date" name="date" onchange="document.getElementById('dayForm').submit();">
+						<?php foreach ($days as $key => $day) { ?>
+							<option value="<?php echo $key; ?>" <?php echo ($this->input->get('date') == $key) ? 'selected' : ''; ?>><?php echo $day; ?></option>
+						<?php } ?>
+					</select>
+				</div>
+			</form>
 	    	<?php foreach ($turfs as $key => $turf) { ?>
 	    		<form method="post">
 	    			<input type="hidden" name="date" value="<?php echo $this->input->get('date'); ?>">
@@ -56,12 +66,6 @@
 					</div>
 	    		</form>
     		<?php } ?>
-		<?php } else { ?>
-	    	<div class="col-sm-12">
-		    	<div class="alert alert-danger" role="alert">
-					No turfs available!
-	            </div>
-	        </div>
-	    <?php } ?>
-	</div>
+		</div>
+	<?php } ?>
 </section>

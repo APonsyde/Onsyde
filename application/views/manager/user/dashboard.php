@@ -1,6 +1,6 @@
 <div class="booking manager-dashboard">
-	<div class="flexpanel justify-between align-center mb-3">
-		<form id="dayForm">
+	<form id="dayForm">
+		<div class="flexpanel justify-between align-center mb-3">
 			<div class="wid50">
 				<?php $days = get_upcoming_days();?>
 				<img src="<?php echo base_url('resources/front/images/calendar.svg'); ?>" alt="logo" class="calendar">
@@ -15,12 +15,12 @@
 				<input type="hidden" name="from_date" id="from_date" value="<?php echo $date['from_date'] ?>">
 				<input type="hidden" name="to_date" id="to_date" value="<?php echo $date['to_date'] ?>">
 				<div class="daterange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
-				    <i class="fa fa-calendar"></i>&nbsp;
+				    Report :&nbsp;
 				    <span></span> <i class="fa fa-caret-down"></i>
 				</div>
 			</div>
-		</form>
-	</div>
+		</div>
+	</form>
 	<?php if(!empty($turfs)) { ?>
 		<?php foreach ($turfs as $key => $turf) { ?>
 			<div class="slots">

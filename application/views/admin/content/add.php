@@ -12,7 +12,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label>Description</label>
-                        <textarea class="form-control" name="description" placeholder="Description"><?php echo $this->input->post('description'); ?></textarea>
+                        <textarea id="summernote" class="form-control" name="description" placeholder="Description"><?php echo $this->input->post('description'); ?></textarea>
                         <?php echo form_error('description'); ?>
                     </div>
                 </div>
@@ -61,3 +61,21 @@
         <?php } ?>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            tabsize: 2,
+            height: 400,
+            toolbar: [
+              ['style', ['style']],
+              ['font', ['bold', 'underline', 'clear']],
+              ['color', ['color']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['table', ['table']],
+              ['insert', ['link', 'picture', 'video']],
+              ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+          });
+    });
+</script>

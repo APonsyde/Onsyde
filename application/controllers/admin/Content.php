@@ -58,7 +58,7 @@ class Content extends AdminController
         $this->form_validation->set_rules('image', 'Image', 'callback_file_check[["image", "image"]]');
 
         if($type == 'blog')
-        	$this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
+        	$this->form_validation->set_rules('description', 'Description', 'required');
     	else
         	$this->form_validation->set_rules('url', 'URL', 'required|xss_clean');
 
@@ -145,7 +145,7 @@ class Content extends AdminController
         $this->form_validation->set_rules('image', 'Image', 'callback_file_check[["image", "image", false]]');
 
         if($type == 'blog')
-        	$this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
+        	$this->form_validation->set_rules('description', 'Description', 'required');
     	else
         	$this->form_validation->set_rules('url', 'URL', 'required|xss_clean');
 

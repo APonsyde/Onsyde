@@ -44,9 +44,9 @@
                     <?php echo form_error('alternate_number'); ?>
                 </div>
             </div>
-            <div class="flexpanel justify-between">
+            <div class="flexpanel justify-between align-center">
                 <button type="submit" class="greyBtn green">Save</button>
-                <a href="<?php echo site_url('manager/turf/listing'); ?>" class="redbg">Cancel</a>
+                <a href="<?php echo site_url('manager/turf/listing'); ?>" class="back">Back →</a>
             </div>
         </form>
     </div>

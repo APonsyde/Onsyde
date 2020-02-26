@@ -295,11 +295,27 @@ border-bottom-left-radius: 0.25rem;
 .slots{
   margin: 0 0 45px;
 }
+.card-header{
+  background-color: #39B44A !important;
+  color: #fff !Important
+}
 .detail{
   margin: 20px 0 0;
   border-bottom: 1px solid #cdcdcd;
   padding: 0 0;
   position: relative;
+}
+.booking.manager-dashboard a{
+  color: #484848;text-decoration: none
+}
+.booking.manager-dashboard a.add,.booking.manager-dashboard a.add:hover{
+  color: #fff
+}
+.btn.focus, .btn:focus{
+  box-shadow: none;
+}
+.booking.manager-dashboard a:hover{
+  color: #484848;text-decoration: none
 }
 .slotbtn{
   color: #39b54a;
@@ -417,9 +433,9 @@ body {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     border: 0;
-    padding: 10px 10px 10px 0;
-    /* padding-right: 40px; */
-    background: transparent;}
+    padding: 10px 33px 10px 10px;
+    background: url(../images/droparrow.png) 95% center no-repeat transparent;
+    }
     .totalbooking{
     margin:20px 0 0;
     }
@@ -2587,7 +2603,7 @@ hr {
     border-color: #53b54b;
    }
   .form-control:focus {
-    border-color: #53b54b;}
+    border-color: #53b54b !important;}
 
 .contact-form .form-control {
   background: transparent;

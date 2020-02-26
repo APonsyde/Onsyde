@@ -7,14 +7,18 @@
                     <?php foreach ($turfs as $turf) { ?>
                         <option value="<?php echo $turf['id']; ?>" <?php echo ($this->input->get('turf_id') == $turf['id']) ? 'selected' : ''; ?>><?php echo $turf['name']; ?></option>
                     <?php } ?>
+                   
                 </select>
+                
             </div>
             <div class="wid-50">Status :
                 <select name="status" class="date" onchange="$('#list-form').submit();">
                     <option value="">-- All --</option>
                     <option value="<?php echo TURF_STATUS_BOOKED; ?>" <?php echo ($this->input->get('status') == TURF_STATUS_BOOKED) ? 'selected' : ''; ?>>Confirmed</option>
                     <option value="<?php echo TURF_STATUS_CANCELLED; ?>" <?php echo ($this->input->get('status') == TURF_STATUS_CANCELLED) ? 'selected' : ''; ?>>Cancelled</option>
+                  
                 </select>
+               
             </div>
         </div>
     </form>

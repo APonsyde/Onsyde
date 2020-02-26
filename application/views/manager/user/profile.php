@@ -2,8 +2,8 @@
     <?php $this->load->view('manager/layout/alert'); ?>
     <div class="row">
         <div class="col-lg-12">
-            <div class="card m-b-30">
-                <div class="card-body">
+            <div class=" m-b-30">
+                <div class="booking manager-dashboard">
                     <form method="post">
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <hr>
-                        <h6 class="card-subtitle">Enter the password to update or leave it blank.</h6>
+                        <h6 class="card-subtitle pb-4">Enter the password to update or leave it blank.</h6>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Password</label>
@@ -36,7 +36,7 @@
                                 <input type="password" class="form-control" placeholder="Retype password" name="retype_password" value="<?php echo $this->input->post('retype_password'); ?>">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn slotbtn add">Update</button>
                     </form>
                 </div>
             </div>

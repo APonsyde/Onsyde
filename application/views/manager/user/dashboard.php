@@ -9,7 +9,7 @@
 						<option value="<?php echo $key; ?>" <?php echo ($this->input->get('date') == $key) ? 'selected' : ''; ?>><?php echo $day; ?></option>
 					<?php } ?>
 				</select>
-				<span class="ti-angle-down"></span>
+				
 			</div>
 			<div class="wid50">
 				<input type="hidden" name="from_date" id="from_date" value="<?php echo $date['from_date'] ?>">

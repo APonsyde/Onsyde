@@ -3,21 +3,21 @@
         <form id="fileupload" action="https://jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
             <div class="">
                 <div class="row fileupload-buttonbar">
-                    <div class="col-lg-7">
-                        <span class="btn btn-primary fileinput-button">
+                    <div class="col-lg-7 flexpanel align-center">
+                        <span class="btn slotbtn add fileinput-button">
                             <i class="glyphicon glyphicon-plus"></i>
                             <span>Add files...</span>
                             <input type="file" name="files[]" multiple />
                         </span>
-                        <button type="submit" class="btn btn-primary start">
+                        <button type="submit" class="btn slotbtn add start">
                             <i class="glyphicon glyphicon-upload"></i>
                             <span>Start upload</span>
                         </button>
-                        <button type="reset" class="btn btn-primary cancel text-white">
+                        <button type="reset" class="btn slotbtn add text-white">
                             <i class="glyphicon glyphicon-ban-circle"></i>
                             <span>Cancel upload</span>
                         </button>
-                        <button type="button" class="btn btn-primary delete">
+                        <button type="button" class="btn slotbtn add delete">
                             <i class="glyphicon glyphicon-trash"></i>
                             <span>Delete selected</span>
                         </button>
@@ -52,7 +52,7 @@
                                         <span class="size"><?php echo format_size_units($image['size']); ?></span>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger delete" data-type="DELETE" data-url="<?php echo site_url('manager/upload/delete?type=turf_gallery&table=turf_images&id='.$turf['id'].'&file='.$image['name']) ?>">
+                                        <button class="btn slotbtn add delete" data-type="DELETE" data-url="<?php echo site_url('manager/upload/delete?type=turf_gallery&table=turf_images&id='.$turf['id'].'&file='.$image['name']) ?>">
                                             <i class="glyphicon glyphicon-trash"></i>
                                             <span>Delete</span>
                                         </button>

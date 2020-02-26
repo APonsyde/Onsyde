@@ -20,8 +20,8 @@
                         </ul>
                     </div>
                     <div class="bookslot">
-                        <a class="btn btn-primary btn-add mt-4 mr-2" href="#" data-toggle="modal" data-target="#priceModal">Add Slot Prices</a>
-                        <a class="btn btn-primary btn-reset mt-4" href="javascript:void(0);">Reset Selection</a>
+                        <a class="btn slotbtn add mt-4 mr-2" href="#" data-toggle="modal" data-target="#priceModal">Add Slot Prices</a>
+                        <a class="btn slotbtn add btn-reset mt-4" href="javascript:void(0);">Reset Selection</a>
                     </div>
                 </div>
             </div>

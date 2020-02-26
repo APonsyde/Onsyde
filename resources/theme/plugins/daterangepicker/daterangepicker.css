@@ -209,7 +209,7 @@
 }
 
 .daterangepicker td.active, .daterangepicker td.active:hover {
-  background-color: #357ebd;
+  background-color: #53b54b;
   border-color: transparent;
   color: #fff;
 }
@@ -330,8 +330,12 @@
 }
 
 .daterangepicker .ranges li.active {
-  background-color: #08c;
+  background-color: #53b54b;
   color: #fff;
+}
+.daterangepicker .drp-buttons .btn.applyBtn{
+  background-color: #53b54b;
+  border-color: #53b54b;
 }
 
 /*  Larger Screen Styling */

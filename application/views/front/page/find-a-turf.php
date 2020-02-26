@@ -12,7 +12,7 @@
 	    			<input type="hidden" name="turf_id" value="<?php echo $turf['id']; ?>">
 	    			<div class="row justify-content-center">
 						<div class="col-md-12">
-							<div class="booking">
+							<div class="booking manager-dashboard">
 								<h4><?php echo $turf['name']; ?></h4>
 								<h6><i class="fas fa-map-marker-alt"></i><?php echo $turf['address']; ?></h6>
 								<?php if(!empty($turf['images'])) { ?>
@@ -34,7 +34,7 @@
 										</a>
 									</div>
 								<?php } ?>
-								<div class="slots">
+								<div class="slots mb-0">
 									<div class="timeslots">
 										<ul class="flexpanel wrp">
 											<?php foreach ($turf['slots'] as $key => $slot) { ?>
@@ -50,7 +50,7 @@
 							    						}
 							    					}
 						    					?>
-												<li class="<?php echo ($unavailable) ? 'slot-unavailable tabgrey' : 'slot-available'; ?>" data-price="<?php echo $slot['price']; ?>"  data-id="<?php echo $slot['id']; ?>">
+												<li class="<?php echo ($unavailable) ? 'slot-unavailable unavailable' : 'slot-available available'; ?>" data-price="<?php echo $slot['price']; ?>"  data-id="<?php echo $slot['id']; ?>">
 													<?php echo $slot['time']; ?>
 					    							<input type="checkbox" class="d-none" name="slot[]" value="<?php echo $slot['id']; ?>">
 												</li>

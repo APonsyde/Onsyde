@@ -427,6 +427,9 @@ border: 1px solid #cddc39;
 .calendar{
   width:20px;    margin-right: 10px;
 }
+.wid100 .form-control:focus{
+  border-color: transparent !important
+}
 body {
   font-family: 'Roboto', sans-serif;color: #484848 !important;background: #fff !important}
   .booking .date{    width: auto;

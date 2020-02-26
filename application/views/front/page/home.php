@@ -193,7 +193,7 @@
         </div>
     </section>
 <?php } ?>
-<section class="main-block">
+<section class="main-block <?php echo !empty($blogs) ? 'gray' : ''; ?>">
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-10">
@@ -268,7 +268,7 @@
                 success: function(response) {
                     if(response.success)
                         form[0].reset();
-                    
+
                     $(".error").html(response.message);
                 }
             })

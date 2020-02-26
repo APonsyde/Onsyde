@@ -177,6 +177,7 @@
                             <div class="news-title">
                                 <p><?php echo convert_db_time($blog['created_on'], "M d, Y") ?></p>
                                 <h5><?php echo $blog['title']; ?></h5>
+                                <a href="<?php echo site_url('blog/'.$blog['id']); ?>" class="blog2-link">Read More ➝</a>
                             </div>
                         </div>
                     </div>

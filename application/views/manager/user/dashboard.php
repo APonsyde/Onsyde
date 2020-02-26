@@ -1,13 +1,15 @@
 <div class="booking manager-dashboard">
 	<div class="flexpanel align-center">
-		<?php $days = get_upcoming_days();?>
-		<img src="<?php echo base_url('resources/front/images/calendar.svg'); ?>" alt="logo" class="calendar">
-		<select class="date">
-			<?php foreach ($days as $key => $day) { ?>
-				<option value="<?php echo $key; ?>" <?php echo ($this->input->get('date') == $key) ? 'selected' : ''; ?>><?php echo $day; ?></option>
-			<?php } ?>
-		</select>
-		<span class="ti-angle-down"></span>
+    	<form id="dayForm">
+			<?php $days = get_upcoming_days();?>
+			<img src="<?php echo base_url('resources/front/images/calendar.svg'); ?>" alt="logo" class="calendar">
+			<select class="date" name="date" onchange="document.getElementById('dayForm').submit();">
+				<?php foreach ($days as $key => $day) { ?>
+					<option value="<?php echo $key; ?>" <?php echo ($this->input->get('date') == $key) ? 'selected' : ''; ?>><?php echo $day; ?></option>
+				<?php } ?>
+			</select>
+			<span class="ti-angle-down"></span>
+		</form>
 	</div>
 	<?php if(!empty($turfs)) { ?>
 		<?php foreach ($turfs as $key => $turf) { ?>

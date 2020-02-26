@@ -11,10 +11,10 @@
                 <div class="col-md-12">
                     <div class="copyright">
                         <p>Copyright © 2017 Listed Inc. All rights reserved</p>
-                        <a href="#">About Us</a>
-                        <a href="#">Contact Us</a>
-                        <a href="#">Privacy</a>
-                        <a href="#">Terms</a>
+                        <a href="<?php echo site_url('about-us'); ?>">About Us</a>
+                        <a href="<?php echo site_url('contact-us'); ?>">Contact Us</a>
+                        <a href="<?php echo site_url('privacy'); ?>">Privacy</a>
+                        <a href="<?php echo site_url('terms'); ?>">Terms</a>
                     </div>
                       <ul class="social-icons">
                         <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>

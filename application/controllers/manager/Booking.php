@@ -25,7 +25,7 @@ class Booking extends ManagerController
         $data['tab'] = 'bookings';
         $data['title'] = 'List turf bookings';
         $data['_view'] = 'manager/booking/index';
-        $this->load->view('front/layout/basetemplate', $data);
+        $this->load->view('manager/layout/basetemplate', $data);
     }
 
     public function new()
@@ -68,10 +68,10 @@ class Booking extends ManagerController
         }
         else
         {
-            $data['tab'] = 'bookings';
+            $data['tab'] = 'booking_new';
             $data['title'] = 'Create new booking';
             $data['_view'] = 'manager/booking/new';
-            $this->load->view('front/layout/basetemplate', $data);
+            $this->load->view('manager/layout/basetemplate', $data);
         }
     }
 
@@ -221,10 +221,10 @@ class Booking extends ManagerController
                     $data['turfs'][$key]['images'] = $this->Turf_model->get_turf_images($turf['id']);
                 }
 
-                $data['tab'] = 'bookings';
+                $data['tab'] = 'booking_new';
                 $data['title'] = 'Create new booking';
                 $data['_view'] = 'manager/booking/create';
-                $this->load->view('front/layout/basetemplate', $data);
+                $this->load->view('manager/layout/basetemplate', $data);
             }
         }
         else

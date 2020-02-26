@@ -124,14 +124,16 @@
                     <div class="turfManager contact-form">
                         <h3>Are You A <span>Turf Manager?</span></h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-                        <div class="submitForm flexpanel">
-                            <div class="form-group">
-                                <input type="text" name="name" class="form-control" placeholder="Enter  Your Mobile Number">
+                        <form action="<?php echo site_url('manager'); ?>" id="managerForm" method="post">
+                            <div class="submitForm flexpanel">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="mobile" placeholder="Enter Your Mobile Number">
+                                </div>
+                                <div class="subBtn">
+                                    <a href="javascript:void(0)" onclick="document.getElementById('managerForm').submit()">Enroll→</a>
+                                </div>
                             </div>
-                            <div class="subBtn">
-                                <a href="">Enroll→</a>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -202,7 +204,7 @@
                     <ul class="podcast flexpanel flex-wrap">
                         <?php foreach ($podcasts as $key => $podcast) { ?>
                             <li>
-                                <a href="<?php echo $podcast['url']; ?>" href="_blank"><img src="<?php echo show_image(base_url('uploads/podcasts/images/'.$podcast['image'])); ?>">
+                                <a href="<?php echo $podcast['url']; ?>" target="_blank"><img src="<?php echo show_image(base_url('uploads/podcasts/images/'.$podcast['image'])); ?>">
                                     <span>Listen On <?php echo $podcast['title']; ?></span>
                                 </a>
                             </li>

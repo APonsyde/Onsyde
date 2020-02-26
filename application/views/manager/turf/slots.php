@@ -1,22 +1,18 @@
-<section class="main-block howit-work-wrap">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <?php if(!empty($days)) { ?>
-                    <?php foreach ($days as $day => $data) { ?>
-                        <?php $this->load->view('manager/turf/_slot', ['data' => $data, 'day' => $day]); ?>
-                    <?php } ?>
-                <?php } else { ?>
-                    <div class="col-sm-12">
-                        <div class="alert alert-danger" role="alert">
-                            No turfs added yet!
-                        </div>
-                    </div>
-                <?php } ?>
+<div class="booking manager-dashboard">
+    <div class="slots">
+        <?php if(!empty($days)) { ?>
+            <?php foreach ($days as $day => $data) { ?>
+                <?php $this->load->view('manager/turf/_slot', ['data' => $data, 'day' => $day]); ?>
+            <?php } ?>
+        <?php } else { ?>
+            <div class="col-sm-12">
+                <div class="alert alert-danger" role="alert">
+                    No turfs added yet!
+                </div>
             </div>
-        </div>
+        <?php } ?>
     </div>
-</section>
+</div>
 
 <div class="modal fade" id="priceModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">

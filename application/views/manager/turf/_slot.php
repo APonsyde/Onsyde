@@ -1,4 +1,4 @@
-<div class="booking manager-dashboard pad-bot-0 mb-5 box" data-day="<?php echo $day; ?>">
+<div class="pad-bot-0 mb-5 box" data-day="<?php echo $day; ?>">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="slots">

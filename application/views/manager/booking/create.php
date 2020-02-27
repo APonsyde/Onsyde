@@ -78,7 +78,7 @@
 									<div class="bookslot">
 										<div class="flexpanel end">
 											<div class="pay rs">
-												Rs. <span class="price">0</span> / <span class="time">0</span> hr
+												<?php echo CURRENCY_SYMBOL; ?> <span class="price">0</span> / <span class="time">0</span> hr
 											</div>
 											<div class="pay-btn pay rs fontgreen">
 												Confirm Booking →

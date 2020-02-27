@@ -7,9 +7,7 @@
                     <?php foreach ($turfs as $turf) { ?>
                         <option value="<?php echo $turf['id']; ?>" <?php echo ($this->input->get('turf_id') == $turf['id']) ? 'selected' : ''; ?>><?php echo $turf['name']; ?></option>
                     <?php } ?>
-                   
                 </select>
-                
             </div>
             <div class="wid-50">Status :
                 <select name="status" class="date" onchange="$('#list-form').submit();">
@@ -40,7 +38,7 @@
                             <td><?php echo $booking['player']; ?><br><a href="tel:<?php echo $booking['player_mobile']; ?>"><?php echo $booking['player_mobile']; ?></a></td>
                             <td><?php echo convert_db_time($booking['booking_date'], "jS M, Y"); ?></td>
                             <td><?php echo $booking['time_slot']; ?></td>
-                            <td>Rs. <?php echo $booking['amount']; ?>/-</td>
+                            <td><?php echo CURRENCY_SYMBOL; ?> <?php echo $booking['amount']; ?>/-</td>
                             <td>
                                 <?php if($booking['status'] == TURF_STATUS_CANCELLED) { ?>
                                     <span class="text text-danger">Cancelled</span>

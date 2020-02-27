@@ -14,7 +14,7 @@
                                     }
                                 ?>
                                 <li class="badge-set <?php echo ($unavailable) ? '' : 'booked'; ?>" data-id="<?php echo $slot['id']; ?>" data-time="<?php echo $slot['time']; ?>" style="cursor: pointer;">
-                                    <?php echo $slot['time']; ?> / Rs. <?php echo $slot['price']; ?>
+                                    <?php echo $slot['time']; ?> / <?php echo CURRENCY_SYMBOL; ?> <?php echo $slot['price']; ?>
                                 </li>
                             <?php } ?>
                         </ul> 

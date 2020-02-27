@@ -17,10 +17,10 @@
                                     <?php echo $slot['time']; ?> / Rs. <?php echo $slot['price']; ?>
                                 </li>
                             <?php } ?>
-                        </ul>
+                        </ul> 
                     </div>
                     <div class="bookslot">
-                        <a class="btn slotbtn add mt-4 mr-2" href="#" data-toggle="modal" data-target="#priceModal">Add Slot Prices</a>
+                        <a class="btn slotbtn add mt-4 mr-2 btn-add" href="#" data-toggle="modal" data-target="#priceModal">Add Slot Prices</a>
                         <a class="btn slotbtn add btn-reset mt-4" href="javascript:void(0);">Reset Selection</a>
                     </div>
                 </div>

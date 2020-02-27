@@ -569,7 +569,7 @@ class Turf extends ApiController
 		}
 	}
 
-	public function revenue()
+	public function revenue_post()
 	{
 		if($this->authenticate_token())
         {

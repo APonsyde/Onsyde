@@ -1,17 +1,26 @@
-<div class="booking manager-dashboard">
-	<form id="dayForm">
-		<div class="flexpanel justify-between align-center mb-3">
-			<div class="wid50">
-				<input type="hidden" name="from_date" id="from_date" value="<?php echo $date['from_date'] ?>">
-				<input type="hidden" name="to_date" id="to_date" value="<?php echo $date['to_date'] ?>">
-				<div class="daterange" style="background: #fff; cursor: pointer; padding: 5px 10px; width: 100%">
-					<img src="<?php echo base_url('resources/front/images/calendar.svg'); ?>" alt="logo" class="calendar">
-				    <span></span> <i class="fa fa-caret-down"></i>
+<?php if(empty($turfs)) { ?>
+	<div class="booking manager-dashboard noturf">
+	    <h3 class="text-center">No Turf Available!</h3>
+	    <div class="slots">
+	        <div class="flexpanel totalbooking align-center justify-center">
+	            <a class="slotbtn add" href="<?php echo site_url('manager/turf/create'); ?>">Add New Turf</a>
+	        </div>
+	    </div>
+	</div>
+<?php } else { ?>
+	<div class="booking manager-dashboard">
+		<form id="dayForm">
+			<div class="flexpanel justify-between align-center mb-3">
+				<div class="wid50">
+					<input type="hidden" name="from_date" id="from_date" value="<?php echo $date['from_date'] ?>">
+					<input type="hidden" name="to_date" id="to_date" value="<?php echo $date['to_date'] ?>">
+					<div class="daterange" style="background: #fff; cursor: pointer; padding: 5px 10px; width: 100%">
+						<img src="<?php echo base_url('resources/front/images/calendar.svg'); ?>" alt="logo" class="calendar">
+					    <span></span> <i class="fa fa-caret-down"></i>
+					</div>
 				</div>
 			</div>
-		</div>
-	</form>
-	<?php if(!empty($turfs)) { ?>
+		</form>
 		<?php foreach ($turfs as $key => $turf) { ?>
 			<div class="slots">
 				<h3><?php echo $turf['name']; ?></h3>
@@ -103,40 +112,40 @@
 				</div>
 			</div>
 		<?php } ?>
-	<?php } ?>
-</div>
+	</div>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-    	$(".btn-tab-booking").click(function() {
-    		var _this = $(this);
-    		var bclass = _this.attr('data-tab');
-    		_this.parents(".slots").find(".btn-tab-booking").removeClass("act");
-    		_this.addClass("act");
-    		_this.parents(".slots").find(".tab-content").addClass("hide");
-    		$("."+bclass).removeClass("hide");
-    		$("."+bclass).addClass("act");
-    	});
-    });
-</script>
-<script type="text/javascript">
-	$(function() {
-	    var start = moment('<?php echo $date['from_date']; ?>');
-	    var end = moment('<?php echo $date['to_date']; ?>');
-	    function cb(start, end) {
-	        $('.daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-	        $('#from_date').val(start.format('Y-MM-DD'));
-	        $('#to_date').val(end.format('Y-MM-DD'));
-	    }
-	    $('.daterange').daterangepicker({
-	        startDate: start,
-	        endDate: end,
-	        linkedCalendars: false,
-	        opens: 'right'
-	    }, cb);
-	    cb(start, end);
-	    $('.daterange').on('apply.daterangepicker', function(ev, picker) {
-		    $("#dayForm").submit();
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	    	$(".btn-tab-booking").click(function() {
+	    		var _this = $(this);
+	    		var bclass = _this.attr('data-tab');
+	    		_this.parents(".slots").find(".btn-tab-booking").removeClass("act");
+	    		_this.addClass("act");
+	    		_this.parents(".slots").find(".tab-content").addClass("hide");
+	    		$("."+bclass).removeClass("hide");
+	    		$("."+bclass).addClass("act");
+	    	});
+	    });
+	</script>
+	<script type="text/javascript">
+		$(function() {
+		    var start = moment('<?php echo $date['from_date']; ?>');
+		    var end = moment('<?php echo $date['to_date']; ?>');
+		    function cb(start, end) {
+		        $('.daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+		        $('#from_date').val(start.format('Y-MM-DD'));
+		        $('#to_date').val(end.format('Y-MM-DD'));
+		    }
+		    $('.daterange').daterangepicker({
+		        startDate: start,
+		        endDate: end,
+		        linkedCalendars: false,
+		        opens: 'right'
+		    }, cb);
+		    cb(start, end);
+		    $('.daterange').on('apply.daterangepicker', function(ev, picker) {
+			    $("#dayForm").submit();
+			});
 		});
-	});
-</script>
+	</script>
+<?php } ?>

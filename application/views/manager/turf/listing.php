@@ -2,9 +2,8 @@
 	<div class="booking manager-dashboard noturf">
         <h3 class="text-center">No Turf Available!</h3>
         <div class="slots">
-                <p class="text-center">LOreum ipsum LOreum ipsum LOreum ipsumLOreum ipsumLOreum ipsumLOreum ipsum </p>
             <div class="flexpanel totalbooking align-center justify-center">
-                <a class="slotbtn add" href="http://localhost/onsyde/manager/turf/messaging/1">Add New Turf</a>
+                <a class="slotbtn add" href="<?php echo site_url('manager/turf/create'); ?>">Add New Turf</a>
             </div>
         </div>
     </div>

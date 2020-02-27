@@ -416,6 +416,8 @@ class Turf extends ApiController
 		            $booked_slots = $this->Turf_model->get_all_turf_booked_slots($data['turf']['id'], $day, $date);
 		            $available_slots = $this->Turf_model->get_all_turf_slots($data['turf']['id'], $day);
 
+		            pr($available_slots);
+	            	exit;
 
 		            foreach ($available_slots as $key => $slot)
 		            {

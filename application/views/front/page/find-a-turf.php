@@ -104,11 +104,12 @@
 	$(document).ready(function() {
 		$(document).on("click", ".slot-available", function() {
 			var _this = $(this);
-			var start = $(".slot-available.select").length;
+			var slots = _this.parents('.slots');
+			var start = slots.find(".slot-available.select").length;
 			if(start == 0) {
 				_this.addClass('select');
 			} else if(start >= 2) {
-				$(".slot-available").removeClass('select');
+				slots.find(".slot-available").removeClass('select');
 				_this.addClass('select');
 			} else {
 				if(_this.hasClass('select')) {
@@ -117,7 +118,7 @@
 					_this.addClass('current');
 					var startIndex = 0;
 					var endIndex = 0;
-					$(".slot-available").each(function() {
+					slots.find(".slot-available").each(function() {
 						var index = $(this).index();
 						if($(this).hasClass('select')) {
 							startIndex = index;
@@ -128,31 +129,31 @@
 					});
 					_this.removeClass('current');
 					if(startIndex < endIndex) {
-						_this.prevUntil($(".slot-available.select")).addClass('selectable');
+						_this.prevUntil(slots.find(".slot-available.select")).addClass('selectable');
 					} else {
-						_this.nextUntil($(".slot-available.select")).addClass('selectable');
+						_this.nextUntil(slots.find(".slot-available.select")).addClass('selectable');
 					}
 
-					if($(".slot-unavailable.selectable").length) {
-						$(".selectable").removeClass('selectable');
+					if(slots.find(".slot-unavailable.selectable").length) {
+						slots.find(".selectable").removeClass('selectable');
 					} else {
-						$(".selectable").removeClass('selectable');
+						slots.find(".selectable").removeClass('selectable');
 						if(startIndex < endIndex) {
-							_this.prevUntil($(".slot-available.select")).addClass('select');
+							_this.prevUntil(slots.find(".slot-available.select")).addClass('select');
 						} else {
-							_this.nextUntil($(".slot-available.select")).addClass('select');
+							_this.nextUntil(slots.find(".slot-available.select")).addClass('select');
 						}
 						_this.addClass('select');
 					}
 				}
 			}
-			$(".slot-available").each(function() {
+			slots.find(".slot-available").each(function() {
 				$(this).find('input').prop('checked', false);
 				if($(this).hasClass('select')) {
 					$(this).find('input').prop('checked', true);
 				}
 			});
-			calculate();
+			calculate(slots);
 		})
 	});
 </script>
@@ -164,15 +165,15 @@
 			_this.parents('form').submit();
 		});
 	});
-	function calculate()
+	function calculate(slots)
 	{
-		var time = ($(".slot-available.select").length) / 2;
-		$(".time").text(time);
+		var time = (slots.find(".slot-available.select").length) / 2;
+		slots.find(".time").text(time);
 
 		var price = 0;
-		$(".slot-available.select").each(function() {
+		slots.find(".slot-available.select").each(function() {
 			price += parseFloat($(this).attr('data-price'));
 		});
-		$(".price").text(price);
+		slots.find(".price").text(price);
 	}
 </script>

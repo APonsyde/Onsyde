@@ -151,6 +151,9 @@ class Turf_model extends CI_Model
 		if(!empty($params['exclude_ids']))
 			$this->db->where_not_in('t.id', $params['exclude_ids']);
 
+		if(!empty($params['manager_id']))
+			$this->db->where('t.manager_id', $params['manager_id']);
+
 		if(!empty($params['search'])) {
 			$this->db->group_start();
 			$this->db->like('t.id', $params['search'], 'both');

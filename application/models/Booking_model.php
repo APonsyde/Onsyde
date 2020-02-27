@@ -276,7 +276,7 @@ class Booking_model extends CI_Model
 		$sql = "SELECT IFNULL(SUM(bs.id), 0) as todays_bookings FROM booking_slots bs INNER JOIN bookings b ON b.id = bs.booking_id WHERE b.turf_id = ? AND booking_date = CURRENT_DATE();";
 		$data1 = $this->db->query($sql, [$turf_id])->row_array();
 
-		lq();
+		// lq();
 
 		$sql = "SELECT IFNULL(SUM(bs.slot_amount), 0) as todays_earnings FROM booking_slots bs INNER JOIN bookings b ON b.id = bs.booking_id WHERE b.turf_id = ? AND booking_date = CURRENT_DATE();";
 		$data2 = $this->db->query($sql, [$turf_id])->row_array();
@@ -294,8 +294,8 @@ class Booking_model extends CI_Model
 			'custom_earnings' => $data4['todays_earnings']
 		];
 
-		pr($return);
-		exit;
+		// pr($return);
+		// exit;
 
 		return $return;
 	}

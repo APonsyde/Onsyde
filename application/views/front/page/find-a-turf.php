@@ -74,11 +74,9 @@
 	    		</form>
     		<?php } ?>
 		<?php } else { ?>
-	    	<div class="col-sm-12">
-		    	<div class="alert alert-danger" role="alert">
-					No turfs available!
-	            </div>
-	        </div>
+	    	<div class="mt-4">
+				<em>No turfs available!</em>
+            </div>
 	    <?php } ?>
 	</div>
 </section>

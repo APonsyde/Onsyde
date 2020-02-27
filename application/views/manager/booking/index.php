@@ -40,10 +40,14 @@
                             <td><?php echo $booking['time_slot']; ?></td>
                             <td><?php echo CURRENCY_SYMBOL; ?> <?php echo $booking['amount']; ?>/-</td>
                             <td>
-                                <?php if($booking['status'] == TURF_STATUS_CANCELLED) { ?>
-                                    <span class="text text-danger">Cancelled</span>
+                                <?php if(in_array($booking['status'], [TURF_STATUS_BOOKED]) && $booking['player_cancellation']) { ?>
+                                    <a href="<?php echo site_url('manager/booking/cancel/'.$booking['id']); ?>">Cancel</a>
                                 <?php } else { ?>
-                                    <span class="text text-success">Confirmed</span>
+                                    <?php if($booking['status'] == TURF_STATUS_CANCELLED) { ?>
+                                        <span class="text text-danger">Cancelled</span>
+                                    <?php } else { ?>
+                                        <span class="text text-success">Confirmed</span>
+                                    <?php } ?>
                                 <?php } ?>
                             </td>
                         </tr>

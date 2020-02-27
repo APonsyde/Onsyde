@@ -11,7 +11,7 @@
             </div>
             <div class="flexpanel justify-between">
                 <a class="greyBtn green">Send</a>
-                <a href="<?php echo site_url('manager/turf/listing'); ?>" class="redbg">Cancel</a>
+                <a href="<?php echo site_url('manager/turf/listing'); ?>" class="back">Back →</a>
             </div>
             <div id="js-contact-result" data-success-msg="Success, We will get back to you soon" data-error-msg="Oops! Something went wrong"></div>
         </form>

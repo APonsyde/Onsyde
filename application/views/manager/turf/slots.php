@@ -46,24 +46,70 @@
 
 <script>
     $(document).ready(function() {
-
         $(document).on("click", ".badge-set", function() {
             var _this = $(this);
-            $(this).toggleClass('badge-select selection');
-        });
+            var timeslots = _this.parents('.timeslots');
+            var start = timeslots.find(".badge-set.badge-select").length;
+            if(start == 0) {
+                _this.addClass('badge-select selection');
+            } else if(start >= 2) {
+                timeslots.find(".badge-set").removeClass('badge-select selection');
+                _this.addClass('badge-select selection');
+            } else {
+                if(_this.hasClass('badge-select')) {
+                    _this.removeClass('badge-select');
+                } else {
+                    _this.addClass('current');
+                    var startIndex = 0;
+                    var endIndex = 0;
+                    timeslots.find(".badge-set").each(function() {
+                        var index = $(this).index();
+                        if($(this).hasClass('badge-select')) {
+                            startIndex = index;
+                        }
+                        if($(this).hasClass('current')) {
+                            endIndex = index;
+                        }
+                    });
+                    _this.removeClass('current');
+                    if(startIndex < endIndex) {
+                        _this.prevUntil(timeslots.find(".badge-set.badge-select")).addClass('selection');
+                    } else {
+                        _this.nextUntil(timeslots.find(".badge-set.badge-select")).addClass('selection');
+                    }
+
+                    if(timeslots.find(".badge-set.selectable").length) {
+                        timeslots.find(".selectable").removeClass('selection');
+                    } else {
+                        timeslots.find(".selectable").removeClass('selection');
+                        if(startIndex < endIndex) {
+                            _this.prevUntil(timeslots.find(".badge-set.badge-select")).addClass('badge-select selection');
+                        } else {
+                            _this.nextUntil(timeslots.find(".badge-set.badge-select")).addClass('badge-select selection');
+                        }
+                        _this.addClass('selection');
+                    }
+                }
+            }
+        })
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
 
         $(document).on("click", ".btn-add", function() {
             var _this = $(this);
             var box = _this.parents('.box');
             var id = "<?php echo $turf['id']; ?>";
             var day = box.attr('data-day');
-            var selected = box.find('.badge-select').length;
+            var selected = box.find('.selection').length;
             var text = "<p><b>" + day + "</b>, slot timings selected:</p>";
             var slot_ids = [];
 
             if(selected)
             {
-                box.find('.badge-select').each(function(i, v) {
+                box.find('.selection').each(function(i, v) {
                     text += "<p class='text-primary'>" + $(v).attr('data-time') + "</p>";
                     slot_ids.push($(v).attr('data-id'));
                 })

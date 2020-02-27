@@ -1,14 +1,13 @@
+<?php $today = ($this->input->get('date')) ? $this->input->get('date') : date('Y-m-d'); ?>
 <div class="booking manager-dashboard">
 	<form id="dayForm">
 		<div class="flexpanel justify-between align-center mb-3">
 			<div class="wid50">
-				<?php $days = get_upcoming_days();?>
-				<img src="<?php echo base_url('resources/front/images/calendar.svg'); ?>" alt="logo" class="calendar">
-				<select class="date" name="date" onchange="document.getElementById('dayForm').submit();">
-					<?php foreach ($days as $key => $day) { ?>
-						<option value="<?php echo $key; ?>" <?php echo ($this->input->get('date') == $key) ? 'selected' : ''; ?>><?php echo $day; ?></option>
-					<?php } ?>
-				</select>
+				<input type="hidden" name="date" id="date" value="<?php echo $today; ?>">
+				<div class="datepicker" style="background: #fff; cursor: pointer; padding: 5px 10px; width: 100%">
+					<img src="<?php echo base_url('resources/front/images/calendar.svg'); ?>" alt="logo" class="calendar">
+				    <span></span> <i class="fa fa-caret-down"></i>
+				</div>
 			</div>
 		</div>
 	</form>
@@ -140,7 +139,6 @@
 	<?php } ?>
 </div>
 
-
 <script type="text/javascript">
     $(document).ready(function() {
     	$(".btn-tab-booking").click(function() {
@@ -153,4 +151,28 @@
     		$("."+bclass).addClass("act");
     	});
     });
+</script>
+<script>
+	$(function() {
+		var start = moment('<?php echo $today; ?>');
+		$('.datepicker').daterangepicker({
+			startDate: start,
+			singleDatePicker: true,
+			showDropdowns: true,
+			autoApply: true,
+			minDate: moment(),
+			maxYear: <?php echo date('Y') + 2; ?>,
+			locale: {
+		      	format: 'Y-MM-DD'
+		    }
+		}, cb);
+	    cb(start);
+	    function cb(start) {
+	        $('.datepicker span').html(start.format('MMMM D, YYYY'));
+	        $('#date').val(start.format('Y-MM-DD'));
+	    }
+	    $('.datepicker').on('apply.daterangepicker', function(ev, picker) {
+		    $("#dayForm").submit();
+		});
+	});
 </script>

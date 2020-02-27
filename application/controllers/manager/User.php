@@ -263,6 +263,8 @@ class User extends ManagerController
             $data['turfs'][$key]['cancelled_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id'], 'status' => TURF_STATUS_CANCELLED, 'booking_date' => $date]);
         }
 
+        $data['date'] = $params;
+
         $data['tab'] = 'dashboard';
         $data['title'] = 'View your dashboard activity';
         $data['_view'] = 'manager/user/dashboard';

@@ -106,7 +106,6 @@
 	<?php } ?>
 </div>
 
-
 <script type="text/javascript">
     $(document).ready(function() {
     	$(".btn-tab-booking").click(function() {
@@ -133,15 +132,7 @@
 	        startDate: start,
 	        endDate: end,
 	        linkedCalendars: false,
-	        opens: 'right',
-	        ranges: {
-	           'Today': [moment(), moment()],
-	           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-	           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-	           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-	           'This Month': [moment().startOf('month'), moment().endOf('month')],
-	           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-	        }
+	        opens: 'right'
 	    }, cb);
 	    cb(start, end);
 	    $('.daterange').on('apply.daterangepicker', function(ev, picker) {
@@ -149,9 +140,3 @@
 		});
 	});
 </script>
-
-<style>
-	.drp-calendar.right {
-	  display: none !important;
-	}
-</style>

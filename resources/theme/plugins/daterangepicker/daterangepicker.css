@@ -412,3 +412,7 @@
     clear: none !important;
   }
 }
+
+.drp-calendar.right {
+    display: none !important;
+}

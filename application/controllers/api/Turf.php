@@ -579,8 +579,8 @@ class Turf extends ApiController
 	        $data['turfs'] = $this->Turf_model->get_all_turfs(null, null, $filters);
 
 			$params = [];
-	        $params['from_date'] =  ($this->input->get('from_date')) ? $this->input->get('from_date') : date('Y-m-')."01";
-	        $params['to_date'] =  ($this->input->get('to_date')) ? $this->input->get('to_date') : date('Y-m-d');
+	        $params['from_date'] =  ($this->input->post('from_date')) ? $this->input->post('from_date') : date('Y-m-')."01";
+	        $params['to_date'] =  ($this->input->post('to_date')) ? $this->input->post('to_date') : date('Y-m-d');
 
 	        foreach ($data['turfs'] as $key => $turf)
 	        {

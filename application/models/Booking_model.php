@@ -273,15 +273,13 @@ class Booking_model extends CI_Model
 		$from_date =  !empty($params['from_date']) ? $params['from_date'] : date('Y-m-d');
 		$to_date =  !empty($params['to_date']) ? $params['to_date'] : date('Y-m-d');
 
-		$sql = "SELECT IFNULL(SUM(bs.id), 0) as todays_bookings FROM booking_slots bs INNER JOIN bookings b ON b.id = bs.booking_id WHERE b.turf_id = ? AND booking_date = CURRENT_DATE();";
+		$sql = "SELECT IFNULL(COUNT(bs.id), 0) as todays_bookings FROM booking_slots bs INNER JOIN bookings b ON b.id = bs.booking_id WHERE b.turf_id = ? AND booking_date = CURRENT_DATE();";
 		$data1 = $this->db->query($sql, [$turf_id])->row_array();
-
-		// lq();
 
 		$sql = "SELECT IFNULL(SUM(bs.slot_amount), 0) as todays_earnings FROM booking_slots bs INNER JOIN bookings b ON b.id = bs.booking_id WHERE b.turf_id = ? AND booking_date = CURRENT_DATE();";
 		$data2 = $this->db->query($sql, [$turf_id])->row_array();
 
-		$sql = "SELECT IFNULL(SUM(bs.id), 0) as todays_bookings FROM booking_slots bs INNER JOIN bookings b ON b.id = bs.booking_id WHERE b.turf_id = ? AND booking_date >= CAST(? AS DATE) AND booking_date <= CAST(? AS DATE);";
+		$sql = "SELECT IFNULL(COUNT(bs.id), 0) as todays_bookings FROM booking_slots bs INNER JOIN bookings b ON b.id = bs.booking_id WHERE b.turf_id = ? AND booking_date >= CAST(? AS DATE) AND booking_date <= CAST(? AS DATE);";
 		$data3 = $this->db->query($sql, [$turf_id, $from_date, $to_date])->row_array();
 
 		$sql = "SELECT IFNULL(SUM(bs.slot_amount), 0) as todays_earnings FROM booking_slots bs INNER JOIN bookings b ON b.id = bs.booking_id WHERE b.turf_id = ? AND booking_date >= CAST(? AS DATE) AND booking_date <= CAST(? AS DATE);";
@@ -293,9 +291,6 @@ class Booking_model extends CI_Model
 			'custom_bookings' => $data3['todays_bookings'],
 			'custom_earnings' => $data4['todays_earnings']
 		];
-
-		// pr($return);
-		// exit;
 
 		return $return;
 	}

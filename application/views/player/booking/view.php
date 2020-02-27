@@ -34,9 +34,9 @@
                             		<td><?php echo $invited_player['mobile']; ?></td>
                             		<td>
                             			<?php if($invited_player['status'] == 'invited') { ?>
-	                            			<a class="btn btn-primary" href="<?php echo site_url('booking/invite-resend/'.$invited_player['id']); ?>">Reinvite</a>
+	                            			<a class="greyBtn green" href="<?php echo site_url('booking/invite-resend/'.$invited_player['id']); ?>">Reinvite</a>
 	                            		<?php } ?>
-                            			<a class="btn btn-primary" href="<?php echo site_url('booking/invite-remove/'.$invited_player['id']); ?>">Remove</a>
+                            			<a class="greyBtn" href="<?php echo site_url('booking/invite-remove/'.$invited_player['id']); ?>">Remove</a>
                             		</td>
                             	</tr>
                             <?php } ?>
@@ -65,7 +65,7 @@
                         	<tr>
                         		<td><input placeholder="name" name="name" type="text" class="form-control"></td>
                         		<td><input placeholder="mobile" name="mobile" type="number" class="form-control"></td>
-                        		<td><button class="btn btn-primary">Invite</button></td>
+                        		<td><button class="greyBtn green">Invite</button></td>
                         	</tr>
                         </tbody>
                     </table>
@@ -93,7 +93,7 @@
                             	<tr>
                             		<td><?php echo $recent_player['name']; ?></td>
                             		<td><?php echo $recent_player['mobile']; ?></td>
-                            		<td><a class="btn btn-primary" href="<?php echo site_url('booking/invite-add/'.$recent_player['id'].'/'.$booking['id']); ?>">Invite</a></td>
+                            		<td><a class="greyBtn green" href="<?php echo site_url('booking/invite-add/'.$recent_player['id'].'/'.$booking['id']); ?>">Invite</a></td>
                             	</tr>
                             <?php } ?>
                         </tbody>

@@ -33,6 +33,7 @@
             <aside class="px-0 wid20" id="left">
                 <div class="list-group fixed-top">
                     <a href="<?php echo site_url('manager/dashboard'); ?>" class="list-group-item <?php echo (isset($tab) && $tab == 'dashboard') ? 'active' : '' ?>">Dashboard</a>
+                    <a href="<?php echo site_url('manager/report'); ?>" class="list-group-item <?php echo (isset($tab) && $tab == 'report') ? 'active' : '' ?>">Dashboard - Reports</a>
                     <a href="<?php echo site_url('manager/booking/create'); ?>" class="list-group-item <?php echo (isset($tab) && $tab == 'booking_new') ? 'active' : '' ?>">+ New Booking</a>
                     <a href="<?php echo site_url('manager/bookings'); ?>" class="list-group-item <?php echo (isset($tab) && $tab == 'bookings') ? 'active' : '' ?>">Bookings</a>
                     <a href="<?php echo site_url('manager/turf/create'); ?>" class="list-group-item <?php echo (isset($tab) && $tab == 'turf_new') ? 'active' : '' ?>">Add new Turf</a>

@@ -319,9 +319,6 @@ class Turf extends ManagerController
 	            $data['turf']['booked_slots'] = $this->Turf_model->get_all_turf_booked_slots($id, $day, $date);
 	            $data['turf']['available_slots'] = $this->Turf_model->get_all_turf_slots($id, $day);
 
-	            pr($data['turf']['available_slots']);
-	            exit;
-
 	            foreach ($data['turf']['available_slots'] as $key => $slot)
 	            {
 	            	foreach ($data['turf']['booked_slots'] as $bkey => $booked_slot)

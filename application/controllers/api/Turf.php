@@ -568,4 +568,35 @@ class Turf extends ApiController
 			}
 		}
 	}
+
+	public function revenue()
+	{
+		if($this->authenticate_token())
+        {
+			$filters = [];
+	        $filters['manager_id'] = $this->manager['id'];
+
+	        $offset = ($this->input->get('page')) ? $this->input->get('page') : 0;
+	        $data['turfs'] = $this->Turf_model->get_all_turfs(null, null, $filters);
+
+			$params = [];
+	        $params['from_date'] =  ($this->input->get('from_date')) ? $this->input->get('from_date') : date('Y-m-')."01";
+	        $params['to_date'] =  ($this->input->get('to_date')) ? $this->input->get('to_date') : date('Y-m-d');
+
+	        foreach ($data['turfs'] as $key => $turf)
+	        {
+	            $data['turfs'][$key]['report'] = $this->Booking_model->get_booking_data($turf['id'], $params);
+	        }
+
+	        $data['date'] = $params;
+
+	        $response = [
+                'success' => true,
+                'message' => 'Revenue is fetched',
+                'data' => $data
+            ];
+
+            $this->set_response($response, \Restserver\Libraries\REST_Controller::HTTP_OK);
+	    }
+	}
 }

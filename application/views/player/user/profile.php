@@ -16,7 +16,7 @@
                 </div>
             </div>
             <hr>
-            <h6 class="card-subtitle">Enter the password to update or leave it blank.</h6>
+            <h6 class="card-subtitle pb-4">Enter the password to update or leave it blank.</h6>
             <div class="form-row" id="preferences">
                 <div class="form-group col-md-6">
                     <label>Password</label>
@@ -31,7 +31,7 @@
         <div class="preferences mb-5">
             <h4>Preferences</h4>
             <hr>
-            <h6 class="mb-2">I usually play in</h6>
+            <h6 class="mb-3">I usually play in</h6>
             <div class="group-btns">
                 <button type="button" class="btn btn-<?php echo($player['play_in'] == 'one_area') ? '' : 'outline-'; ?>dark btn-sm" data-show=".play_in_main" data-hide=".play_in_multiple">One area<input type="radio" name="play_in" value="one_area" class="d-none" <?php echo($player['play_in'] == 'one_area') ? 'checked' : ''; ?>></button>&nbsp;
                 <button type="button" class="btn btn-<?php echo($player['play_in'] == 'two_three_areas') ? '' : 'outline-'; ?>dark btn-sm" data-show=".play_in_main,.play_in_multiple" data-hide="">Two to three areas<input type="radio" name="play_in" value="two_three_areas" class="d-none" <?php echo($player['play_in'] == 'two_three_areas') ? 'checked' : ''; ?>></button>&nbsp;
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <br>
-            <h6 class="mb-2">Favourite Turf</h6>
+            <h6 class="mb-3">Favourite Turf</h6>
             <div class="row">
                 <div class="col-sm-3">
                     <input class="form-control" name="favourite_turf_name" placeholder="Turf Name" type="text" value="<?php echo ($this->input->post('favourite_turf_name')) ? $this->input->post('favourite_turf_name') : $player['favourite_turf_name']; ?>">
@@ -68,14 +68,14 @@
                 </div>
             </div>
             <br>
-            <h6 class="mb-2">Favourite Club (Football or Cricket)</h6>
+            <h6 class="mb-3">Favourite Club (Football or Cricket)</h6>
             <div class="row">
                 <div class="col-sm-6">
                     <input class="form-control" name="favourite_club" placeholder="Club Name" type="text" value="<?php echo ($this->input->post('favourite_club')) ? $this->input->post('favourite_club') : $player['favourite_club']; ?>">
                 </div>
             </div>
             <br>
-            <h6 class="mb-2">I prefer to play</h6>
+            <h6 class="mb-3">I prefer to play</h6>
             <div class="group-btns">
                 <button type="button" class="btn btn-<?php echo($player['prefer_to_play'] == 'cricket') ? '' : 'outline-'; ?>dark btn-sm" data-show=".prefer_to_play_main,.prefer_to_play_multiple_cricket" data-hide=".prefer_to_play_multiple_football">Cricket<input type="radio" name="prefer_to_play" value="cricket" class="d-none" <?php echo($player['prefer_to_play'] == 'cricket') ? 'checked' : ''; ?>></button>&nbsp;
                 <button type="button" class="btn btn-<?php echo($player['prefer_to_play'] == 'football') ? '' : 'outline-'; ?>dark btn-sm" data-show=".prefer_to_play_main,.prefer_to_play_multiple_football" data-hide=".prefer_to_play_multiple_cricket">Football<input type="radio" name="prefer_to_play" value="football" class="d-none" <?php echo($player['prefer_to_play'] == 'football') ? 'checked' : ''; ?>></button>&nbsp;
@@ -98,7 +98,7 @@
                 </div>
             </div>
             <br>
-            <h6 class="mb-2">I would like to get notified for games during the</h6>
+            <h6 class="mb-3">I would like to get notified for games during the</h6>
             <div class="group-btns">
                 <button type="button" class="btn btn-<?php echo($player['notified_for_games'] == 'mornings') ? '' : 'outline-'; ?>dark btn-sm">Mornings<input type="radio" name="notified_for_games" value="mornings" class="d-none" <?php echo($player['notified_for_games'] == 'mornings') ? 'checked' : ''; ?>></button>&nbsp; 
                 <button type="button" class="btn btn-<?php echo($player['notified_for_games'] == 'evenings') ? '' : 'outline-'; ?>dark btn-sm">Evenings<input type="radio" name="notified_for_games" value="evenings" class="d-none" <?php echo($player['notified_for_games'] == 'evenings') ? 'checked' : ''; ?>></button>&nbsp; 

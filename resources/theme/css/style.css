@@ -166,11 +166,20 @@ Author:
    .white{
     color:#fff !important;
    }
+   .booking.manager-dashboard.dsh{
+    padding: 45px 0;
+    margin: 0 0 0 24px;
+   }
+   .slots.bggrey{
+    background: #F9F9F9;
+    padding: 20px 0 0 15px;
+   }
    .fixed-top{
-    top: 68px !important;   
-     height: 100%;
+    top: 68px !important;
+    height: 100%;
     background: #F2F5F8;
     width: 20%;
+    box-shadow: 0 0px 11px -5px black !important;
    }
    .wid20{width:20%}
    .wid80{width:78%}
@@ -428,6 +437,7 @@ border: 1px solid #cddc39;
   display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 10px !important
 }
 .calendar{
   width:20px;    margin-right: 10px;
@@ -437,12 +447,24 @@ border: 1px solid #cddc39;
 }
 body {
   font-family: 'Roboto', sans-serif;color: #484848 !important;background: #fff !important}
-  .booking .date{    width: auto;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+  .booking .date{        width: 90%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
     border: 0;
-    padding: 0 33px 0 0;
-    background: url(../images/droparrow.png?=v2) 95% center no-repeat transparent;
+    padding: 0 19px 0 10px;
+    background: url(../images/arrw.png?=v2) 97% center no-repeat transparent;
+    border-radius: 0;
+    }
+    #list-form .wid-50{
+      
+    }
+    .booking  #list-form .date{ width: 85%;border: 1px solid #53b54b;
+        padding: 10px;}
+    #dayForm .wid50{
+      border: 1px solid #53b54b;
+      display: flex;
+      align-items: center;
+
     }
     .totalbooking{
     margin:20px 0 0;

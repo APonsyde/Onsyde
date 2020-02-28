@@ -9,7 +9,7 @@
 	</div>
 <?php } else { ?>
 	<?php $today = ($this->input->get('date')) ? $this->input->get('date') : date('Y-m-d'); ?>
-	<div class="booking manager-dashboard">
+	<div class="booking manager-dashboard dash">
 		<form id="dayForm">
 			<div class="flexpanel justify-between align-center mb-3">
 				<div class="wid50">
@@ -22,7 +22,7 @@
 			</div>
 		</form>
 		<?php foreach ($turfs as $key => $turf) { ?>
-			<div class="slots">
+			<div class="slots bggrey">
 				<h3><?php echo $turf['name']; ?></h3>
 				<div class="flexpanel justify-between">
 					<h6><img src="<?php echo base_url('resources/front/images/pin.svg'); ?>" alt="logo" class="calendar"><?php echo $turf['address']; ?></h6>

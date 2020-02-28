@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <hr>
-                        <h6 class="card-subtitle pb-4">Enter the password to update or leave it blank.</h6>
+                        <h6 class="card-subtitle pb-4 mb-3">Enter the password to update or leave it blank.</h6>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Password</label>

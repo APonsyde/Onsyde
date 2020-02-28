@@ -19,7 +19,7 @@
                             <td><a href="tel:<?php echo $booking['mobile']; ?>"><?php echo $booking['mobile']; ?></a><br><a href="tel:<?php echo $booking['alternate_number']; ?>"><?php echo $booking['alternate_number']; ?></a></td>
                             <td><?php echo convert_db_time($booking['booking_date'], "jS M, Y"); ?></td>
                             <td><?php echo $booking['time_slot']; ?></td>
-                            <td>Rs. <?php echo $booking['amount']; ?>/-</td>
+                            <td><?php echo CURRENCY_SYMBOL; ?> <?php echo $booking['amount']; ?>/-</td>
                             <td>
                                 <?php if(in_array($booking['status'], [TURF_STATUS_BOOKED]) && $booking['player_cancellation']) { ?>
                                     <a href="<?php echo site_url('booking/cancel/'.$booking['id']); ?>">Cancel</a>

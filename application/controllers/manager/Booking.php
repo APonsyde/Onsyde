@@ -234,4 +234,35 @@ class Booking extends ManagerController
             exit;
         }
     }
+
+    public function cancel($id = 0)
+    {
+        $this->authenticate(current_url());
+
+        $booking = $this->Booking_model->get_booking_by_id($id);
+
+        if(!empty($booking) && $booking['manager_id'] = $this->manager['id'])
+        {
+            if($booking['player_cancellation'])
+            {
+                $this->Booking_model->update($booking['id'], ['status' => 'cancelled']);
+
+                $this->session->set_flashdata('success_message', 'You have cancelled this booking');
+                redirect('manager/bookings');
+                exit;
+            }
+            else
+            {
+                $this->session->set_flashdata('error_message', 'This booking cannot be cancelled');
+                redirect('manager/bookings');
+                exit;
+            }
+        }
+        else
+        {
+            $this->session->set_flashdata('error_message', 'Booking not found');
+            redirect('manager/bookings');
+            exit;
+        }
+    }
 }

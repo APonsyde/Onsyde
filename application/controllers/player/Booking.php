@@ -100,8 +100,6 @@ class Booking extends FrontController
 
     public function invite($invite_key = null)
     {
-        $this->authenticate(current_url());
-
         $data['invite'] = $this->Booking_model->get_booking_invite_by_params(['invite_key' => $invite_key]);
 
         if(!empty($data['invite']))

@@ -75,6 +75,7 @@ $route['manager/register'] = 'manager/user/register';
 $route['manager/otp'] = 'manager/user/otp';
 $route['manager/password'] = 'manager/user/password';
 $route['manager/dashboard'] = 'manager/user/dashboard';
+$route['manager/report'] = 'manager/user/report';
 $route['manager/logout'] = 'manager/user/logout';
 $route['manager/forgot-password'] = 'manager/user/forgot_password';
 $route['manager/reset-password'] = 'manager/user/reset_password';

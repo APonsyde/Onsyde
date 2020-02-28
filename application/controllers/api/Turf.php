@@ -416,14 +416,13 @@ class Turf extends ApiController
 		            $booked_slots = $this->Turf_model->get_all_turf_booked_slots($data['turf']['id'], $day, $date);
 		            $available_slots = $this->Turf_model->get_all_turf_slots($data['turf']['id'], $day);
 
-
 		            foreach ($available_slots as $key => $slot)
 		            {
 		            	foreach ($booked_slots as $bkey => $booked_slot)
 		            	{
 		            		if($slot['id'] == $booked_slot['id'])
 		            		{
-		            			unset($data['turf']['available_slots'][$key]);
+		            			unset($available_slots[$key]);
 		            		}
 		            	}
 		            }
@@ -567,5 +566,36 @@ class Turf extends ApiController
 				$this->return_form_errors($this->form_validation->error_array());
 			}
 		}
+	}
+
+	public function revenue_post()
+	{
+		if($this->authenticate_token())
+        {
+			$filters = [];
+	        $filters['manager_id'] = $this->manager['id'];
+
+	        $offset = ($this->input->get('page')) ? $this->input->get('page') : 0;
+	        $data['turfs'] = $this->Turf_model->get_all_turfs(null, null, $filters);
+
+			$params = [];
+	        $params['from_date'] =  ($this->input->post('from_date')) ? $this->input->post('from_date') : date('Y-m-')."01";
+	        $params['to_date'] =  ($this->input->post('to_date')) ? $this->input->post('to_date') : date('Y-m-d');
+
+	        foreach ($data['turfs'] as $key => $turf)
+	        {
+	            $data['turfs'][$key]['report'] = $this->Booking_model->get_booking_data($turf['id'], $params);
+	        }
+
+	        $data['date'] = $params;
+
+	        $response = [
+                'success' => true,
+                'message' => 'Revenue is fetched',
+                'data' => $data
+            ];
+
+            $this->set_response($response, \Restserver\Libraries\REST_Controller::HTTP_OK);
+	    }
 	}
 }

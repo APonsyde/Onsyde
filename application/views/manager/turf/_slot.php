@@ -14,13 +14,13 @@
                                     }
                                 ?>
                                 <li class="badge-set <?php echo ($unavailable) ? '' : 'booked'; ?>" data-id="<?php echo $slot['id']; ?>" data-time="<?php echo $slot['time']; ?>" style="cursor: pointer;">
-                                    <?php echo $slot['time']; ?> / Rs. <?php echo $slot['price']; ?>
+                                    <?php echo $slot['time']; ?> / <?php echo CURRENCY_SYMBOL; ?> <?php echo $slot['price']; ?>
                                 </li>
                             <?php } ?>
-                        </ul>
+                        </ul> 
                     </div>
                     <div class="bookslot">
-                        <a class="btn slotbtn add mt-4 mr-2" href="#" data-toggle="modal" data-target="#priceModal">Add Slot Prices</a>
+                        <a class="btn slotbtn add mt-4 mr-2 btn-add" href="#" data-toggle="modal" data-target="#priceModal">Add Slot Prices</a>
                         <a class="btn slotbtn add btn-reset mt-4" href="javascript:void(0);">Reset Selection</a>
                     </div>
                 </div>

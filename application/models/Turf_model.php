@@ -77,6 +77,7 @@ class Turf_model extends CI_Model
 		$this->db->from('turf_slots ts');
 		$this->db->join('booking_slots bs', 'bs.turf_slot_id = ts.id', 'left');
 		$this->db->join('bookings b', 'bs.booking_id = b.id', 'left');
+		$this->db->where('b.status', TURF_STATUS_BOOKED);
 		$this->db->where('ts.turf_id', $id);
 		$this->db->where('ts.day', $day);
 		return $this->db->get()->result_array();
@@ -150,6 +151,9 @@ class Turf_model extends CI_Model
 
 		if(!empty($params['exclude_ids']))
 			$this->db->where_not_in('t.id', $params['exclude_ids']);
+
+		if(!empty($params['manager_id']))
+			$this->db->where('t.manager_id', $params['manager_id']);
 
 		if(!empty($params['search'])) {
 			$this->db->group_start();

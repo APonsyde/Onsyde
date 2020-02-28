@@ -91,11 +91,11 @@ defined('CURRENCY_SYMBOL') OR define('CURRENCY_SYMBOL', '₹');
 defined('CURRENCY_HTML_CODE') OR define('CURRENCY_HTML_CODE', '&#x20A8;');
 defined('CURRENCY_CODE') OR define('CURRENCY_CODE', 'INR');
 
-defined('SITE_NUMBER') OR define('SITE_NUMBER', '9876543210');
-defined('SITE_EMAIL') OR define('SITE_EMAIL', 'yohhan@techcetra.com');
+defined('SITE_NUMBER') OR define('SITE_NUMBER', '+91 9372965837');
+defined('SITE_EMAIL') OR define('SITE_EMAIL', 'hello@onsyde.in');
 
 defined('EMAIL_FROM') OR define('EMAIL_FROM', 'Onsyde Team');
-defined('EMAIL_ADMIN') OR define('EMAIL_ADMIN', array('yohhan@techcetra.com' => 'Onsyde Admin'));
+defined('EMAIL_ADMIN') OR define('EMAIL_ADMIN', array('hello@onsyde.in' => 'Onsyde Admin'));
 
 defined('SENDGRID_API_KEY') OR define('SENDGRID_API_KEY', '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');
 

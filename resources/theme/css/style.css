@@ -797,6 +797,9 @@ footer.main-block {
     right: 0;
     text-align: center;
   }
+  .contact-form .form-control:focus{
+    border-color: #fff !Important
+  }
 .turfBanner {
   text-align: center;
   height: 500px; 

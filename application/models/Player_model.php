@@ -115,6 +115,30 @@ class Player_model extends CI_Model {
 		return $this->db->count_all_results('players p');
 	}
 
+	public function get_player_name_from_mobile($mobile)
+	{
+		$name = null;
+
+		$player = $this->db->get_where('players', ['mobile' => $mobile])->row_array();
+
+		if(empty($player) || is_null($player['full_name']))
+		{
+			$invited_player = $this->db->get_where('booking_invites', ['mobile' => $mobile])->row_array();
+
+			if(!empty($invited_player))
+			{
+				$name = $invited_player['name'];
+			}
+		}
+		else
+		{
+			$name = $player['full_name'];
+		}
+
+		return $name;
+
+	}
+
 	private function _set_filters($params = null)
 	{
 		if(isset($params['include_ids'])) {

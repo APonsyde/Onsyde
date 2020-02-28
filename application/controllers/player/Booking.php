@@ -7,6 +7,7 @@ class Booking extends FrontController
     {
         parent::__construct();
         $this->load->model('Booking_model');
+        $this->load->model('Player_model');
     }
 
     public function index()
@@ -27,6 +28,8 @@ class Booking extends FrontController
 
         if(!empty($data['booking']))
         {
+            $data['name'] = $this->Player_model->get_player_name_from_mobile($this->input->post('mobile'));
+
             $this->form_validation->set_rules('name', 'Name', 'required|xss_clean');
             $this->form_validation->set_rules('mobile', 'Mobile', 'required|xss_clean');
 
@@ -42,12 +45,20 @@ class Booking extends FrontController
                 if(empty($invite))
                 {
                     $invite_data['booking_id'] = $data['booking']['id'];
-                    $invite_data['invited_by'] = $this->player['id'];
+                    $invite_data['invited_by'] = ($this->player['id']) ? $this->player['id'] : 0;
+
+                    if(!$this->player['id'])
+                    {
+                        $invite_data['status'] = 'accepted';
+                    }
+
                     $result = $this->Booking_model->add_invite($invite_data);
 
                     if($result)
                     {
-                        $this->_send_invite($result);
+                        if($invite_data['invited_by'])
+                            $this->_send_invite($result);
+
                         $this->session->set_flashdata('success_message', 'Invitation sent successfully');
                         redirect('booking/view/'.$booking_key);
                         exit;

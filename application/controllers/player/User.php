@@ -173,6 +173,8 @@ class User extends FrontController
             exit;
         }
 
+        $data['name'] = $this->Player_model->get_player_name_from_mobile($this->input->get('mobile'));
+
         $this->form_validation->set_rules('full_name', 'Name', 'required|xss_clean');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email|check_field[players,email,deleted|0]|xss_clean');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|xss_clean');

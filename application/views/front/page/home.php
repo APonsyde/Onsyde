@@ -221,10 +221,9 @@
 <script>
     $(document).ready(function() {
         var swiper = new Swiper('.swiper-container', {
-          slidesPerView: 'auto',
-          pagination: {
-            clickable: true,
-          },
+            autoplay: {
+    delay: 3000,
+  },
         });
         $("#contactform").on("submit", function(e) {
             e.preventDefault();

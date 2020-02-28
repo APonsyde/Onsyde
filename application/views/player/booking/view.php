@@ -1,44 +1,100 @@
 <div class="booking manager-dashboard mr-5">
 	<h4 class="page-title mb-3">Booking - #<?php echo $booking['booking_key']; ?></h4>
+    <?php if($this->player['id'] == $booking['player_id']) { ?>
+        <div class="card m-b-30">
+            <div class="card-header">
+                Invite new players
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Mobile</td>
+                                    <td width="20%"></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input placeholder="name" name="name" type="text" class="form-control"></td>
+                                    <td><input placeholder="mobile" name="mobile" type="number" class="form-control"></td>
+                                    <td><button class="greyBtn green">Invite</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php } else { ?>
+        <div class="card m-b-30">
+            <div class="card-header">
+                Join as a player
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Mobile</td>
+                                    <td width="20%"></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input placeholder="name" name="name" type="text" class="form-control"></td>
+                                    <td><input placeholder="mobile" name="mobile" type="number" class="form-control"></td>
+                                    <td><button class="greyBtn green">Invite</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php } ?>
     <?php if(!empty($invited_players)) { ?>
     	<div class="card m-b-30">
             <div class="card-header">
-            	Invited Players
+            	Confirmed players
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table">
                     	<thead>
                     		<tr>
-                    			<td></td>
                         		<td>Name</td>
                         		<td>Mobile</td>
-                        		<td width="20%"></td>
+                                <?php if($this->player['id'] == $booking['player_id']) { ?>
+                        		  <td width="20%"></td>
+                                <?php } ?>
                         	</tr>
                     	</thead>
                         <tbody>
+                            <tr>
+                                <td><?php echo $booking['player']; ?></td>
+                                <td><?php echo $booking['player_mobile']; ?></td>
+                                <?php if($this->player['id'] == $booking['player_id']) { ?>
+                                    <td></td>
+                                <?php } ?>
+                            </tr>
                         	<?php foreach ($invited_players as $key => $invited_player) { ?>
-                            	<tr>
-                            		<td>
-                            			<?php
-                            				if($invited_player['status'] == 'accepted')
-                            					$status = 'check';
-                            				elseif($invited_player['status'] == 'rejected')
-                            					$status = 'times';
-                            				else
-                            					$status = 'reply';
-                            			?>
-                            			<i class="fa fa-<?php echo $status; ?>"></i>
-                            		</td>
-                            		<td><?php echo $invited_player['name']; ?></td>
-                            		<td><?php echo $invited_player['mobile']; ?></td>
-                            		<td>
-                            			<?php if($invited_player['status'] == 'invited') { ?>
-	                            			<a class="greyBtn green" href="<?php echo site_url('booking/invite-resend/'.$invited_player['id']); ?>">Reinvite</a>
-	                            		<?php } ?>
-                            			<a class="greyBtn" href="<?php echo site_url('booking/invite-remove/'.$invited_player['id']); ?>">Remove</a>
-                            		</td>
-                            	</tr>
+                                <?php if($invited_player['status'] == 'accepted') { ?>
+                                	<tr>
+                                		<td><?php echo $invited_player['name']; ?></td>
+                                		<td><?php echo $invited_player['mobile']; ?></td>
+                                        <?php if($this->player['id'] == $booking['player_id']) { ?>
+                                    		<td>
+                                    			<a class="greyBtn" href="<?php echo site_url('booking/invite-remove/'.$invited_player['id']); ?>">Remove</a>
+                                    		</td>
+                                        <?php } ?>
+                                	</tr>
+                                    <?php unset($invited_players[$key]); ?>
+                                <?php } ?>
                             <?php } ?>
                         </tbody>
                     </table>
@@ -46,60 +102,95 @@
             </div>
         </div>
     <?php } ?>
-    <div class="card m-b-30">
-        <div class="card-header">
-        	Invite New Players
-        </div>
-        <div class="card-body">
-        	<form method="post">
-                <div class="table-responsive">
-                    <table class="table">
-                    	<thead>
-                    		<tr>
-                        		<td>Name</td>
-                        		<td>Mobile</td>
-                        		<td width="20%"></td>
-                        	</tr>
-                    	</thead>
-                        <tbody>
-                        	<tr>
-                        		<td><input placeholder="name" name="name" type="text" class="form-control"></td>
-                        		<td><input placeholder="mobile" name="mobile" type="number" class="form-control"></td>
-                        		<td><button class="greyBtn green">Invite</button></td>
-                        	</tr>
-                        </tbody>
-                    </table>
+    <?php if($this->player['id'] == $booking['player_id']) { ?>
+        <?php if(!empty($invited_players)) { ?>
+            <div class="card m-b-30">
+                <div class="card-header">
+                    Invited players
                 </div>
-            </form>
-        </div>
-    </div>
-	<?php if(!empty($recent_players)) { ?>
-        <div class="card m-b-30">
-            <div class="card-header">
-            	Recent Players
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <td>Name</td>
+                                    <td>Mobile</td>
+                                    <td width="20%"></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($invited_players as $key => $invited_player) { ?>
+                                    <tr>
+                                        <td>
+                                            <?php
+                                                if($invited_player['status'] == 'rejected')
+                                                    $status = 'times';
+                                                else
+                                                    $status = 'reply';
+                                            ?>
+                                            <i class="fa fa-<?php echo $status; ?>"></i>
+                                        </td>
+                                        <td><?php echo $invited_player['name']; ?></td>
+                                        <td><?php echo $invited_player['mobile']; ?></td>
+                                        <td>
+                                            <?php if($invited_player['status'] == 'invited') { ?>
+                                                <a class="greyBtn green" href="<?php echo site_url('booking/invite-resend/'.$invited_player['id']); ?>">Reinvite</a>
+                                            <?php } ?>
+                                            <a class="greyBtn" href="<?php echo site_url('booking/invite-remove/'.$invited_player['id']); ?>">Remove</a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table">
-                    	<thead>
-                    		<tr>
-                        		<td>Name</td>
-                        		<td>Mobile</td>
-                        		<td width="20%"></td>
-                        	</tr>
-                    	</thead>
-                        <tbody>
-                        	<?php foreach ($recent_players as $key => $recent_player) { ?>
-                            	<tr>
-                            		<td><?php echo $recent_player['name']; ?></td>
-                            		<td><?php echo $recent_player['mobile']; ?></td>
-                            		<td><a class="greyBtn green" href="<?php echo site_url('booking/invite-add/'.$recent_player['id'].'/'.$booking['id']); ?>">Invite</a></td>
+        <?php } ?>
+    	<?php if(!empty($recent_players)) { ?>
+            <div class="card m-b-30">
+                <div class="card-header">
+                	Recent players
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                        	<thead>
+                        		<tr>
+                            		<td>Name</td>
+                            		<td>Mobile</td>
+                            		<td width="20%"></td>
                             	</tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+                        	</thead>
+                            <tbody>
+                            	<?php foreach ($recent_players as $key => $recent_player) { ?>
+                                	<tr>
+                                		<td><?php echo $recent_player['name']; ?></td>
+                                		<td><?php echo $recent_player['mobile']; ?></td>
+                                		<td><a class="greyBtn green" href="<?php echo site_url('booking/invite-add/'.$recent_player['id'].'/'.$booking['id']); ?>">Invite</a></td>
+                                	</tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php } ?>
     <?php } ?>
+    <h6 class="page-title mb-3">Booking URL - <code id="bookingUrl"><?php echo site_url('booking/view/'.$booking['booking_key']); ?></code> <button class="greyBtn green ml-3" onclick="copy_to_clipboard('#bookingUrl')">Copy</button></h6>
 </div>
+
+<script>
+    function copy_to_clipboard(element)
+    {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+        $.alert({
+            title: 'Copied',
+            content: 'Booking URL has been copied to clipboard.',
+        });
+    }
+</script>

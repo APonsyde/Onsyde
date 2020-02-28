@@ -23,11 +23,9 @@ class Booking extends FrontController
 
     public function view($booking_key = null)
     {
-        $this->authenticate(current_url());
-
         $data['booking'] = $this->Booking_model->get_booking_by_params(['booking_key' => $booking_key]);
 
-        if(!empty($data['booking']) && $data['booking']['player_id'] = $this->player['id'])
+        if(!empty($data['booking']))
         {
             $this->form_validation->set_rules('name', 'Name', 'required|xss_clean');
             $this->form_validation->set_rules('mobile', 'Mobile', 'required|xss_clean');

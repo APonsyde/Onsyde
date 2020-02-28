@@ -8,7 +8,7 @@
 	    </div>
 	</div>
 <?php } else { ?>
-	<div class="booking manager-dashboard">
+	<div class="booking manager-dashboard dash">
 		<form id="dayForm">
 			<div class="flexpanel justify-between align-center mb-3">
 				<div class="wid50">

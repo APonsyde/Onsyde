@@ -110,13 +110,26 @@ class Booking extends FrontController
             if($this->form_validation->run())
             {
                 $invite_data = $this->input->post();
-                $result = $this->Booking_model->update_invite($data['invite']['invited_id'], $invite_data);
+
+                if($invite_data['status'] == 'accepted')
+                    $result = $this->Booking_model->update_invite($data['invite']['invited_id'], $invite_data);
+                else
+                    $result = $this->Booking_model->delete_invite($data['invite']['invited_id']);
 
                 if($result)
                 {
-                    $this->session->set_flashdata('success_message', 'Invitation status updated');
-                    redirect('booking/invite/'.$invite_key);
-                    exit;
+                    if($invite_data['status'] == 'accepted')
+                    {
+                        $this->session->set_flashdata('success_message', 'Invitation accepted successfully');
+                        redirect('booking/invite/'.$invite_key);
+                        exit;
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('success_message', 'Invitation rejected successfully');
+                        redirect('booking/view/'.$data['invite']['booking_key']);
+                        exit;
+                    }
                 }
                 else
                 {

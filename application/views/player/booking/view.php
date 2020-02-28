@@ -113,7 +113,6 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <td></td>
                                     <td>Name</td>
                                     <td>Mobile</td>
                                     <td width="20%"></td>
@@ -122,15 +121,6 @@
                             <tbody>
                                 <?php foreach ($invited_players as $key => $invited_player) { ?>
                                     <tr>
-                                        <td>
-                                            <?php
-                                                if($invited_player['status'] == 'rejected')
-                                                    $status = 'times';
-                                                else
-                                                    $status = 'reply';
-                                            ?>
-                                            <i class="fa fa-<?php echo $status; ?>"></i>
-                                        </td>
                                         <td><?php echo $invited_player['name']; ?></td>
                                         <td><?php echo $invited_player['mobile']; ?></td>
                                         <td>

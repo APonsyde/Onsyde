@@ -14,7 +14,6 @@
         <p><?php echo CURRENCY_SYMBOL; ?> <?php echo $booking['amount']; ?>/-</p>
     </div>
     <?php if($booking['status'] == TURF_STATUS_BOOKED) { ?>
-        <hr>
         <?php if($this->player['id'] == $booking['player_id']) { ?>
             <div class="card m-b-30">
                 <div class="card-header">

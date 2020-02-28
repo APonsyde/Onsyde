@@ -424,6 +424,11 @@ border: 1px solid #cddc39;
     background: #F2F5F8;
    
 }
+.search-box .datepicker{
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .calendar{
   width:20px;    margin-right: 10px;
 }
@@ -437,7 +442,7 @@ body {
     border-bottom-right-radius: 5px;
     border: 0;
     padding: 0 33px 0 0;
-    background: url(../images/droparrow.png) 95% center no-repeat transparent;
+    background: url(../images/droparrow.png?=v2) 95% center no-repeat transparent;
     }
     .totalbooking{
     margin:20px 0 0;

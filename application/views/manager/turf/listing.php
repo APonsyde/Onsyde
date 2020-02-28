@@ -9,7 +9,7 @@
     </div>
 <?php } else { ?>
 	<?php $today = ($this->input->get('date')) ? $this->input->get('date') : date('Y-m-d'); ?>
-	<div class="booking manager-dashboard pad-bot-0">
+	<div class="booking manager-dashboard dash pad-bot-0">
     	<form id="dayForm">
 			<div class="flexpanel justify-between align-center mb-3">
 				<div class="wid50">

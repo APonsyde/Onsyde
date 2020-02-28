@@ -8,7 +8,7 @@
 	    </div>
 	</div>
 <?php } else { ?>
-	<div class="booking manager-dashboard">
+	<div class="booking manager-dashboard dash">
 		<form id="dayForm">
 			<div class="flexpanel justify-between align-center mb-3">
 				<div class="wid50">
@@ -26,6 +26,28 @@
 				<h3><?php echo $turf['name']; ?></h3>
 				<div class="flexpanel justify-between">
 					<h6><img src="<?php echo base_url('resources/front/images/pin.svg'); ?>" alt="logo" class="calendar"><?php echo $turf['address']; ?></h6>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="card mb-0 mt-4">
+							<div class="card-header">
+								Total Bookings
+							</div>
+							<div class="card-body">
+								<?php echo $turf['report']['custom_bookings']; ?> slots
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card mb-0 mt-4">
+							<div class="card-header">
+								Total Earnings
+							</div>
+							<div class="card-body">
+								<?php echo CURRENCY_SYMBOL; ?> <?php echo $turf['report']['custom_earnings']; ?>/-
+							</div>
+						</div>
+					</div>
 				</div>
 				<ul class="detail flexpanel">
 					<li class="btn-tab-booking act" data-tab="tab-r-<?php echo $turf['id']; ?>"><a href="javascript:void(0);">Recent Bookings</a></li>
@@ -86,28 +108,6 @@
                                 <?php } ?>
 							</tbody>
 						</table>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="card">
-							<div class="card-header">
-								Total Bookings
-							</div>
-							<div class="card-body">
-								<?php echo $turf['report']['custom_bookings']; ?> slots
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="card">
-							<div class="card-header">
-								Total Earnings
-							</div>
-							<div class="card-body">
-								<?php echo CURRENCY_SYMBOL; ?> <?php echo $turf['report']['custom_earnings']; ?>/-
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>

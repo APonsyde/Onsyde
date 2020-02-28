@@ -40,6 +40,28 @@
 					<a class="slotbtn" href="<?php echo site_url('manager/turf/messaging/'.$turf['id']) ?>">Manage Slot Messaging</a>
 					<span><?php echo $total_booked; ?>% booked</span>
 				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="card mb-0 mt-4">
+							<div class="card-header">
+								Today's Bookings
+							</div>
+							<div class="card-body">
+								<?php echo $turf['report']['todays_bookings']; ?> slots
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card mb-0 mt-4">
+							<div class="card-header">
+								Today's Earnings
+							</div>
+							<div class="card-body">
+								<?php echo CURRENCY_SYMBOL; ?> <?php echo $turf['report']['todays_earnings']; ?>/-
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="timeslots">
 					<ul class="flexpanel wrp">
 						<?php foreach ($turf['slots'] as $key => $slot) { ?>
@@ -119,28 +141,6 @@
                                 <?php } ?>
 							</tbody>
 						</table>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="card">
-							<div class="card-header">
-								Today's Bookings
-							</div>
-							<div class="card-body">
-								<?php echo $turf['report']['todays_bookings']; ?> slots
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="card">
-							<div class="card-header">
-								Today's Earnings
-							</div>
-							<div class="card-body">
-								<?php echo CURRENCY_SYMBOL; ?> <?php echo $turf['report']['todays_earnings']; ?>/-
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>

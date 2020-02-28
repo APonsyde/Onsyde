@@ -10,8 +10,9 @@
                     <div class="search-box">
                         <div class="flexpanel">
                             <div class="datepicker" style="background: #fff; cursor: pointer; padding: 5px 10px; width: 100%">
+                            <span></span> 
                                 <img src="<?php echo base_url('resources/front/images/calendar.svg'); ?>" alt="logo" class="calendar">
-                                <span></span> <i class="fa fa-caret-down"></i>
+                               
                             </div>
                             <div class="btn-search">
                                 <button class="btn btn-simple">Find Turfs →</button>

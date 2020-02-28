@@ -62,7 +62,7 @@
 											<div class="pay rs">
 												<?php echo CURRENCY_SYMBOL; ?> <span class="price">0</span> / <span class="time">0</span> hr
 											</div>
-											<div class="pay-btn pay fontgreen">
+											<div class="pay-btn pay fontgreen" data-title="Confirm Booking" data-text="Are you sure you want to book these slots?">
 												Book Slots →
 											</div>
 										</div>
@@ -160,7 +160,18 @@
 	$(document).ready(function() {
 		$(document).on("click", ".pay-btn", function() {
 			var _this = $(this);
-			_this.parents('form').submit();
+			var title = _this.attr('data-title');
+			var text = _this.attr('data-text');
+			$.confirm({
+			    title: title,
+			    content: text,
+			    buttons: {
+			        confirm: function () {
+			            _this.parents('form').submit();
+			        },
+			        cancel: function () {}
+			    }
+			});
 		});
 	});
 	function calculate(slots)

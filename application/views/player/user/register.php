@@ -19,7 +19,11 @@
                             <input type="hidden" class="form-control" name="mobile" value="<?php echo $this->input->get('mobile'); ?>">
                             <input type="hidden" class="form-control" name="otp" value="<?php echo $this->input->get('otp'); ?>">
                             <div class="mb-20">
-                                <input type="text" class="inpt" name="full_name" placeholder="Name" value="<?php echo $this->input->post('full_name'); ?>">
+                                <?php
+                                    if($this->input->post('full_name'))
+                                        $name = $this->input->post('full_name');
+                                ?>
+                                <input type="text" class="inpt" name="full_name" placeholder="Name" value="<?php echo $name; ?>">
                                 <?php echo form_error('full_name'); ?>
                             </div>
                             <div class="mb-20">

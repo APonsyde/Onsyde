@@ -34,7 +34,9 @@
                                 <?php } ?>
                             </td>
                             <td>
-                                <a class="greyBtn green mr-2" href="<?php echo site_url('booking/view/'.$booking['booking_key']); ?>">View</a>
+                                <?php if($booking['status'] == TURF_STATUS_BOOKED) { ?>
+                                    <a class="greyBtn green mr-2" href="<?php echo site_url('booking/view/'.$booking['booking_key']); ?>">View</a>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php } ?>

@@ -280,7 +280,6 @@
         $('.datepicker').daterangepicker({
             startDate: start,
             singleDatePicker: true,
-            showDropdowns: true,
             autoApply: true,
             minDate: moment(),
             maxYear: <?php echo date('Y') + 2; ?>,

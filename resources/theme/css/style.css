@@ -1550,6 +1550,7 @@ footer {
             border-right: 1px solid #Fff;
             background: transparent;
             border-radius: 0;
+            padding: 14px 12px;
           }
           .pos{
             position: absolute;

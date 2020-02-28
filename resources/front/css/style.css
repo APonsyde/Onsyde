@@ -1194,7 +1194,7 @@ border-bottom-right-radius: 0;
     .btn-simple {
       font-size: 17px; } }
   .btn-simple:hover, .btn-simple:focus {
-    color: #ea5555;
+    color: #39b54a;
     -webkit-box-shadow: none;
     box-shadow: none; }
     .green{
@@ -1218,7 +1218,7 @@ border-bottom-right-radius: 0;
     -o-transition: 0.3s;
     transition: 0.3s;}
 /*    .btn-wrap2 .btn-simple:hover {
-      background: #ea5555; }*/
+      background: #39b54a; }*/
 
 /* ==============================================================
    FOOTER
@@ -1864,8 +1864,8 @@ hr {
   border: #39b54a; }
   .btn-danger:hover, .btn-danger:focus {
     color: #fff;
-    border-color: #ea5555;
-    background: #ea5555;
+    border-color: #39b54a;
+    background: #39b54a;
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none; }
@@ -1889,9 +1889,9 @@ hr {
 .pricing-head {
   text-align: center;
   padding: 35px 0 20px;
-  border-top: 5px solid #ea5555; }
+  border-top: 5px solid #39b54a; }
   .pricing-head h2 {
-    color: #ea5555;
+    color: #39b54a;
     margin: 0;
     font-size: 50px;
     font-weight: 400; }
@@ -2050,7 +2050,7 @@ hr {
   transition: 0.3s;
   cursor: pointer; }
   .btn-submit:hover {
-    background: #ea5555; }
+    background: #39b54a; }
 
 #map {
   height: 100%;
@@ -2099,7 +2099,7 @@ hr {
     -o-transition: 0.3s;
     transition: 0.3s; }
     .blog-content_wrap a:hover {
-      color: #ea5555;
+      color: #39b54a;
       text-decoration: none; }
 
 .blog-title:hover {
@@ -2245,9 +2245,9 @@ hr {
   -o-transition: 0.3s;
   transition: 0.3s; }
   .btn-widget:hover {
-    background: #ea5555;
+    background: #39b54a;
     color: #fff;
-    border-color: #ea5555; }
+    border-color: #39b54a; }
 
 .blog-thumb-content {
   margin-left: 120px; }
@@ -2300,7 +2300,7 @@ hr {
     border: none; }
   .categories a:hover {
     text-decoration: none;
-    color: #ea5555; }
+    color: #39b54a; }
   .categories a span {
     font-size: 14px;
     float: right; }
@@ -2513,8 +2513,8 @@ select.form-control:not([size]):not([multiple]) {
   padding: 10px 20px;
   cursor: pointer; }
   .btn-primary:hover, .btn-primary:focus {
-    background: #ea5555;
-    border-color: #ea5555;
+    background: #39b54a;
+    border-color: #39b54a;
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none; }

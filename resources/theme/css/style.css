@@ -799,10 +799,11 @@ footer.main-block {
   }
 .turfBanner {
   text-align: center;
-  min-height: 500px; 
-background:url(../images/homebanner.jpg) 0 0 no-repeat;
+  height: 500px; 
+/* background:url(../images/homebanner.jpg) 0 0 no-repeat; */
 background-size: cover;
 position: relative;
+overflow: hidden;
 }
 .about{
    text-align: center;
@@ -1289,7 +1290,14 @@ border-bottom-right-radius: 0;
   width: 17px;
   height: 17px;
   vertical-align: middle; }
-
+  .sport{
+    padding: 0;
+    list-style-position: inside;
+    margin: 20px 0 0;
+  }
+  .sport li{
+    color: #fff
+  }
 /* ==============================================================
    DETAILED ITEM
    ============================================================== */
@@ -1333,14 +1341,17 @@ border-bottom-right-radius: 0;
     line-height: 1.8; }
 
 .howit-img-block {
-  width: 86px;
-  height: 86px;
+  width: 100px;
+  height: 100px;
   border: 1px solid #39b54a;
   background: #fff;
   border-radius: 50%;
-  padding: 22px;
+
   margin: 0 auto;
   display: block; }
+  .howit-img-block img{
+    width: 100%;object-fit: cover
+  }
 
 .howit-svg {
   width: 40px;
@@ -1441,7 +1452,7 @@ fill:#47A854; }
     .btn-simple {
       font-size: 17px; } }
   .btn-simple:hover, .btn-simple:focus {
-    color: #ea5555;
+    color: #39b54a;
     -webkit-box-shadow: none;
     box-shadow: none; }
     .green{
@@ -1465,7 +1476,7 @@ fill:#47A854; }
     -o-transition: 0.3s;
     transition: 0.3s;}
 /*    .btn-wrap2 .btn-simple:hover {
-      background: #ea5555; }*/
+      background: #39b54a; }*/
 
 /* ==============================================================
    FOOTER
@@ -1556,7 +1567,7 @@ footer {
             position: absolute;
     top: -4px;
           }
-          .subBtn{    width: 20%;}
+          .subBtn{    width: 40%;}
           .subBtn a{
                 width: 100%;
     display: block;
@@ -1564,6 +1575,13 @@ footer {
     padding: 12px;
     color: #fff;
     text-decoration: none
+          }
+          #js-contact-btn:hover{
+            color:#ffff;
+           
+          }
+          #js-contact-btn{
+            padding:.5rem 0;    font-weight: 100;
           }
 
 .copyright {
@@ -2112,8 +2130,8 @@ hr {
   border: #39b54a; }
   .btn-danger:hover, .btn-danger:focus {
     color: #fff;
-    border-color: #ea5555;
-    background: #ea5555;
+    border-color: #39b54a;
+    background: #39b54a;
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none; }
@@ -2137,9 +2155,9 @@ hr {
 .pricing-head {
   text-align: center;
   padding: 35px 0 20px;
-  border-top: 5px solid #ea5555; }
+  border-top: 5px solid #39b54a; }
   .pricing-head h2 {
-    color: #ea5555;
+    color: #39b54a;
     margin: 0;
     font-size: 50px;
     font-weight: 400; }
@@ -2263,7 +2281,7 @@ hr {
     font-family: 'Roboto', sans-serif;
     color: #7c7c7c; }
     .contact-form h3{
-      color:#fff;
+      color:#fff;margin:0 0 1em 0;
     }
     .contact-form p{
        color:#fff;
@@ -2298,7 +2316,7 @@ hr {
   transition: 0.3s;
   cursor: pointer; }
   .btn-submit:hover {
-    background: #ea5555; }
+    background: #39b54a; }
 
 #map {
   height: 100%;
@@ -2347,7 +2365,7 @@ hr {
     -o-transition: 0.3s;
     transition: 0.3s; }
     .blog-content_wrap a:hover {
-      color: #ea5555;
+      color: #39b54a;
       text-decoration: none; }
 
 .blog-title:hover {
@@ -2493,9 +2511,9 @@ hr {
   -o-transition: 0.3s;
   transition: 0.3s; }
   .btn-widget:hover {
-    background: #ea5555;
+    background: #39b54a;
     color: #fff;
-    border-color: #ea5555; }
+    border-color: #39b54a; }
 
 .blog-thumb-content {
   margin-left: 120px; }
@@ -2548,7 +2566,7 @@ hr {
     border: none; }
   .categories a:hover {
     text-decoration: none;
-    color: #ea5555; }
+    color: #39b54a; }
   .categories a span {
     font-size: 14px;
     float: right; }
@@ -2654,6 +2672,7 @@ hr {
   background: transparent;
   border: 1px solid #fff;
   border-radius: 0;
+  padding: 12px;
 }
 .mapouter{position:relative;text-align:right;height:100%;width:100%;}
 .gmap_canvas {overflow:hidden;background:none!important;height:100%;width:100%;}
@@ -2767,8 +2786,8 @@ select.form-control:not([size]):not([multiple]) {
   padding: 10px 20px;
   cursor: pointer; }
   .btn-primary:hover, .btn-primary:focus {
-    background: #ea5555;
-    border-color: #ea5555;
+    background: #39b54a;
+    border-color: #39b54a;
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none; }

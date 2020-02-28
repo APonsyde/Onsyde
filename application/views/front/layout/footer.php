@@ -10,7 +10,7 @@
             <div class="row mt-5">
                 <div class="col-md-12">
                     <div class="copyright">
-                        <p>Copyright © 2017 Listed Inc. All rights reserved</p>
+                        <p>Copyright © 2020 Listed Inc. All rights reserved</p>
                         <a href="<?php echo site_url('about-us'); ?>">About Us</a>
                         <a href="<?php echo site_url('contact-us'); ?>">Contact Us</a>
                         <a href="<?php echo site_url('blogs'); ?>">Blogs</a>

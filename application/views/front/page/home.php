@@ -165,7 +165,7 @@
                     <p>Listen to conversations from <span class="bld">founders</span>, <span class="bld">personalities</span> and <span class="bld">fans</span> who live and breathe the game</p>
                 </div>
                 <div class="flexpanel">
-                    <ul class="podcast flexpanel flex-wrap">
+                    <ul class="podcast flexpanel flex-wrap justify-content-center  wid100">
                         <?php foreach ($podcasts as $key => $podcast) { ?>
                             <li>
                                 <a href="<?php echo $podcast['url']; ?>" target="_blank"><img src="<?php echo show_image(base_url('uploads/podcasts/images/'.$podcast['image'])); ?>">

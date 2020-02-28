@@ -259,7 +259,12 @@
 
 <script>
     $(document).ready(function() {
-        var swiper = new Swiper('.swiper-container');
+        var swiper = new Swiper('.swiper-container', {
+          slidesPerView: 'auto',
+          pagination: {
+            clickable: true,
+          },
+        });
         $("#contactform").on("submit", function(e) {
             e.preventDefault();
             var form = $(this);

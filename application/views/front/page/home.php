@@ -1,27 +1,28 @@
 <?php $today = ($this->input->get('date')) ? $this->input->get('date') : date('Y-m-d'); ?>
-<section class="hero-wrap d-flex align-items-centern turfBanner">
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="hero-title">
-                <h1>Find your next game</h1>
-                <!-- <h3>Find your next game and book your turf now</h3> -->
-                <form action="<?php echo site_url('find-a-turf/grouped'); ?>">
-                    <input type="hidden" name="date" id="date" value="<?php echo $today; ?>">
-                    <div class="search-box">
-                        <div class="flexpanel">
-                            <div class="datepicker" style="background: #fff; cursor: pointer; padding: 5px 10px; width: 100%">
-                            <span></span> 
-                                <img src="<?php echo base_url('resources/front/images/calendar.svg'); ?>" alt="logo" class="calendar">
-                               
-                            </div>
-                            <div class="btn-search">
-                                <button class="btn btn-simple">Find Turfs →</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+<section class="hero-wrap d-flex align-items-centern">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="<?php echo base_url('resources/theme/images/l1.jpg'); ?>"></div>
+            <div class="swiper-slide"><img src="<?php echo base_url('resources/theme/images/l2.jpg'); ?>"></div>
+            <div class="swiper-slide"><img src="<?php echo base_url('resources/theme/images/l3.jpg'); ?>"></div>
         </div>
+    </div>
+    <div class="hero-title">
+        <h1>Find your next game</h1>
+        <form action="<?php echo site_url('find-a-turf/grouped'); ?>">
+            <input type="hidden" name="date" id="date" value="<?php echo $today; ?>">
+            <div class="search-box">
+                <div class="flexpanel">
+                    <div class="datepicker" style="background: #fff; cursor: pointer; padding: 5px 10px; width: 100%">
+                    <span></span> 
+                        <img src="<?php echo base_url('resources/front/images/calendar.svg'); ?>" alt="logo" class="calendar">
+                    </div>
+                    <div class="btn-search">
+                        <button class="btn btn-simple">Find Turfs →</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </section>
 <section class="main-block howit-work-wrap">
@@ -258,6 +259,12 @@
 
 <script>
     $(document).ready(function() {
+        var swiper = new Swiper('.swiper-container', {
+          slidesPerView: 'auto',
+          pagination: {
+            clickable: true,
+          },
+        });
         $("#contactform").on("submit", function(e) {
             e.preventDefault();
             var form = $(this);

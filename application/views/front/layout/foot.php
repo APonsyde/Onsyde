@@ -4,6 +4,7 @@
 <script type="text/javascript" src="<?php echo base_url('resources/theme/plugins/daterangepicker/moment.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('resources/theme/plugins/daterangepicker/daterangepicker.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('resources/theme/plugins/jquery-confirm/jquery-confirm.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('resources/theme/plugins/swiper/swiper.min.js'); ?>"></script>
 <script src="https://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
 <script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
 <script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>

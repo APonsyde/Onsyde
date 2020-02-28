@@ -27,7 +27,7 @@
     			<input type="hidden" name="turf_id" value="<?php echo $turf['id']; ?>">
     			<div class="row justify-content-center">
 					<div class="col-md-12">
-						<div class="slots">
+						<div class="slots <?php echo ($key % 2 == 0) ? '' : 'bggrey'; ?>">
 							<h4><?php echo $turf['name']; ?></h4>
 							<h6><img src="<?php echo base_url('resources/front/images/pin.svg'); ?>" alt="logo" class="calendar"><?php echo $turf['address']; ?></h6>
 							<div class="slots">

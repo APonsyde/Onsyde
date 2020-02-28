@@ -181,8 +181,6 @@
             <?php } ?>
         <?php } ?>
         <h6 class="page-title mb-3">Booking URL - <code id="bookingUrl"><?php echo site_url('booking/view/'.$booking['booking_key']); ?></code> <button class="greyBtn green ml-3" onclick="copy_to_clipboard('#bookingUrl')">Copy</button></h6>
-    <?php } else { ?>
-
     <?php } ?>
 </div>
 

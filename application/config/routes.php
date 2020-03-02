@@ -117,6 +117,7 @@ $route['booking/success/(:any)'] = 'player/booking/success/$1';
 $route['about-us'] = 'front/page/about_us';
 $route['contact-us'] = 'front/page/contact_us';
 $route['contact-us-ajax'] = 'front/page/contact_us_ajax';
+$route['demo-ajax'] = 'front/page/demo_ajax';
 $route['privacy'] = 'front/page/privacy';
 $route['terms'] = 'front/page/terms';
 $route['podcast'] = 'front/page/podcast';

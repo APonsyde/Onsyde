@@ -86,16 +86,16 @@
                             <li>Increase turf exposure & boost sales</li>
                         </ul>
                      
-                        <form action="<?php echo site_url('manager'); ?>" id="managerForm" method="post">
+                        <form action="<?php echo site_url('demo-ajax'); ?>" id="managerForm" method="post">
                             <div class="submitForm flexpanel">
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="mobile" placeholder="Enter Your Mobile Number">
                                 </div>
                                 <div class="subBtn">
-                                    <a href="javascript:void(0)" onclick="document.getElementById('managerForm').submit()">Request Demo
-→</a>
+                                    <a href="javascript:void(0)" id="submitManagerForm">Request Demo →</a>
                                 </div>
                             </div>
+                            <div class="error"></div>
                         </form>
                     </div>
                 </div>
@@ -222,8 +222,8 @@
     $(document).ready(function() {
         var swiper = new Swiper('.swiper-container', {
             autoplay: {
-    delay: 3000,
-  },
+                delay: 3000,
+              },
         });
         $("#contactform").on("submit", function(e) {
             e.preventDefault();
@@ -237,11 +237,35 @@
                     if(response.success)
                         form[0].reset();
 
-                    $(".error").html(response.message);
+                    $("#contactform").find(".error").html(response.message);
                 }
             })
         })
+        $("#managerForm").on("submit", function(e) {
+            e.preventDefault();
+            submitDemoForm();
+        })
+        $("#submitManagerForm").on("click", function(e) {
+            e.preventDefault();
+            submitDemoForm();
+        })
     });
+    function submitDemoForm()
+    {
+        var form = $("#managerForm");
+        $.ajax({
+            dataType: "json",
+            data: form.serializeArray(),
+            type: "post",
+            url: form.attr('action'),
+            success: function(response) {
+                if(response.success)
+                    form[0].reset();
+
+                $("#managerForm").find(".error").html(response.message);
+            }
+        })
+    }
     $(function() {
         var start = moment('<?php echo $today; ?>');
         $('.datepicker').daterangepicker({

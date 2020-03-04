@@ -1050,7 +1050,7 @@ border-bottom-right-radius: 0;
   @media (max-width: 992px) {
     .btn-search {
       position: inherit;
-      margin: 15px 0 0; } }
+   } }
   .btn-search:hover {
     background: #4c4c4c;
     color: #fff; }
@@ -1330,7 +1330,11 @@ border-bottom-right-radius: 0;
   height: 100px; }
   @media (max-width: 768px) {
     .howit-bg {
-      display: none; } }
+      display: none; } 
+      .hero-title {
+        max-width: 90% !important;
+      }
+    }
 
 .howit-icon-wrap {
   text-align: center;

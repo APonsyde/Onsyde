@@ -271,6 +271,38 @@ class Page extends FrontController
         exit;
     }
 
+    public function demo_ajax()
+    {
+        $response = [
+            'success' => false,
+            'message' => '<div class="text-center bg-white text-danger p-2">Some error occured while submitting the request</div>'
+        ];
+
+        $this->form_validation->set_rules('mobile', 'Mobile', 'required|xss_clean');
+
+        $this->form_validation->set_message('required', '%s is required');
+        $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+        if($this->form_validation->run())
+        {
+            $data = $this->input->post();
+            $result = $this->Email_model->send_demo_mail($data['mobile']);
+
+            if($result)
+            {
+                $response['success'] = true;
+                $response['message'] = '<div class="text-center bg-white p-2">Thank you for submitting the request, we will contact in 24-48 hours.</div>';
+            }
+        }
+        else
+        {
+            $response['message'] = '<div class="text-center bg-white text-danger p-2">Please enter a valid mobile number</div>';
+        }
+
+        echo json_encode($response);
+        exit;
+    }
+
     public function podcast()
     {
         $data['podcasts'] = $this->Podcast_model->get_all_podcasts(null, null, ['inactive' => 0]);

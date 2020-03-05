@@ -180,7 +180,7 @@
                 </div>
             <?php } ?>
         <?php } ?>
-        <h6 class="page-title mb-3">Booking URL - <code id="bookingUrl"><?php echo site_url('booking/view/'.$booking['booking_key']); ?></code> <button class="greyBtn green ml-3" onclick="copy_to_clipboard('#bookingUrl')">Copy</button></h6>
+        <h6 class="page-title mb-3">Booking URL - <code id="bookingUrl" style="cursor: pointer;" onclick="copy_to_clipboard('#bookingUrl')"><?php echo site_url('booking/view/'.$booking['booking_key']); ?>22</code> <button class="greyBtn green ml-3" style="cursor: pointer;" onclick="copy_to_clipboard('#bookingUrl')">Copy</button></h6>
     <?php } ?>
 </div>
 

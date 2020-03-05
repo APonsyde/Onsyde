@@ -126,7 +126,6 @@ function sms($mobile, $message)
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
     $output = curl_exec($ch);
-    pr($output);exit;
     curl_close($ch);
 }
 

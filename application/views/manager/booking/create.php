@@ -37,23 +37,33 @@
 							<div class="slots">
 								<h4><?php echo $turf['name']; ?></h4>
 								<h6><i class="fas fa-map-marker-alt"></i><?php echo $turf['address']; ?></h6>
-								<div id="carouselExampleControls" class="carousel bookingcarousel slide" data-ride="carousel">
-									<div class="carousel-inner">
-										<?php foreach ($turf['images'] as $key => $image) { ?>
-											<div class="carousel-item <?php echo ($key == 0) ? 'active' : ''; ?>">
-												<img class="d-block w-100" src="<?php echo base_url('uploads/turfs/'.$turf['id'].'/gallery/'.$image['name']); ?>" alt="slide">
-											</div>
-										<?php } ?>
+								<?php if(!empty($turf['images'])) { ?>
+									<div id="carouselExampleControls" class="carousel bookingcarousel slide" data-ride="carousel">
+										<div class="carousel-inner">
+											<?php foreach ($turf['images'] as $key => $image) { ?>
+												<div class="carousel-item <?php echo ($key == 0) ? 'active' : ''; ?>">
+													<img class="d-block w-100" src="<?php echo base_url('uploads/turfs/'.$turf['id'].'/gallery/'.$image['name']); ?>" alt="slide">
+												</div>
+											<?php } ?>
+										</div>
+										<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="sr-only">Previous</span>
+										</a>
+										<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="sr-only">Next</span>
+										</a>
 									</div>
-									<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-										<span class="sr-only">Previous</span>
-									</a>
-									<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-										<span class="carousel-control-next-icon" aria-hidden="true"></span>
-										<span class="sr-only">Next</span>
-									</a>
-								</div>
+								<?php } else { ?>
+									<div class="carousel bookingcarousel slide" data-ride="carousel">
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<img class="d-block w-100" src="<?php echo base_url('resources/theme/images/no-turf-image.jpg'); ?>" alt="slide">
+											</div>
+										</div>
+									</div>
+								<?php } ?>
 								<div class="slots pricing">
 									<div class="timeslots">
 										<ul class="flexpanel wrp">

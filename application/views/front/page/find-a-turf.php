@@ -33,6 +33,14 @@
 											<span class="sr-only">Next</span>
 										</a>
 									</div>
+								<?php } else { ?>
+									<div class="carousel bookingcarousel slide" data-ride="carousel">
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<img class="d-block w-100" src="<?php echo base_url('resources/theme/images/no-turf-image.jpg'); ?>" alt="slide">
+											</div>
+										</div>
+									</div>
 								<?php } ?>
 								<div class="slots mb-0">
 									<div class="timeslots">

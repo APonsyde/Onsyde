@@ -99,7 +99,7 @@ defined('EMAIL_ADMIN') OR define('EMAIL_ADMIN', array('hello@onsyde.in' => 'Onsy
 
 defined('SENDGRID_API_KEY') OR define('SENDGRID_API_KEY', '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');
 
-define('MSG91_AUTH_KEY', '231657Ad0Je8Yf5b728914');
+define('MSG91_AUTH_KEY', '321517AwZgeVgs5e5fbe36P1');
 define('MSG91_SENDER_ID', 'MSGONS');
 
 // define('GOOGLE_MAPS_API_KEY', 'AIzaSyA0NyYnMn4iQb4mh-kTos-yd77rPy3_jHk');

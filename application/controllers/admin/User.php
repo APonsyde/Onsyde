@@ -86,7 +86,7 @@ class User extends AdminController
 
             if(!empty($admin))
             {
-                $otp = random_string('numeric', 6);
+                $otp = otp();
                 $message = "Your OTP is ".$otp;
                 sms("+91".$manager['mobile'], $message);
 

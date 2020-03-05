@@ -19,6 +19,14 @@ function convert_db_time($datetime, $format = "d/m/Y")
     return date($format, strtotime($datetime));
 }
 
+function otp()
+{
+    $otp = random_string('numeric', 6);
+    if(substr($otp, 0, 1) == 0)
+        $otp = rand(1, 9).substr($otp, 1);
+    return $otp;
+}
+
 function check_field($value, $data)
 {
     $ci =& get_instance();

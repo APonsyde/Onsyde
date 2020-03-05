@@ -43,7 +43,7 @@
                             <td><?php echo CURRENCY_SYMBOL; ?> <?php echo $booking['amount']; ?>/-</td>
                             <td>
 
-                                <?php if(in_array($booking['status'], [TURF_STATUS_BOOKED]) && $booking['player_cancellation']) { ?>
+                                <?php if(in_array($booking['status'], [TURF_STATUS_BOOKED])) { ?>
                                     <a class="greyBtn btn-confirm" data-title="Cancel Booking" data-text="Are you sure you want to cancel the booking?" href="<?php echo site_url('manager/booking/cancel/'.$booking['id']); ?>">Cancel</a>
                                 <?php } else { ?>
                                     <?php if($booking['status'] == TURF_STATUS_CANCELLED) { ?>

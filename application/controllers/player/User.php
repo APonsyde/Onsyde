@@ -30,7 +30,7 @@ class User extends FrontController
 
             if(empty($player) || $player['inactive'])
             {
-                $otp = random_string('numeric', 6);
+                $otp = otp();
 
                 $data = [
                     'inactive' => 1,
@@ -39,7 +39,7 @@ class User extends FrontController
                 ];
 
                 $message = "Your OTP is ".$otp;
-                sms("+91".$player['mobile'], $message);
+                sms("+91".$data['mobile'], $message);
 
                 if(empty($player))
                 {
@@ -261,7 +261,7 @@ class User extends FrontController
 
             if(!empty($player))
             {
-                $otp = random_string('numeric', 6);
+                $otp = otp();
                 $message = "Your OTP is ".$otp;
                 sms("+91".$player['mobile'], $message);
 

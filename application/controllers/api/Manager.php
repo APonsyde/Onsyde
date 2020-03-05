@@ -33,7 +33,7 @@ class Manager extends ApiController {
 
             if(empty($manager) || empty($manager['company_name']))
             {
-                $otp = random_string('numeric', 6);
+                $otp = otp();
 
                 $data = [
                     'mobile' => $this->input->post('mobile'),
@@ -399,7 +399,7 @@ class Manager extends ApiController {
 
             if(!empty($manager))
             {
-	            $otp = random_string('numeric', 6);
+	            $otp = otp();
 	            $message = "Your reset password OTP is ".$otp;
                 sms("+91".$manager['mobile'], $message);
 

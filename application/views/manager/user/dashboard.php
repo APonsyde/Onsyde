@@ -96,6 +96,7 @@
 									<th>Customer</th>
 									<th>Contact</th>
 									<th>Booking Date</th>
+									<th>Amount</th>
 								</tr>
 								<?php if(!empty($turf['recent_bookings'])) { ?>
                                     <?php foreach($turf['recent_bookings'] as $booking) { ?>
@@ -104,11 +105,12 @@
                                             <td class=""><?php echo $booking['player']; ?></td>
                                             <td class=""><a href="tel:<?php echo $booking['player_mobile']; ?>"><?php echo $booking['player_mobile']; ?></a></td>
                                             <td><?php echo convert_db_time($booking['booking_date'], "jS M, Y"); ?></td>
+                                            <td><?php echo CURRENCY_SYMBOL; ?> <?php echo $booking['amount']; ?>/-</td>
                                         </tr>
                                     <?php } ?>
                                 <?php } else { ?>
                                     <tr>
-                                        <th scope="row" colspan="4">No bookings done yet!</th>
+                                        <th scope="row" colspan="5">No bookings done yet!</th>
                                     </tr>
                                 <?php } ?>
 							</tbody>
@@ -124,6 +126,7 @@
 									<th>Customer</th>
 									<th>Contact</th>
 									<th>Booking Date</th>
+									<th>Amount</th>
 								</tr>
 								<?php if(!empty($turf['cancelled_bookings'])) { ?>
                                     <?php foreach($turf['cancelled_bookings'] as $booking) { ?>
@@ -132,11 +135,12 @@
                                             <td class="text-center"><?php echo $booking['player']; ?></td>
                                             <td class="text-center"><a href="tel:<?php echo $booking['player_mobile']; ?>"><?php echo $booking['player_mobile']; ?></a></td>
                                             <td class="text-right"><?php echo convert_db_time($booking['booking_date'], "jS M, Y"); ?></td>
+                                            <td><?php echo CURRENCY_SYMBOL; ?> <?php echo $booking['amount']; ?>/-</td>
                                         </tr>
                                     <?php } ?>
                                 <?php } else { ?>
                                     <tr>
-                                        <th scope="row" colspan="4">No bookings cancelled yet!</th>
+                                        <th scope="row" colspan="5">No bookings cancelled yet!</th>
                                     </tr>
                                 <?php } ?>
 							</tbody>

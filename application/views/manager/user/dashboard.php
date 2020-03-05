@@ -171,7 +171,6 @@
 				startDate: start,
 				singleDatePicker: true,
 				autoApply: true,
-				minDate: moment(),
 				locale: {
 			      	format: 'Y-MM-DD'
 			    }

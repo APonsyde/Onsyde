@@ -93,6 +93,9 @@ class Booking extends FrontController
 
                 $data['recent_players'] = $this->Booking_model->get_all_booking_recent_players(null, null, ['exclude_mobiles' => $exclude_mobiles, 'invited_by' => $this->player['id']]);
 
+
+                $data['message'] = "Game on ".convert_db_time($data['booking']['booking_date'], 'd/m l')." ".$data['booking']['time_slot']." at ".$data['booking']['name'].", ".$data['booking']['area']."\r\n";
+
                 $data['tab'] = 'player';
                 $data['title'] = 'View booking';
                 $data['_view'] = 'player/booking/view';

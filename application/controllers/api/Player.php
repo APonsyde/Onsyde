@@ -64,7 +64,7 @@ class Player extends ApiController {
                 }
                 else
                 {
-                    $otp = random_string('numeric', 4);
+                    $otp = otp();
 
                     $this->_send_otp($player['mobile'], $otp);
 
@@ -267,7 +267,7 @@ public function login_check_post()
                 }
                 else
                 {
-                    $otp = random_string('numeric', 4);
+                    $otp = otp();
                     $this->_send_otp($player['mobile'], $otp);
 
                     $data = [

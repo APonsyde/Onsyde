@@ -31,7 +31,7 @@ class User extends ManagerController
 
             if(empty($manager) || empty($manager['company_name']))
             {
-                $otp = random_string('numeric', 6);
+                $otp = otp();
 
                 $data = [
                     'mobile' => $this->input->post('mobile'),
@@ -39,7 +39,7 @@ class User extends ManagerController
                 ];
 
                 $message = "Your OTP is ".$otp;
-                sms("+91".$manager['mobile'], $message);
+                sms("+91".$data['mobile'], $message);
 
                 if(empty($manager))
                 {
@@ -330,7 +330,7 @@ class User extends ManagerController
 
             if(!empty($manager))
             {
-                $otp = random_string('numeric', 6);
+                $otp = otp();
                 $message = "Your OTP is ".$otp;
                 sms("+91".$manager['mobile'], $message);
 

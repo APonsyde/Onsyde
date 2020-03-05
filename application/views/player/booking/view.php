@@ -182,7 +182,7 @@
             <?php } ?>
         <?php } ?>
         <?php if($this->player['id'] == $booking['player_id']) { ?>
-            <textarea class="form-control" id="message" style="cursor: pointer;overflow:hidden;border-bottom-left-radius: 0;border-bottom-right-radius: 0;"><?php echo $message; ?></textarea>
+            <textarea class="form-control" id="message" onkeyup="textAreaAdjust(this);" style="cursor: pointer;overflow:hidden;border-bottom-left-radius: 0;border-bottom-right-radius: 0;"><?php echo $message; ?></textarea>
             <button class="greyBtn green btn-block mb-3 clipboard" data-clipboard-target="#message" style="border-top-left-radius: 0;border-top-right-radius: 0;">Copy</button>
         <?php } ?>
         <h6 class="page-title mb-3">Booking URL - <code id="bookingUrl" class="clipboard" data-clipboard-text="<?php echo site_url('booking/view/'.$booking['booking_key']); ?>" data-clipboard-target="#bookingUrl" style="cursor: pointer;"><?php echo site_url('booking/view/'.$booking['booking_key']); ?></code></h6>

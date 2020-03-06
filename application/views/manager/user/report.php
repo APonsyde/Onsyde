@@ -72,6 +72,7 @@
                                             <td class=""><?php echo $booking['player']; ?></td>
                                             <td class=""><a href="tel:<?php echo $booking['player_mobile']; ?>"><?php echo $booking['player_mobile']; ?></a></td>
                                             <td><?php echo convert_db_time($booking['booking_date'], "jS M, Y"); ?></td>
+                                            <td><?php echo CURRENCY_SYMBOL; ?> <?php echo $booking['amount']; ?>/-</td>
                                         </tr>
                                     <?php } ?>
                                 <?php } else { ?>

@@ -13,7 +13,9 @@
 <link rel="stylesheet" href="<?php echo base_url('resources/theme/css/font-awesome.min.css'); ?>">
 <link rel="stylesheet" href="<?php echo base_url('resources/theme/plugins/jquery-file-upload/css/jquery.fileupload.css'); ?>">
 <link rel="stylesheet" href="<?php echo base_url('resources/theme/plugins/jquery-file-upload/css/jquery.fileupload-ui.css'); ?>">
-<link rel="stylesheet" href="<?php echo base_url('resources/theme/plugins/summernote/summernote.min.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('resources/theme/plugins/daterangepicker/daterangepicker.css'); ?>" />
+<link rel="stylesheet" href="<?php echo base_url('resources/theme/plugins/jquery-confirm/jquery-confirm.min.css'); ?>" />
+<link rel="stylesheet" href="<?php echo base_url('resources/theme/plugins/select2/css/select2.min.css'); ?>" />
 <link href="<?php echo base_url('resources/theme/css/set1.css'); ?>" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url('resources/theme/css/style.css'); ?>">
 <link rel="stylesheet" href="<?php echo base_url('resources/theme/css/custom.css'); ?>">

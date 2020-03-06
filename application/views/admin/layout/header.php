@@ -32,6 +32,7 @@
             <aside class="px-0 wid20" id="left">
                 <div class="list-group fixed-top">
                     <a href="<?php echo site_url('admin/dashboard'); ?>" class="list-group-item <?php echo (isset($tab) && $tab == 'dashboard') ? 'active' : '' ?>">Dashboard</a>
+                    <a href="<?php echo site_url('admin/report'); ?>" class="list-group-item <?php echo (isset($tab) && $tab == 'report') ? 'active' : '' ?>">Dashboard - Reports</a>
                     <a href="<?php echo site_url('admin/turf/listing'); ?>" class="list-group-item <?php echo (isset($tab) && $tab == 'turfs') ? 'active' : '' ?>">Turfs</a>
                     <a href="<?php echo site_url('admin/manager/listing'); ?>" class="list-group-item <?php echo (isset($tab) && $tab == 'managers') ? 'active' : '' ?>">Managers</a>
                     <a href="<?php echo site_url('admin/player/listing'); ?>" class="list-group-item <?php echo (isset($tab) && $tab == 'players') ? 'active' : '' ?>">Players</a>

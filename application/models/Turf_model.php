@@ -167,6 +167,12 @@ class Turf_model extends CI_Model
 
 		if(isset($params['inactive']) && is_numeric($params['inactive']))
 			$this->db->where('t.inactive', $params['inactive']);
+
+		if(!empty($params['turfs']))
+			$this->db->where_in('t.id', $params['turfs']);
+
+		if(!empty($params['managers']))
+			$this->db->where_in('t.manager_id', $params['managers']);
 	}
 
 }

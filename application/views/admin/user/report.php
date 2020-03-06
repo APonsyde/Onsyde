@@ -3,13 +3,13 @@
 	    <h3 class="text-center">No Turf Available!</h3>
 	</div>
 <?php } else { ?>
-	<?php $today = ($this->input->get('date')) ? $this->input->get('date') : date('Y-m-d'); ?>
 	<div class="booking manager-dashboard dash">
 		<form id="dayForm">
 			<div class="flexpanel justify-between align-center mb-3">
 				<div class="wid50">
-					<input type="hidden" name="date" id="date" value="<?php echo $today; ?>">
-					<div class="datepicker" style="background: #fff; cursor: pointer; padding: 5px 10px; width: 100%">
+					<input type="hidden" name="from_date" id="from_date" value="<?php echo $date['from_date'] ?>">
+					<input type="hidden" name="to_date" id="to_date" value="<?php echo $date['to_date'] ?>">
+					<div class="daterange" style="background: #fff; cursor: pointer; padding: 5px 10px; width: 100%">
 						<img src="<?php echo base_url('resources/front/images/calendar.svg'); ?>" alt="logo" class="calendar">
 					    <span></span> <i class="fa fa-caret-down"></i>
 					</div>
@@ -46,62 +46,30 @@
 				<div class="flexpanel justify-between">
 					<h6><img src="<?php echo base_url('resources/front/images/pin.svg'); ?>" alt="logo" class="calendar"><?php echo $turf['address']; ?></h6>
 				</div>
-				<?php 
-				$total_slots = 0;
-				foreach ($turf['slots'] as $key => $slot) {
-					if($slot['price']) {
-						$total_slots++;
-					}
-				}
-				$total_booked = $total_slots ? ceil((count($turf['booked_slots'])/$total_slots)*100) : 0;
-				?>
-				<div class="flexpanel totalbooking align-center">
-					<span><?php echo $total_booked; ?>% booked</span>
-				</div>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="card mb-0 mt-4">
 							<div class="card-header">
-								Today's Bookings
+								Total Bookings
 							</div>
 							<div class="card-body">
-								<?php echo $turf['report']['todays_bookings']; ?> slots
+								<?php echo $turf['report']['custom_bookings']; ?> slots
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="card mb-0 mt-4">
 							<div class="card-header">
-								Today's Earnings
+								Total Earnings
 							</div>
 							<div class="card-body">
-								<?php echo CURRENCY_SYMBOL; ?> <?php echo $turf['report']['todays_earnings']; ?>/-
+								<?php echo CURRENCY_SYMBOL; ?> <?php echo $turf['report']['custom_earnings']; ?>/-
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="timeslots">
-					<ul class="flexpanel wrp">
-						<?php foreach ($turf['slots'] as $key => $slot) { ?>
-	    					<?php
-	    						$booked = false;
-	    						$unavailable = false;
-	    						if($slot['price'] <= 0) {
-	    							$unavailable = true;
-	    						}
-		    					foreach ($turf['booked_slots'] as $key => $booked_slot) { 
-		    						if($booked_slot['id'] == $slot['id']) {
-		    							$booked = true;
-		    							break;
-		    						}
-		    					}
-	    					?>
-	    					<li class="<?php echo ($booked) ? 'booked' : (($unavailable) ? 'unavailable' : ''); ?>"><?php echo $slot['time']; ?></li>
-	    				<?php } ?>
-					</ul>
-				</div>
 				<ul class="detail flexpanel">
-					<li class="btn-tab-booking act" data-tab="tab-r-<?php echo $turf['id']; ?>"><a href="javascript:void(0);">Bookings</a></li>
+					<li class="btn-tab-booking act" data-tab="tab-r-<?php echo $turf['id']; ?>"><a href="javascript:void(0);">Recent Bookings</a></li>
 					<li class="btn-tab-booking" data-tab="tab-c-<?php echo $turf['id']; ?>"><a href="javascript:void(0);">Cancelled Bookings</a></li>
 				</ul>
 				<div class="tab-content act pad-50 tab-r-<?php echo $turf['id']; ?>">
@@ -182,23 +150,23 @@
 	    	$('.select2').select2();
 	    });
 	</script>
-	<script>
+	<script type="text/javascript">
 		$(function() {
-			var start = moment('<?php echo $today; ?>');
-			$('.datepicker').daterangepicker({
-				startDate: start,
-				singleDatePicker: true,
-				autoApply: true,
-				locale: {
-			      	format: 'Y-MM-DD'
-			    }
-			}, cb);
-		    cb(start);
-		    function cb(start) {
-		        $('.datepicker span').html(start.format('MMMM D, YYYY'));
-		        $('#date').val(start.format('Y-MM-DD'));
+		    var start = moment('<?php echo $date['from_date']; ?>');
+		    var end = moment('<?php echo $date['to_date']; ?>');
+		    function cb(start, end) {
+		        $('.daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+		        $('#from_date').val(start.format('Y-MM-DD'));
+		        $('#to_date').val(end.format('Y-MM-DD'));
 		    }
-		    $('.datepicker').on('apply.daterangepicker', function(ev, picker) {
+		    $('.daterange').daterangepicker({
+		        startDate: start,
+		        endDate: end,
+		        linkedCalendars: false,
+		        opens: 'right'
+		    }, cb);
+		    cb(start, end);
+		    $('.daterange').on('apply.daterangepicker', function(ev, picker) {
 			    $("#dayForm").submit();
 			});
 		});

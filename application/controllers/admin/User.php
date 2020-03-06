@@ -8,6 +8,9 @@ class User extends AdminController
         parent::__construct();
         $this->load->model('Admin_model');
         $this->load->model('Email_model');
+        $this->load->model('Turf_model');
+        $this->load->model('Booking_model');
+        $this->load->model('Manager_model');
     }
 
     public function index()
@@ -55,9 +58,67 @@ class User extends AdminController
     {
         $this->authenticate(current_url());
 
+        $filters = $this->input->get();
+        $data['all_turfs'] = $this->Turf_model->get_all_turfs(null, null, ['select' => 't.id, t.name']);
+        $data['all_managers'] = $this->Manager_model->get_all_managers(null, null, ['select' => 'm.id, m.company_name']);
+        $data['turfs'] = $this->Turf_model->get_all_turfs(null, null, $filters);
+
+        $date = ($this->input->get('date')) ? $this->input->get('date') : date('Y-m-d');
+        $timestamp = strtotime($date);
+        $day = date('l', $timestamp);
+
+        $params = [];
+        $params['from_date'] =  ($this->input->get('from_date')) ? $this->input->get('from_date') : date('Y-m-')."01";
+        $params['to_date'] =  ($this->input->get('to_date')) ? $this->input->get('to_date') : date('Y-m-d');
+        $params['today'] = $date;
+
+        foreach ($data['turfs'] as $key => $turf)
+        {
+            $data['turfs'][$key]['report'] = $this->Booking_model->get_booking_data($turf['id'], $params);
+            $data['turfs'][$key]['slots'] = $this->Turf_model->get_all_turf_slots($turf['id'], $day);
+            $data['turfs'][$key]['booked_slots'] = $this->Turf_model->get_all_turf_booked_slots($turf['id'], $day, $date);
+            $data['turfs'][$key]['recent_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id'], 'booking_date' => $date]);
+            $data['turfs'][$key]['cancelled_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id'], 'status' => TURF_STATUS_CANCELLED, 'booking_date' => $date]);
+        }
+
+        $data['date'] = $params;
+
         $data['tab'] = 'dashboard';
-        $data['title'] = 'View your dashboard activity';
+        $data['title'] = 'View dashboard activity';
         $data['_view'] = 'admin/user/dashboard';
+        $this->load->view('admin/layout/basetemplate', $data);
+    }
+
+    public function report()
+    {
+        $this->authenticate(current_url());
+
+        $filters = $this->input->get();
+        $data['all_turfs'] = $this->Turf_model->get_all_turfs(null, null, ['select' => 't.id, t.name']);
+        $data['all_managers'] = $this->Manager_model->get_all_managers(null, null, ['select' => 'm.id, m.company_name']);
+        $data['turfs'] = $this->Turf_model->get_all_turfs(null, null, $filters);
+
+        $date = ($this->input->get('date')) ? $this->input->get('date') : date('Y-m-d');
+        $timestamp = strtotime($date);
+        $day = date('l', $timestamp);
+
+        $params = [];
+        $params['from_date'] =  ($this->input->get('from_date')) ? $this->input->get('from_date') : date('Y-m-')."01";
+        $params['to_date'] =  ($this->input->get('to_date')) ? $this->input->get('to_date') : date('Y-m-d');
+        $params['today'] = $date;
+
+        foreach ($data['turfs'] as $key => $turf)
+        {
+            $data['turfs'][$key]['report'] = $this->Booking_model->get_booking_data($turf['id'], $params);
+            $data['turfs'][$key]['recent_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id'], 'booking_date' => $date]);
+            $data['turfs'][$key]['cancelled_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id'], 'status' => TURF_STATUS_CANCELLED, 'booking_date' => $date]);
+        }
+
+        $data['date'] = $params;
+
+        $data['tab'] = 'report';
+        $data['title'] = 'View dashboard reports';
+        $data['_view'] = 'admin/user/report';
         $this->load->view('admin/layout/basetemplate', $data);
     }
 

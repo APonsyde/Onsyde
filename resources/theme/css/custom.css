@@ -114,3 +114,12 @@
         font-size: 30px;
     }
 }
+
+span.select2 {
+    width: 100% !important;
+}
+span.select2-selection {
+    border: 1px solid #53b54b !important;
+    border-radius: 0 !important;
+    height: 44px !important;
+}

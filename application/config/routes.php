@@ -64,6 +64,7 @@ $route['admin/logout'] = 'admin/user/logout';
 $route['admin/forgot-password'] = 'admin/user/forgot_password';
 $route['admin/reset-password'] = 'admin/user/reset_password';
 $route['admin/profile'] = 'admin/user/profile';
+$route['admin/report'] = 'admin/user/report';
 
 /**
  * Turf Manager Routes

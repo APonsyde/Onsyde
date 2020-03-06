@@ -36,7 +36,8 @@
 				</div>
 				<div class="col-4">
 					<label>&nbsp;</label><br clear="all">
-					<button class="greyBtn green">Search</button>
+					<button class="greyBtn green mr-3">Search</button>
+					<button type="button" onclick="window.location.href='<?php echo site_url('admin/dashboard'); ?>'" class="greyBtn">Clear</button>
 				</div>
 			</div>
 		</form>

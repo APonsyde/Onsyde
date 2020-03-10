@@ -2930,7 +2930,19 @@ p{
     }
 
     @media (max-width: 640px) {
-
+ .booking.manager-dashboard{
+  margin:0 20px !important;
+  padding: 25px 0;
+}
+th, td{
+  font-size:14px
+}
+.btn-group-sm>.btn, .btn-sm{
+  margin: 0 0 0.5em 0
+}
+.manager-dashboard .form-control{
+  margin: 0 0 0.5em 0
+}
       .mar-bot{
         flex-wrap: wrap;
         margin: 0 0 30px 0;

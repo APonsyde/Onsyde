@@ -105,21 +105,6 @@
         </div>
     </div>
 </section>
-<!-- <section class="main-block gray">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="titile-block">
-                    <h2 class="rightLine">About Onsyde</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-                </div>
-                <div class="btn-wrap btn-wrap2">
-                    <a href="<?php echo site_url('about-us'); ?>" class="btn btn-simple">Know More <i class="icon-arrow-down"></i>→</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
 <?php if(!empty($blogs)) { ?>
     <section class="main-block">
         <div class="container-fluid">
@@ -127,7 +112,6 @@
                 <div class="col-md-10">
                     <div class="titile-block">
                         <h2 class="leftLine">Our Blogs</h2>
-                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis</p> -->
                     </div>
                 </div>
             </div>
@@ -161,7 +145,7 @@
             <div class="col-md-10">
                 <div class="titile-block">
                     <h2 class="rightLine">Podcast</h2>
-                    <p>Listen to conversations from <span class="bld">founders</span>, <span class="bld">personalities</span> and <span class="bld">fans</span> who live and breathe the game</p>
+                    <p class="mb-4">Listen to conversations from <span class="bld">founders</span>, <span class="bld">personalities</span> and <span class="bld">fans</span> who live and breathe the game</p>
                 </div>
                 <div class="flexpanel">
                     <ul class="podcast flexpanel flex-wrap justify-content-center wid100 p-0">

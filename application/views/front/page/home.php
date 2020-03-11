@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <figure class="pos"><img src="<?php echo base_url('resources/front/images/gardner.jpg'); ?>" class="wid100"></figure>
+                    <figure class="pos"><img src="<?php echo base_url('resources/theme/images/Turf Pic.jpg'); ?>" class="wid100"></figure>
                 </div>
             </div>
         </div>

@@ -21,5 +21,12 @@
 <script src="<?php echo base_url('resources/theme/plugins/jquery-file-upload/js/jquery.fileupload-ui.js'); ?>"></script>
 <script src="<?php echo base_url('resources/theme/js/core.js'); ?>"></script>
 <script>
-    new ClipboardJS('.clipboard');
+    var clipboard = new ClipboardJS('.clipboard');
+    clipboard.on('success', function(e) {
+	    e.clearSelection();
+	    $.alert({
+            title: 'Success',
+            content: 'Copied to clipboard.',
+        });
+	});
 </script>

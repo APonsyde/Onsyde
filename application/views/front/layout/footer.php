@@ -11,9 +11,7 @@
                 <div class="col-md-12">
                     <div class="copyright">
                         <p>Copyright © 2020 Listed Inc. All rights reserved</p>
-                        <?php if(!$this->session->userdata('player_id') && !$this->session->userdata('manager_id')) { ?>
-                            <a href="<?php echo site_url('manager'); ?>">Manager Login</a>
-                        <?php } ?>
+                        <a href="<?php echo site_url('manager'); ?>">Manager Login</a>
                         <a href="<?php echo site_url('about-us'); ?>">About Us</a>
                         <a href="<?php echo site_url('contact-us'); ?>">Contact Us</a>
                         <a href="<?php echo site_url('blogs'); ?>">Blogs</a>

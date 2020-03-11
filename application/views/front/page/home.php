@@ -273,6 +273,7 @@
             singleDatePicker: true,
             autoApply: true,
             minDate: moment(),
+            timeZone: null,
             locale: {
                 format: 'Y-MM-DD'
             }

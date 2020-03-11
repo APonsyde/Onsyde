@@ -161,6 +161,7 @@
 		        $('#to_date').val(end.format('Y-MM-DD'));
 		    }
 		    $('.daterange').daterangepicker({
+            	timeZone: null,
 		        startDate: start,
 		        endDate: end,
 		        linkedCalendars: false,

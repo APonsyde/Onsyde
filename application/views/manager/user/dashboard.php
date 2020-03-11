@@ -171,6 +171,7 @@
 				startDate: start,
 				singleDatePicker: true,
 				autoApply: true,
+				timeZone: null,
 				locale: {
 			      	format: 'Y-MM-DD'
 			    }

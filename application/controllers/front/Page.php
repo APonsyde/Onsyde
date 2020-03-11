@@ -143,6 +143,8 @@ class Page extends FrontController
                 }
                 else
                 {
+                    $booking_data = json_encode($this->input->post());
+                    $this->session->set_userdata('booking_data', $booking_data);
                     $this->session->set_flashdata('error_message', 'Please login / register to continue');
                     redirect('player');
                     exit;

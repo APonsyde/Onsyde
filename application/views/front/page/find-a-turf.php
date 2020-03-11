@@ -53,7 +53,7 @@
 						    						}
 							    					foreach ($turf['booked_slots'] as $key => $booked_slot) {
 							    						if($booked_slot['id'] == $slot['id']) {
-							    							$booked = true;
+							    							$unavailable = true;
 							    							break;
 							    						}
 							    					}

@@ -8,7 +8,8 @@ class User extends FrontController
         parent::__construct();
         $this->load->model('Email_model');
         $this->load->model('Player_model');
-
+        $this->load->model('Booking_model');
+        $this->load->model('Turf_model');
     }
 
     public function index()
@@ -146,9 +147,16 @@ class User extends FrontController
 
                 if($result)
                 {
-                    $this->session->set_flashdata('success_message', 'Logged in successfully');
-                    redirect();
-                    exit;
+                    if($this->session->userdata('booking_data'))
+                    {
+                        $this->_continue_booking();
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('success_message', 'Logged in successfully');
+                        redirect();
+                        exit;
+                    }
                 }
                 else
                 {
@@ -204,8 +212,16 @@ class User extends FrontController
                 {
                     $this->Email_model->send_registration_email($data['full_name'], $data['email']);
                     $this->Player_model->set_player_session(['player_id' => $player['id'], 'player_name' => $data['full_name']]);
-                    redirect('player/profile#preferences');
-                    exit;
+
+                    if($this->session->userdata('booking_data'))
+                    {
+                        $this->_continue_booking();
+                    }
+                    else
+                    {
+                        redirect('player/profile#preferences');
+                        exit;
+                    }
                 }
                 else
                 {
@@ -422,6 +438,119 @@ class User extends FrontController
             $data['title'] = 'Profile';
             $data['_view'] = 'player/user/profile';
             $this->load->view('front/layout/basetemplate', $data);
+        }
+    }
+
+    private function _continue_booking()
+    {
+        $_POST = json_decode($this->session->userdata('booking_data'), true);
+        $this->session->unset_userdata('booking_data');
+
+        $date = ($this->input->post('date')) ? $this->input->post('date') : date('Y-m-d');
+        $slots = $this->input->post('slot');
+        $slot_selection_type = TURF_SLOT_GROUPED;
+
+        $player = $this->Player_model->get_player_by_id($this->session->userdata('player_id'));
+
+        $this->player = [
+            'id' => $player['id'],
+            'name' => $player['full_name'],
+            'email' => $player['email'],
+            'mobile' => $player['mobile']
+        ];
+
+        $turf = $this->Turf_model->get_turf_by_id($this->input->post('turf_id'));
+
+        if(!empty($turf))
+        {
+            $slots_info = $this->Turf_model->get_turf_slots_info($slots);
+
+            $amount = 0;
+            $time_slot = null;
+
+            if($slot_selection_type == TURF_SLOT_INDIVIDUAL)
+            {
+                $prev_slot = null;
+
+                foreach ($slots_info as $key => $slot)
+                {
+                    if($key == 0)
+                    {
+                        $time_slot .= $slot['time'];
+                    }
+                    else
+                    {
+                        $prev_slot_end_time = date("h:i a", strtotime('+30 minutes', strtotime($prev_slot['time'])));
+
+                        if($prev_slot_end_time !== $slot['time'])
+                        {
+                            $time_slot .= " - ".$prev_slot_end_time.", ".$slot['time'];
+                        }
+                    }
+
+                    $prev_slot = $slot;
+                }
+            }
+            else
+            {
+                $first = $slots_info[0];
+                $time_slot = $first['time'];
+            }
+
+            $last = end($slots_info);
+            $time_slot .=  " - " . date("h:i a", strtotime('+30 minutes', strtotime($last['time'])));
+
+            foreach ($slots_info as $key => $slot)
+            {
+                $amount += $slot['price'];
+            }
+
+            $data = [
+                'booking_date' => $date,
+                'player_id' => $this->player['id'],
+                'turf_id' => $this->input->post('turf_id'),
+                'amount' => $amount,
+                'time_slot' => $time_slot
+            ];
+
+            $result = $this->Booking_model->book($data, $slots_info);
+
+            if($result)
+            {
+                if(!empty($this->player['email']))
+                {
+                    $users = [$this->player];
+                    $subject = PROJECT_NAME.' - Booking Confirmed!';
+                    $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+
+                    $this->Email_model->notify($users, $subject, $message);
+                }
+
+                if(!empty($this->player['mobile']))
+                {
+                    $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+                    sms("+91".$this->player['mobile'], $message);
+                }
+
+                $message = 'You have a new booking for '.$turf['name'].' for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+                sms("+91".$turf['contact_mobile'], $message);
+
+                $booking = $this->Booking_model->get_booking_by_id($result);
+                redirect('booking/success/'.$booking['booking_key']);
+                exit;
+            }
+            else
+            {
+                $this->session->set_flashdata('error_message', 'Some error occured while confirming the booking');
+                redirect('find-a-turf/'.$slot_selection_type.'?date='.$date);
+                exit;
+            }
+        }
+        else
+        {
+            $this->session->set_flashdata('error_message', 'Turf not found');
+            redirect('find-a-turf/'.$slot_selection_type.'?date='.$date);
+            exit;
         }
     }
 }

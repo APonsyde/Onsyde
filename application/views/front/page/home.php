@@ -85,7 +85,6 @@
                             <li>Reduce calls & cancellations </li>
                             <li>Increase turf exposure & boost sales</li>
                         </ul>
-                     
                         <form action="<?php echo site_url('demo-ajax'); ?>" id="managerForm" method="post">
                             <div class="submitForm flexpanel">
                                 <div class="form-group">
@@ -165,7 +164,7 @@
                     <p>Listen to conversations from <span class="bld">founders</span>, <span class="bld">personalities</span> and <span class="bld">fans</span> who live and breathe the game</p>
                 </div>
                 <div class="flexpanel">
-                    <ul class="podcast flexpanel flex-wrap justify-content-center  wid100">
+                    <ul class="podcast flexpanel flex-wrap justify-content-center wid100 p-0">
                         <?php foreach ($podcasts as $key => $podcast) { ?>
                             <li>
                                 <a href="<?php echo $podcast['url']; ?>" target="_blank"><img src="<?php echo show_image(base_url('uploads/podcasts/images/'.$podcast['image'])); ?>">

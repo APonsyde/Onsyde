@@ -4,7 +4,6 @@
             <div class="col-md-10">
                 <div class="titile-block">
                     <h2 class="leftLine">Our Blogs</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis</p>
                 </div>
             </div>
         </div>

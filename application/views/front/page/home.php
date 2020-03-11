@@ -149,7 +149,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="btn-wrap">
-                        <a href="<?php echo site_url('blogs'); ?>" class="btn btn-simple">Read More →</a>
+                        <a href="<?php echo site_url('blogs'); ?>" class="btn btn-simple">View All Blogs →</a>
                     </div>
                 </div>
             </div>

@@ -14,8 +14,8 @@
                         <a href="<?php echo site_url('about-us'); ?>">About Us</a>
                         <a href="<?php echo site_url('contact-us'); ?>">Contact Us</a>
                         <a href="<?php echo site_url('blogs'); ?>">Blogs</a>
-                        <a href="<?php echo site_url('privacy'); ?>">Privacy</a>
-                        <a href="<?php echo site_url('terms'); ?>">Terms</a>
+                        <a href="<?php echo site_url('privacy'); ?>">Privacy Policy</a>
+                        <a href="<?php echo site_url('terms'); ?>">Terms & Conditions</a>
                     </div>
                       <ul class="social-icons">
                         <li><a href="https://twitter.com/getonsyde"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>

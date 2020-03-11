@@ -107,6 +107,8 @@ class User extends AdminController
         $params['to_date'] =  ($this->input->get('to_date')) ? $this->input->get('to_date') : date('Y-m-d');
         $params['today'] = $date;
 
+        $data['report'] = $this->Booking_model->get_booking_data(null, $params);
+
         foreach ($data['turfs'] as $key => $turf)
         {
             $data['turfs'][$key]['report'] = $this->Booking_model->get_booking_data($turf['id'], $params);

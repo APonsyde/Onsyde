@@ -5,13 +5,35 @@
 <?php } else { ?>
 	<div class="booking manager-dashboard dash">
 		<form id="dayForm">
-			<div class="flexpanel justify-between align-center mb-3">
+			<div class="flexpanel justify-between align-center mb-2">
 				<div class="wid50">
 					<input type="hidden" name="from_date" id="from_date" value="<?php echo $date['from_date'] ?>">
 					<input type="hidden" name="to_date" id="to_date" value="<?php echo $date['to_date'] ?>">
 					<div class="daterange" style="background: #fff; cursor: pointer; padding: 5px 10px; width: 100%">
 						<img src="<?php echo base_url('resources/front/images/calendar.svg'); ?>" alt="logo" class="calendar">
 					    <span></span> <i class="fa fa-caret-down"></i>
+					</div>
+				</div>
+			</div>
+			<div class="row mb-4">
+				<div class="col-md-6">
+					<div class="card mb-0 mt-4">
+						<div class="card-header">
+							Total Bookings
+						</div>
+						<div class="card-body">
+							<?php echo $report['custom_bookings']; ?> slots
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="card mb-0 mt-4">
+						<div class="card-header">
+							Total Earnings
+						</div>
+						<div class="card-body">
+							<?php echo CURRENCY_SYMBOL; ?> <?php echo $report['custom_earnings']; ?>/-
+						</div>
 					</div>
 				</div>
 			</div>

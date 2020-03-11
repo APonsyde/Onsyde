@@ -70,31 +70,32 @@
                 </form>
             </div>
         <?php } ?>
-        <?php if(!empty($invited_players)) { ?>
-        	<div class="card m-b-30">
-                <div class="card-header">
-                	Confirmed players
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                        	<thead>
-                        		<tr>
-                            		<td>Name</td>
-                            		<td>Mobile</td>
-                                    <?php if($this->player['id'] == $booking['player_id']) { ?>
-                            		  <td width="20%"></td>
-                                    <?php } ?>
-                            	</tr>
-                        	</thead>
-                            <tbody>
-                                <tr>
-                                    <td><?php echo $booking['player']; ?></td>
-                                    <td><?php echo $booking['player_mobile']; ?></td>
-                                    <?php if($this->player['id'] == $booking['player_id']) { ?>
-                                        <td></td>
-                                    <?php } ?>
-                                </tr>
+    	<div class="card m-b-30">
+            <div class="card-header">
+            	Confirmed players
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                    	<thead>
+                    		<tr>
+                        		<td>Name</td>
+                        		<td>Mobile</td>
+                                <?php if($this->player['id'] == $booking['player_id']) { ?>
+                        		  <td width="20%"></td>
+                                <?php } ?>
+                        	</tr>
+                    	</thead>
+                        <tbody>
+                            <tr>
+                                <?php $message .= "\r\n".$booking['player']; ?>
+                                <td><?php echo $booking['player']; ?></td>
+                                <td><?php echo $booking['player_mobile']; ?></td>
+                                <?php if($this->player['id'] == $booking['player_id']) { ?>
+                                    <td></td>
+                                <?php } ?>
+                            </tr>
+                            <?php if(!empty($invited_players)) { ?>
                             	<?php foreach ($invited_players as $key => $invited_player) { ?>
                                     <?php if($invited_player['status'] == 'accepted') { ?>
                                         <?php $message .= "\r\n".$invited_player['name']; ?>
@@ -110,12 +111,12 @@
                                         <?php unset($invited_players[$key]); ?>
                                     <?php } ?>
                                 <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        <?php } ?>
+        </div>
         <?php if($this->player['id'] == $booking['player_id']) { ?>
             <?php if(!empty($invited_players)) { ?>
                 <div class="card m-b-30">

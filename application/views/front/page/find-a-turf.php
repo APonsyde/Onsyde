@@ -53,12 +53,12 @@
 						    						}
 							    					foreach ($turf['booked_slots'] as $key => $booked_slot) {
 							    						if($booked_slot['id'] == $slot['id']) {
-							    							$unavailable = true;
+							    							$booked = true;
 							    							break;
 							    						}
 							    					}
 						    					?>
-												<li class="<?php echo ($unavailable) ? 'slot-unavailable unavailable' : 'slot-available available'; ?>" data-price="<?php echo $slot['price']; ?>"  data-id="<?php echo $slot['id']; ?>">
+												<li class="<?php echo ($unavailable) ? 'slot-unavailable unavailable' : 'slot-available available'; ?>" data-price="<?php echo $slot['price']; ?>" data-start-time="<?php echo $slot['time']; ?>" data-end-time="<?php echo date("h:i a", strtotime('+30 minutes', strtotime($slot['time']))); ?>" data-id="<?php echo $slot['id']; ?>">
 													<?php echo $slot['time']; ?>
 					    							<input type="checkbox" class="d-none" name="slot[]" value="<?php echo $slot['id']; ?>">
 												</li>
@@ -186,11 +186,16 @@
 	{
 		var time = (slots.find(".slot-available.select").length) / 2;
 		slots.find(".time").text(time);
-
 		var price = 0;
+		var startTime = null;
+		var endTime = null;
 		slots.find(".slot-available.select").each(function() {
+			if(startTime == null)
+				startTime = $(this).attr('data-start-time');
+			endTime = $(this).attr('data-end-time');
 			price += parseFloat($(this).attr('data-price'));
 		});
 		slots.find(".price").text(price);
+		slots.find(".pay-btn").attr('data-text', 'You are booking slots from '+startTime+' to '+endTime+'. Are you sure you want to book these slots?');
 	}
 </script>

@@ -29,7 +29,7 @@
                 </div>
                 <div class="flexpanel justify-between">
                     <button class="greyBtn green">Save</button>
-                    <a href="<?php echo site_url('admin/content/blogs'); ?>" class="redbg">Cancel</a>
+                    <a href="<?php echo site_url('admin/content/blogs'); ?>" class="back">Back →</a>
                 </div>
             </form>
         <?php } else { ?>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="flexpanel justify-between">
                     <button class="greyBtn green">Save</button>
-                    <a href="<?php echo site_url('admin/content/podcasts'); ?>" class="redbg">Cancel</a>
+                    <a href="<?php echo site_url('admin/content/podcasts'); ?>" class="back">Back →</a>
                 </div>
             </form>
         <?php } ?>

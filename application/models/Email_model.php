@@ -24,7 +24,7 @@ class Email_model extends CI_Model {
 		$data['_view'] = 'demo';
         $data['title'] = PROJECT_NAME.' Request Demo Mail';
         $html = $this->load->view('email/layout', $data, true);
-        return $this->send_mail->send_to(EMAIL_ADMIN, PROJECT_NAME." Request Demo Mail", $html);
+        return $this->send_mail->send_to(array('alastair@onsyde.in' => 'Onsyde Admin'), PROJECT_NAME." Request Demo Mail", $html);
 	}
 
 	public function send_forgot_password_code($name, $email, $code)

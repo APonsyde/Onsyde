@@ -24,9 +24,6 @@
                             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                 <?php if(!$this->session->userdata('player_id') && !$this->session->userdata('manager_id')) { ?>
                                     <ul class="navbar-nav">
-                                        <li class="nav-item active">
-                                            <a class="nav-link" href="<?php echo site_url('manager'); ?>">Are you a Turf Manager?</a>
-                                        </li>
                                         <li class="nav-item dropdown greenborder">
                                             <a class="nav-link" href="<?php echo site_url('player'); ?>"  aria-haspopup="true" aria-expanded="false"> Player Login </a>
                                         </li>

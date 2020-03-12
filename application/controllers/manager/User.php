@@ -259,7 +259,7 @@ class User extends ManagerController
             $data['turfs'][$key]['report'] = $this->Booking_model->get_booking_data($turf['id'], $params);
             $data['turfs'][$key]['slots'] = $this->Turf_model->get_all_turf_slots($turf['id'], $day);
             $data['turfs'][$key]['booked_slots'] = $this->Turf_model->get_all_turf_booked_slots($turf['id'], $day, $date);
-            $data['turfs'][$key]['recent_bookings'] = $this->Booking_model->get_all_bookings(null, null, ['turf_id' => $turf['id'], 'booking_date' => $date]);
+            $data['turfs'][$key]['recent_bookings'] = $this->Booking_model->get_all_bookings(null, null, ['turf_id' => $turf['id'], 'status' => TURF_STATUS_BOOKED, 'booking_date' => $date]);
             $data['turfs'][$key]['cancelled_bookings'] = $this->Booking_model->get_all_bookings(null, null, ['turf_id' => $turf['id'], 'status' => TURF_STATUS_CANCELLED, 'booking_date' => $date]);
         }
 
@@ -293,8 +293,8 @@ class User extends ManagerController
         foreach ($data['turfs'] as $key => $turf)
         {
             $data['turfs'][$key]['report'] = $this->Booking_model->get_booking_data($turf['id'], $params);
-            $data['turfs'][$key]['recent_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id']]);
-            $data['turfs'][$key]['cancelled_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id'], 'status' => TURF_STATUS_CANCELLED]);
+            $data['turfs'][$key]['recent_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id'], 'status' => TURF_STATUS_BOOKED, 'from_booking_date' => $params['from_date'], 'to_booking_date' => $params['to_date']]);
+            $data['turfs'][$key]['cancelled_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id'], 'status' => TURF_STATUS_CANCELLED, 'from_booking_date' => $params['from_date'], 'to_booking_date' => $params['to_date']]);
         }
 
         $data['date'] = $params;

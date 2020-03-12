@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-12 responsive-wrap">
                     <div class="footer-logo_wrap">
-                        <img src="<?php echo base_url('resources/front/images/logo.png'); ?>" alt="#" class="img-fluid">
+                        <a href="<?php echo site_url(); ?>"><img src="<?php echo base_url('resources/front/images/logo.png'); ?>" alt="#" class="img-fluid"></a>
                     </div>
                 </div>
             </div>

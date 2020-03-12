@@ -221,12 +221,10 @@ Author:
   background:#39b44a;color:#fff;
 }
 .timeslots li.booked{
-  background:#393838;color:#fff;
+  background:#484848;color:#fff;
 }
 .timeslots li.unavailable{
-  /*background:#E0E7EF;*/
-  background: #f0f0f0;
-
+  background: #dcdcdc;
 }
 .timeslots li.selection{
   background:#39B44A;color:#fff;

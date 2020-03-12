@@ -293,8 +293,8 @@ class User extends ManagerController
         foreach ($data['turfs'] as $key => $turf)
         {
             $data['turfs'][$key]['report'] = $this->Booking_model->get_booking_data($turf['id'], $params);
-            $data['turfs'][$key]['recent_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id'], 'booking_date' => $date]);
-            $data['turfs'][$key]['cancelled_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id'], 'status' => TURF_STATUS_CANCELLED, 'booking_date' => $date]);
+            $data['turfs'][$key]['recent_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id']]);
+            $data['turfs'][$key]['cancelled_bookings'] = $this->Booking_model->get_all_bookings(5, null, ['turf_id' => $turf['id'], 'status' => TURF_STATUS_CANCELLED]);
         }
 
         $data['date'] = $params;

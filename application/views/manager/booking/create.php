@@ -70,17 +70,18 @@
 											<?php foreach ($turf['slots'] as $key => $slot) { ?>
 						    					<?php
 						    						$unavailable = false;
+						    						$booked = false;
 						    						if($slot['price'] <= 0) {
 						    							$unavailable = true;
 						    						}
 							    					foreach ($turf['booked_slots'] as $key => $booked_slot) {
 							    						if($booked_slot['id'] == $slot['id']) {
-							    							$unavailable = true;
+							    							$booked = true;
 							    							break;
 							    						}
 							    					}
 						    					?>
-												<li class="<?php echo ($unavailable) ? 'slot-unavailable unavailable' : 'slot-available available'; ?>" data-price="<?php echo $slot['price']; ?>"  data-id="<?php echo $slot['id']; ?>">
+												<li class="<?php echo ($booked) ? 'slot-unavailable booked' : (($unavailable) ? 'slot-unavailable unavailable' : 'slot-available available'); ?>" data-price="<?php echo $slot['price']; ?>"  data-id="<?php echo $slot['id']; ?>">
 													<?php echo $slot['time']; ?>
 					    							<input type="checkbox" class="d-none" name="slot[]" value="<?php echo $slot['id']; ?>">
 												</li>

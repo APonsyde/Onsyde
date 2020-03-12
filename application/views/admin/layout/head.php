@@ -4,7 +4,7 @@
 <meta name="author" content="TLB Media Pvt Ltd">
 <meta name="description" content="Onsyde is a turf booking system">
 <meta name="keywords" content="onsyde, turf, turf booking, sports">
-<link rel="shortcut icon" href="#">
+<link rel="shortcut icon" href="<?php echo base_url('resources/theme/images/favicon.ico'); ?>">
 <title><?php echo PROJECT_NAME; ?><?php echo isset($title) ? " / " . $title : ""; ?></title>
 <link rel="stylesheet" href="<?php echo base_url('resources/theme/css/bootstrap.min.css'); ?>">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">

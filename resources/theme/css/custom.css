@@ -5,7 +5,8 @@
 	cursor: not-allowed;
 }
 .slot-available.select {
-	background: #FFF260;
+	background: #39b44a;
+    color: #fff;
 }
 
 .site-container {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php $this->load->view('front/layout/head'); ?>
+    <?php $this->load->view('manager/layout/head'); ?>
 </head>
 <body>
     <section class="loginPage">
@@ -23,12 +23,13 @@
                             <div class="btn-search">
                                 <button class="btn btn-simple">Enter →</button>
                             </div>
+                            <p class="mb-0 mt-3">Forgot password? <a href="<?php echo site_url('manager/forgot-password'); ?>">Reset</a></p>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <?php $this->load->view('front/layout/foot'); ?>
+    <?php $this->load->view('manager/layout/foot'); ?>
 </body>
 </html>

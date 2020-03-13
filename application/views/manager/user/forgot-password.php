@@ -3,38 +3,33 @@
 <head>
     <?php $this->load->view('manager/layout/head'); ?>
 </head>
-<body class="vertical-layout">
-    <div id="containerbar" class="containerbar authenticate-bg">
-        <div class="container">
-            <div class="auth-box login-box">
-                <div class="row no-gutters align-items-center justify-content-center">
-                    <div class="col-md-6 col-lg-5">
-                        <div class="auth-box-right">
-                            <div class="card">
-                                <div class="card-body">
-                                    <form method="post">
-                                        <div class="form-head">
-                                            <a href="<?php echo site_url(); ?>" class="logo"><img src="<?php echo base_url('resources/theme/images/logo.png'); ?>" class="img-fluid" alt="logo"></a>
-                                        </div>                                        
-                                        <h4 class="text-primary my-4">Forgot Password?</h4>
-                                        <?php $this->load->view('manager/layout/alert'); ?>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="mobile" placeholder="Enter your mobile number">
-                                            <?php echo form_error('mobile'); ?>
-                                        </div>
-                                        <button type="submit" class="btn btn-success btn-lg btn-block font-18">Reset Password</button>
-                                        <p class="mb-0 mt-3">Remember password? <a href="<?php echo site_url('manager'); ?>">Login</a></p>
-                                        <hr>
-                                        <p class="mb-0">Go back to home? <a href="<?php echo site_url(); ?>">Home</a></p>
-                                    </form>
-                                </div>
+<body>
+    <section class="loginPage">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 ml-auto mr-auto center-screen">
+                    <a class="logo">
+                        <img src="<?php echo base_url('resources/theme/images/logo.png'); ?>">
+                    </a>
+                    <div class="titile-block">
+                        <h2 class="">Forgot Password?</h2>
+                        <p>Enter your number.</p>
+                        <form method="post" class="register">
+                            <input type="hidden" class="form-control" name="mobile" value="<?php echo $this->input->get('mobile'); ?>">
+                            <div class="mb-20">
+                                <input type="text" class="inpt" name="mobile" placeholder="Enter your mobile number">
+                                <?php echo form_error('mobile'); ?>
                             </div>
-                        </div>
+                            <div class="btn-search">
+                                <button class="btn btn-simple">Enter →</button>
+                            </div>
+                            <p class="mb-0 mt-3">Remember password? <a href="<?php echo site_url('manager'); ?>">Login</a></p>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     <?php $this->load->view('manager/layout/foot'); ?>
 </body>
 </html>

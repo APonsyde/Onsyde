@@ -23,6 +23,7 @@
                             <div class="btn-search">
                                 <button class="btn btn-simple">Enter →</button>
                             </div>
+                            <p class="mb-0 mt-3">Forgot password? <a href="<?php echo site_url('player/forgot-password'); ?>">Reset</a></p>
                         </form>
                     </div>
                 </div>

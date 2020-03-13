@@ -1,7 +1,7 @@
 <table bgcolor="#f5f5f5" align="center" class="full" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td>
-			<table bgcolor="#304050" align="center" width="750" class="margin-full" style="background-size: cover; background-position: center; border-radius: 6px 6px 0 0;" border="0" cellpadding="0" cellspacing="0" background="<?php echo base_url('resources/theme/images/email/banner-web.jpg'); ?>">
+			<table bgcolor="#304050" align="center" width="750" class="margin-full" style="background-size: cover; background-position: center; border-radius: 6px 6px 0 0;" border="0" cellpadding="0" cellspacing="0" background="<?php echo base_url('resources/theme/images/email/banner-confirmation.jpg'); ?>">
 				<tr>
 					<td>
 						<table width="600" align="center" class="margin-pad" border="0" cellpadding="0" cellspacing="0">
@@ -52,7 +52,7 @@
 							<!-- title -->
 							<tr >
 								<td class="res-center" style="text-align: center; color: white; font-family: 'Raleway', Arial, Sans-serif; font-size: 30px;  word-break: break-word; font-weight: 900; padding-left: 16px;" >
-									Request Demo
+									Booking Confirmed!
 								</td>
 							</tr>
 							<!-- title end -->
@@ -60,7 +60,8 @@
 							<!-- subtitle -->
 							<tr >
 								<td class="res-center" style="text-align: center; color: white; font-family: 'Raleway', Arial, Sans-serif; font-size: 16px;  word-break: break-word; font-weight: 600;" >
-									Hi Admin, You have a new sports venue demo request from website.
+									Hi <?php echo $data['name']; ?>, Your booking for <?php echo $data['turf']; ?> Turf has been confirmed.
+
 								</td>
 							</tr>
 							<!-- subtitle end -->
@@ -88,7 +89,7 @@
 																					<table align="center" bgcolor="white" style="border-radius: 28px;" border="0" cellpadding="0" cellspacing="0">
 																						<tr>
 																							<td height="43" style="padding: 0 25px; text-align: center;" >
-																								<a href="<?php echo site_url(); ?>" style="color: #304050; letter-spacing: 1.3px; font-size: 14px; font-family: 'Nunito', Arial, Sans-serif; text-decoration: none; text-align: center; line-height: 24px; word-break: break-word; font-weight: 700;" >
+																								<a href="<?php echo site_url('booking/view/'.$data['booking_key']); ?>" style="color: #304050; letter-spacing: 1.3px; font-size: 14px; font-family: 'Nunito', Arial, Sans-serif; text-decoration: none; text-align: center; line-height: 24px; word-break: break-word; font-weight: 700;" >
 																									TAKE ME THERE
 																								</a>
 																							</td>
@@ -163,7 +164,7 @@
 							<!-- title -->
 							<tr >
 								<td class="res-center" style="text-align: center; color: #707070; font-family: 'Raleway', Arial, Sans-serif; font-size: 20px; letter-spacing: 1px; word-break: break-word;" >
-									 DEMO DETAILS
+									YOUR BOOKING DETAILS
 								</td>
 							</tr>
 							<!-- title end -->
@@ -195,18 +196,19 @@
 										<tr>
 											<td valign="top">
 												<!-- left column -->
-												<table width="500" align="center" class="res-full" border="0" cellpadding="0" cellspacing="0">
+												<table width="290" align="left" class="res-full" border="0" cellpadding="0" cellspacing="0">
 													<!-- subtitle -->
 													<tr >
-														<td class="res-center" style=" height: 50px; text-align: center; color: #333; font-family: 'Raleway', Arial, Sans-serif; font-size: 15px; letter-spacing: 0.7px; word-break: break-word; padding-top: 6px; background: #f5f5f5; border: 1px solid #333; border-radius: 3px 0 0 3px; font-weight: 600;" >
-															Mobile
-														</td>
-														<td class="res-center" style=" height: 50px; text-align: center; color: #333; font-family: 'Raleway', Arial, Sans-serif; font-size: 15px; letter-spacing: 0.7px; word-break: break-word; padding-top: 6px; background: #f5f5f5; border: 1px solid #333; border-left:0; border-radius: 0 3px 3px 0; font-weight: 600;" >
-															<?php echo $data['mobile']; ?>
+														<td class="res-center" style=" height: 50px; text-align: center; color: #333; font-family: 'Raleway', Arial, Sans-serif; font-size: 15px; letter-spacing: 0.7px; word-break: break-word; padding-top: 6px; background: #f5f5f5; border-radius: 3px; font-weight: 600;" >
+															Time Slot(s)
 														</td>
 													</tr>
 													
-													
+													<tr>
+														<td class="res-center" style=" height: 50px; background: #f5f5f5; border-radius: 3px; font-weight: 600; text-align: center; color: #53b64b; font-family: 'Nunito', Arial, Sans-serif; padding-bottom: 16px; font-size: 24px; letter-spacing: 0.4px; line-height: 23px; word-break: break-word;">
+															<?php echo $data['time_slot']; ?>
+														</td>
+													</tr>
 													<!-- subtitle end -->
 													<tr><td height="14" style="font-size:0px" >&nbsp;</td></tr>
 													
@@ -215,6 +217,30 @@
 												</table>
 												<!-- left column end -->
 												
+												<!--[if (gte mso 9)|(IE)]></td><td><![endif]-->
+												<table width="20" align="left" class="res-full" border="0" cellpadding="0" cellspacing="0">
+													<tr><td height="20" style="font-size:0px">&nbsp;</td></tr>
+												</table>
+												<table width="290" align="left" class="res-full" border="0" cellpadding="0" cellspacing="0">
+													<!-- subtitle -->
+													<tr >
+														<td class="res-center" style=" height: 50px; text-align: center; color: #333; font-family: 'Raleway', Arial, Sans-serif; font-size: 15px; letter-spacing: 0.7px; word-break: break-word; padding-top: 6px; background: #f5f5f5; border-radius: 3px; font-weight: 600;" >
+															Total Price
+														</td>
+													</tr>
+													
+													<tr>
+														<td class="res-center" style=" height: 50px; background: #f5f5f5; border-radius: 3px; font-weight: 600; text-align: center; color: #53b64b; font-family: 'Nunito', Arial, Sans-serif; padding-bottom: 16px; font-size: 24px; letter-spacing: 0.4px; line-height: 23px; word-break: break-word;">
+															<?php echo CURRENCY_SYMBOL; ?> <?php echo $data['amount']; ?>/-
+														</td>
+													</tr>
+													<!-- subtitle end -->
+													<tr><td height="14" style="font-size:0px" >&nbsp;</td></tr>
+													
+													<tr><td height="8" style="font-size:0px" >&nbsp;</td></tr>
+												
+												</table>
+												<!-- right column end -->
 											</td>
 										</tr>
 									</table>

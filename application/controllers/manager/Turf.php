@@ -302,7 +302,7 @@ class Turf extends ManagerController
 	                $subject = PROJECT_NAME.' - Turf Booking!';
 	                $message = str_replace("\r\n", "<br>", $data['message']);
 
-	                $this->Email_model->notify($users, $subject, $message);
+	                $this->Email_model->send_slot_messaging_mail($users, $subject, $message);
 	            }
 
                 $this->session->set_flashdata('success_message', 'Players have been notified');

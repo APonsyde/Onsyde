@@ -218,49 +218,63 @@ class Booking extends ApiController
                                 'time_slot' => $time_slot
                             ];
 
-                            $this->Booking_model->book($data, $slots_info);
+                            $result = $this->Booking_model->book($data, $slots_info);
 
-                            if(!empty($player['email']))
+                            if($result)
                             {
-                                $users = [
-                                    [
-                                        'name' => $player['full_name'],
-                                        'email' => $player['email']
-                                    ]
+                                $booking = $this->Booking_model->get_booking_by_id($result);
+
+                                if(!empty($player['email']))
+                                {
+                                    $users = [
+                                        [
+                                            'name' => $player['full_name'],
+                                            'email' => $player['email']
+                                        ]
+                                    ];
+
+                                    $subject = PROJECT_NAME.' - Booking Confirmed!';
+                                    $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+
+                                    if($player['inactive'])
+                                    {
+                                        $message .= '<br><br>Please activate your account by logging onto <a href="'.site_url().'">onsyde</a>.';
+                                    }
+
+                                    $this->Email_model->send_booking_confirmation_mail($player['full_name'], $player['email'], $turf['name'], $booking['booking_key']. $time_slot, $amount);
+                                }
+
+                                if(!empty($player['mobile']))
+                                {
+                                    $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+
+                                    if($player['inactive'])
+                                    {
+                                        $message .= ' Please activate your account by logging onto '.site_url().'.';
+                                    }
+
+                                    sms("+91".$player['mobile'], $message);
+                                }
+
+                                $message = 'You have a new booking for '.$turf['name'].' for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+                                sms("+91".$turf['contact_mobile'], $message);
+
+                                $response = [
+                                    'success' => true,
+                                    'message' => 'Booking has been confirmed'
                                 ];
 
-                                $subject = PROJECT_NAME.' - Booking Confirmed!';
-                                $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
-
-                                if($player['inactive'])
-                                {
-                                    $message .= '<br><br>Please activate your account by logging onto <a href="'.site_url().'">onsyde</a>.';
-                                }
-
-                                $this->Email_model->notify($users, $subject, $message);
+                                $this->set_response($response, \Restserver\Libraries\REST_Controller::HTTP_OK);
                             }
-
-                            if(!empty($player['mobile']))
+                            else
                             {
-                                $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
+                                $response = [
+                                    'success' => false,
+                                    'message' => 'Some error occured while confirming the booking'
+                                ];
 
-                                if($player['inactive'])
-                                {
-                                    $message .= ' Please activate your account by logging onto '.site_url().'.';
-                                }
-
-                                sms("+91".$player['mobile'], $message);
+                                $this->set_response($response, \Restserver\Libraries\REST_Controller::HTTP_OK);
                             }
-
-                            $message = 'You have a new booking for '.$turf['name'].' for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
-                            sms("+91".$turf['contact_mobile'], $message);
-
-                            $response = [
-                                'success' => true,
-                                'message' => 'Booking has been confirmed'
-                            ];
-
-                            $this->set_response($response, \Restserver\Libraries\REST_Controller::HTTP_OK);
                         }
                         else
                         {

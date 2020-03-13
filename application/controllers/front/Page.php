@@ -105,13 +105,15 @@ class Page extends FrontController
 
                         if($result)
                         {
+                            $booking = $this->Booking_model->get_booking_by_id($result);
+
                             if(!empty($this->player['email']))
                             {
                                 $users = [$this->player];
                                 $subject = PROJECT_NAME.' - Booking Confirmed!';
                                 $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
 
-                                $this->Email_model->notify($users, $subject, $message);
+                                $this->Email_model->send_booking_confirmation_mail($this->player['name'], $this->player['email'], $turf['name'], $booking['booking_key']. $time_slot, $amount);
                             }
 
                             if(!empty($this->player['mobile']))
@@ -123,7 +125,6 @@ class Page extends FrontController
                             $message = 'You have a new booking for '.$turf['name'].' for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
                             sms("+91".$turf['contact_mobile'], $message);
 
-                            $booking = $this->Booking_model->get_booking_by_id($result);
                             redirect('booking/success/'.$booking['booking_key']);
                             exit;
                         }

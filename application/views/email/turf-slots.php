@@ -52,7 +52,7 @@
 							<!-- title -->
 							<tr >
 								<td class="res-center" style="text-align: center; color: white; font-family: 'Raleway', Arial, Sans-serif; font-size: 30px;  word-break: break-word; font-weight: 900; padding-left: 16px;" >
-									Request Demo
+									Turf Booking!
 								</td>
 							</tr>
 							<!-- title end -->
@@ -60,7 +60,7 @@
 							<!-- subtitle -->
 							<tr >
 								<td class="res-center" style="text-align: center; color: white; font-family: 'Raleway', Arial, Sans-serif; font-size: 16px;  word-break: break-word; font-weight: 600;" >
-									Hi Admin, You have a new sports venue demo request from website.
+									Hi <?php echo $data['name'] ?>, Few slots are available today book now.
 								</td>
 							</tr>
 							<!-- subtitle end -->
@@ -163,11 +163,10 @@
 							<!-- title -->
 							<tr >
 								<td class="res-center" style="text-align: center; color: #707070; font-family: 'Raleway', Arial, Sans-serif; font-size: 20px; letter-spacing: 1px; word-break: break-word;" >
-									 DEMO DETAILS
+									 SLOTS AVAILABLE TODAY
 								</td>
 							</tr>
-							<!-- title end -->
-							<tr><td height="13" style="font-size:0px" >&nbsp;</td></tr>
+							<tr><td height="13" style="font-size:0px">&nbsp;</td></tr>
 							<!-- dash -->
 							<tr >
 								<td>
@@ -185,39 +184,11 @@
 								</td>
 							</tr>
 							<!-- dash end -->
-							<tr><td height="20" style="font-size:0px" >&nbsp;</td></tr>
-						
-							<tr><td height="20" style="font-size:0px" >&nbsp;</td></tr>
-							<!-- column x2 -->
-							<tr >
-								<td>
-									<table class="full" align="center" border="0" cellpadding="0" cellspacing="0">
-										<tr>
-											<td valign="top">
-												<!-- left column -->
-												<table width="500" align="center" class="res-full" border="0" cellpadding="0" cellspacing="0">
-													<!-- subtitle -->
-													<tr >
-														<td class="res-center" style=" height: 50px; text-align: center; color: #333; font-family: 'Raleway', Arial, Sans-serif; font-size: 15px; letter-spacing: 0.7px; word-break: break-word; padding-top: 6px; background: #f5f5f5; border: 1px solid #333; border-radius: 3px 0 0 3px; font-weight: 600;" >
-															Mobile
-														</td>
-														<td class="res-center" style=" height: 50px; text-align: center; color: #333; font-family: 'Raleway', Arial, Sans-serif; font-size: 15px; letter-spacing: 0.7px; word-break: break-word; padding-top: 6px; background: #f5f5f5; border: 1px solid #333; border-left:0; border-radius: 0 3px 3px 0; font-weight: 600;" >
-															<?php echo $data['mobile']; ?>
-														</td>
-													</tr>
-													
-													
-													<!-- subtitle end -->
-													<tr><td height="14" style="font-size:0px" >&nbsp;</td></tr>
-													
-													<tr><td height="8" style="font-size:0px" >&nbsp;</td></tr>
-												
-												</table>
-												<!-- left column end -->
-												
-											</td>
-										</tr>
-									</table>
+							<tr><td height="30" style="font-size:0px">&nbsp;</td></tr>
+
+							<tr>
+								<td class="res-center" style="text-align: center; color: #707070; font-family: 'Nunito', Arial, Sans-serif; font-size: 16.5px; letter-spacing: 0.4px; line-height: 23px; word-break: break-word">
+									<?php echo $data['message']; ?>
 								</td>
 							</tr>
 							<!-- column x2 end -->

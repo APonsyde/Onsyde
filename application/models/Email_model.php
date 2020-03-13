@@ -16,6 +16,40 @@ class Email_model extends CI_Model {
         return $this->send_mail->send_to(EMAIL_ADMIN, PROJECT_NAME." Contact Mail", $html);
 	}
 
+	public function send_booking_confirmation_mail($name, $email, $turf, $booking_key, $time_slot, $amount)
+	{
+        $data['data'] = array(
+			'name' => $name,
+			'email' => $email,
+			'turf' => $turf,
+			'booking_key' => $booking_key,
+			'time_slot' => $time_slot,
+			'amount' => $amount
+		);
+		$data['_view'] = 'confirmation';
+        $data['title'] = PROJECT_NAME.' - Booking Confirmed';
+        $html = $this->load->view('email/layout', $data, true);
+        return $this->send_mail->send_to([$email => $name], PROJECT_NAME." - Booking Confirmed", $html);
+	}
+
+	public function send_slot_messaging_mail($users, $subject, $message)
+	{
+		$data = [];
+		$data['_view'] = 'turf-slots';
+        $data['title'] = PROJECT_NAME.' - Booking Confirmed';
+
+        if(!empty($users))
+        {
+        	foreach ($users as $user)
+        	{
+        		$data['data']['name'] = $user['name'];
+        		$data['data']['message'] = $message;
+        		$html = $this->load->view('email/layout', $data, true);
+        		$this->send_mail->send_to([$user['email'] => $user['name']], PROJECT_NAME." - Turf Booking!", $html);
+        	}
+        }
+	}
+
 	public function send_demo_mail($mobile)
 	{
         $data['data'] = array(

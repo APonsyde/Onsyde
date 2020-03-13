@@ -373,7 +373,7 @@ class Turf extends ManagerController
 	            $time_slot = ($time_slot) ? $time_slot : " -- No slots available --";
 
 	            $message = "";
-	            $message .= "Turf : ".$data['turf']['name']."\r\nAddress : ".$data['turf']['address']."\r\n\r\n";
+	            $message .= $data['turf']['name']."\r\n\r\n".$data['turf']['address']."\r\n\r\n";
 	            $for = ($date == date('Y-m-d')) ? 'today' : $day.', '.date("jS M", $timestamp);
 	            $message .= "Slots available for ".strtolower($for)." -\r\n".$time_slot;
 

@@ -163,7 +163,7 @@
 							<!-- title -->
 							<tr >
 								<td class="res-center" style="text-align: center; color: #707070; font-family: 'Raleway', Arial, Sans-serif; font-size: 20px; letter-spacing: 1px; word-break: break-word;" >
-									 SLOTS AVAILABLE TODAY
+									 TURFS AVAILABLE TODAY
 								</td>
 							</tr>
 							<tr><td height="13" style="font-size:0px">&nbsp;</td></tr>
@@ -184,11 +184,39 @@
 								</td>
 							</tr>
 							<!-- dash end -->
-							<tr><td height="30" style="font-size:0px">&nbsp;</td></tr>
-
-							<tr>
-								<td class="res-center" style="text-align: center; color: #707070; font-family: 'Nunito', Arial, Sans-serif; font-size: 16.5px; letter-spacing: 0.4px; line-height: 23px; word-break: break-word">
-									<?php echo $data['message']; ?>
+							
+							<!-- title end -->
+						
+							<tr><td height="20" style="font-size:0px" >&nbsp;</td></tr>
+							<!-- column x2 -->
+							<tr >
+								<td>
+									<table class="full" align="center" border="0" cellpadding="0" cellspacing="0">
+										<tr>
+											<td valign="top">
+												<!-- left column -->
+												<table width="600" align="center" class="res-full" border="0" cellpadding="0" cellspacing="0">
+													<!-- subtitle -->
+													<tr >
+														<td class="res-center" style=" height: 50px; padding-left: 16px; text-align: left; color: #333; font-family: 'Raleway', Arial, Sans-serif; font-size: 15px; letter-spacing: 0.7px; word-break: break-word; padding: 20px; background: #f5f5f5; border: 1px solid #333; border-radius: 3px 0 0 3px; font-weight: 600;" >
+														<?php echo $data['message']; ?>
+														</td>
+														
+													</tr>
+													
+													
+													
+													<!-- subtitle end -->
+													<tr><td height="14" style="font-size:0px" >&nbsp;</td></tr>
+													
+													<tr><td height="8" style="font-size:0px" >&nbsp;</td></tr>
+												
+												</table>
+												<!-- left column end -->
+												
+											</td>
+										</tr>
+									</table>
 								</td>
 							</tr>
 							<!-- column x2 end -->

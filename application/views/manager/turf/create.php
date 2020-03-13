@@ -10,7 +10,7 @@
             </div>
             <div class="form-group">
                 <label>Address</label>
-                <input type="text" class="form-control" name="address" placeholder="1234 Main St" id="autocomplete" value="<?php echo $this->input->post('address'); ?>">
+                <input type="text" class="form-control" name="address" placeholder="1234 Main St" id="" value="<?php echo $this->input->post('address'); ?>">
                 <?php echo form_error('address'); ?>
             </div>
             <div class="form-row">

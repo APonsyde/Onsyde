@@ -89,7 +89,7 @@
 																					<table align="center" bgcolor="white" style="border-radius: 28px;" border="0" cellpadding="0" cellspacing="0">
 																						<tr>
 																							<td height="43" style="padding: 0 25px; text-align: center;" >
-																								<a href="<?php echo site_url('booking/view/'.$data['booking_key']); ?>" style="color: #304050; letter-spacing: 1.3px; font-size: 14px; font-family: 'Nunito', Arial, Sans-serif; text-decoration: none; text-align: center; line-height: 24px; word-break: break-word; font-weight: 700;" >
+																								<a href="<?php echo site_url('bookings'); ?>" style="color: #304050; letter-spacing: 1.3px; font-size: 14px; font-family: 'Nunito', Arial, Sans-serif; text-decoration: none; text-align: center; line-height: 24px; word-break: break-word; font-weight: 700;" >
 																									TAKE ME THERE
 																								</a>
 																							</td>

@@ -177,7 +177,7 @@ class Booking extends ManagerController
                                     $message .= '<br><br>Please activate your account by logging onto <a href="'.site_url().'">onsyde</a>.';
                                 }
 
-                                $this->Email_model->send_booking_confirmation_mail($player['full_name'], $player['email'], $turf['name'], $booking['booking_key']. $time_slot, $amount);
+                                $this->Email_model->send_booking_confirmation_mail($player['full_name'], $player['email'], $turf['name'], $booking['booking_key'], $time_slot, $amount);
                             }
 
                             if(!empty($player['mobile']))

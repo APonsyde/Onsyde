@@ -113,7 +113,7 @@ class Page extends FrontController
                                 $subject = PROJECT_NAME.' - Booking Confirmed!';
                                 $message = 'Your booking for '.$turf['name'].' has been confirmed for the time slot(s) '.$time_slot.' totalling Rs '.$amount.' /-.';
 
-                                $this->Email_model->send_booking_confirmation_mail($this->player['name'], $this->player['email'], $turf['name'], $booking['booking_key']. $time_slot, $amount);
+                                $this->Email_model->send_booking_confirmation_mail($this->player['name'], $this->player['email'], $turf['name'], $booking['booking_key'], $time_slot, $amount);
                             }
 
                             if(!empty($this->player['mobile']))
@@ -157,7 +157,7 @@ class Page extends FrontController
             $data['slot_selection_type'] = $slot_selection_type;
 
             $filters = $this->input->get();
-            $filter['inactive'] = 0;
+            $filters['inactive'] = 0;
 
             $data['turfs'] = $this->Turf_model->get_all_turfs(null, null, $filters);
 

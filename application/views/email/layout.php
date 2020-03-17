@@ -77,7 +77,9 @@
                                                             <table style="border-radius: 50%; padding: 10px; border: 1px solid white;" align="center" border="0" cellpadding="0" cellspacing="0">
                                                                 <tr>
                                                                     <td>
-                                                                        <img width="15" style="max-width: 15px; width: 100%; display: block; line-height: 0px; font-size: 0px; border: 0px;" src="<?php echo base_url('resources/theme/images/email/module20-img02.png'); ?>">
+                                                                        <a href="https://www.facebook.com/onsyde.in">
+                                                                            <img width="15" style="max-width: 15px; width: 100%; display: block; line-height: 0px; font-size: 0px; border: 0px;" src="<?php echo base_url('resources/theme/images/email/module20-img02.png'); ?>">
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -86,7 +88,9 @@
                                                             <table style="border-radius: 50%; padding: 10px; border: 1px solid white;" align="center" border="0" cellpadding="0" cellspacing="0">
                                                                 <tr>
                                                                     <td>
-                                                                        <img width="15" style="max-width: 15px; width: 100%; display: block; line-height: 0px; font-size: 0px; border: 0px;" src="<?php echo base_url('resources/theme/images/email/module20-img03.png'); ?>">
+                                                                        <a href="https://twitter.com/getonsyde">
+                                                                            <img width="15" style="max-width: 15px; width: 100%; display: block; line-height: 0px; font-size: 0px; border: 0px;" src="<?php echo base_url('resources/theme/images/email/module20-img03.png'); ?>">
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -95,7 +99,9 @@
                                                             <table style="border-radius: 50%; padding: 10px; border: 1px solid white;" align="center" border="0" cellpadding="0" cellspacing="0">
                                                                 <tr>
                                                                     <td>
-                                                                        <img width="15" style="max-width: 15px; width: 100%; display: block; line-height: 0px; font-size: 0px; border: 0px;" src="<?php echo base_url('resources/theme/images/email/instagram.png'); ?>">
+                                                                        <a href="https://www.instagram.com/getonsyde">
+                                                                            <img width="15" style="max-width: 15px; width: 100%; display: block; line-height: 0px; font-size: 0px; border: 0px;" src="<?php echo base_url('resources/theme/images/email/instagram.png'); ?>">
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                             </table>

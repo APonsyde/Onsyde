@@ -9,7 +9,7 @@
                     <th scope="col">Booking Date</th>
                     <th scope="col" width="20%">Time Slot</th>
                     <th scope="col">Total Amount</th>
-                    <th scope="col" colspan="2"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -34,14 +34,11 @@
                                     <?php } ?>
                                 <?php } ?>
                             </td>
-                            <td>
-                                <a class="greyBtn green mr-2" href="<?php echo site_url('booking/view/'.$booking['booking_key']); ?>">View</a>
-                            </td>
                         </tr>
                     <?php } ?>
                 <?php } else { ?>
                     <tr>
-                        <th scope="row" colspan="8">No bookings done yet!</th>
+                        <th scope="row" colspan="7">No bookings done yet!</th>
                     </tr>
                 <?php } ?>
             </tbody>

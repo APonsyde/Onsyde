@@ -23,8 +23,9 @@
                             <td><?php echo $booking['time_slot']; ?></td>
                             <td><?php echo CURRENCY_SYMBOL; ?> <?php echo $booking['amount']; ?>/-</td>
                             <td>
-                                <?php if(in_array($booking['status'], [TURF_STATUS_BOOKED]) && $booking['player_cancellation']) { ?>
-                                    <a class="greyBtn btn-confirm" data-title="Cancel Booking" data-text="Are you sure you want to cancel the booking?" href="<?php echo site_url('booking/cancel/'.$booking['id']); ?>">Cancel</a>
+                                <?php $time_slot_data = explode(" - ", $booking['time_slot']); ?>
+                                <?php if(in_array($booking['status'], [TURF_STATUS_BOOKED]) && time() < strtotime($booking['booking_date'].$time_slot_data[1])) { ?>
+                                    <a class="greyBtn btn-confirm" data-title="Cancel Booking" data-text="Are you sure you want to cancel the booking?" href="<?php echo site_url('booking/otp/'.$booking['id']); ?>">Cancel</a>
                                 <?php } else { ?>
                                     <?php if($booking['status'] == TURF_STATUS_CANCELLED) { ?>
                                         <span class="text text-danger">Cancelled</span>

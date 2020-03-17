@@ -102,7 +102,8 @@ $route['player/profile'] = 'player/user/profile';
 
 // Booking Routes
 $route['bookings'] = 'player/booking/index';
-$route['booking/cancel/(:num)'] = 'player/booking/cancel/$1';
+$route['booking/otp/(:num)'] = 'player/booking/otp/$1';
+$route['booking/cancel/(:any)'] = 'player/booking/cancel/$1';
 $route['booking/view/(:any)'] = 'player/booking/view/$1';
 $route['booking/invite/(:any)'] = 'player/booking/invite/$1';
 $route['booking/invite-resend/(:num)'] = 'player/booking/invite_resend/$1';

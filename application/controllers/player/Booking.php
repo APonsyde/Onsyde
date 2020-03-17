@@ -265,7 +265,7 @@ class Booking extends FrontController
         }
     }
 
-    public function cancel($id = 0)
+    public function otp($id = 0)
     {
         $this->authenticate(current_url());
 
@@ -273,20 +273,14 @@ class Booking extends FrontController
 
         if(!empty($booking) && $booking['player_id'] = $this->player['id'])
         {
-            if($booking['player_cancellation'])
-            {
-                $this->Booking_model->update($booking['id'], ['status' => 'cancelled']);
+            $otp = otp();
+            $message = "OTP for booking cancellation is ".$otp;
+            sms("+91".$booking['player_mobile'], $message);
 
-                $this->session->set_flashdata('success_message', 'You have cancelled this booking');
-                redirect('bookings');
-                exit;
-            }
-            else
-            {
-                $this->session->set_flashdata('error_message', 'This booking cannot be cancelled');
-                redirect('bookings');
-                exit;
-            }
+            $this->Booking_model->update($booking['id'], ['otp' => $otp]);
+            $this->session->set_flashdata('success_message', 'OTP has been sent to your mobile number');
+            redirect('booking/cancel/'.$booking['booking_key']);
+            exit;
         }
         else
         {
@@ -308,6 +302,52 @@ class Booking extends FrontController
             $data['title'] = 'Thank you';
             $data['_view'] = 'player/booking/success';
             $this->load->view('front/layout/basetemplate', $data);
+        }
+        else
+        {
+            $this->session->set_flashdata('error_message', 'Booking not found');
+            redirect('bookings');
+            exit;
+        }
+    }
+
+    public function cancel($booking_key = null)
+    {
+        $this->authenticate(current_url());
+
+        $booking = $this->Booking_model->get_booking_by_params(['booking_key' => $booking_key]);
+
+        if(!empty($booking) && $booking['player_id'] = $this->player['id'])
+        {
+            if($this->input->post())
+                $_POST['otp'] = implode("", $this->input->post('code'));
+
+            $this->form_validation->set_rules('otp', 'OTP', 'required|xss_clean');
+
+            $this->form_validation->set_message('required', '%s is required');
+            $this->form_validation->set_error_delimiters('<div class="text-danger text-left"><small>', '</small></div>');
+
+            if($this->form_validation->run())
+            {
+                if($booking['otp'] == $this->input->post('otp'))
+                {
+                    $this->Booking_model->update($booking['id'], ['status' => 'cancelled']);
+                    $this->session->set_flashdata('success_message', 'You have cancelled this booking');
+                    redirect('bookings');
+                    exit;
+                }
+                else
+                {
+                    $this->session->set_flashdata('error_message', 'Invalid OTP');
+                    redirect('booking/cancel/'.$booking_key);
+                    exit;
+                }
+            }
+            else
+            {
+                $data['title'] = 'Verify OTP for booking cancellation';
+                $this->load->view('player/booking/cancel', $data);
+            }
         }
         else
         {

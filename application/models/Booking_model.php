@@ -104,7 +104,7 @@ class Booking_model extends CI_Model
 		if(isset($params['booking_key']))
 			$this->db->where('b.booking_key', $params['booking_key']);
 
-		$this->db->select('t.*, b.id, b.booking_key, b.player_id, b.booking_date, b.time_slot, b.amount, b.status, IF(b.booking_date > DATE(CURRENT_DATE()), 1, 0) as player_cancellation, p.full_name as player, p.mobile as player_mobile');
+		$this->db->select('t.*, b.id, b.booking_key, b.player_id, b.booking_date, b.time_slot, b.amount, b.status, b.otp, IF(b.booking_date > DATE(CURRENT_DATE()), 1, 0) as player_cancellation, p.full_name as player, p.mobile as player_mobile');
 		$this->db->from('bookings b');
 		$this->db->join('turfs t', 't.id = b.turf_id', 'inner');
 		$this->db->join('players p', 'p.id = b.player_id', 'inner');

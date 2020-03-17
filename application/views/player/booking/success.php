@@ -8,7 +8,7 @@
                     <p>You'll receive a confirmation email at <?php echo $this->player['email']; ?></p>
                 </div>
                 <div class="text-center">
-                    <a class="btn btn-success" href="<?php echo site_url('booking/view/'.$booking['booking_key']); ?>">View Booking</a>
+                    <a class="btn btn-success" href="<?php echo site_url('bookings'); ?>">View Booking</a>
                 </div>
             </div>
         </div>

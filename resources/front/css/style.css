@@ -2164,14 +2164,14 @@ hr {
 .blog-content {
   padding: 0 0; }
   .blog-content p span {
-    font-weight: 600; }
+    /*font-weight: 600;*/ }
   .blog-content p a {
     color: #39b54a; }
     .blog-content p a:hover {
       text-decoration: none; }
 
 .blog-text h4 {
-  font-weight: 600; }
+  /*font-weight: 600;*/ }
 
 .blog-text p {
   line-height: 1.8;

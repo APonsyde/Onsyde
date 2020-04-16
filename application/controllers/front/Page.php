@@ -174,7 +174,7 @@ class Page extends FrontController
 
             $data['tab'] = 'home';
             $data['title'] = 'Home';
-            $data['_view'] = 'front/page/find-a-turf';
+            $data['_view'] = 'front/page/coming-soon';
             $this->load->view('front/layout/basetemplate', $data);
         }
     }

@@ -229,14 +229,14 @@
                 }
             })
         })
-        $("#managerForm").on("submit", function(e) {
-            e.preventDefault();
-            submitDemoForm();
-        })
-        $("#submitManagerForm").on("click", function(e) {
-            e.preventDefault();
-            submitDemoForm();
-        })
+        // $("#managerForm").on("submit", function(e) {
+        //     e.preventDefault();
+        //     submitDemoForm();
+        // })
+        // $("#submitManagerForm").on("click", function(e) {
+        //     e.preventDefault();
+        //     submitDemoForm();
+        // })
     });
     function submitDemoForm()
     {

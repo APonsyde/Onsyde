@@ -104,7 +104,7 @@
                         <form action="<?php echo site_url('quiz'); ?>" id="managerForm" method="get">
                             <div class="submitForm flexpanel">
                                 <div class="subBtn w-100">
-                                    <a href="javascript:void(0)" id="submitManagerForm">Play Now →</a>
+                                    <a href="<?= site_url('quiz'); ?>" id="submitManagerForm">Play Now →</a>
                                 </div>
                             </div>
                             <div class="error"></div>

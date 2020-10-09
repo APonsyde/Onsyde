@@ -11,7 +11,6 @@
                 <div class="col-md-12">
                     <div class="copyright">
                         <p class="mb-3">Copyright © 2020 Listed Inc. All rights reserved</p>
-                        <a href="<?php echo site_url('manager'); ?>">Manager Login</a>
                         <a href="<?php echo site_url('about-us'); ?>">About Us</a>
                         <a href="<?php echo site_url('contact-us'); ?>">Contact Us</a>
                         <a href="<?php echo site_url('blogs'); ?>">Blogs</a>
@@ -26,7 +25,6 @@
                         <li><a href="tel:+91 9372965837"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
                     </ul>
                     <hr>
-                    <p class="text-center">Made with <i class="fa fa-heart" style="color: #f18d8d;"></i> by <a target="_blank" href="http://www.thelazybaboons.com/"><img src="<?php echo base_url('resources/theme/images/TLB.svg'); ?>" width="24"></a></p>
                 </div>
             </div>
         </div>

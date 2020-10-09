@@ -2,8 +2,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="TLB Media Pvt Ltd">
-<meta name="description" content="Onsyde is a turf booking system">
-<meta name="keywords" content="onsyde, turf, turf booking, sports">
+<meta name="description" content="Sport brands, reviews and recommendation for the Indian fans">
+<meta name="keywords" content="onsyde, sport, review, reviews, sports, brand">
 <link rel="shortcut icon" href="<?php echo base_url('resources/theme/images/favicon.ico'); ?>">
 <title><?php echo PROJECT_NAME; ?><?php echo isset($title) ? " / " . $title : ""; ?></title>
 <link rel="stylesheet" href="<?php echo base_url('resources/theme/css/bootstrap.min.css'); ?>">

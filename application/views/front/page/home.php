@@ -196,7 +196,9 @@
 
 <style>
   .howit-img-block {
-    overflow: hidden;
+    width: 200px;
+    height: 200px;
+    border-radius: unset;
   }
   .pos {
     top: 0px;

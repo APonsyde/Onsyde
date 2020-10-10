@@ -2,10 +2,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="TLB Media Pvt Ltd">
-<meta name="description" content="Sport brands, reviews and recommendations for the Indian fans">
+<meta name="description" content="Sport brands, reviews and recommendations for the Indian fan">
 <meta name="keywords" content="onsyde, sport, review, reviews, sports, brand">
 <link rel="shortcut icon" href="<?php echo base_url('resources/theme/images/favicon.ico'); ?>">
-<title><?php echo PROJECT_NAME; ?><?php echo isset($title) ? " / " . $title : ""; ?></title>
+<title>
+    <?php
+      if (isset($title) && $title == 'Home') {
+          echo 'Your Teammate for Sports Reviews';
+      } else {
+          echo PROJECT_NAME . isset($title) ? " / " . $title : "";
+      }
+    ?>
+</title>
 <link rel="stylesheet" href="<?php echo base_url('resources/theme/css/bootstrap.min.css'); ?>">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 <link href="https://blueimp.github.io/Gallery/css/blueimp-gallery.min.css" rel="stylesheet">

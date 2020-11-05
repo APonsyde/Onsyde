@@ -1,54 +1,42 @@
-<section class="hero-wrap d-flex align-items-center about">
-    <div class="container aboutBanner">
-        <div class="row d-flex justify-content-center">
-            <div class="hero-title">
-                <h1>Who We Are?</h1>
-            </div>
-            <div class="positn">
-                <div class="flexpanel">
-                    <a href="<?php echo site_url(); ?>">Home</a>
-                    <a href="<?php echo site_url('about-us'); ?>" class="act">Who We Are</a>
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="d-flex align-items-center justify-center p-5">
+  <h1>Who We Are?</h1>
 </section>
 <section class="main-block howit-work-wrap">
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="flexpanel mar-bot shape1">
-                    <div class="circle">
-                    </div>
+                <div class="flexpanel mar-bot">
+
                     <div class="content">
-                        <h3>Onsyde was formed with one idea….</h3>
-                        <p>that playing your favourite game regularly should be easy. This means not just discovering sports venues nearby but also getting your team together and enjoying the game in a hassle-free and simple way. </p>
+                        <h3>Sports is more than just a game….</h3>
+                        <p>But go online and all we see is banter, memes, or some Insta post of an influencer posing near a brand with #myfavouritebrand. We behave the same when discovering anything sport related online, head over to Amazon or Decathlon or watch the Last Dance on Netflix and think this is what sports is all about - cheap products, athletes with ego and pure entertainment value. At Onsyde we want to change this thinking. Why? India is on its way to become a sports powerhouse with international brands, million-dollar startups and amazing athletes bringing the best of what sports has to offer. At Onsyde, we want to be the ultimate sports guide to help you discover the best of what sports has to offer for the Indian consumer.</p>
                     </div>
                 </div>
-                <div class="flexpanel mar-bot row-rev shape2">
-                    <div class="circle">
-                    </div>
+                <div class="flexpanel mar-bot">
                     <div class="content">
                         <h3>What we are is the ultimate teammate for..</h3>
-                        <p>Turf managers - We help manage multiple bookings, reduce cancellations, engage customers all through a user-friendly interface that is secured to keep your database secure at your turf</p>
-                        <p>Players - Search turfs/ venues, manage slots and connect with players with the unique matching system. Host or participate in tournaments across the city to win exciting prizes. All this with no app to download and no sign-up required.</p>
+                        <p>
+                          Sport product reviews and recommendations.
+                        </p>
+                        <p>
+                          Getting smarter through sport through our Daily Sports Quiz.
+                        </p>
+                        <p>
+                          Insights and learnings on what sport can teach us in life.
+                        </p>
                     </div>
                 </div>
-                <div class="flexpanel mar-bot shape1">
-                    <div class="circle">
-                    </div>
+                <div class="flexpanel mar-bot">
                     <div class="content">
                         <h3>But what we are NOT is..</h3>
-                        <p>Just another booking website, just another Instagram handle for football, just another “event management” company because we believe that to make a difference you need to be different </p>
+                        <p>Another aggregator or sports platform that has a bunch of links or sponsored by brands to tell you “this is the best fitness product” or “this is the best sports film ever”. We will never be paid by a brand to endorse / recommend a product.</p>
                     </div>
                 </div>
-                <div class="flexpanel mar-bot marg0 row-rev">
-                    <div class="circle">
-                    </div>
+                <div class="flexpanel mar-bot marg0">
                     <div class="content">
                         <h3>We believe in sport because…</h3>
-                        <p>It brings people together in a beautiful way and at Onsyde we come together to make every sport experience </p>
-                        <p>a game to remember. So get on the right side, join Onsyde!</p>
+                        <p>It brings people together in a beautiful way and at Onsyde we want to build the biggest community of sports enthusiasts to enjoy what sport can truly offer </p>
+                        <p>So make sure you are on the right side of sport and #getonsyde</p>
                     </div>
                 </div>
             </div>
